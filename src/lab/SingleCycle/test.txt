@@ -1,0 +1,6 @@
+add r1 r29 r3
+sub r29 r29 r29
+store r29 r1 10
+load r29 r1 10
+addi r1 r2 40
+andi r5 r6 70
