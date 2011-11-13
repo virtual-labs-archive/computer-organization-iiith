@@ -1,0 +1,147 @@
+# -*- coding: utf-8 -*- 
+
+#########################################################################
+## This is a samples controller
+## - index is the default action of any application
+## - user is required for authentication and authorization
+## - download is for downloading files uploaded in the db (does streaming)
+## - call exposes all registered services (none by default)
+#########################################################################  
+
+def register():
+	return dict(form=auth.register(next=URL(request.application,'default','create_count')))
+
+def create_count():
+	user_id=auth.user.id
+	db.p_count.insert(user_id=user_id,count=0)
+	redirect(URL(request.application,'default','index'))
+
+@auth.requires_login()
+def index():
+    import os
+    import re
+    import commands
+    """
+    example action using the internationalization operator T and flash
+    rendered by views/default/index.html or views/generic.html
+    """
+    db.programs.uploaded_by.default=auth.user.id
+    curr_count=db(db.p_count.user_id==auth.user.id).select()
+    pid=[]
+    flag=0
+    test=None
+    compile=True
+    list=[]
+    out="Test"
+    inp=None
+    out_mod=None
+    values={}
+    form=SQLFORM(db.programs)
+    if(form.accepts(request.vars,session)):
+         test=request.vars.code
+	 flag=1
+	 path=os.getcwd()
+         path=path+'/applications/vlab/uploads/'#+form.vars.file
+         inp=commands.getstatusoutput('cc '+path+form.vars.file+' -o'+path+str(auth.user.id))
+	 if inp[0] != 0:
+		 compile=False
+	 i1_s=form.vars.i1_size * 1024; values["i1_s"]=i1_s
+	 d1_s=form.vars.d1_size * 1024; values["d1_s"]=d1_s
+	 l2_s=form.vars.l2_size * 1024; values["l2_s"]=l2_s
+	 values["compile"]=compile; values["input"]=""
+	 if compile==True:
+          command='valgrind --tool=cachegrind --I1='+str(i1_s)+','+str(form.vars.i1_associativity)+','+str(form.vars.i1_line_size)+' '+'--D1='+str(d1_s)+','+str(form.vars.d1_associativity)+','+str(form.vars.d1_line_size)+' '+'--L2='+str(l2_s)+','+str(form.vars.l2_associativity)+','+str(form.vars.l2_line_size)+ ' --cachegrind-out-file='+path+str(auth.user.id)+'.'+str(curr_count[0].count)+'.%p '+path+str(auth.user.id)
+          if len(form.vars.input_file)>0:
+	     input_path=os.getcwd()
+             input_path=input_path+'/applications/vlab/uploads/'+form.vars.input_file; values["input"]=input_path
+             command=command+'<'+input_path
+         
+	  out=commands.getstatusoutput(command)
+	  
+	  out_mod=re.split('\n',out[1])
+	  regex="==(\d*)==\s*([^:]*):\s*(\d+.*)"
+	  for i in out_mod:
+		 match=re.findall(regex,i)
+		 if len(match)>0:
+		 	procid=match[0][0]
+			if procid not in pid:
+				 pid.append(procid)
+			list.append(match[0])	
+    if len(list)>0:
+	regex="([^\(]+)\(\s*(\S+)[^\+]*\+\s*(\S+).*" ; t1= re.findall(regex,list[5][2]) ; values["a"]=t1[0][0] ; values["a_1"]=t1[0][1] ; values["a_2"] = t1[0][2] 
+	t2= re.findall(regex,list[6][2]) ; values["c"]=t2[0][0] ; values["c_1"]=t2[0][1] ; values["c_2"] = t2[0][2] ; values["e"]=values["c"] ; values["e_1"] = values["c_1"]; values["e_2"]=values["c_2"] 
+	t3= re.findall(regex,list[8][2]) ; values["d"]=t3[0][0] ; values["d_1"]=t3[0][1] ; values["d_2"] = t3[0][2] 
+	t4= re.findall(regex,list[7][2]) ; values["g"]=t4[0][0] ; values["g_1"]=t4[0][1] ; values["g_2"] = t4[0][2]
+	values["b"]= int(values["a"].replace(",",""))-int(values["c"].replace(",","")) ; values["b_1"]= int(values["a_1"].replace(",",""))-int(values["c_1"].replace(",","")) ; values["b_2"]= int(values["a_2"].replace(",",""))-int(values["c_2"].replace(",","")) 
+	values["f"]= int(values["e"].replace(",",""))-int(values["g"].replace(",","")) ; values["f_1"]= int(values["e_1"].replace(",",""))-int(values["g_1"].replace(",","")) ; values["f_2"]= int(values["e_2"].replace(",",""))-int(values["g_2"].replace(",","")) 
+	values["h"]=str("%.2f"%((float(values["g"].replace(",",""))/float(values["e"].replace(",","")))*100))+"%" 
+	values["h_1"]=str("%.2f"%((float(values["g_1"].replace(",",""))/float(values["e_1"].replace(",","")))*100))+"%"
+	values["h_2"]=str("%.2f"%((float(values["g_2"].replace(",",""))/float(values["e_2"].replace(",","")))*100))+"%"
+#update count table on successful run...ensure updation on deletion too-to be done	
+	curr_count=db(db.p_count.user_id==auth.user.id).select()
+	curr_count=curr_count[0].count+1
+	db(db.p_count.user_id==auth.user.id).update(count=curr_count)
+
+    
+    response.flash = T('Welcome to web2py')
+    return dict(test=test,form=form,message=T('Hello World'),list=list,pid=pid,flag=flag,values=values,compile=compile)
+
+@auth.requires_login()
+def history():
+	rows=db(db.programs.uploaded_by==auth.user.id).select()
+	return dict(rows=rows)
+'''
+
+def show_graphs():
+	 path=os.getcwd()
+         path=path+'/applications/vlab/uploads/'
+	 input_path=values["input"]
+	 if values["compile"]=True:
+		for i in range (2,9): 
+			command='valgrind --tool=cachegrind --I1='+str(values["i1_s"])+','+str(i)+','+str(64)+ ' --cachegrind-out-file='+path+str(auth.user.id)+'.%p '+path+str(auth.user.id)
+	 		if input_path != None:
+	   			command=command + '<' +input_path
+			out=commands.getstatusoutput(command)
+			out_mod=re.split('\n',out[1])
+	 
+
+'''
+def customize():
+    form=SQLFORM(db.options)
+    
+def user():
+    """
+    exposes:
+    http://..../[app]/default/user/login 
+    http://..../[app]/default/user/logout
+    http://..../[app]/default/user/register
+    http://..../[app]/default/user/profile
+    http://..../[app]/default/user/retrieve_password
+    http://..../[app]/default/user/change_password
+    use @auth.requires_login()
+        @auth.requires_membership('group name')
+        @auth.requires_permission('read','table name',record_id)
+    to decorate functions that need access control
+    """
+    if request.args(0)=='register':
+	    redirect(URL(request.application,'default','register'))
+    return dict(form=auth())
+
+
+def download():
+    """
+    allows downloading of uploaded files
+    http://..../[app]/default/download/[filename]
+    """
+    return response.download(request,db)
+
+
+def call():
+    """
+    exposes services. for example:
+    http://..../[app]/default/call/jsonrpc
+    decorate with @services.jsonrpc the functions to expose
+    supports xml, json, xmlrpc, jsonrpc, amfrpc, rss, csv
+    """
+    session.forget()
+    return service()

@@ -1,0 +1,872 @@
+(dp1
+S'output'
+p2
+S''
+sS'layer'
+p3
+S'/home/shrenik/web2py/applications/vlab/controllers/default.py'
+p4
+sS'code'
+p5
+S'# -*- coding: utf-8 -*- \n\n#########################################################################\n## This is a samples controller\n## - index is the default action of any application\n## - user is required for authentication and authorization\n## - download is for downloading files uploaded in the db (does streaming)\n## - call exposes all registered services (none by default)\n#########################################################################  \n\n\ndef index():\n    import os\n    import re\n    import commands\n    """\n    example action using the internationalization operator T and flash\n    rendered by views/default/index.html or views/generic.html\n    """\n    pid=[]\n    flag=0\n    killed=0\n    list=[]\n    out="Test"\n    inp=None\n    out_mod=None\n    form=SQLFORM(db.programs)\n    if(form.accepts(request.vars,session)):\n         flag=1\n\t path=os.getcwd()\n         path=path+\'/applications/vlab/uploads/\'+form.vars.file\n         inp=commands.getstatusoutput(\'cc \'+path)\n         command=\'valgrind --tool=cachegrind --I1=\'+str(form.vars.i1_size)+\',\'+str(form.vars.i1_associativity)+\',\'+str(form.vars.i1_line_size)+\' ./a.out\'\n         if len(form.vars.input_file)>2:\n             print form.vars.input_file\n\t     input_path=os.getcwd()\n             input_path=input_path+\'/applications/vlab/uploads/\'+form.vars.input_file\n             command=command+\'<\'+input_path\n \t \n\t import time\n\n\t import signal\n\t start=time.time()\n\t pid=os.fork()\n\t if pid==0:\n\t\t out=commands.getstatusoutput(command)\n\t else:\n\t\t while 1:\n\t\t\t if time.time()-start >5:\n\t\t\t\t os.kill(pid,signal.SIGKILL)\n\t\t\t\t break\n\t\t\t elif not os.path.exists(\'/proc/\'+pid):\n\t\t\t\t break\n\n         \n\t out_mod=re.split(\'\\n\',out[1])\n\t regex="==(\\d*)==\\s*([^:]*):\\s*(\\d+.*)"\n\t for i in out_mod:\n\t\t match=re.findall(regex,i)\n\t\t if len(match)>0:\n\t\t \tprocid=match[0][0]\n\t\t\tif procid not in pid:\n\t\t\t\t pid.append(procid)\n\t\t\tlist.append(match[0])\t\n    \n    response.flash = T(\'Welcome to web2py\')\n    return dict(form=form,message=T(\'Hello World\'),list=list,pid=pid,flag=flag)\n\ndef customize():\n    form=SQLFORM(db.options)\n    \ndef user():\n    """\n    exposes:\n    http://..../[app]/default/user/login \n    http://..../[app]/default/user/logout\n    http://..../[app]/default/user/register\n    http://..../[app]/default/user/profile\n    http://..../[app]/default/user/retrieve_password\n    http://..../[app]/default/user/change_password\n    use @auth.requires_login()\n        @auth.requires_membership(\'group name\')\n        @auth.requires_permission(\'read\',\'table name\',record_id)\n    to decorate functions that need access control\n    """\n    return dict(form=auth())\n\n\ndef download():\n    """\n    allows downloading of uploaded files\n    http://..../[app]/default/download/[filename]\n    """\n    return response.download(request,db)\n\n\ndef call():\n    """\n    exposes services. for example:\n    http://..../[app]/default/call/jsonrpc\n    decorate with @services.jsonrpc the functions to expose\n    supports xml, json, xmlrpc, jsonrpc, amfrpc, rss, csv\n    """\n    session.forget()\n    return service()\n\nresponse._vars=response._caller(index)\n'
+p6
+sS'snapshot'
+p7
+(dp8
+S'exception'
+p9
+(dp10
+S'__hash__'
+p11
+S"<method-wrapper '__hash__' of exceptions.RuntimeError object>"
+p12
+sS'__setattr__'
+p13
+S"<method-wrapper '__setattr__' of exceptions.RuntimeError object>"
+p14
+sS'__reduce_ex__'
+p15
+S'<built-in method __reduce_ex__ of exceptions.RuntimeError object>'
+p16
+sS'__getslice__'
+p17
+S"<method-wrapper '__getslice__' of exceptions.RuntimeError object>"
+p18
+sS'__getitem__'
+p19
+S"<method-wrapper '__getitem__' of exceptions.RuntimeError object>"
+p20
+sS'__setstate__'
+p21
+S'<built-in method __setstate__ of exceptions.RuntimeError object>'
+p22
+sS'__reduce__'
+p23
+S'<built-in method __reduce__ of exceptions.RuntimeError object>'
+p24
+sS'__str__'
+p25
+S"<method-wrapper '__str__' of exceptions.RuntimeError object>"
+p26
+sS'__format__'
+p27
+S'<built-in method __format__ of exceptions.RuntimeError object>'
+p28
+sS'__getattribute__'
+p29
+S"<method-wrapper '__getattribute__' of exceptions.RuntimeError object>"
+p30
+sS'__class__'
+p31
+S"<type 'exceptions.RuntimeError'>"
+p32
+sS'__unicode__'
+p33
+S'<built-in method __unicode__ of exceptions.RuntimeError object>'
+p34
+sS'__delattr__'
+p35
+S"<method-wrapper '__delattr__' of exceptions.RuntimeError object>"
+p36
+sS'__subclasshook__'
+p37
+S'<built-in method __subclasshook__ of type object>'
+p38
+sS'__repr__'
+p39
+S"<method-wrapper '__repr__' of exceptions.RuntimeError object>"
+p40
+sS'args'
+p41
+S"('cannot join current thread',)"
+p42
+sS'__dict__'
+p43
+S'{}'
+p44
+sS'__sizeof__'
+p45
+S'<built-in method __sizeof__ of exceptions.RuntimeError object>'
+p46
+sS'__doc__'
+p47
+S"'Unspecified run-time error.'"
+p48
+sS'__init__'
+p49
+S"<method-wrapper '__init__' of exceptions.RuntimeError object>"
+p50
+sS'__new__'
+p51
+S'<built-in method __new__ of type object>'
+p52
+ssS'evalue'
+p53
+S'cannot join current thread'
+p54
+sS'request'
+p55
+(dp56
+S'function'
+p57
+S"'index'"
+p58
+sS'body'
+p59
+S"<open file '<fdopen>', mode 'w+b'>"
+p60
+sS'wsgi'
+p61
+S"<Storage {'start_response': <function <lambda> a...ING': 'gzip,deflate', 'HTTP_KEEP_ALIVE': '115'}}>"
+p62
+sS'extension'
+p63
+S"'html'"
+p64
+sS'vars'
+p65
+S"<Storage {'i1_associativity': '2', 'd1_size': '6...ciativity': '2', '_formname': 'programs_create'}>"
+p66
+sS'cid'
+p67
+S'None'
+p68
+sS'url'
+p69
+S'<gluon.html.XML object>'
+p70
+sg41
+S'[]'
+p71
+sS'controller'
+p72
+S"'default'"
+p73
+sS'cookies'
+p74
+S"<SimpleCookie: session_id_admin='127-0-0-1-020b2...'127-0-0-1-d51e55bb-1989-4c66-91bc-ad4e17601eab'>"
+p75
+sS'application'
+p76
+S"'vlab'"
+p77
+sS'ajax'
+p78
+S'False'
+p79
+sS'client'
+p80
+S"'127.0.0.1'"
+p81
+sS'env'
+p82
+S"<Storage {'content_length': '1796', 'http_user_a...te', 'query_string': '', 'wsgi_run_once': False}>"
+p83
+sS'raw_args'
+p84
+S'None'
+p85
+sS'get_vars'
+p86
+S'<Storage {}>'
+p87
+sS'folder'
+p88
+S"'/home/shrenik/web2py/applications/vlab/'"
+p89
+sS'now'
+p90
+S'datetime.datetime(2010, 10, 20, 3, 3, 46, 95104)'
+p91
+sS'post_vars'
+p92
+S"<Storage {'i1_associativity': '2', 'd1_size': '6...ciativity': '2', '_formname': 'programs_create'}>"
+p93
+ssS'frames'
+p94
+(lp95
+(dp96
+S'file'
+p97
+S'/home/shrenik/web2py/gluon/restricted.py'
+p98
+sS'dump'
+p99
+(dp100
+S'environment'
+p101
+S"{'A': <class 'gluon.html.A'>, 'Auth': <class 'gluon.tools.Auth'>, 'B': <class 'gluon.html.B'>, 'BEAUTIFY': <class 'gluon.html.BEAUTIFY'>, 'BODY': <class 'gluon.html.BODY'>, 'BR': <class 'gluon.html.BR'>, 'CENTER': <class 'gluon.html.CENTER'>, 'CLEANUP': <class 'gluon.validators.CLEANUP'>, 'CODE': <class 'gluon.html.CODE'>, 'CRYPT': <class 'gluon.validators.CRYPT'>, ...}"
+p102
+sS'ccode'
+p103
+S'<code object <module> at 0x9469f08, file "/home/...plications/vlab/controllers/default.py", line 12>'
+p104
+ssS'lnum'
+p105
+I188
+sS'lines'
+p106
+(dp107
+I192
+S'        # XXX Show exception in Wing IDE if running in debugger'
+p108
+sI183
+S'        if type(code) == types.CodeType:'
+p109
+sI184
+S'            ccode = code'
+p110
+sI185
+S'        else:'
+p111
+sI186
+S'            ccode = compile2(code,layer)'
+p112
+sI187
+S''
+sI188
+S'        exec ccode in environment'
+p113
+sI189
+S'    except HTTP:'
+p114
+sI190
+S'        raise'
+p115
+sI191
+S'    except Exception:'
+p116
+ssS'call'
+p117
+S"(code='# -*- coding: utf-8 -*- \\n\\n######################...ervice()\\n\\nresponse._vars=response._caller(index)\\n', environment={'A': <class 'gluon.html.A'>, 'Auth': <class 'gluon.tools.Auth'>, 'B': <class 'gluon.html.B'>, 'BEAUTIFY': <class 'gluon.html.BEAUTIFY'>, 'BODY': <class 'gluon.html.BODY'>, 'BR': <class 'gluon.html.BR'>, 'CENTER': <class 'gluon.html.CENTER'>, 'CLEANUP': <class 'gluon.validators.CLEANUP'>, 'CODE': <class 'gluon.html.CODE'>, 'CRYPT': <class 'gluon.validators.CRYPT'>, ...}, layer='/home/shrenik/web2py/applications/vlab/controllers/default.py')"
+p118
+sS'func'
+p119
+S'restricted'
+p120
+sa(dp121
+g97
+S'/home/shrenik/web2py/applications/vlab/controllers/default.py'
+p122
+sg99
+(dp123
+sg105
+I107
+sg106
+(dp124
+I96
+S''
+sI97
+S'def call():'
+p125
+sI98
+S'    """'
+p126
+sI99
+S'    exposes services. for example:'
+p127
+sI100
+S'    http://..../[app]/default/call/jsonrpc'
+p128
+sI101
+S'    decorate with @services.jsonrpc the functions to expose'
+p129
+sI102
+S'    supports xml, json, xmlrpc, jsonrpc, amfrpc, rss, csv'
+p130
+sI103
+S'    """'
+p131
+sI104
+S'    session.forget()'
+p132
+sI105
+S'    return service()'
+p133
+ssg117
+S'()'
+p134
+sg119
+S'<module>'
+p135
+sa(dp136
+g97
+S'/home/shrenik/web2py/gluon/globals.py'
+p137
+sg99
+(dp138
+S'self'
+p139
+S'undefined'
+p140
+sS'f'
+S'<function index>'
+p141
+ssg105
+I96
+sg106
+(dp142
+I96
+S'        self._caller = lambda f: f()'
+p143
+sI97
+S'        self._view_environment = None'
+p144
+sI98
+S'        self._custom_commit = None'
+p145
+sI99
+S'        self._custom_rollback = None'
+p146
+sI100
+S''
+sI91
+S"        self.flash = ''           # used by the default view layout"
+p147
+sI92
+S'        self.meta = Storage()     # used by web2py_ajax.html'
+p148
+sI93
+S'        self.menu = []            # used by the default view layout'
+p149
+sI94
+S'        self.files = []           # used by web2py_ajax.html'
+p150
+sI95
+S'        self._vars = None'
+p151
+ssg117
+S'(f=<function index>)'
+p152
+sg119
+S'<lambda>'
+p153
+sa(dp154
+g97
+S'/home/shrenik/web2py/applications/vlab/controllers/default.py'
+p155
+sg99
+(dp156
+S'commands'
+p157
+S"<module 'commands' from '/usr/lib/python2.6/commands.pyc'>"
+p158
+sS'command'
+p159
+S"'valgrind --tool=cachegrind --I1=65536,2,64 ./a.out'"
+p160
+sS'commands.getstatusoutput'
+p161
+S'<function getstatusoutput>'
+p162
+sS'out'
+p163
+S"'Test'"
+p164
+ssg105
+I46
+sg106
+(dp165
+I41
+S''
+sI42
+S'\t import signal'
+p166
+sI43
+S'\t start=time.time()'
+p167
+sI44
+S'\t pid=os.fork()'
+p168
+sI45
+S'\t if pid==0:'
+p169
+sI46
+S'\t\t out=commands.getstatusoutput(command)'
+p170
+sI47
+S'\t else:'
+p171
+sI48
+S'\t\t while 1:'
+p172
+sI49
+S'\t\t\t if time.time()-start >5:'
+p173
+sI50
+S'\t\t\t\t os.kill(pid,signal.SIGKILL)'
+p174
+ssg117
+S'()'
+p175
+sg119
+S'index'
+p176
+sa(dp177
+g97
+S'/usr/lib/python2.6/commands.py'
+p178
+sg99
+(dp179
+S'pipe'
+p180
+S"<open file '{ valgrind --tool=cachegrind --I1=65536,2,64 ./a.out; } 2>&1', mode 'r'>"
+p181
+sS'text'
+p182
+g140
+sS'pipe.read'
+p183
+S'<built-in method read of file object>'
+p184
+ssg105
+I56
+sg106
+(dp185
+I51
+S'#'
+sI52
+S'def getstatusoutput(cmd):'
+p186
+sI53
+S'    """Return (status, output) of executing cmd in a shell."""'
+p187
+sI54
+S'    import os'
+p188
+sI55
+S"    pipe = os.popen('{ ' + cmd + '; } 2>&1', 'r')"
+p189
+sI56
+S'    text = pipe.read()'
+p190
+sI57
+S'    sts = pipe.close()'
+p191
+sI58
+S'    if sts is None: sts = 0'
+p192
+sI59
+S"    if text[-1:] == '\\n': text = text[:-1]"
+p193
+sI60
+S'    return sts, text'
+p194
+ssg117
+S"(cmd='valgrind --tool=cachegrind --I1=65536,2,64 ./a.out')"
+p195
+sg119
+S'getstatusoutput'
+p196
+sa(dp197
+g97
+S'/home/shrenik/web2py/gluon/main.py'
+p198
+sg99
+(dp199
+S'a'
+S'2'
+sS'b'
+S'<frame object>'
+p200
+sS'self'
+p201
+g140
+sS'global signal'
+p202
+S"<module 'signal' (built-in)>"
+p203
+sS'signal.signal'
+p204
+S'<built-in function signal>'
+p205
+sS's.stop'
+p206
+S'<bound method HttpServer.stop of <gluon.main.HttpServer object>>'
+p207
+sS's'
+S'<gluon.main.HttpServer object>'
+p208
+sS'signal.SIGINT'
+p209
+S'2'
+ssg105
+I740
+sg106
+(dp210
+I736
+S'        start the web server'
+p211
+sI737
+S'        """'
+p212
+sI738
+S'        try:'
+p213
+sI739
+S'            signal.signal(signal.SIGTERM, lambda a, b, s=self: s.stop())'
+p214
+sI740
+S'            signal.signal(signal.SIGINT, lambda a, b, s=self: s.stop())'
+p215
+sI741
+S'        except:'
+p216
+sI742
+S'            pass'
+p217
+sI743
+S"        fp = open(self.pid_filename, 'w')"
+p218
+sI744
+S'        fp.write(str(os.getpid()))'
+p219
+sI735
+S'        """'
+p220
+ssg117
+S'(a=2, b=<frame object>, s=<gluon.main.HttpServer object>)'
+p221
+sg119
+g153
+sa(dp222
+g97
+S'/home/shrenik/web2py/gluon/main.py'
+p223
+sg99
+(dp224
+S'stoplogging'
+p225
+g79
+sS'self.server.stop'
+p226
+S'<bound method Rocket.stop of <gluon.rocket.Rocket instance>>'
+p227
+sS'self'
+p228
+S'<gluon.main.HttpServer object>'
+p229
+sS'self.server'
+p230
+S'<gluon.rocket.Rocket instance>'
+p231
+ssg105
+I753
+sg106
+(dp232
+I748
+S'    def stop(self, stoplogging=False):'
+p233
+sI749
+S'        """'
+p234
+sI750
+S'        stop cron and the web server'
+p235
+sI751
+S'        """'
+p236
+sI752
+S'        newcron.stopcron()'
+p237
+sI753
+S'        self.server.stop(stoplogging)'
+p238
+sI754
+S'        try:'
+p239
+sI755
+S'            os.unlink(self.pid_filename)'
+p240
+sI756
+S'        except:'
+p241
+sI757
+S'            pass'
+p242
+ssg117
+S'(self=<gluon.main.HttpServer object>, stoplogging=False)'
+p243
+sg119
+S'stop'
+p244
+sa(dp245
+g97
+S'/home/shrenik/web2py/gluon/rocket.py'
+p246
+sg99
+(dp247
+S'self._threadpool.stop'
+p248
+S'<bound method ThreadPool.stop of <gluon.rocket.ThreadPool instance>>'
+p249
+sS'self._threadpool'
+p250
+S'<gluon.rocket.ThreadPool instance>'
+p251
+sS'self'
+p252
+S'<gluon.rocket.Rocket instance>'
+p253
+ssg105
+I345
+sg106
+(dp254
+I340
+S''
+sI341
+S'    def stop(self, stoplogging = True):'
+p255
+sI342
+S'        log.info("Stopping Server")'
+p256
+sI343
+S''
+sI344
+S'        self._monitor.queue.put(None)'
+p257
+sI345
+S'        self._threadpool.stop()'
+p258
+sI346
+S''
+sI347
+S'        self._monitor.join()'
+p259
+sI348
+S'        if stoplogging:'
+p260
+sI349
+S'            logging.shutdown()'
+p261
+ssg117
+S'(self=<gluon.rocket.Rocket instance>, stoplogging=False)'
+p262
+sg119
+g244
+sa(dp263
+g97
+S'/home/shrenik/web2py/gluon/rocket.py'
+p264
+sg99
+(dp265
+S't.join'
+p266
+S'<bound method WSGIWorker.join of <WSGIWorker(Thread-8, started daemon -1281324176)>>'
+p267
+sS't'
+S'<WSGIWorker(Thread-8, started daemon -1281324176)>'
+p268
+ssg105
+I567
+sg106
+(dp269
+I562
+S'        for t in self.threads:'
+p270
+sI563
+S'            t.kill()'
+p271
+sI564
+S''
+sI565
+S'        # Wait until they pull the trigger'
+p272
+sI566
+S'        for t in self.threads:'
+p273
+sI567
+S'            t.join()'
+p274
+sI568
+S''
+sI569
+S'        # Clean up the mess'
+p275
+sI570
+S'        self.resize_lock.acquire()'
+p276
+sI571
+S'        self.bring_out_your_dead()'
+p277
+ssg117
+S'(self=<gluon.rocket.ThreadPool instance>)'
+p278
+sg119
+g244
+sa(dp279
+g97
+S'/usr/lib/python2.6/threading.py'
+p280
+sg99
+(dp281
+S'builtinRuntimeError'
+p282
+S"<type 'exceptions.RuntimeError'>"
+p283
+ssg105
+I635
+sg106
+(dp284
+I630
+S'        if not self.__initialized:'
+p285
+sI631
+S'            raise RuntimeError("Thread.__init__() not called")'
+p286
+sI632
+S'        if not self.__started.is_set():'
+p287
+sI633
+S'            raise RuntimeError("cannot join thread before it is started")'
+p288
+sI634
+S'        if self is current_thread():'
+p289
+sI635
+S'            raise RuntimeError("cannot join current thread")'
+p290
+sI636
+S''
+sI637
+S'        if __debug__:'
+p291
+sI638
+S'            if not self.__stopped:'
+p292
+sI639
+S'                self._note("%s.join(): waiting until thread stops", self)'
+p293
+ssg117
+S'(self=<WSGIWorker(Thread-8, started daemon -1281324176)>, timeout=None)'
+p294
+sg119
+S'join'
+p295
+sasS'pyver'
+p296
+S'Python 2.6.6: /usr/bin/python'
+p297
+sS'session'
+p298
+(dp299
+S'count'
+p300
+S'1'
+sS'auth'
+p301
+S'None'
+p302
+sS'_formkey[programs_create]'
+p303
+S"'24d5a9b9-8421-4e5f-a7c4-eb8e8c404d47'"
+p304
+ssS'etype'
+p305
+S"<type 'exceptions.RuntimeError'>"
+p306
+sS'date'
+p307
+S'Wed Oct 20 03:04:34 2010'
+p308
+sS'response'
+p309
+(dp310
+S'status'
+p311
+S'200'
+p312
+sg59
+S'<cStringIO.StringO object>'
+p313
+sg74
+S"<SimpleCookie: session_id_vlab='127-0-0-1-bd6aca27-1ced-49d5-b876-eb675abd268c'>"
+p314
+sS'_vars'
+p315
+S'None'
+p316
+sS'title'
+p317
+S"'vlab'"
+p318
+sS'session_file'
+p319
+S"<open file '/home/shrenik/web2py/applications/vl...d6aca27-1ced-49d5-b876-eb675abd268c', mode 'rb+'>"
+p320
+sS'flash'
+p321
+S"''"
+p322
+sS'_custom_rollback'
+p323
+S'None'
+p324
+sS'session_id'
+p325
+S"'127-0-0-1-bd6aca27-1ced-49d5-b876-eb675abd268c'"
+p326
+sS'headers'
+p327
+S"<Storage {'Expires': 'Tue, 19 Oct 2010 21:33:46 ...he, must-revalidate, post-check=0, pre-check=0'}>"
+p328
+sS'meta'
+p329
+S"<Storage {'keywords': 'bla bla bla', 'description': 'describe your app', 'author': 'you'}>"
+p330
+sS'session_filename'
+p331
+S"'/home/shrenik/web2py/applications/vlab/sessions/127-0-0-1-bd6aca27-1ced-49d5-b876-eb675abd268c'"
+p332
+sS'postprocessing'
+p333
+S'[]'
+p334
+sS'menu'
+p335
+S"[(<lazyT 'Index'>, False, <gluon.html.XML object>, []), ('Change Layout', False, <gluon.html.XML object>)]"
+p336
+sS'_view_environment'
+p337
+S"{'A': <class 'gluon.html.A'>, 'Auth': <class 'gluon.tools.Auth'>, 'B': <class 'gluon.html.B'>, 'BEAUTIFY': <class 'gluon.html.BEAUTIFY'>, 'BODY': <class 'gluon.html.BODY'>, 'BR': <class 'gluon.html.BR'>, 'CENTER': <class 'gluon.html.CENTER'>, 'CLEANUP': <class 'gluon.validators.CLEANUP'>, 'CODE': <class 'gluon.html.CODE'>, 'CRYPT': <class 'gluon.validators.CRYPT'>, ...}"
+p338
+sS'subtitle'
+p339
+S"<lazyT 'customize me!'>"
+p340
+sS'session_id_name'
+p341
+S"'session_id_vlab'"
+p342
+sS'_custom_commit'
+p343
+S'None'
+p344
+sS'_caller'
+p345
+S'<function <lambda>>'
+p346
+sS'files'
+p347
+S'[]'
+p348
+sS'view'
+p349
+S"'default/index.html'"
+p350
+ssS'locals'
+p351
+(dp352
+S'self'
+p353
+S'<WSGIWorker(Thread-8, started daemon -1281324176)>'
+p354
+sS'timeout'
+p355
+S'None'
+p356
+sssS'traceback'
+p357
+S'Traceback (most recent call last):\n  File "/home/shrenik/web2py/gluon/restricted.py", line 188, in restricted\n    exec ccode in environment\n  File "/home/shrenik/web2py/applications/vlab/controllers/default.py", line 107, in <module>\n  File "/home/shrenik/web2py/gluon/globals.py", line 96, in <lambda>\n    self._caller = lambda f: f()\n  File "/home/shrenik/web2py/applications/vlab/controllers/default.py", line 46, in index\n    out=commands.getstatusoutput(command)\n  File "/usr/lib/python2.6/commands.py", line 56, in getstatusoutput\n    text = pipe.read()\n  File "/home/shrenik/web2py/gluon/main.py", line 740, in <lambda>\n    signal.signal(signal.SIGINT, lambda a, b, s=self: s.stop())\n  File "/home/shrenik/web2py/gluon/main.py", line 753, in stop\n    self.server.stop(stoplogging)\n  File "/home/shrenik/web2py/gluon/rocket.py", line 345, in stop\n    self._threadpool.stop()\n  File "/home/shrenik/web2py/gluon/rocket.py", line 567, in stop\n    t.join()\n  File "/usr/lib/python2.6/threading.py", line 635, in join\n    raise RuntimeError("cannot join current thread")\nRuntimeError: cannot join current thread\n'
+p358
+s.

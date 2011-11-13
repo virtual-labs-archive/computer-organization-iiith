@@ -1,0 +1,539 @@
+(dp1
+S'output'
+p2
+S''
+sS'layer'
+p3
+S'Framework'
+p4
+sS'code'
+p5
+S''
+sS'snapshot'
+p6
+(dp7
+S'exception'
+p8
+(dp9
+S'__module__'
+p10
+S"'sqlite3'"
+p11
+sS'__getslice__'
+p12
+S"<method-wrapper '__getslice__' of OperationalError object>"
+p13
+sS'__str__'
+p14
+S"<method-wrapper '__str__' of OperationalError object>"
+p15
+sS'__reduce__'
+p16
+S'<built-in method __reduce__ of OperationalError object>'
+p17
+sS'__dict__'
+p18
+S'{}'
+p19
+sS'__sizeof__'
+p20
+S'<built-in method __sizeof__ of OperationalError object>'
+p21
+sS'__weakref__'
+p22
+S'None'
+p23
+sS'__init__'
+p24
+S"<method-wrapper '__init__' of OperationalError object>"
+p25
+sS'__setattr__'
+p26
+S"<method-wrapper '__setattr__' of OperationalError object>"
+p27
+sS'__reduce_ex__'
+p28
+S'<built-in method __reduce_ex__ of OperationalError object>'
+p29
+sS'__new__'
+p30
+S'<built-in method __new__ of type object>'
+p31
+sS'__format__'
+p32
+S'<built-in method __format__ of OperationalError object>'
+p33
+sS'__class__'
+p34
+S"<class 'sqlite3.OperationalError'>"
+p35
+sS'__doc__'
+p36
+S'None'
+p37
+sS'__getitem__'
+p38
+S"<method-wrapper '__getitem__' of OperationalError object>"
+p39
+sS'__setstate__'
+p40
+S'<built-in method __setstate__ of OperationalError object>'
+p41
+sS'__getattribute__'
+p42
+S"<method-wrapper '__getattribute__' of OperationalError object>"
+p43
+sS'args'
+p44
+S"('database is locked',)"
+p45
+sS'__subclasshook__'
+p46
+S'<built-in method __subclasshook__ of type object>'
+p47
+sS'__unicode__'
+p48
+S'<built-in method __unicode__ of OperationalError object>'
+p49
+sS'__delattr__'
+p50
+S"<method-wrapper '__delattr__' of OperationalError object>"
+p51
+sS'__repr__'
+p52
+S"<method-wrapper '__repr__' of OperationalError object>"
+p53
+sS'__hash__'
+p54
+S"<method-wrapper '__hash__' of OperationalError object>"
+p55
+ssS'evalue'
+p56
+S'database is locked'
+p57
+sS'request'
+p58
+(dp59
+S'function'
+p60
+S"'index'"
+p61
+sS'body'
+p62
+S"<closed file '<fdopen>', mode 'w+b'>"
+p63
+sS'wsgi'
+p64
+S"<Storage {'start_response': <function <lambda> a...ING': 'gzip,deflate', 'HTTP_KEEP_ALIVE': '300'}}>"
+p65
+sS'extension'
+p66
+S"'html'"
+p67
+sS'vars'
+p68
+S"<Storage {'code': '#include <stdlib.h>\\r\\n#defin...ciativity': '2', '_formname': 'programs_create'}>"
+p69
+sS'cid'
+p70
+S'None'
+p71
+sS'url'
+p72
+S'<gluon.html.XML object>'
+p73
+sg44
+S'[]'
+p74
+sS'controller'
+p75
+S"'default'"
+p76
+sS'cookies'
+p77
+S"<SimpleCookie: session_id_admin='192-168-36-178-...168-36-178-d6e8aafc-6aa8-466a-919f-344ff9adc569'>"
+p78
+sS'application'
+p79
+S"'vlab'"
+p80
+sS'ajax'
+p81
+S'False'
+p82
+sS'client'
+p83
+S"'192.168.36.178'"
+p84
+sS'env'
+p85
+S"<Storage {'content_length': '2708', 'http_user_a...te', 'query_string': '', 'wsgi_run_once': False}>"
+p86
+sS'raw_args'
+p87
+S'None'
+p88
+sS'get_vars'
+p89
+S'<Storage {}>'
+p90
+sS'folder'
+p91
+S"'/home/cvest.cso/public_html/LocalityAnalysis/web2py/applications/vlab/'"
+p92
+sS'now'
+p93
+S'datetime.datetime(2010, 11, 21, 18, 35, 15, 764224)'
+p94
+sS'post_vars'
+p95
+S"<Storage {'code': '#include <stdlib.h>\\r\\n#defin...ciativity': '2', '_formname': 'programs_create'}>"
+p96
+ssS'frames'
+p97
+(lp98
+(dp99
+S'file'
+p100
+S'/home/cvest.cso/public_html/LocalityAnalysis/web2py/gluon/main.py'
+p101
+sS'dump'
+p102
+(dp103
+S'BaseAdapter.close_all_instances'
+p104
+S'<function close_all_instances>'
+p105
+sS'BaseAdapter.commit'
+p106
+S'<unbound method SQLDB.commit>'
+p107
+sS'global BaseAdapter'
+p108
+S"<class 'gluon.sql.SQLDB'>"
+p109
+ssS'lnum'
+p110
+I434
+sS'lines'
+p111
+(dp112
+I429
+S'                # ##################################################'
+p113
+sI430
+S''
+sI431
+S'                if response._custom_commit:'
+p114
+sI432
+S'                    response._custom_commit()'
+p115
+sI433
+S'                else:'
+p116
+sI434
+S'                    BaseAdapter.close_all_instances(BaseAdapter.commit)'
+p117
+sI435
+S''
+sI436
+S'                # ##################################################'
+p118
+sI437
+S'                # if session not in db try store session on filesystem'
+p119
+sI438
+S'                # this must be done after trying to commit database!'
+p120
+ssS'call'
+p121
+S"(environ={'CONTENT_LENGTH': '2708', 'CONTENT_TYPE': 'multipart/form-data; boundary=---------------------------1653448181395235128532670688', 'HTTP_ACCEPT': 'text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8', 'HTTP_ACCEPT_CHARSET': 'ISO-8859-1,utf-8;q=0.7,*;q=0.7', 'HTTP_ACCEPT_ENCODING': 'gzip,deflate', 'HTTP_ACCEPT_LANGUAGE': 'en-us,en;q=0.5', 'HTTP_CONNECTION': 'keep-alive', 'HTTP_CONTENT_LENGTH': '2708', 'HTTP_CONTENT_TYPE': 'multipart/form-data; boundary=---------------------------1653448181395235128532670688', 'HTTP_COOKIE': 'session_id_welcome=192-168-36-178-d6e8aafc-6aa8-...2-168-36-178-15081186-f8bd-4486-876c-7f5caea55928', ...}, responder=<function responder2>)"
+p122
+sS'func'
+p123
+S'wsgibase'
+p124
+sa(dp125
+g100
+S'/home/cvest.cso/public_html/LocalityAnalysis/web2py/gluon/sql.py'
+p126
+sg102
+(dp127
+S'action'
+p128
+S'<unbound method SQLDB.commit>'
+p129
+sS'instance'
+p130
+S"<SQLDB {'_connection': <sqlite3.Connection objec...0x8a0af2c>}>, '_migrate': True, '_pool_size': 0}>"
+p131
+ssg110
+I816
+sg111
+(dp132
+I811
+S'        """ to close cleanly databases in a multithreaded environment """'
+p133
+sI812
+S"        if not hasattr(thread,'instances'):"
+p134
+sI813
+S'            return'
+p135
+sI814
+S'        while thread.instances:'
+p136
+sI815
+S'            instance = thread.instances.pop()'
+p137
+sI816
+S'            action(instance)'
+p138
+sI817
+S'            # ## if you want pools, recycle this connection'
+p139
+sI818
+S'            really = True'
+p140
+sI819
+S'            if instance._pool_size:'
+p141
+sI820
+S'                sql_locker.acquire()'
+p142
+ssg121
+S'(action=<unbound method SQLDB.commit>)'
+p143
+sg123
+S'close_all_instances'
+p144
+sa(dp145
+g100
+S'/home/cvest.cso/public_html/LocalityAnalysis/web2py/gluon/sql.py'
+p146
+sg102
+(dp147
+S'self'
+p148
+S"<SQLDB {'_connection': <sqlite3.Connection objec...0x8a0af2c>}>, '_migrate': True, '_pool_size': 0}>"
+p149
+sS'self._connection.commit'
+p150
+S'<built-in method commit of sqlite3.Connection object>'
+p151
+sS'self._connection'
+p152
+S'<sqlite3.Connection object>'
+p153
+ssg110
+I1407
+sg111
+(dp154
+I1408
+S''
+sI1409
+S'    def rollback(self):'
+p155
+sI1410
+S'        self._connection.rollback()'
+p156
+sI1411
+S''
+sI1402
+S''
+sI1403
+S'    def prepare(self):'
+p157
+sI1404
+S'        self._connection.prepare()'
+p158
+sI1405
+S''
+sI1406
+S'    def commit(self):'
+p159
+sI1407
+S'        self._connection.commit()'
+p160
+ssg121
+S"(self=<SQLDB {'_connection': <sqlite3.Connection objec...0x8a0af2c>}>, '_migrate': True, '_pool_size': 0}>)"
+p161
+sg123
+S'commit'
+p162
+sasS'pyver'
+p163
+S'Python 2.6.6rc1+: /usr/bin/python'
+p164
+sS'session'
+p165
+(dp166
+S'l2_s'
+p167
+S'8192'
+p168
+sS'i1_associativity'
+p169
+S"'2'"
+p170
+sS'l2_associativity'
+p171
+S"'8'"
+p172
+sS'l2_line_size'
+p173
+S"'64'"
+p174
+sS'i1_ass'
+p175
+S'2'
+sS'flash'
+p176
+S'None'
+p177
+sS'auth'
+p178
+S"<Storage {'expiration': 3600, 'user': <Storage {... 11, 21, 18, 35, 15, 764224), 'remember': False}>"
+p179
+sS'd1_s'
+p180
+S'2048'
+p181
+sS'compile'
+p182
+S'True'
+p183
+sS'i1_s'
+p184
+S'2048'
+p185
+sS'i1_line_size'
+p186
+S"'64'"
+p187
+sS'd1_line_size'
+p188
+S"'64'"
+p189
+sS'_formkey[programs_create]'
+p190
+S"'9c0c42dd-bcbf-4f6f-9374-9f0399b9785e'"
+p191
+sS'input'
+p192
+S"''"
+p193
+sS'd1_associativity'
+p194
+S"'2'"
+p195
+sS'_formkey[login]'
+p196
+S"'dc93f8fb-6dec-404b-ac86-d7a44ca615b1'"
+p197
+ssS'etype'
+p198
+S"<class 'sqlite3.OperationalError'>"
+p199
+sS'date'
+p200
+S'Sun Nov 21 18:35:21 2010'
+p201
+sS'response'
+p202
+(dp203
+S'status'
+p204
+S'200'
+p205
+sg62
+S'<cStringIO.StringO object>'
+p206
+sg77
+S"<SimpleCookie: session_id_vlab='192-168-36-178-15081186-f8bd-4486-876c-7f5caea55928'>"
+p207
+sS'_vars'
+p208
+S"{'compile': True, 'default_code': '#include <stdlib.h>\\r\\n#define cnSize 64\\r\\nint A[cn...  }\\r\\n}\\r\\n\\r\\nmain(){\\r\\n  randinit();\\r\\n  matmult();\\r\\n}', 'flag': 1, 'form': <gluon.sqlhtml.SQLFORM object>, 'list': [('7976', 'I   refs', '8,444,386'), ('7976', 'I1  misses', '2,545'), ('7976', 'L2i misses', '1,163'), ('7976', 'I1  miss rate', '0.03%'), ('7976', 'L2i miss rate', '0.01%'), ('7976', 'D   refs', '4,536,901  (3,786,009 rd   + 750,892 wr)'), ('7976', 'D1  misses', '289,467  (  281,316 rd   +   8,151 wr)'), ('7976', 'L2d misses', '268,872  (  267,843 rd   +   1,029 wr)'), ('7976', 'D1  miss rate', '6.3% (      7.4%     +     1.0%  )'), ('7976', 'L2d miss rate', '5.9% (      7.0%     +     0.1%  )'), ('7976', 'L2 refs', '292,012  (  283,861 rd   +   8,151 wr)'), ('7976', 'L2 misses', '270,035  (  269,006 rd   +   1,029 wr)'), ('7976', 'L2 miss rate', '2.0% (      2.1%     +     0.1%  )')], 'message': <lazyT 'Hello World'>, 'pid': ['7976'], 'values': {'a': '4,536,901  ', 'a_1': '3,786,009', 'a_2': '750,892', 'b': 4247434, 'b_1': 3504693, 'b_2': 742741, 'c': '289,467  ', 'c_1': '281,316', 'c_2': '8,151', 'compile': True, ...}}"
+p209
+sS'title'
+p210
+S"'vlab'"
+p211
+sS'session_file'
+p212
+S"<open file '/home/cvest.cso/public_html/Locality...5081186-f8bd-4486-876c-7f5caea55928', mode 'rb+'>"
+p213
+sS'flash'
+p214
+S"<lazyT 'Welcome to web2py'>"
+p215
+sS'_custom_rollback'
+p216
+S'None'
+p217
+sS'session_id'
+p218
+S"'192-168-36-178-15081186-f8bd-4486-876c-7f5caea55928'"
+p219
+sS'headers'
+p220
+S"<Storage {'Expires': 'Sun, 21 Nov 2010 13:05:15 ...he, must-revalidate, post-check=0, pre-check=0'}>"
+p221
+sS'meta'
+p222
+S"<Storage {'keywords': 'bla bla bla', 'description': 'describe your app', 'author': 'you'}>"
+p223
+sS'session_filename'
+p224
+S"'/home/cvest.cso/public_html/LocalityAnalysis/web...2-168-36-178-15081186-f8bd-4486-876c-7f5caea55928'"
+p225
+sS'postprocessing'
+p226
+S'[]'
+p227
+sS'menu'
+p228
+S"[(<lazyT 'Index'>, False, <gluon.html.XML object>, []), ('Change Layout', False, <gluon.html.XML object>)]"
+p229
+sS'_view_environment'
+p230
+S"{'A': <class 'gluon.html.A'>, 'Auth': <class 'gluon.tools.Auth'>, 'B': <class 'gluon.html.B'>, 'BEAUTIFY': <class 'gluon.html.BEAUTIFY'>, 'BODY': <class 'gluon.html.BODY'>, 'BR': <class 'gluon.html.BR'>, 'CENTER': <class 'gluon.html.CENTER'>, 'CLEANUP': <class 'gluon.validators.CLEANUP'>, 'CODE': <class 'gluon.html.CODE'>, 'CRYPT': <class 'gluon.validators.CRYPT'>, ...}"
+p231
+sS'subtitle'
+p232
+S"<lazyT 'customize me!'>"
+p233
+sS'session_id_name'
+p234
+S"'session_id_vlab'"
+p235
+sS'_custom_commit'
+p236
+S'None'
+p237
+sS'_caller'
+p238
+S'<function <lambda>>'
+p239
+sS'files'
+p240
+S'[]'
+p241
+sS'view'
+p242
+S"'default/index.html'"
+p243
+ssS'locals'
+p244
+(dp245
+S'self'
+p246
+S"<SQLDB {'_connection': <sqlite3.Connection objec...0x8a0af2c>}>, '_migrate': True, '_pool_size': 0}>"
+p247
+sssS'traceback'
+p248
+S'Traceback (most recent call last):\n  File "/home/cvest.cso/public_html/LocalityAnalysis/web2py/gluon/main.py", line 434, in wsgibase\n    BaseAdapter.close_all_instances(BaseAdapter.commit)\n  File "/home/cvest.cso/public_html/LocalityAnalysis/web2py/gluon/sql.py", line 816, in close_all_instances\n    action(instance)\n  File "/home/cvest.cso/public_html/LocalityAnalysis/web2py/gluon/sql.py", line 1407, in commit\n    self._connection.commit()\nOperationalError: database is locked\n'
+p249
+s.

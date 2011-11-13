@@ -1,0 +1,365 @@
+
+{{extend 'layout.html'}}
+<html>
+<head>
+	<script type="text/javascript">
+		function startTime()
+		{
+		var today=new Date();
+		var h=today.getHours();
+		var m=today.getMinutes();
+		var s=today.getSeconds();
+		// add a zero in front of numbers<10
+		m=checkTime(m);
+		s=checkTime(s);
+		document.getElementById('txt').innerHTML=h+":"+m+":"+s;
+		t=setTimeout('startTime()',500);
+		}
+
+		function checkTime(i)
+		{
+		if (i<10)
+		  {
+		    i="0" + i;
+		      }
+		      return i;
+		      }
+	      </script>
+	      <script type="text/javascript" src="{{=URL(request.application,'static','js/jquery-1.4.2.min.js')}}"></script>
+	      <script language="javascript" type="text/javascript" src="{{=URL(request.application,'static','jquery.jqplot.min.js')}}"></script>
+	      <link rel="stylesheet" type="text/css" href="{{=URL(request.application,'static','jquery.jqplot.css')}}" />
+	      <script type="text/javascript">
+		      $(document).ready(function(){
+				      $("#p1,#p2,#p3,#p4").hide();
+			     $(".table").focusin(function(){
+				      $(this).css("background-color","#e8edff");
+				      });
+			      
+			      $(".table").focusout(function(){
+				      $(this).css("background-image","url('{{=URL(request.application,'static','images/bck.jpg')}}')");
+				      });
+			      $("#l1").click(function(){
+				      $(".level2").hide();
+				      $(".level1").show();
+				      });
+			     
+			      $("#l2").click(function(){
+				      $(".level1").hide();
+				      $(".level2").show();
+				      });
+			      $("#both").click(function(){
+				      $(".level1").show();
+				      $(".level2").show();
+				      });
+			      $("#hid1").mouseover(function(){
+					      $("#p1").slideDown("fast");
+					      });
+			      $("#hid2").mouseover(function(){
+					      $("#p2").slideDown("fast");
+					      });
+			      $("#hid3").mouseover(function(){
+					      $("#p3").slideDown("fast");
+					      });
+			      $("#hid4").mouseover(function(){
+					      $("#p4").slideDown("fast");
+					      });
+			      $("#hid1,#hid2,#hid3,#hid4").mouseout(function(){
+					      $("#p1,#p2,#p3,#p4").slideUp("fast");
+					      });
+			      $("[id$='_i1']").mouseover(function(){
+					      $("[id$='_i1']").css("background-color","#007f7f");
+					      $("[id$='_i1']").css("color","#FFFFFF");
+					      });
+			      $("[id$='_i1']").mouseout(function(){
+					      $("[id$='_i1']").css("background-color","#e8edff");
+					      $("[id$='_i1']").css("color","#669");
+					      });
+			      $("[id$='_l2i']").mouseover(function(){
+					      $("[id$='_l2i']").css("background-color","#007f7f");
+					      $("[id$='_l2i']").css("color","#FFFFFF");
+					      });
+			      $("[id$='_l2i']").mouseout(function(){
+					      $("[id$='_l2i']").css("background-color","#e8edff");
+					      $("[id$='_l2i']").css("color","#669");
+					      });
+			      $("[id$='_d1']").mouseover(function(){
+					      $("[id$='_d1']").css("background-color","#007f7f");
+					      $("[id$='_d1']").css("color","#FFFFFF");
+					      });
+			      $("[id$='_d1']").mouseout(function(){
+					      $("[id$='_d1']").css("background-color","#e8edff");
+					      $("[id$='_d1']").css("color","#669");
+					      });
+			      $("[id$='_l2d']").mouseover(function(){
+					      $("[id$='_l2d']").css("background-color","#007f7f");
+					      $("[id$='_l2d']").css("color","#FFFFFF");
+					      });
+			      $("[id$='_l2d']").mouseout(function(){
+					      $("[id$='_l2d']").css("background-color","#e8edff");
+					      $("[id$='_l2d']").css("color","#669");
+					      });
+			      $(".d1_rd").mouseover(function(){
+					      $(".d1_rd").css("background-color","#007f7f");
+					      $(".d1_rd").css("color","#FFFFFF");
+					      });
+			      $(".d1_rd").mouseout(function(){
+					      $(".d1_rd").css("background-color","#e8edff");
+					      $(".d1_rd").css("color","#669");
+					      });
+			      $(".d1_wr").mouseover(function(){
+					      $(".d1_wr").css("background-color","#007f7f");
+					      $(".d1_wr").css("color","#FFFFFF");
+					      });
+			      $(".d1_wr").mouseout(function(){
+					      $(".d1_wr").css("background-color","#e8edff");
+					      $(".d1_wr").css("color","#669");
+					      });
+			      $(".l2d_rd").mouseover(function(){
+					      $(".l2d_rd").css("background-color","#007f7f");
+					      $(".l2d_rd").css("color","#FFFFFF");
+					      });
+			      $(".l2d_rd").mouseout(function(){
+					      $(".l2d_rd").css("background-color","#e8edff");
+					      $(".l2d_rd").css("color","#669");
+					      });
+			      $(".l2d_wr").mouseover(function(){
+					      $(".l2d_wr").css("background-color","#007f7f");
+					      $(".l2d_wr").css("color","#FFFFFF");
+					      });
+			      $(".l2d_wr").mouseout(function(){
+					      $(".l2d_wr").css("background-color","#e8edff");
+					      $(".l2d_wr").css("color","#669");
+					      });
+		      });
+
+			</script>
+<style type="text/css">
+p.panel
+{
+		margin:0px;
+		padding:5px;
+		text-align:center;
+		background:#e8edff;
+		border:solid 1px #c3c3c3;
+		height:30px;
+		width:500px;
+		display:none;
+		position: fixed;
+}
+#hor-zebra
+{
+	font-family: "Lucida Sans Unicode", "Lucida Grande", Sans-Serif;
+	font-size: 12px;
+	margin: 45px;
+	width: 480px;
+	text-align: left;
+	border:1px solid black;
+}
+#hor-zebra th
+{
+	font-size: 14px;
+	font-weight: normal;
+	padding: 10px 8px;
+	color: #039;
+	border:1px solid black;
+}
+#hor-zebra td
+{
+	padding: 8px;
+	color: #669;
+	border:1px solid black;
+}
+#hor-zebra .odd
+{
+	background: #e8edff; 
+}
+#hor-zebra tr:
+{
+	color: white;
+	border:1px solid black;
+	background: #007f7f;
+}
+.hidden
+{
+	display:none
+}
+td,th
+{
+	text-align:center
+}
+#l1:hover,#l2:hover,#both:hover
+{
+	background:#007f7f;
+	color:#FFFFFF;
+}
+#hid1:hover, #hid2:hover, #hid3:hover, #hid4:hover
+{
+	background:#007f7f;
+	color:#FFFFFF;
+}
+</style>
+</head>
+<body onload="startTime()"> 
+
+	<p class="panel" id="p1" > The level and type of cache, I1:- (Level - 1 Type- Instruction) </p>
+	<p class="panel" id="p2">The size of the cache in Kb, 2kb, 4kb ... </p>
+	<p class="panel" id="p3"> reserves multiple cache sectors for each potential address set </p>
+	<p class="panel" id="p4"> 32, 64 etc... </p>
+	<h4 id="txt" align="right"></h4><br/>
+	{{=form.custom.begin}}
+
+	<table width="100%" style="float:left">
+		<tr>
+			<td id="code">
+				<h3 style="text-align:left;color:brown"> Code for Matrix Multiplication using Tiling</h3>
+				<table widyth="50%" style="text-align:left;background:#e8edff" >
+					{{for count in range(len(default_code)):}}
+					<tr>
+						<td style="text-align:left">
+							{{=count}}.
+						</td>
+						<td style="text-align:left;font-size:1.0em;letter-spacing:2px">
+							{{=default_code[count]}}
+						</td>
+					</tr>
+					{{pass}}
+				</table>
+
+			</td>
+			<td>
+				<h3 style="text-align:left;font-weight:bold"> Cache Architechture </h3><br/>
+				<table class="table">
+					<tr>
+						<th class="hl" id="hid1">
+							Type
+						</th>
+						<th class="hl" id="hid2">
+							Size (in Kb) 
+						</th>
+						<th class="hl" id="hid3">
+							Associativity 
+						</th>
+						<th class="hl" id="hid4">
+							Line Size	
+						</th>
+					</tr>
+					<tr>
+						<td>
+							I1
+						</td>
+						<td>
+							{{=form.custom.widget.i1_size}}
+						</td>
+						<td>
+							{{=form.custom.widget.i1_associativity}}
+						</td>
+							<td>
+							{{=form.custom.widget.i1_line_size}}
+						</td>
+					</tr>
+					<tr>
+						<td>
+								D1
+						</td>
+						<td>
+							{{=form.custom.widget.d1_size}}
+						</td>
+						<td>
+							{{=form.custom.widget.d1_associativity}}
+						</td>
+						<td>
+							{{=form.custom.widget.d1_line_size}}
+						</td>
+					</tr>
+					<tr>
+						<td>
+							L2
+						</td>
+						<td>
+							{{=form.custom.widget.l2_size}}
+						</td>
+						<td>
+							{{=form.custom.widget.l2_associativity}}
+						</td>
+						<td>
+							{{=form.custom.widget.l2_line_size}}
+						</td>
+					<tr>
+					</table><br/>
+				<table class="table">
+					<tr>
+						<td>
+							<strong>Mat Size</strong> 
+						</td>
+						<td>
+							{{=form.custom.widget.n}} (power of 2. &nbsp; &nbsp; 2<sup>n</sup> x 2<sup>n</sup> matrix)
+						</td>
+					</tr>
+					<tr>
+						<td>
+							<strong>Block Size</strong>
+						</td>
+						<td>
+							{{=form.custom.widget.B}} ( tile size also power of 2 )
+						</td>
+					</tr>
+					<tr>
+						<td>{{=form.custom.submit}}
+							{{=form.custom.end}}</td>
+					</tr>
+				</table>
+			</td>
+		</tr>
+	</table>
+	<br/>
+	{{if len(list) > 0 and compile==True:}}
+	<table width="80%" border="0">
+		<tr>
+			<td><input type="radio" name="option" value="level1" id="l1" class="radio"/><b>LEVEL 1</b> </td>
+			<td><input type="radio" name="option" value="level2" id="l2" class="radio"/><b>LEVEL 2</b>  </td>
+			<td><input type="radio" name="option" value="both" id="both" class="radio" checked="checked"/><b>BOTH</b></td>
+			<td> <h2><a href="{{=URL(r=request,f='show_graphs')}}" target="_blank"> See graphical analysis </a></h2> </td>
+	</tr>
+</table>
+
+<table style="width:90%" id="hor-zebra">
+	<tr>
+		<th colspan="5" style="text-align:center"> INSTRUCTION </th>
+		<th colspan="9" style="text-align:center"> DATA </th>
+	</tr>
+	<tr>
+		<th rowspan="2"> Level </th> <th rowspan="2"> References </th> <th rowspan="2"> Hits </th> <th rowspan="2" > Misses </th> <th rowspan="2"> Miss rate </th>
+		<th rowspan="2"> Level </th> <th colspan="2"> References </th> <th colspan="2"> Hits </th> <th colspan="2"> Misses </th> <th colspan="2"> Miss rate </th>
+	</tr>
+	<tr>
+		<th>rd</th><th>wr</th><th>rd</th><th>wr</th><th>rd</th><th>wr</th><th>rd</th><th>wr</th>
+	</tr>
+
+	<tr class="level1">
+		<th rowspan="2"> I1 </th> <td rowspan="2" class="odd" id="1_i1"> {{= list[0][2]}} </td> <td rowspan="2" class="odd" id="2_i1"> {{= int(list[0][2].replace(",",""))-int(list[1][2].replace(",","")) }} </td> <td rowspan="2" class="odd" id="3_i1"> {{= list[1][2] }} </td> <td rowspan="2" class="odd" id="4_i1"> {{= list[3][2] }} </td>
+
+		<th rowspan="2"> D1 </th> <td colspan="2" style="text-align:center" class="odd" id="1_d1">{{=values["a"]}} </td> <td colspan="2" style="text-align:center" class="odd" id="2_d1">{{=values["b"]}} </td> <td colspan="2" style="text-align:center" class="odd" id="3_d1">{{=values["c"]}} </td> <td colspan="2" style="text-align:center" class="odd" id="4_d1">{{=values["d"]}} </td>
+	</tr>
+	<tr class="level1">
+		<td class="d1_rd">{{=values["a_1"]}} </td><td class="d1_wr">{{=values["a_2"]}} </td><td class="d1_rd">{{=values["b_1"]}} </td><td class="d1_wr">{{=values["b_2"]}} </td><td class="d1_rd">{{=values["c_1"]}} </td><td class="d1_wr">{{=values["c_2"]}} </td><td class="d1_rd">{{=values["d_1"]}} </td><td class="d1_wr">{{=values["d_2"]}} </td>
+	<tr class="level2">
+		<th rowspan="2"> L2i </th> <td rowspan="2" class="odd" id="1_l2i"> {{= list[1][2]}} </td> <td rowspan="2" class="odd" id="2_l2i"> {{= int(list[1][2].replace(",",""))-int(list[2][2].replace(",",""))}} </td> <td rowspan="2" class="odd" id="3_l2i"> {{= list[2][2] }} </td> <td rowspan="2" class="odd" id="4_l2i"> {{= str("%.2f"%((float(list[2][2].replace(",",""))/float(list[1][2].replace(",","")))*100))+"%"}}</td>
+		<th rowspan="2" > L2d </th> <td colspan="2" style="text-align:center" class="odd" id="1_l2d"> {{=values["e"]}} </td> <td colspan="2" style="text-align:center" class="odd" id="2_l2d">{{= values["f"]}} </td><td colspan="2" style="text-align:center" class="odd" id="3_l2d">{{= values["g"]}}</td><td colspan="2" style="text-align:center" class="odd" id="4_l2d">{{= values["h"]}} </td>
+	</tr>
+	<tr class="level2">
+		<td class="l2d_rd"> {{=values["e_1"]}}</td> <td class="l2d_wr"> {{=values["e_2"]}} </td> <td class="l2d_rd">{{=values["f_1"]}} </td> <td class="l2d_wr">{{=values["f_2"]}} </td> <td class="l2d_rd">{{= values["g_1"]}}</td> <td class="l2d_wr"> {{=values["g_2"]}} </td> <td class="l2d_rd">{{=values["h_1"]}}</td> <td class="l2d_wr"> {{=values["h_2"]}} </td>
+	</tr>
+</table>
+
+{{pass}}
+
+{{if len(list) == 0 and flag==1 and compile==True:}}
+<h3> There was some error in the Input provided . Please try again with a valid input </h3>
+{{pass}}
+{{if compile==False:}}
+<h3> COMPILATION ERROR </h3>
+{{pass}}
+
+
+</body>
+</html>

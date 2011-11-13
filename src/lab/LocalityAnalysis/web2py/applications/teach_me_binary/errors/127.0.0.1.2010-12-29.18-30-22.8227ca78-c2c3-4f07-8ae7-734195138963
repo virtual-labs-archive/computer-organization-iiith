@@ -1,0 +1,632 @@
+(dp1
+S'output'
+p2
+S''
+sS'layer'
+p3
+S'/home/ravi/vlab/LocalityAnalysis/web2py/applications/teach_me_binary/controllers/default.py'
+p4
+sS'code'
+p5
+S'# -*- coding: utf-8 -*- \n\n#########################################################################\n## This is a samples controller\n## - index is the default action of any application\n## - user is required for authentication and authorization\n## - download is for downloading files uploaded in the db (does streaming)\n## - call exposes all registered services (none by default)\n#########################################################################  \n\n@auth.requires_login()\ndef index():\n    """\n    example action using the internationalization operator T and flash\n    rendered by views/default/index.html or views/generic.html\n    """\n    form=form_factory(Field(\'k\',\'integer\',requires=IS_LENGTH(10,1)))\n    if form.accepts(request.vars,session):\n\t    session.k=request.vars.k\n\t    redirect(URL(request.application,\'default\',\'calc_add\'))\n    response.flash = T(\'Welcome to web2py\')\n    return dict(message=T(\'Hello World\'),form=form)\n\n@auth.requires_login()\ndef calc_add():\n\tright_first=None\n\tright_second=None\n\tright_result=None\n\tunsigned_overflow=None\n\tif len(session.k)<1:\n\t\tsession.flash=\'Enter value of k\'\n\t\tredirect(URL(request.application,\'default\',\'index\'))\n\tdb.log.k.default=int(session.k,10)\n\tdb.log.first_binary.requires=IS_LENGTH(int(session.k,10),1)\n\tdb.log.second_binary.requires=IS_LENGTH(int(session.k,10),1)\n\tdb.log.user_id.default=auth.user.id\n\tform=SQLFORM(db.log)\n\tif request.vars:\n\t\tfirst=re.match(\'[10]+\',request.vars.first_binary)\n\t\tsecond=re.match(\'[10]+\',request.vars.second_binary)\n\t\tif first==None or second==None:\n\t    \t\tsession.flash=\'Numbers have to be in binary\'\n\t\t\tredirect(URL(request.application,\'default\',\'calc_add\'))\n\t\tif first.start()!=0 or first.end()!=len(request.vars.first_binary) or second.start()!=0 or second.end()!=len(request.vars.second_binary):\n\t    \t\tsession.flash=\'Numbers have to be in binary\'\n\t    \t\tredirect(URL(request.application,\'default\',\'calc_add\'))\n\tif form.accepts(request.vars,session):\n\t\tright_first=int(request.vars.first_binary,2)\n\t\tright_second=int(request.vars.second_binary,2)\n\t\tright_result=right_first+right_second\n\t\tif right_result>=pow(2,int(session.k,2)):\n\t\t\tunsigned_overflow=1\n\t\tresponse.flash=\'successful\'\n\treturn dict(form=form,right_first=right_first, right_second=right_second,right_result=right_result,unsigned_overflow=unsigned_overflow)\ndef user():\n    """\n    exposes:\n    http://..../[app]/default/user/login \n    http://..../[app]/default/user/logout\n    http://..../[app]/default/user/register\n    http://..../[app]/default/user/profile\n    http://..../[app]/default/user/retrieve_password\n    http://..../[app]/default/user/change_password\n    use @auth.requires_login()\n        @auth.requires_membership(\'group name\')\n        @auth.requires_permission(\'read\',\'table name\',record_id)\n    to decorate functions that need access control\n    """\n    return dict(form=auth())\n\n\ndef download():\n    """\n    allows downloading of uploaded files\n    http://..../[app]/default/download/[filename]\n    """\n    return response.download(request,db)\n\n\ndef call():\n    """\n    exposes services. for example:\n    http://..../[app]/default/call/jsonrpc\n    decorate with @services.jsonrpc the functions to expose\n    supports xml, json, xmlrpc, jsonrpc, amfrpc, rss, csv\n    """\n    session.forget()\n    return service()\n\n\n\nresponse._vars=response._caller(calc_add)\n'
+p6
+sS'snapshot'
+p7
+(dp8
+S'exception'
+p9
+(dp10
+S'__hash__'
+p11
+S"<method-wrapper '__hash__' of exceptions.ValueError object>"
+p12
+sS'__setattr__'
+p13
+S"<method-wrapper '__setattr__' of exceptions.ValueError object>"
+p14
+sS'__reduce_ex__'
+p15
+S'<built-in method __reduce_ex__ of exceptions.ValueError object>'
+p16
+sS'__getslice__'
+p17
+S"<method-wrapper '__getslice__' of exceptions.ValueError object>"
+p18
+sS'__getitem__'
+p19
+S"<method-wrapper '__getitem__' of exceptions.ValueError object>"
+p20
+sS'__setstate__'
+p21
+S'<built-in method __setstate__ of exceptions.ValueError object>'
+p22
+sS'__reduce__'
+p23
+S'<built-in method __reduce__ of exceptions.ValueError object>'
+p24
+sS'__str__'
+p25
+S"<method-wrapper '__str__' of exceptions.ValueError object>"
+p26
+sS'__format__'
+p27
+S'<built-in method __format__ of exceptions.ValueError object>'
+p28
+sS'__getattribute__'
+p29
+S"<method-wrapper '__getattribute__' of exceptions.ValueError object>"
+p30
+sS'__class__'
+p31
+S"<type 'exceptions.ValueError'>"
+p32
+sS'__unicode__'
+p33
+S'<built-in method __unicode__ of exceptions.ValueError object>'
+p34
+sS'__delattr__'
+p35
+S"<method-wrapper '__delattr__' of exceptions.ValueError object>"
+p36
+sS'__subclasshook__'
+p37
+S'<built-in method __subclasshook__ of type object>'
+p38
+sS'__repr__'
+p39
+S"<method-wrapper '__repr__' of exceptions.ValueError object>"
+p40
+sS'args'
+p41
+S'("invalid literal for int() with base 2: \'8\'",)'
+p42
+sS'__dict__'
+p43
+S'{}'
+p44
+sS'__sizeof__'
+p45
+S'<built-in method __sizeof__ of exceptions.ValueError object>'
+p46
+sS'__doc__'
+p47
+S"'Inappropriate argument value (of correct type).'"
+p48
+sS'__init__'
+p49
+S"<method-wrapper '__init__' of exceptions.ValueError object>"
+p50
+sS'__new__'
+p51
+S'<built-in method __new__ of type object>'
+p52
+ssS'evalue'
+p53
+S"invalid literal for int() with base 2: '8'"
+p54
+sS'request'
+p55
+(dp56
+S'function'
+p57
+S"'calc_add'"
+p58
+sS'body'
+p59
+S"<open file '<fdopen>', mode 'w+b'>"
+p60
+sS'wsgi'
+p61
+S"<Storage {'start_response': <function <lambda> a...ING': 'gzip,deflate', 'HTTP_KEEP_ALIVE': '115'}}>"
+p62
+sS'extension'
+p63
+S"'html'"
+p64
+sS'vars'
+p65
+S"<Storage {'_formkey': '309a005d-7b30-48fa-aa21-2...first_binary': '11111111', 'second_binary': '1'}>"
+p66
+sS'cid'
+p67
+S'None'
+p68
+sS'url'
+p69
+S'<gluon.html.XML object>'
+p70
+sg41
+S'[]'
+p71
+sS'controller'
+p72
+S"'default'"
+p73
+sS'cookies'
+p74
+S"<SimpleCookie: __utma='96992031.1506345600.12877...'127-0-0-1-4c783827-5bbc-478d-891c-eab5fa26e859'>"
+p75
+sS'application'
+p76
+S"'teach_me_binary'"
+p77
+sS'ajax'
+p78
+S'False'
+p79
+sS'client'
+p80
+S"'127.0.0.1'"
+p81
+sS'env'
+p82
+S"<Storage {'content_length': '579', 'http_user_ag...te', 'query_string': '', 'wsgi_run_once': False}>"
+p83
+sS'raw_args'
+p84
+S'None'
+p85
+sS'get_vars'
+p86
+S'<Storage {}>'
+p87
+sS'folder'
+p88
+S"'/home/ravi/vlab/LocalityAnalysis/web2py/applications/teach_me_binary/'"
+p89
+sS'now'
+p90
+S'datetime.datetime(2010, 12, 29, 18, 30, 22, 774770)'
+p91
+sS'post_vars'
+p92
+S"<Storage {'_formkey': '309a005d-7b30-48fa-aa21-2...first_binary': '11111111', 'second_binary': '1'}>"
+p93
+ssS'frames'
+p94
+(lp95
+(dp96
+S'file'
+p97
+S'/home/ravi/vlab/LocalityAnalysis/web2py/gluon/restricted.py'
+p98
+sS'dump'
+p99
+(dp100
+S'environment'
+p101
+S"{'A': <class 'gluon.html.A'>, 'Auth': <class 'gluon.tools.Auth'>, 'B': <class 'gluon.html.B'>, 'BEAUTIFY': <class 'gluon.html.BEAUTIFY'>, 'BODY': <class 'gluon.html.BODY'>, 'BR': <class 'gluon.html.BR'>, 'CENTER': <class 'gluon.html.CENTER'>, 'CLEANUP': <class 'gluon.validators.CLEANUP'>, 'CODE': <class 'gluon.html.CODE'>, 'CRYPT': <class 'gluon.validators.CRYPT'>, ...}"
+p102
+sS'ccode'
+p103
+S'<code object <module> at 0x8ed6bf0, file "/home/...teach_me_binary/controllers/default.py", line 11>'
+p104
+ssS'lnum'
+p105
+I188
+sS'lines'
+p106
+(dp107
+I192
+S'        # XXX Show exception in Wing IDE if running in debugger'
+p108
+sI183
+S'        if type(code) == types.CodeType:'
+p109
+sI184
+S'            ccode = code'
+p110
+sI185
+S'        else:'
+p111
+sI186
+S'            ccode = compile2(code,layer)'
+p112
+sI187
+S''
+sI188
+S'        exec ccode in environment'
+p113
+sI189
+S'    except HTTP:'
+p114
+sI190
+S'        raise'
+p115
+sI191
+S'    except Exception:'
+p116
+ssS'call'
+p117
+S"(code='# -*- coding: utf-8 -*- \\n\\n######################...e()\\n\\n\\n\\nresponse._vars=response._caller(calc_add)\\n', environment={'A': <class 'gluon.html.A'>, 'Auth': <class 'gluon.tools.Auth'>, 'B': <class 'gluon.html.B'>, 'BEAUTIFY': <class 'gluon.html.BEAUTIFY'>, 'BODY': <class 'gluon.html.BODY'>, 'BR': <class 'gluon.html.BR'>, 'CENTER': <class 'gluon.html.CENTER'>, 'CLEANUP': <class 'gluon.validators.CLEANUP'>, 'CODE': <class 'gluon.html.CODE'>, 'CRYPT': <class 'gluon.validators.CRYPT'>, ...}, layer='/home/ravi/vlab/LocalityAnalysis/web2py/applications/teach_me_binary/controllers/default.py')"
+p118
+sS'func'
+p119
+S'restricted'
+p120
+sa(dp121
+g97
+S'/home/ravi/vlab/LocalityAnalysis/web2py/applications/teach_me_binary/controllers/default.py'
+p122
+sg99
+(dp123
+sg105
+I92
+sg106
+(dp124
+I81
+S'    """'
+p125
+sI82
+S'    exposes services. for example:'
+p126
+sI83
+S'    http://..../[app]/default/call/jsonrpc'
+p127
+sI84
+S'    decorate with @services.jsonrpc the functions to expose'
+p128
+sI85
+S'    supports xml, json, xmlrpc, jsonrpc, amfrpc, rss, csv'
+p129
+sI86
+S'    """'
+p130
+sI87
+S'    session.forget()'
+p131
+sI88
+S'    return service()'
+p132
+sI89
+S''
+sI90
+S''
+ssg117
+S'()'
+p133
+sg119
+S'<module>'
+p134
+sa(dp135
+g97
+S'/home/ravi/vlab/LocalityAnalysis/web2py/gluon/globals.py'
+p136
+sg99
+(dp137
+S'self'
+p138
+S'undefined'
+p139
+sS'f'
+S'<function calc_add>'
+p140
+ssg105
+I96
+sg106
+(dp141
+I96
+S'        self._caller = lambda f: f()'
+p142
+sI97
+S'        self._view_environment = None'
+p143
+sI98
+S'        self._custom_commit = None'
+p144
+sI99
+S'        self._custom_rollback = None'
+p145
+sI100
+S''
+sI91
+S"        self.flash = ''           # used by the default view layout"
+p146
+sI92
+S'        self.meta = Storage()     # used by web2py_ajax.html'
+p147
+sI93
+S'        self.menu = []            # used by the default view layout'
+p148
+sI94
+S'        self.files = []           # used by web2py_ajax.html'
+p149
+sI95
+S'        self._vars = None'
+p150
+ssg117
+S'(f=<function calc_add>)'
+p151
+sg119
+S'<lambda>'
+p152
+sa(dp153
+g97
+S'/home/ravi/vlab/LocalityAnalysis/web2py/gluon/tools.py'
+p154
+sg99
+(dp155
+S'action'
+p156
+S'<function calc_add>'
+p157
+sS'a'
+S'()'
+p158
+sS'b'
+g44
+ssg105
+I2264
+sg106
+(dp159
+I2259
+S'                               vars=request.get_vars)'
+p160
+sI2260
+S'                    return call_or_redirect(self.settings.on_failed_authentication,'
+p161
+sI2261
+S'                                            self.settings.login_url + \\'
+p162
+sI2262
+S"                                                '?_next='+urllib.quote(next)"
+p163
+sI2263
+S'                                            )'
+p164
+sI2264
+S'                return action(*a, **b)'
+p165
+sI2265
+S'            f.__doc__ = action.__doc__'
+p166
+sI2266
+S'            f.__name__ = action.__name__'
+p167
+sI2267
+S'            f.__dict__.update(action.__dict__)'
+p168
+sI2268
+S'            return f'
+p169
+ssg117
+S'(*a=(), **b={})'
+p170
+sg119
+S'f'
+sa(dp171
+g97
+S'/home/ravi/vlab/LocalityAnalysis/web2py/applications/teach_me_binary/controllers/default.py'
+p172
+sg99
+(dp173
+S'global session'
+p174
+S"<Storage {'last_query': 'db.log.id>0', '_formkey...reate]': 'b785a2a1-1f74-4f55-bca2-f69982f3c1ae'}>"
+p175
+sS'builtinint'
+p176
+S"<type 'int'>"
+p177
+sS'builtinpow'
+p178
+S'<built-in function pow>'
+p179
+sS'session.k'
+p180
+S"'8'"
+p181
+sS'right_result'
+p182
+S'256'
+p183
+ssg105
+I51
+sg106
+(dp184
+I46
+S"\t    \t\tredirect(URL(request.application,'default','calc_add'))"
+p185
+sI47
+S'\tif form.accepts(request.vars,session):'
+p186
+sI48
+S'\t\tright_first=int(request.vars.first_binary,2)'
+p187
+sI49
+S'\t\tright_second=int(request.vars.second_binary,2)'
+p188
+sI50
+S'\t\tright_result=right_first+right_second'
+p189
+sI51
+S'\t\tif right_result>=pow(2,int(session.k,2)):'
+p190
+sI52
+S'\t\t\tunsigned_overflow=1'
+p191
+sI53
+S"\t\tresponse.flash='successful'"
+p192
+sI54
+S'\treturn dict(form=form,right_first=right_first, right_second=right_second,right_result=right_result,unsigned_overflow=unsigned_overflow)'
+p193
+sI55
+S'def user():'
+p194
+ssg117
+S'()'
+p195
+sg119
+S'calc_add'
+p196
+sasS'pyver'
+p197
+S'Python 2.6.5: /usr/bin/python2.6'
+p198
+sS'session'
+p199
+(dp200
+S'last_query'
+p201
+S"'db.log.id>0'"
+p202
+sS'_formkey[no_table_create]'
+p203
+S"'7f74fa32-3df5-4b2a-b5ee-ab5645ac48eb'"
+p204
+sS'_formkey[register]'
+p205
+S"'6ea7cfe9-f94c-466f-ad19-54706e0aaa78'"
+p206
+sS'k'
+S"'8'"
+p207
+sS'flash'
+p208
+S'None'
+p209
+sS'auth'
+p210
+S"<Storage {'expiration': 3600, 'last_visit': date...n_key': '', 'email': 'admin@tmb.com', 'id': 1}>}>"
+p211
+sS'last_orderby'
+p212
+S'None'
+p213
+sS'_formkey[login]'
+p214
+S"'0a9c6715-7587-415a-b4c7-33fc2b49e8e4'"
+p215
+sS'_formkey[log_create]'
+p216
+S"'b785a2a1-1f74-4f55-bca2-f69982f3c1ae'"
+p217
+ssS'etype'
+p218
+S"<type 'exceptions.ValueError'>"
+p219
+sS'date'
+p220
+S'Wed Dec 29 18:30:22 2010'
+p221
+sS'response'
+p222
+(dp223
+S'status'
+p224
+S'200'
+p225
+sg59
+S'<cStringIO.StringO object>'
+p226
+sg74
+S"<SimpleCookie: session_id_teach_me_binary='127-0-0-1-6d77f130-a7df-4990-b6c5-3be193112cbf'>"
+p227
+sS'_vars'
+p228
+S'None'
+p229
+sS'title'
+p230
+S"'teach_me_binary'"
+p231
+sS'session_file'
+p232
+S"<open file '/home/ravi/vlab/LocalityAnalysis/web...d77f130-a7df-4990-b6c5-3be193112cbf', mode 'rb+'>"
+p233
+sS'flash'
+p234
+S"''"
+p235
+sS'_custom_rollback'
+p236
+S'None'
+p237
+sS'session_id'
+p238
+S"'127-0-0-1-6d77f130-a7df-4990-b6c5-3be193112cbf'"
+p239
+sS'headers'
+p240
+S"<Storage {'Expires': 'Wed, 29 Dec 2010 13:00:22 ...he, must-revalidate, post-check=0, pre-check=0'}>"
+p241
+sS'meta'
+p242
+S"<Storage {'keywords': 'bla bla bla', 'description': 'describe your app', 'author': 'you'}>"
+p243
+sS'session_filename'
+p244
+S"'/home/ravi/vlab/LocalityAnalysis/web2py/applicat...ns/127-0-0-1-6d77f130-a7df-4990-b6c5-3be193112cbf'"
+p245
+sS'postprocessing'
+p246
+S'[]'
+p247
+sS'menu'
+p248
+S"[(<lazyT 'Index'>, False, <gluon.html.XML object>, []), (<lazyT 'Edit'>, False, <gluon.html.XML object>, [(<lazyT 'Controller'>, False, <gluon.html.XML object>), (<lazyT 'View'>, False, <gluon.html.XML object>), (<lazyT 'Layout'>, False, <gluon.html.XML object>), (<lazyT 'Stylesheet'>, False, <gluon.html.XML object>), (<lazyT 'DB Model'>, False, <gluon.html.XML object>), (<lazyT 'Menu Model'>, False, <gluon.html.XML object>), (<lazyT 'Database'>, False, <gluon.html.XML object>)])]"
+p249
+sS'_view_environment'
+p250
+S"{'A': <class 'gluon.html.A'>, 'Auth': <class 'gluon.tools.Auth'>, 'B': <class 'gluon.html.B'>, 'BEAUTIFY': <class 'gluon.html.BEAUTIFY'>, 'BODY': <class 'gluon.html.BODY'>, 'BR': <class 'gluon.html.BR'>, 'CENTER': <class 'gluon.html.CENTER'>, 'CLEANUP': <class 'gluon.validators.CLEANUP'>, 'CODE': <class 'gluon.html.CODE'>, 'CRYPT': <class 'gluon.validators.CRYPT'>, ...}"
+p251
+sS'subtitle'
+p252
+S"<lazyT 'customize me!'>"
+p253
+sS'session_id_name'
+p254
+S"'session_id_teach_me_binary'"
+p255
+sS'_custom_commit'
+p256
+S'None'
+p257
+sS'_caller'
+p258
+S'<function <lambda>>'
+p259
+sS'files'
+p260
+S'[]'
+p261
+sS'view'
+p262
+S"'default/calc_add.html'"
+p263
+ssS'locals'
+p264
+(dp265
+S'form'
+p266
+S'<gluon.sqlhtml.SQLFORM object>'
+p267
+sS'right_result'
+p268
+S'256'
+p269
+sS'right_second'
+p270
+S'1'
+sS'second'
+p271
+S'<_sre.SRE_Match object>'
+p272
+sS'unsigned_overflow'
+p273
+S'None'
+p274
+sS'right_first'
+p275
+S'255'
+p276
+sS'first'
+p277
+S'<_sre.SRE_Match object>'
+p278
+sssS'traceback'
+p279
+S'Traceback (most recent call last):\n  File "/home/ravi/vlab/LocalityAnalysis/web2py/gluon/restricted.py", line 188, in restricted\n    exec ccode in environment\n  File "/home/ravi/vlab/LocalityAnalysis/web2py/applications/teach_me_binary/controllers/default.py", line 92, in <module>\n  File "/home/ravi/vlab/LocalityAnalysis/web2py/gluon/globals.py", line 96, in <lambda>\n    self._caller = lambda f: f()\n  File "/home/ravi/vlab/LocalityAnalysis/web2py/gluon/tools.py", line 2264, in f\n    return action(*a, **b)\n  File "/home/ravi/vlab/LocalityAnalysis/web2py/applications/teach_me_binary/controllers/default.py", line 51, in calc_add\n    if right_result>=pow(2,int(session.k,2)):\nValueError: invalid literal for int() with base 2: \'8\'\n'
+p280
+s.

@@ -1,0 +1,836 @@
+(dp1
+S'output'
+p2
+S''
+sS'layer'
+p3
+S'/home/cvest.cso/public_html/LocalityAnalysis/web2py/applications/vlab/controllers/default.py'
+p4
+sS'code'
+p5
+S'\n#########################################################################\n## This is a samples controller\n## - index is the default action of any application\n## - user is required for authentication and authorization\n## - download is for downloading files uploaded in the db (does streaming)\n## - call exposes all registered services (none by default)\n#########################################################################  \ndef register():\n\treturn dict(form=auth.register(next=URL(request.application,\'default\',\'create_count\')))\n\ndef create_count():\n\tuser_id=auth.user.id\n\tdb.p_count.insert(user_id=user_id,count=0)\n\tredirect(URL(request.application,\'default\',\'index\'))\n\n@auth.requires_login()\ndef index():\n    import os\n    import re\n    import commands\n    """\n    example action using the internationalization operator T and flash\n    rendered by views/default/index.html or views/generic.html\n    """\n    last=request.vars\n    if last:\n\t db.programs.i1_size.default=last.i1_size\n   \t db.programs.i1_associativity.default=last.i1_associativity\n   \t db.programs.i1_line_size.default=last.i1_line_size\n\t db.programs.d1_size.default=last.d1_size\n   \t db.programs.d1_associativity.default=last.d1_associativity\n   \t db.programs.d1_line_size.default=last.d1_line_size\n\t db.programs.l2_size.default=last.l2_size\n   \t db.programs.l2_associativity.default=last.l2_associativity\n   \t db.programs.l2_line_size.default=last.l2_line_size\n\t session.l2_line_size=last.l2_line_size\n\t #session.n=last.n\n\t #session.B=last.B\n\t session.i1_associativity=last.i1_associativity\n\t session.i1_line_size=last.i1_line_size\n\t session.d1_associativity=last.d1_associativity\n\t session.d1_line_size=last.d1_line_size\n\t session.l2_associativity=last.l2_associativity\n    \n    else:\n   \t db.programs.i1_size.default=2\n   \t db.programs.i1_associativity.default=2\n   \t db.programs.i1_line_size.default=64\n   \t db.programs.d1_size.default=2\n   \t db.programs.d1_associativity.default=2\n   \t db.programs.d1_line_size.default=64\n   \t db.programs.l2_size.default=8\n   \t db.programs.l2_associativity.default=8\n   \t db.programs.l2_line_size.default=64\n    default_code=glob[\'code\']\n    db.programs.uploaded_by.default=auth.user.id\n    curr_count=db(db.p_count.user_id==auth.user.id).select()\n\n    pid=[]\n    values={}\n    flag=0\n    compile=True\n    list=[]\n    out="Test"\n    inp=None\n    out_mod=None\n    input_path=""; i1_s=0\n    form=SQLFORM(db.programs)\n    file_name=str(auth.user.id)+\'_\'+str(curr_count[0].count)+\'.c\'\n#    if request.vars.file!=None and len(request.vars.file)>0:\n #       request.vars.file.filename=file_name\n    if(form.accepts(request.vars,session)):\n\t session.i1_ass=form.vars.i1_associativity\n         flag=1\n\t path=os.getcwd()\n         path=path+\'/applications/vlab/uploads/\'#+form.vars.file\n         if len(form.vars.file)>0:\n       \t\t  inp=commands.getstatusoutput(\'cc \'+path+form.vars.file+\' -o\'+path+str(auth.user.id))\n\t\t  fp=open(path+form.vars.file,"r")\n\t\t  default_code=fp.read()\n\t\t  fp.close()\n\t else:\n\t\t  file_name=str(auth.user.id)+\'_\'+str(curr_count[0].count)+\'.c\'\n\t\t  db(db.programs.id==form.vars.id).update(file=file_name)\n\t\t  fp=open(path+file_name,"w")\n\t\t  fp.write(request.vars.code)\n\t\t  fp.close()\n\t\t  default_code=request.vars.code\n       \t\t  inp=commands.getstatusoutput(\'cc \'+path+file_name+\' -o\'+path+str(auth.user.id))\n\t if inp[0] != 0:\n\t\t compile=False\n\t i1_s=form.vars.i1_size * 1024; \n\t d1_s=form.vars.d1_size * 1024; \n\t l2_s=form.vars.l2_size * 1024; \n\t session.i1_s=i1_s\n\t session.d1_s=d1_s\n\t session.l2_s=l2_s\n\t values["compile"]=compile; values["input"]=""\n\t if compile==True:\n          command=\'valgrind --tool=cachegrind --I1=\'+str(i1_s)+\',\'+str(form.vars.i1_associativity)+\',\'+str(form.vars.i1_line_size)+\' \'+\'--D1=\'+str(d1_s)+\',\'+str(form.vars.d1_associativity)+\',\'+str(form.vars.d1_line_size)+\' \'+\'--L2=\'+str(l2_s)+\',\'+str(form.vars.l2_associativity)+\',\'+str(form.vars.l2_line_size)+ \' --cachegrind-out-file=\'+path+str(auth.user.id)+\'.\'+str(curr_count[0].count)+\'.%p \'+path+str(auth.user.id)\n          if len(form.vars.input_file)>0:\n\t     input_path=os.getcwd()\n             input_path=input_path+\'/applications/vlab/uploads/\'+form.vars.input_file; values["input"]=input_path\n             command=command+\'<\'+input_path\n          \n\t  start_time=time.time()\n\t  child=os.fork()\n\t  if child==0:\n\t  \tout=commands.getstatusoutput(command)\n\t  else:\n\t\twhile(1):\n\t\t\tcurr_time=time.time()\n\t\t\tif curr_time-start_time>10:\n\t\t\t\tos.kill(child)\n\t\t\tif not os.path.exists(\'/proc/\'+str(child)):\n\t\t\t\tos.kill(child)\n\n\t  f=open(\'te\',\'w\')\n\t  f.write(out[1])\n\t  f.close()\n\t  out_mod=re.split(\'\\n\',out[1])\n\t  regex="==(\\d*)==\\s*([^:]*):\\s*(\\d+.*)"\n\t  for i in out_mod:\n\t\t match=re.findall(regex,i)\n\t\t if len(match)>0:\n\t\t \tprocid=match[0][0]\n\t\t\tif procid not in pid:\n\t\t\t\t pid.append(procid)\n\t\t\tlist.append(match[0])\t\n    if len(list)>0:\n\tregex="([^\\(]+)\\(\\s*(\\S+)[^\\+]*\\+\\s*(\\S+).*" ; t1= re.findall(regex,list[5][2]) ; values["a"]=t1[0][0] ; values["a_1"]=t1[0][1] ; values["a_2"] = t1[0][2] \n\tt2= re.findall(regex,list[6][2]) ; values["c"]=t2[0][0] ; values["c_1"]=t2[0][1] ; values["c_2"] = t2[0][2] ; values["e"]=values["c"] ; values["e_1"] = values["c_1"]; values["e_2"]=values["c_2"] \n\tt3= re.findall(regex,list[8][2]) ; values["d"]=t3[0][0] ; values["d_1"]=t3[0][1] ; values["d_2"] = t3[0][2] \n\tt4= re.findall(regex,list[7][2]) ; values["g"]=t4[0][0] ; values["g_1"]=t4[0][1] ; values["g_2"] = t4[0][2]\n\tvalues["b"]= int(values["a"].replace(",",""))-int(values["c"].replace(",","")) ; values["b_1"]= int(values["a_1"].replace(",",""))-int(values["c_1"].replace(",","")) ; values["b_2"]= int(values["a_2"].replace(",",""))-int(values["c_2"].replace(",","")) \n\tvalues["f"]= int(values["e"].replace(",",""))-int(values["g"].replace(",","")) ; values["f_1"]= int(values["e_1"].replace(",",""))-int(values["g_1"].replace(",","")) ; values["f_2"]= int(values["e_2"].replace(",",""))-int(values["g_2"].replace(",","")) \n\tvalues["h"]=str("%.2f"%((float(values["g"].replace(",",""))/float(values["e"].replace(",","")))*100))+"%" \n\tvalues["h_1"]=str("%.2f"%((float(values["g_1"].replace(",",""))/float(values["e_1"].replace(",","")))*100))+"%"\n\tvalues["h_2"]=str("%.2f"%((float(values["g_2"].replace(",",""))/float(values["e_2"].replace(",","")))*100))+"%"\n#update count table on successful run...ensure updation on deletion too-to be done\t\n\tcurr_count=db(db.p_count.user_id==auth.user.id).select()\n\tcurr_count=curr_count[0].count+1\n\tdb(db.p_count.user_id==auth.user.id).update(count=curr_count)\n    #session.values={}\n    #session.values=values\n    session.input=input_path\n    session.compile=compile\n    #session.i1_s=i1_s\n\n    response.flash = T(\'Welcome to web2py\')\n    return dict(default_code=default_code,form=form,message=T(\'Hello World\'),list=list,pid=pid,flag=flag,values=values,compile=compile)\n\ndef show_session():\n\treturn dict(session=session)\n\ndef show_graphs():\n\t import os\n\t import re\n\t import commands\n\t list=[]\n\t #values=session.values\n\t y1=[]\n\t y2=[]\n\t y3=[]\n\t import time\n\t path=os.getcwd()\n         path=path+\'/applications/vlab/uploads/\'\n\t input_path=session.input\n\t if session.compile==True:\n\t\tfor i in [1,2,4,8]: \n\t\t\tlist=[]\n\t\t#\tcommand=\'valgrind --tool=cachegrind --I1=\'+str(session.i1_s)+\',\'+str(session.i1_associativity)+\',\'+str(session.i1_line_size)+\' \'+\'--D1=\'+str(session.d1_s)+\',\'+str(session.d1_associativity)+\',\'+str(session.d1_l    ine_size)+\' \'+\'--L2=\'+str(session.l2_s)+\',\'+str(session.l2_associativity)+\',\'+str(session.l2_line_size)+ \' --cachegrind-out-file=\'+path+str(auth.user.id)+\'.%p \'+path+str(auth.user.id)\n\t\t\tcommand=\'valgrind --tool=cachegrind --I1=\'+str(session.i1_s)+\',\'+str(i)+\',\'+str(64)+ \' --cachegrind-out-file=\'+path+str(auth.user.id)+\'.%p \'+path+str(auth.user.id)\n\t\t\tif input_path != "":\n\t   \t\t\tcommand=command + \'<\' +input_path\n\t\t\tout=commands.getstatusoutput(command)\n\t\t\tout_mod=re.split(\'\\n\',out[1])\n\t  \t\tregex="==(\\d*)==\\s*([^:]*):\\s*(\\d+.*)"\n\t  \t\tfor j in out_mod:\n\t\t \t\tmatch=re.findall(regex,j)\n\t\t \t\tif len(match)>0:\n\t\t\t\t\tlist.append(match[0])\n\t\t\tif len(list) >0:\n\t\t\t\t\n\t\t\t\ty1.append(100 - float(re.findall(\'[^%]+\',(list[3][2]))[0]))\n\t\t\t\tregex="([^\\(]+)\\(\\s*(\\S+)[^\\+]*\\+\\s*(\\S+).*"\n\t\t\t\tt3= re.findall(regex,list[8][2])\n\t\t\t\ty2.append(100 -float(re.findall(\'[^%]+\',t3[0][0])[0]))\n\t\t\t\tl2i_miss=int(list[2][2].replace(",",""))\n\t\t\t\tl2d_miss= re.findall(regex,list[7][2])[0][0]\n\t\t\t\tl2_miss=l2i_miss+int(l2d_miss.replace(",",""))\n\t\t\t\tl2i_ref=int(list[1][2].replace(\',\',\'\'))\n\t\t\t\tl2d_ref=re.findall(regex,list[6][2])[0][0]\n\t\t\t\tl2_ref=l2i_ref+int(l2d_ref.replace(\',\',\'\'))\n\t\t\t\tl2_miss_rate=((float(l2_miss)/l2_ref)*100)\n\t\t\t\ty3.append(100 - l2_miss_rate)\n\t\t\n\t\txticks=\'[1,2,4,8]\'\n\t\tctr=0\n\t\tans1="[["\n\t\tfor i in [1,2,4,8]:\n\t\t\tans1=ans1+\'[\'+str(i)+\',\'+str(y1[ctr])+\']\'\n\t\t\tif i!=8:\n\t\t\t\tans1+=\',\'\n\t\t\tctr+=1\n\t\tans1+="]]"\n\t\tans2="[["\n\t\tctr=0\n\t\tfor i in [1,2,4,8]:\n\t\t\tans2=ans2+\'[\'+str(i)+\',\'+str(y2[ctr])+\']\'\n\t\t\tif i!=8:\n\t\t\t\tans2+=\',\'\n\t\t\tctr+=1\n\t\tans2+=\']]\'\n\t\tans3="[["\n\t\tctr=0\n\t\tfor i in [1,2,4,8]:\n\t\t\tans3=ans3+\'[\'+str(i)+\',\'+str(y3[ctr])+\']\'\n\t\t\tif i!=8:\n\t\t\t\tans3+=\',\'\n\t\t\tctr+=1\n\t\tans3+=\']]\'\n\t\tctr=0\n\t\tans="[["\n\t\tfor i in [1,2,4,8]:\n\t\t\tans=ans+\'[\'+str(i)+\',\'+str(y1[ctr])+\']\'\n\t\t\tif i!=8:\n\t\t\t\tans+=\',\'\n\t\t\tctr+=1\n\t\tans+=\'],\'\n\t\tans+="["\n\t\tctr=0\n\t\tfor i in [1,2,4,8]:\n\t\t\tans=ans+\'[\'+str(i)+\',\'+str(y2[ctr])+\']\'\n\t\t\tif i!=8:\n\t\t\t\tans+=\',\'\n\t\t\tctr+=1\n\t\tans+=\'],\'\n\t\tans+="["\n\t\tctr=0\n\t\tfor i in [1,2,4,8]:\n\t\t\tans=ans+\'[\'+str(i)+\',\'+str(y3[ctr])+\']\'\n\t\t\tif i!=8:\n\t\t\t\tans+=\',\'\n\t\t\tctr+=1\n\t\tans+=\']]\'\n         return dict(ans1=ans1,ans2=ans2,ans3=ans3,ans=ans,xticks=xticks)\n\n\t \n\n\ndef customize():\n    form=SQLFORM(db.options)\n    \ndef user():\n    """\n    exposes:\n    http://..../[app]/default/user/login \n    http://..../[app]/default/user/logout\n    http://..../[app]/default/user/register\n    http://..../[app]/default/user/profile\n    http://..../[app]/default/user/retrieve_password\n    http://..../[app]/default/user/change_password\n    use @auth.requires_login()\n        @auth.requires_membership(\'group name\')\n        @auth.requires_permission(\'read\',\'table name\',record_id)\n    to decorate functions that need access control\n    """\n    if request.args(0)==\'register\':\n\t    redirect(URL(request.application,\'default\',\'register\'))\n    return dict(form=auth())\n\n\ndef download():\n    """\n    allows downloading of uploaded files\n    http://..../[app]/default/download/[filename]\n    """\n   \n    return response.stream(open(os.path.join(request.folder,\'uploads\',request.args[0]),\'rb\'))\n    #return response.download(request,db)\n\n\ndef call():\n    """\n    exposes services. for example:\n    http://..../[app]/default/call/jsonrpc\n    decorate with @services.jsonrpc the functions to expose\n    supports xml, json, xmlrpc, jsonrpc, amfrpc, rss, csv\n    """\n    session.forget()\n    return service()\n\nresponse._vars=response._caller(index)\n'
+p6
+sS'snapshot'
+p7
+(dp8
+S'exception'
+p9
+(dp10
+S'__module__'
+p11
+S"'sqlite3'"
+p12
+sS'__getslice__'
+p13
+S"<method-wrapper '__getslice__' of OperationalError object>"
+p14
+sS'__str__'
+p15
+S"<method-wrapper '__str__' of OperationalError object>"
+p16
+sS'__reduce__'
+p17
+S'<built-in method __reduce__ of OperationalError object>'
+p18
+sS'__dict__'
+p19
+S'{}'
+p20
+sS'__sizeof__'
+p21
+S'<built-in method __sizeof__ of OperationalError object>'
+p22
+sS'__weakref__'
+p23
+S'None'
+p24
+sS'__init__'
+p25
+S"<method-wrapper '__init__' of OperationalError object>"
+p26
+sS'__setattr__'
+p27
+S"<method-wrapper '__setattr__' of OperationalError object>"
+p28
+sS'__reduce_ex__'
+p29
+S'<built-in method __reduce_ex__ of OperationalError object>'
+p30
+sS'__new__'
+p31
+S'<built-in method __new__ of type object>'
+p32
+sS'__format__'
+p33
+S'<built-in method __format__ of OperationalError object>'
+p34
+sS'__class__'
+p35
+S"<class 'sqlite3.OperationalError'>"
+p36
+sS'__doc__'
+p37
+S'None'
+p38
+sS'__getitem__'
+p39
+S"<method-wrapper '__getitem__' of OperationalError object>"
+p40
+sS'__setstate__'
+p41
+S'<built-in method __setstate__ of OperationalError object>'
+p42
+sS'__getattribute__'
+p43
+S"<method-wrapper '__getattribute__' of OperationalError object>"
+p44
+sS'args'
+p45
+S"('database is locked',)"
+p46
+sS'__subclasshook__'
+p47
+S'<built-in method __subclasshook__ of type object>'
+p48
+sS'__unicode__'
+p49
+S'<built-in method __unicode__ of OperationalError object>'
+p50
+sS'__delattr__'
+p51
+S"<method-wrapper '__delattr__' of OperationalError object>"
+p52
+sS'__repr__'
+p53
+S"<method-wrapper '__repr__' of OperationalError object>"
+p54
+sS'__hash__'
+p55
+S"<method-wrapper '__hash__' of OperationalError object>"
+p56
+ssS'evalue'
+p57
+S'database is locked'
+p58
+sS'request'
+p59
+(dp60
+S'function'
+p61
+S"'index'"
+p62
+sS'body'
+p63
+S'<cStringIO.StringO object>'
+p64
+sS'wsgi'
+p65
+S"<Storage {'start_response': <function <lambda> a...ING': 'gzip,deflate', 'HTTP_KEEP_ALIVE': '300'}}>"
+p66
+sS'extension'
+p67
+S"'html'"
+p68
+sS'vars'
+p69
+S'<Storage {}>'
+p70
+sS'cid'
+p71
+S'None'
+p72
+sS'url'
+p73
+S'<gluon.html.XML object>'
+p74
+sg45
+S'[]'
+p75
+sS'controller'
+p76
+S"'default'"
+p77
+sS'cookies'
+p78
+S"<SimpleCookie: session_id_admin='192-168-36-178-...168-36-178-d6e8aafc-6aa8-466a-919f-344ff9adc569'>"
+p79
+sS'application'
+p80
+S"'vlab'"
+p81
+sS'ajax'
+p82
+S'False'
+p83
+sS'client'
+p84
+S"'192.168.36.178'"
+p85
+sS'env'
+p86
+S"<Storage {'http_user_agent': 'Mozilla/5.0 (X11; ...nce': False, 'path_info': '/vlab/default/index'}>"
+p87
+sS'raw_args'
+p88
+S'None'
+p89
+sS'get_vars'
+p90
+S'<Storage {}>'
+p91
+sS'folder'
+p92
+S"'/home/cvest.cso/public_html/LocalityAnalysis/web2py/applications/vlab/'"
+p93
+sS'now'
+p94
+S'datetime.datetime(2010, 11, 21, 18, 36, 40, 394082)'
+p95
+sS'post_vars'
+p96
+S'<Storage {}>'
+p97
+ssS'frames'
+p98
+(lp99
+(dp100
+S'file'
+p101
+S'/home/cvest.cso/public_html/LocalityAnalysis/web2py/gluon/restricted.py'
+p102
+sS'dump'
+p103
+(dp104
+S'environment'
+p105
+S"{'A': <class 'gluon.html.A'>, 'Auth': <class 'gluon.tools.Auth'>, 'B': <class 'gluon.html.B'>, 'BEAUTIFY': <class 'gluon.html.BEAUTIFY'>, 'BODY': <class 'gluon.html.BODY'>, 'BR': <class 'gluon.html.BR'>, 'CENTER': <class 'gluon.html.CENTER'>, 'CLEANUP': <class 'gluon.validators.CLEANUP'>, 'CODE': <class 'gluon.html.CODE'>, 'CRYPT': <class 'gluon.validators.CRYPT'>, ...}"
+p106
+sS'ccode'
+p107
+S'<code object <module> at 0x8c47380, file "/home/...pplications/vlab/controllers/default.py", line 9>'
+p108
+ssS'lnum'
+p109
+I188
+sS'lines'
+p110
+(dp111
+I192
+S'        # XXX Show exception in Wing IDE if running in debugger'
+p112
+sI183
+S'        if type(code) == types.CodeType:'
+p113
+sI184
+S'            ccode = code'
+p114
+sI185
+S'        else:'
+p115
+sI186
+S'            ccode = compile2(code,layer)'
+p116
+sI187
+S''
+sI188
+S'        exec ccode in environment'
+p117
+sI189
+S'    except HTTP:'
+p118
+sI190
+S'        raise'
+p119
+sI191
+S'    except Exception:'
+p120
+ssS'call'
+p121
+S"(code='\\n###############################################...ervice()\\n\\nresponse._vars=response._caller(index)\\n', environment={'A': <class 'gluon.html.A'>, 'Auth': <class 'gluon.tools.Auth'>, 'B': <class 'gluon.html.B'>, 'BEAUTIFY': <class 'gluon.html.BEAUTIFY'>, 'BODY': <class 'gluon.html.BODY'>, 'BR': <class 'gluon.html.BR'>, 'CENTER': <class 'gluon.html.CENTER'>, 'CLEANUP': <class 'gluon.validators.CLEANUP'>, 'CODE': <class 'gluon.html.CODE'>, 'CRYPT': <class 'gluon.validators.CRYPT'>, ...}, layer='/home/cvest.cso/public_html/LocalityAnalysis/web2py/applications/vlab/controllers/default.py')"
+p122
+sS'func'
+p123
+S'restricted'
+p124
+sa(dp125
+g101
+S'/home/cvest.cso/public_html/LocalityAnalysis/web2py/applications/vlab/controllers/default.py'
+p126
+sg103
+(dp127
+sg109
+I295
+sg110
+(dp128
+I288
+S'    http://..../[app]/default/call/jsonrpc'
+p129
+sI289
+S'    decorate with @services.jsonrpc the functions to expose'
+p130
+sI290
+S'    supports xml, json, xmlrpc, jsonrpc, amfrpc, rss, csv'
+p131
+sI291
+S'    """'
+p132
+sI292
+S'    session.forget()'
+p133
+sI293
+S'    return service()'
+p134
+sI284
+S''
+sI285
+S'def call():'
+p135
+sI286
+S'    """'
+p136
+sI287
+S'    exposes services. for example:'
+p137
+ssg121
+S'()'
+p138
+sg123
+S'<module>'
+p139
+sa(dp140
+g101
+S'/home/cvest.cso/public_html/LocalityAnalysis/web2py/gluon/globals.py'
+p141
+sg103
+(dp142
+S'self'
+p143
+S'undefined'
+p144
+sS'f'
+S'<function index>'
+p145
+ssg109
+I96
+sg110
+(dp146
+I96
+S'        self._caller = lambda f: f()'
+p147
+sI97
+S'        self._view_environment = None'
+p148
+sI98
+S'        self._custom_commit = None'
+p149
+sI99
+S'        self._custom_rollback = None'
+p150
+sI100
+S''
+sI91
+S"        self.flash = ''           # used by the default view layout"
+p151
+sI92
+S'        self.meta = Storage()     # used by web2py_ajax.html'
+p152
+sI93
+S'        self.menu = []            # used by the default view layout'
+p153
+sI94
+S'        self.files = []           # used by web2py_ajax.html'
+p154
+sI95
+S'        self._vars = None'
+p155
+ssg121
+S'(f=<function index>)'
+p156
+sg123
+S'<lambda>'
+p157
+sa(dp158
+g101
+S'/home/cvest.cso/public_html/LocalityAnalysis/web2py/gluon/tools.py'
+p159
+sg103
+(dp160
+S'action'
+p161
+S'<function index>'
+p162
+sS'a'
+S'()'
+p163
+sS'b'
+g20
+ssg109
+I2264
+sg110
+(dp164
+I2259
+S'                               vars=request.get_vars)'
+p165
+sI2260
+S'                    return call_or_redirect(self.settings.on_failed_authentication,'
+p166
+sI2261
+S'                                            self.settings.login_url + \\'
+p167
+sI2262
+S"                                                '?_next='+urllib.quote(next)"
+p168
+sI2263
+S'                                            )'
+p169
+sI2264
+S'                return action(*a, **b)'
+p170
+sI2265
+S'            f.__doc__ = action.__doc__'
+p171
+sI2266
+S'            f.__name__ = action.__name__'
+p172
+sI2267
+S'            f.__dict__.update(action.__dict__)'
+p173
+sI2268
+S'            return f'
+p174
+ssg121
+S'(*a=(), **b={})'
+p175
+sg123
+S'f'
+sa(dp176
+g101
+S'/home/cvest.cso/public_html/LocalityAnalysis/web2py/applications/vlab/controllers/default.py'
+p177
+sg103
+(dp178
+S'auth.user.id'
+p179
+S'4'
+sS'db.p_count.user_id'
+p180
+S'<gluon.sql.Field object>'
+p181
+sS'auth.user'
+p182
+S"<Storage {'reset_password_key': '', 'first_name'..._key': '', 'id': 4, 'email': 'guest@iiit.ac.in'}>"
+p183
+sS').select'
+p184
+g144
+sS'global auth'
+p185
+S'<gluon.tools.Auth object>'
+p186
+sS'db.p_count'
+p187
+S"<Table {'count': <gluon.sql.Field object at 0x90...c>, 'id': <gluon.sql.Field object at 0x90804cc>}>"
+p188
+sS'curr_count'
+p189
+g144
+sS'global db'
+p190
+S"<SQLDB {'_connection': <sqlite3.Connection objec...0x9061d6c>}>, '_migrate': True, '_pool_size': 0}>"
+p191
+ssg109
+I58
+sg110
+(dp192
+I53
+S'   \t db.programs.l2_size.default=8'
+p193
+sI54
+S'   \t db.programs.l2_associativity.default=8'
+p194
+sI55
+S'   \t db.programs.l2_line_size.default=64'
+p195
+sI56
+S"    default_code=glob['code']"
+p196
+sI57
+S'    db.programs.uploaded_by.default=auth.user.id'
+p197
+sI58
+S'    curr_count=db(db.p_count.user_id==auth.user.id).select()'
+p198
+sI59
+S''
+sI60
+S'    pid=[]'
+p199
+sI61
+S'    values={}'
+p200
+sI62
+S'    flag=0'
+p201
+ssg121
+S'()'
+p202
+sg123
+S'index'
+p203
+sa(dp204
+g101
+S'/home/cvest.cso/public_html/LocalityAnalysis/web2py/gluon/sql.py'
+p205
+sg103
+(dp206
+S'query'
+p207
+S"'SELECT p_count.id, p_count.user_id, p_count.count FROM p_count WHERE p_count.user_id=4;'"
+p208
+sS'rows'
+p209
+g144
+sS'response'
+p210
+S'<function response>'
+p211
+ssg109
+I3265
+sg110
+(dp212
+I3264
+S'            query = self._select(*fields, **attributes)'
+p213
+sI3265
+S'            rows = response(query)'
+p214
+sI3266
+S'        else:'
+p215
+sI3267
+S"            (cache_model, time_expire) = attributes['cache']"
+p216
+sI3268
+S"            del attributes['cache']"
+p217
+sI3269
+S'            query = self._select(*fields, **attributes)'
+p218
+sI3260
+S'            db._execute(query)'
+p219
+sI3261
+S'            return db._cursor.fetchall()'
+p220
+sI3262
+S''
+sI3263
+S"        if not attributes.get('cache', None):"
+p221
+ssg121
+S'(self=<gluon.sql.Set object>, *fields=(), **attributes={})'
+p222
+sg123
+S'select'
+p223
+sa(dp224
+g101
+S'/home/cvest.cso/public_html/LocalityAnalysis/web2py/gluon/sql.py'
+p225
+sg103
+(dp226
+S'query'
+p227
+S"'SELECT p_count.id, p_count.user_id, p_count.count FROM p_count WHERE p_count.user_id=4;'"
+p228
+sS'db'
+p229
+S"<SQLDB {'_connection': <sqlite3.Connection objec...0x9061d6c>}>, '_migrate': True, '_pool_size': 0}>"
+p230
+sS'db._execute'
+p231
+S'<function <lambda>>'
+p232
+ssg109
+I3260
+sg110
+(dp233
+I3264
+S'            query = self._select(*fields, **attributes)'
+p234
+sI3255
+S'        """'
+p235
+sI3256
+S''
+sI3257
+S'        db=self._db'
+p236
+sI3258
+S'        def response(query):'
+p237
+sI3259
+S"            db['_lastsql'] = query"
+p238
+sI3260
+S'            db._execute(query)'
+p239
+sI3261
+S'            return db._cursor.fetchall()'
+p240
+sI3262
+S''
+sI3263
+S"        if not attributes.get('cache', None):"
+p241
+ssg121
+S"(query='SELECT p_count.id, p_count.user_id, p_count.count FROM p_count WHERE p_count.user_id=4;')"
+p242
+sg123
+S'response'
+p243
+sa(dp244
+g101
+S'/home/cvest.cso/public_html/LocalityAnalysis/web2py/gluon/sql.py'
+p245
+sg103
+(dp246
+S'a'
+S"('SELECT p_count.id, p_count.user_id, p_count.count FROM p_count WHERE p_count.user_id=4;',)"
+p247
+sS'b'
+g20
+sS'self._execute'
+p248
+S'<function <lambda>>'
+p249
+sS'self'
+p250
+S"<SQLDB {'_connection': <sqlite3.Connection objec...0x9061d6c>}>, '_migrate': True, '_pool_size': 0}>"
+p251
+sS'self._cursor'
+p252
+S'<sqlite3.Cursor object>'
+p253
+sS'self._cursor.execute'
+p254
+S'<built-in method execute of sqlite3.Cursor object>'
+p255
+ssg109
+I950
+sg110
+(dp256
+I945
+S'                                           check_same_thread=False))'
+p257
+sI946
+S"            self._connection.create_function('web2py_extract', 2,"
+p258
+sI947
+S'                                             sqlite3_web2py_extract)'
+p259
+sI948
+S'            # self._connection.row_factory = sqlite3.Row'
+p260
+sI949
+S'            self._cursor = self._connection.cursor()'
+p261
+sI950
+S'            self._execute = lambda *a, **b: self._cursor.execute(*a, **b)'
+p262
+sI951
+S"        elif self._uri.startswith('mysql://'):"
+p263
+sI952
+S"            self._dbname = 'mysql'"
+p264
+sI953
+S"            m = re.compile('^(?P<user>[^:@]+)(\\:(?P<passwd>[^@]*))?@(?P<host>[^\\:/]+)(\\:(?P<port>[0-9]+))?/(?P<db>[^?]+)(\\?set_encoding=(?P<charset>\\w+))?$'"
+p265
+sI954
+S'                ).match(self._uri[8:])'
+p266
+ssg121
+S"(*a=('SELECT p_count.id, p_count.user_id, p_count.count FROM p_count WHERE p_count.user_id=4;',), **b={})"
+p267
+sg123
+g157
+sasS'pyver'
+p268
+S'Python 2.6.6rc1+: /usr/bin/python'
+p269
+sS'session'
+p270
+(dp271
+S'l2_s'
+p272
+S'8192'
+p273
+sS'i1_associativity'
+p274
+S"'2'"
+p275
+sS'l2_associativity'
+p276
+S"'8'"
+p277
+sS'l2_line_size'
+p278
+S"'64'"
+p279
+sS'i1_ass'
+p280
+S'2'
+sS'flash'
+p281
+S'None'
+p282
+sS'auth'
+p283
+S"<Storage {'expiration': 3600, 'user': <Storage {... 11, 21, 18, 36, 40, 394082), 'remember': False}>"
+p284
+sS'd1_s'
+p285
+S'2048'
+p286
+sS'compile'
+p287
+S'True'
+p288
+sS'i1_s'
+p289
+S'2048'
+p290
+sS'i1_line_size'
+p291
+S"'64'"
+p292
+sS'd1_line_size'
+p293
+S"'64'"
+p294
+sS'_formkey[programs_create]'
+p295
+S"'cecdeab5-f189-4831-89a3-42a4e6f22002'"
+p296
+sS'input'
+p297
+S"''"
+p298
+sS'd1_associativity'
+p299
+S"'2'"
+p300
+sS'_formkey[login]'
+p301
+S"'dc93f8fb-6dec-404b-ac86-d7a44ca615b1'"
+p302
+ssS'etype'
+p303
+S"<class 'sqlite3.OperationalError'>"
+p304
+sS'date'
+p305
+S'Sun Nov 21 18:36:45 2010'
+p306
+sg243
+(dp307
+S'status'
+p308
+S'200'
+p309
+sg63
+S'<cStringIO.StringO object>'
+p310
+sg78
+S"<SimpleCookie: session_id_vlab='192-168-36-178-15081186-f8bd-4486-876c-7f5caea55928'>"
+p311
+sS'_vars'
+p312
+S'None'
+p313
+sS'title'
+p314
+S"'vlab'"
+p315
+sS'session_file'
+p316
+S"<open file '/home/cvest.cso/public_html/Locality...5081186-f8bd-4486-876c-7f5caea55928', mode 'rb+'>"
+p317
+sS'flash'
+p318
+S"''"
+p319
+sS'_custom_rollback'
+p320
+S'None'
+p321
+sS'session_id'
+p322
+S"'192-168-36-178-15081186-f8bd-4486-876c-7f5caea55928'"
+p323
+sS'headers'
+p324
+S"<Storage {'Expires': 'Sun, 21 Nov 2010 13:06:40 ...he, must-revalidate, post-check=0, pre-check=0'}>"
+p325
+sS'meta'
+p326
+S"<Storage {'keywords': 'bla bla bla', 'description': 'describe your app', 'author': 'you'}>"
+p327
+sS'session_filename'
+p328
+S"'/home/cvest.cso/public_html/LocalityAnalysis/web...2-168-36-178-15081186-f8bd-4486-876c-7f5caea55928'"
+p329
+sS'postprocessing'
+p330
+S'[]'
+p331
+sS'menu'
+p332
+S"[(<lazyT 'Index'>, False, <gluon.html.XML object>, []), ('Change Layout', False, <gluon.html.XML object>)]"
+p333
+sS'_view_environment'
+p334
+S"{'A': <class 'gluon.html.A'>, 'Auth': <class 'gluon.tools.Auth'>, 'B': <class 'gluon.html.B'>, 'BEAUTIFY': <class 'gluon.html.BEAUTIFY'>, 'BODY': <class 'gluon.html.BODY'>, 'BR': <class 'gluon.html.BR'>, 'CENTER': <class 'gluon.html.CENTER'>, 'CLEANUP': <class 'gluon.validators.CLEANUP'>, 'CODE': <class 'gluon.html.CODE'>, 'CRYPT': <class 'gluon.validators.CRYPT'>, ...}"
+p335
+sS'subtitle'
+p336
+S"<lazyT 'customize me!'>"
+p337
+sS'session_id_name'
+p338
+S"'session_id_vlab'"
+p339
+sS'_custom_commit'
+p340
+S'None'
+p341
+sS'_caller'
+p342
+S'<function <lambda>>'
+p343
+sS'files'
+p344
+S'[]'
+p345
+sS'view'
+p346
+S"'default/index.html'"
+p347
+ssS'locals'
+p348
+(dp349
+S'a'
+S"('SELECT p_count.id, p_count.user_id, p_count.count FROM p_count WHERE p_count.user_id=4;',)"
+p350
+sS'self'
+p351
+S"<SQLDB {'_connection': <sqlite3.Connection objec...0x9061d6c>}>, '_migrate': True, '_pool_size': 0}>"
+p352
+sS'b'
+g20
+sssS'traceback'
+p353
+S'Traceback (most recent call last):\n  File "/home/cvest.cso/public_html/LocalityAnalysis/web2py/gluon/restricted.py", line 188, in restricted\n    exec ccode in environment\n  File "/home/cvest.cso/public_html/LocalityAnalysis/web2py/applications/vlab/controllers/default.py", line 295, in <module>\n  File "/home/cvest.cso/public_html/LocalityAnalysis/web2py/gluon/globals.py", line 96, in <lambda>\n    self._caller = lambda f: f()\n  File "/home/cvest.cso/public_html/LocalityAnalysis/web2py/gluon/tools.py", line 2264, in f\n    return action(*a, **b)\n  File "/home/cvest.cso/public_html/LocalityAnalysis/web2py/applications/vlab/controllers/default.py", line 58, in index\n    curr_count=db(db.p_count.user_id==auth.user.id).select()\n  File "/home/cvest.cso/public_html/LocalityAnalysis/web2py/gluon/sql.py", line 3265, in select\n    rows = response(query)\n  File "/home/cvest.cso/public_html/LocalityAnalysis/web2py/gluon/sql.py", line 3260, in response\n    db._execute(query)\n  File "/home/cvest.cso/public_html/LocalityAnalysis/web2py/gluon/sql.py", line 950, in <lambda>\n    self._execute = lambda *a, **b: self._cursor.execute(*a, **b)\nOperationalError: database is locked\n'
+p354
+s.

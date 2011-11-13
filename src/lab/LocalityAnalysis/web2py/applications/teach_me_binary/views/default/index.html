@@ -1,0 +1,11 @@
+{{extend 'layout.html'}}
+
+{{if 'message' in globals():}}{{=H2(message)}}{{else:}}{{=BEAUTIFY(response._vars)}}{{pass}}
+{{=form}}
+<hr />
+<h1>README</h1>
+<ul>
+	<li>Enter K(no. of bits)</li>
+	<li>Click on 'Start' in the menu to start again</li>
+	<li>In case of Bugs please report along with the screenshot</li> 
+</ul>

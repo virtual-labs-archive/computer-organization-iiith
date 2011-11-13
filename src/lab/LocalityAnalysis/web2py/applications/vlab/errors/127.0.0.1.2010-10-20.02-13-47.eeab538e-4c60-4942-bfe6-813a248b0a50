@@ -1,0 +1,464 @@
+(dp1
+S'output'
+p2
+S''
+sS'layer'
+p3
+S'/home/shrenik/web2py/applications/vlab/controllers/default.py'
+p4
+sS'code'
+p5
+S'# -*- coding: utf-8 -*- \n\n#########################################################################\n## This is a samples controller\n## - index is the default action of any application\n## - user is required for authentication and authorization\n## - download is for downloading files uploaded in the db (does streaming)\n## - call exposes all registered services (none by default)\n#########################################################################  \ndef index():\n    import os\n    import re\n    import commands\n    """\n    example action using the internationalization operator T and flash\n    rendered by views/default/index.html or views/generic.html\n    """\n    pid=[]\n    flag=0\n    list=[]\n    out="Test"\n    inp=None\n    out_mod=None\n    form=SQLFORM(db.programs)\n    if(form.accepts(request.vars,session)):\n         flag=1\n\t path=os.getcwd()\n         path=path+\'/applications/vlab/uploads/\'+form.vars.file\n         inp=commands.getstatusoutput(\'cc \'+path)\n         command=\'valgrind --tool=cachegrind --I1=\'+str(form.vars.i1_size)+\',\'+str(form.vars.i1_associativity)+\',\'+str(form.vars.i1_line_size)+\' ./a.out\'\n         if form.vars.input_file !=None:\n   \t \t input_path=os.getcwd()\n\t    \t input_path=input_path+\'/applications/vlab/uploads/\'+form.vars.input_file\n\t      \t command=command+\'<\'+input_path\n\t import time\n\n\t out=commands.getstatusoutput(command)\n\'\'\'\n\t Wait for a process to finish, or raise exception after timeout\n\t seconds=5\n\t proc=out\n\t start = time.time()\n         end = start + seconds\n\t interval = min(seconds / 1000.0, .25)\n\t while True:\n\t\t     result = proc.poll()\n    \t\t     if result is not None:\n\t\t\t     print result\n\t\t\t     break\n\t\t     if time.time() >= end:\n\t\t\t     raise RuntimeError("Process timed out")\n\t\t     time.sleep(interval)\n\'\'\'\n\t out_mod=re.split(\'\\n\',out[1])\n\t regex="==(\\d*)==\\s*([^:]*):\\s*(\\d+.*)"\n\t for i in out_mod:\n\t\t match=re.findall(regex,i)\n\t\t if len(match)>0:\n\t\t \tprocid=match[0][0]\n\t\t\tif procid not in pid:\n\t\t\t\t pid.append(procid)\n\t\t\tlist.append(match[0])\t\n    \n    response.flash = T(\'Welcome to web2py\')\n    return dict(form=form,message=T(\'Hello World\'),list=list,pid=pid,flag=flag)\n\ndef customize():\n    form=SQLFORM(db.options)\n    \ndef user():\n    """\n    exposes:\n    http://..../[app]/default/user/login \n    http://..../[app]/default/user/logout\n    http://..../[app]/default/user/register\n    http://..../[app]/default/user/profile\n    http://..../[app]/default/user/retrieve_password\n    http://..../[app]/default/user/change_password\n    use @auth.requires_login()\n        @auth.requires_membership(\'group name\')\n        @auth.requires_permission(\'read\',\'table name\',record_id)\n    to decorate functions that need access control\n    """\n    return dict(form=auth())\n\n\ndef download():\n    """\n    allows downloading of uploaded files\n    http://..../[app]/default/download/[filename]\n    """\n    return response.download(request,db)\n\n\ndef call():\n    """\n    exposes services. for example:\n    http://..../[app]/default/call/jsonrpc\n    decorate with @services.jsonrpc the functions to expose\n    supports xml, json, xmlrpc, jsonrpc, amfrpc, rss, csv\n    """\n    session.forget()\n    return service()\n\nresponse._vars=response._caller(index)\n'
+p6
+sS'snapshot'
+p7
+(dp8
+S'exception'
+p9
+(dp10
+S'__getslice__'
+p11
+S"<method-wrapper '__getslice__' of exceptions.IndentationError object>"
+p12
+sS'text'
+p13
+S'"\\t out_mod=re.split(\'\\\\n\',out[1])\\n"'
+p14
+sS'__str__'
+p15
+S"<method-wrapper '__str__' of exceptions.IndentationError object>"
+p16
+sS'__reduce__'
+p17
+S'<built-in method __reduce__ of exceptions.IndentationError object>'
+p18
+sS'__dict__'
+p19
+S'{}'
+p20
+sS'__sizeof__'
+p21
+S'<built-in method __sizeof__ of exceptions.IndentationError object>'
+p22
+sS'__init__'
+p23
+S"<method-wrapper '__init__' of exceptions.IndentationError object>"
+p24
+sS'__setattr__'
+p25
+S"<method-wrapper '__setattr__' of exceptions.IndentationError object>"
+p26
+sS'__reduce_ex__'
+p27
+S'<built-in method __reduce_ex__ of exceptions.IndentationError object>'
+p28
+sS'__new__'
+p29
+S'<built-in method __new__ of type object>'
+p30
+sS'__format__'
+p31
+S'<built-in method __format__ of exceptions.IndentationError object>'
+p32
+sS'__class__'
+p33
+S"<type 'exceptions.IndentationError'>"
+p34
+sS'filename'
+p35
+S"'/home/shrenik/web2py/applications/vlab/controllers/default.py'"
+p36
+sS'lineno'
+p37
+S'54'
+p38
+sS'msg'
+p39
+S"'unexpected indent'"
+p40
+sS'__doc__'
+p41
+S"'Improper indentation.'"
+p42
+sS'__getitem__'
+p43
+S"<method-wrapper '__getitem__' of exceptions.IndentationError object>"
+p44
+sS'__setstate__'
+p45
+S'<built-in method __setstate__ of exceptions.IndentationError object>'
+p46
+sS'__getattribute__'
+p47
+S"<method-wrapper '__getattribute__' of exceptions.IndentationError object>"
+p48
+sS'print_file_and_line'
+p49
+S'None'
+p50
+sS'args'
+p51
+S'(\'unexpected indent\', (\'/home/shrenik/web2py/applications/vlab/controllers/default.py\', 54, 2, "\\t out_mod=re.split(\'\\\\n\',out[1])\\n"))'
+p52
+sS'__subclasshook__'
+p53
+S'<built-in method __subclasshook__ of type object>'
+p54
+sS'offset'
+p55
+S'2'
+sS'__unicode__'
+p56
+S'<built-in method __unicode__ of exceptions.IndentationError object>'
+p57
+sS'__delattr__'
+p58
+S"<method-wrapper '__delattr__' of exceptions.IndentationError object>"
+p59
+sS'__repr__'
+p60
+S"<method-wrapper '__repr__' of exceptions.IndentationError object>"
+p61
+sS'__hash__'
+p62
+S"<method-wrapper '__hash__' of exceptions.IndentationError object>"
+p63
+ssS'evalue'
+p64
+S'unexpected indent (default.py, line 54)'
+p65
+sS'request'
+p66
+(dp67
+S'function'
+p68
+S"'index'"
+p69
+sS'body'
+p70
+S'<cStringIO.StringO object>'
+p71
+sS'wsgi'
+p72
+S"<Storage {'start_response': <function <lambda> a...ING': 'gzip,deflate', 'HTTP_KEEP_ALIVE': '115'}}>"
+p73
+sS'extension'
+p74
+S"'html'"
+p75
+sS'vars'
+p76
+S'<Storage {}>'
+p77
+sS'cid'
+p78
+S'None'
+p79
+sS'url'
+p80
+S'<gluon.html.XML object>'
+p81
+sg51
+S'[]'
+p82
+sS'controller'
+p83
+S"'default'"
+p84
+sS'cookies'
+p85
+S"<SimpleCookie: session_id_admin='127-0-0-1-020b2...'127-0-0-1-d51e55bb-1989-4c66-91bc-ad4e17601eab'>"
+p86
+sS'application'
+p87
+S"'vlab'"
+p88
+sS'ajax'
+p89
+S'False'
+p90
+sS'client'
+p91
+S"'127.0.0.1'"
+p92
+sS'env'
+p93
+S"<Storage {'http_user_agent': 'Mozilla/5.0 (X11; ...nce': False, 'path_info': '/vlab/default/index'}>"
+p94
+sS'raw_args'
+p95
+S'None'
+p96
+sS'get_vars'
+p97
+S'<Storage {}>'
+p98
+sS'folder'
+p99
+S"'/home/shrenik/web2py/applications/vlab/'"
+p100
+sS'now'
+p101
+S'datetime.datetime(2010, 10, 20, 2, 13, 47, 661964)'
+p102
+sS'post_vars'
+p103
+S'<Storage {}>'
+p104
+ssS'frames'
+p105
+(lp106
+(dp107
+S'file'
+p108
+S'/home/shrenik/web2py/gluon/restricted.py'
+p109
+sS'dump'
+p110
+(dp111
+S'code'
+p112
+S"'# -*- coding: utf-8 -*- \\n\\n######################...ervice()\\n\\nresponse._vars=response._caller(index)\\n'"
+p113
+sS'layer'
+p114
+S"'/home/shrenik/web2py/applications/vlab/controllers/default.py'"
+p115
+sS'global compile2'
+p116
+S'<function compile2>'
+p117
+sS'ccode'
+p118
+S'undefined'
+p119
+ssS'lnum'
+p120
+I186
+sS'lines'
+p121
+(dp122
+I181
+S''
+sI182
+S'    try:'
+p123
+sI183
+S'        if type(code) == types.CodeType:'
+p124
+sI184
+S'            ccode = code'
+p125
+sI185
+S'        else:'
+p126
+sI186
+S'            ccode = compile2(code,layer)'
+p127
+sI187
+S''
+sI188
+S'        exec ccode in environment'
+p128
+sI189
+S'    except HTTP:'
+p129
+sI190
+S'        raise'
+p130
+ssS'call'
+p131
+S"(code='# -*- coding: utf-8 -*- \\n\\n######################...ervice()\\n\\nresponse._vars=response._caller(index)\\n', environment={'A': <class 'gluon.html.A'>, 'Auth': <class 'gluon.tools.Auth'>, 'B': <class 'gluon.html.B'>, 'BEAUTIFY': <class 'gluon.html.BEAUTIFY'>, 'BODY': <class 'gluon.html.BODY'>, 'BR': <class 'gluon.html.BR'>, 'CENTER': <class 'gluon.html.CENTER'>, 'CLEANUP': <class 'gluon.validators.CLEANUP'>, 'CODE': <class 'gluon.html.CODE'>, 'CRYPT': <class 'gluon.validators.CRYPT'>, ...}, layer='/home/shrenik/web2py/applications/vlab/controllers/default.py')"
+p132
+sS'func'
+p133
+S'restricted'
+p134
+sa(dp135
+g108
+S'/home/shrenik/web2py/gluon/restricted.py'
+p136
+sg110
+(dp137
+S'builtincompile'
+p138
+S'<built-in function compile>'
+p139
+sS'code'
+p140
+S"'# -*- coding: utf-8 -*- \\n\\n######################...ervice()\\n\\nresponse._vars=response._caller(index)\\n'"
+p141
+sS'code.rstrip'
+p142
+S'<built-in method rstrip of str object>'
+p143
+sS').replace'
+p144
+g119
+sS'layer'
+p145
+S"'/home/shrenik/web2py/applications/vlab/controllers/default.py'"
+p146
+ssg120
+I173
+sg121
+(dp147
+I168
+S''
+sI169
+S'def compile2(code,layer):'
+p148
+sI170
+S'    """'
+p149
+sI171
+S"    The +'\\n' is necessary else compile fails when code ends in a comment."
+p150
+sI172
+S'    """'
+p151
+sI173
+S"    return compile(code.rstrip().replace('\\r\\n','\\n')+'\\n', layer, 'exec')"
+p152
+sI174
+S''
+sI175
+S"def restricted(code, environment={}, layer='Unknown'):"
+p153
+sI176
+S'    """'
+p154
+sI177
+S'    runs code in environment and returns the output. if an exception occurs'
+p155
+ssg131
+S"(code='# -*- coding: utf-8 -*- \\n\\n######################...ervice()\\n\\nresponse._vars=response._caller(index)\\n', layer='/home/shrenik/web2py/applications/vlab/controllers/default.py')"
+p156
+sg133
+S'compile2'
+p157
+sasS'pyver'
+p158
+S'Python 2.6.6: /usr/bin/python'
+p159
+sS'session'
+p160
+(dp161
+S'count'
+p162
+S'1'
+sS'auth'
+p163
+S'None'
+p164
+sS'_formkey[programs_create]'
+p165
+S"'242befb9-cd85-4709-8d21-1302c0746bea'"
+p166
+ssS'etype'
+p167
+S"<type 'exceptions.IndentationError'>"
+p168
+sS'date'
+p169
+S'Wed Oct 20 02:13:47 2010'
+p170
+sS'response'
+p171
+(dp172
+S'status'
+p173
+S'200'
+p174
+sg70
+S'<cStringIO.StringO object>'
+p175
+sg85
+S"<SimpleCookie: session_id_vlab='127-0-0-1-bd6aca27-1ced-49d5-b876-eb675abd268c'>"
+p176
+sS'_vars'
+p177
+S'None'
+p178
+sS'title'
+p179
+S"'vlab'"
+p180
+sS'session_file'
+p181
+S"<open file '/home/shrenik/web2py/applications/vl...d6aca27-1ced-49d5-b876-eb675abd268c', mode 'rb+'>"
+p182
+sS'flash'
+p183
+S"''"
+p184
+sS'_custom_rollback'
+p185
+S'None'
+p186
+sS'session_id'
+p187
+S"'127-0-0-1-bd6aca27-1ced-49d5-b876-eb675abd268c'"
+p188
+sS'headers'
+p189
+S"<Storage {'Expires': 'Tue, 19 Oct 2010 20:43:47 ...he, must-revalidate, post-check=0, pre-check=0'}>"
+p190
+sS'meta'
+p191
+S"<Storage {'keywords': 'bla bla bla', 'description': 'describe your app', 'author': 'you'}>"
+p192
+sS'session_filename'
+p193
+S"'/home/shrenik/web2py/applications/vlab/sessions/127-0-0-1-bd6aca27-1ced-49d5-b876-eb675abd268c'"
+p194
+sS'postprocessing'
+p195
+S'[]'
+p196
+sS'menu'
+p197
+S"[(<lazyT 'Index'>, False, <gluon.html.XML object>, []), ('Change Layout', False, <gluon.html.XML object>)]"
+p198
+sS'_view_environment'
+p199
+S"{'A': <class 'gluon.html.A'>, 'Auth': <class 'gluon.tools.Auth'>, 'B': <class 'gluon.html.B'>, 'BEAUTIFY': <class 'gluon.html.BEAUTIFY'>, 'BODY': <class 'gluon.html.BODY'>, 'BR': <class 'gluon.html.BR'>, 'CENTER': <class 'gluon.html.CENTER'>, 'CLEANUP': <class 'gluon.validators.CLEANUP'>, 'CODE': <class 'gluon.html.CODE'>, 'CRYPT': <class 'gluon.validators.CRYPT'>, ...}"
+p200
+sS'subtitle'
+p201
+S"<lazyT 'customize me!'>"
+p202
+sS'session_id_name'
+p203
+S"'session_id_vlab'"
+p204
+sS'_custom_commit'
+p205
+S'None'
+p206
+sS'_caller'
+p207
+S'<function <lambda>>'
+p208
+sS'files'
+p209
+S'[]'
+p210
+sS'view'
+p211
+S"'default/index.html'"
+p212
+ssS'locals'
+p213
+(dp214
+g3
+S"'/home/shrenik/web2py/applications/vlab/controllers/default.py'"
+p215
+sg5
+S"'# -*- coding: utf-8 -*- \\n\\n######################...ervice()\\n\\nresponse._vars=response._caller(index)\\n'"
+p216
+sssS'traceback'
+p217
+S'Traceback (most recent call last):\n  File "/home/shrenik/web2py/gluon/restricted.py", line 186, in restricted\n    ccode = compile2(code,layer)\n  File "/home/shrenik/web2py/gluon/restricted.py", line 173, in compile2\n    return compile(code.rstrip().replace(\'\\r\\n\',\'\\n\')+\'\\n\', layer, \'exec\')\n  File "/home/shrenik/web2py/applications/vlab/controllers/default.py", line 54\n    out_mod=re.split(\'\\n\',out[1])\n   ^\nIndentationError: unexpected indent\n'
+p218
+s.

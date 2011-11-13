@@ -1,0 +1,996 @@
+(dp1
+S'output'
+p2
+S''
+sS'layer'
+p3
+S'/home/cvest.cso/public_html/LocalityAnalysis/web2py/applications/teach_me_binary/views/default/calc_add.html'
+p4
+sS'code'
+p5
+S'response.write(\'<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">\\n<html xmlns="http://www.w3.org/1999/xhtml">\\n <head>\\n  <title>\\n   \', escape=False)\nresponse.write(response.title or request.application)\nresponse.write(\'\\n  </title>\\n  \', escape=False)\nresponse.files.append(URL(request.application,\'static\',\'plugin_layouts/layouts/TinyBlue/styles.css\'))\nresponse.write(\'\\n  \', escape=False)\nresponse.files.append(URL(\'static\',\'plugin_layouts/superfish.js\'))\nresponse.write(\'\\n  \', escape=False)\nresponse.files.insert(0,URL(r=request,c=\'static\',f=\'jquery.js\'))\nresponse.files.insert(1,URL(r=request,c=\'static\',f=\'calendar.css\'))\nresponse.files.insert(2,URL(r=request,c=\'static\',f=\'calendar.js\'))\nfor _item in response.meta or []:\n    response.write(\'\\n     <meta name="\', escape=False)\n    response.write(_item)\n    response.write(\'" content="\', escape=False)\n    response.write(response.meta[_item])\n    response.write(\'" />\', escape=False)\n    pass\nfor _k,_file in enumerate(response.files or []):\n    if _file in response.files[:_k]:\n        continue\n    _file0=_file.lower().split(\'?\')[0]\n    if _file0.endswith(\'.css\'):\n        response.write(\'\\n     <link href="\', escape=False)\n        response.write(_file)\n        response.write(\'" rel="stylesheet" type="text/css" />\', escape=False)\n    elif _file0.endswith(\'.js\'):\n        response.write(\'\\n     <script src="\', escape=False)\n        response.write(_file)\n        response.write(\'" type="text/javascript"></script>\', escape=False)\n        pass\n    pass\nresponse.write(\'\\n<script type="text/javascript"><!--\\nfunction popup(url) {\\n  newwindow=window.open(url,\\\'name\\\',\\\'height=400,width=600\\\');\\n  if (window.focus) newwindow.focus();\\n  return false;\\n}\\nfunction collapse(id) { jQuery(\\\'#\\\'+id).slideToggle(); }\\nfunction fade(id,value) { if(value>0) jQuery(\\\'#\\\'+id).hide().fadeIn(\\\'slow\\\'); else jQuery(\\\'#\\\'+id).show().fadeOut(\\\'slow\\\'); }\\nfunction ajax(u,s,t) {\\n    query = \\\'\\\';\\n    if (typeof s == "string") {\\n        d = jQuery(s).serialize();\\n        if(d){ query = d; }\\n    } else {\\n        pcs = [];\\n        for(i=0; i<s.length; i++) {\\n            q = jQuery("[name="+s[i]+"]").serialize();\\n            if(q){pcs.push(q);}\\n        }\\n        if (pcs.length>0){query = pcs.join("&");}\\n    }\\n    jQuery.ajax({type: "POST", url: u, data: query, success: function(msg) { if(t) { if(t==\\\':eval\\\') eval(msg); else jQuery("#" + t).html(msg); } } }); \\n}\\nString.prototype.reverse = function () { return this.split(\\\'\\\').reverse().join(\\\'\\\');};\\nfunction web2py_ajax_init() {\\n  jQuery(\\\'.hidden\\\').hide();\\n  jQuery(\\\'.error\\\').hide().slideDown(\\\'slow\\\');\\n  jQuery(\\\'.flash\\\').click(function() { jQuery(this).fadeOut(\\\'slow\\\'); return false; });\\n  // jQuery(\\\'input[type=submit]\\\').click(function(){var t=jQuery(this);t.hide();t.after(\\\'<input class="submit_disabled" disabled="disabled" type="submit" name="\\\'+t.attr("name")+\\\'_dummy" value="\\\'+t.val()+\\\'">\\\')});\\n  jQuery(\\\'input.integer\\\').keyup(function(){this.value=this.value.reverse().replace(/[^0-9\\\\-]|\\\\-(?=.)/g,\\\'\\\').reverse();});\\n  jQuery(\\\'input.double,input.decimal\\\').keyup(function(){this.value=this.value.reverse().replace(/[^0-9\\\\-\\\\.]|[\\\\-](?=.)|[\\\\.](?=[0-9]*[\\\\.])/g,\\\'\\\').reverse();});\\n  jQuery("input[type=\\\'checkbox\\\'].delete").each(function(){jQuery(this).click(function() { if(this.checked) if(!confirm("\', escape=False)\nresponse.write(T(\'Sure you want to delete this object?\'))\nresponse.write(\'")) this.checked=false; });});\\n  try {jQuery("input.date").focus( function() {Calendar.setup({\\n     inputField:this.id, ifFormat:"\', escape=False)\nresponse.write(T(\'%Y-%m-%d\'))\nresponse.write(\'", showsTime:false\\n  }); }); } catch(e) {};\\n  try { jQuery("input.datetime").focus( function() {Calendar.setup({\\n     inputField:this.id, ifFormat:"\', escape=False)\nresponse.write(T(\'%Y-%m-%d %H:%M:%S\'))\nresponse.write(\'", showsTime: true,timeFormat: "24"\\n  }); }); } catch(e) {};\\n  try { jQuery("input.time").clockpick({\\n      starthour:0, endhour:23, showminutes:true, military:true\\n  }); } catch(e) {};\\n};\\njQuery(document).ready(function(){\\n   jQuery(\\\'.flash\\\').hide();\\n   if(jQuery(\\\'.flash\\\').html()!=\\\'\\\') jQuery(\\\'.flash\\\').slideDown(\\\'slow\\\');\\n   web2py_ajax_init();});\\n\\nfunction web2py_trap_form(action,target) {\\n   jQuery(\\\'#\\\'+target+\\\' form\\\').each(function(i){\\n      var form=jQuery(this);\\n      if(!form.hasClass(\\\'no_trap\\\'))\\n        form.submit(function(obj){\\n         jQuery(\\\'.flash\\\').hide().html(\\\'\\\');\\n         web2py_ajax_page(\\\'post\\\',action,form.serialize(),target);\\n         return false;\\n      });\\n   });\\n}\\n\\nfunction web2py_ajax_page(method,action,data,target) {\\n  jQuery.ajax({\\\'type\\\':method,\\\'url\\\':action,\\\'data\\\':data,\\n    \\\'beforeSend\\\':function(xhr) {\\n      xhr.setRequestHeader(\\\'web2py-component-location\\\',document.location);\\n      xhr.setRequestHeader(\\\'web2py-component-element\\\',target);},\\n    \\\'complete\\\':function(xhr,text){\\n      var html=xhr.responseText;\\n      var content=xhr.getResponseHeader(\\\'web2py-component-content\\\'); \\n      var command=xhr.getResponseHeader(\\\'web2py-component-command\\\');\\n      var flash=xhr.getResponseHeader(\\\'web2py-component-flash\\\');\\n      var t = jQuery(\\\'#\\\'+target);\\n      if(content==\\\'prepend\\\') t.prepend(html); \\n      else if(content==\\\'append\\\') t.append(html);\\n      else if(content!=\\\'hide\\\') t.html(html);  \\n      web2py_trap_form(action,target);\\n      web2py_ajax_init();      \\n      if(command) eval(command);\\n      if(flash) jQuery(\\\'.flash\\\').html(flash).slideDown();\\n      }\\n    });\\n}\\nfunction web2py_component(action,target) {\\n    jQuery(document).ready(function(){ web2py_ajax_page(\\\'get\\\',action,null,target); });\\n}\\n//--></script>\\n\', escape=False)\nresponse.write(\'\\n  <style>\\nul.web2py-menu-vertical { width: 150px; position: relative; top:1em; left:1em;  z-index:30; border:0; margin:0; padding: 0; list-style: none; text-decoration: none;}\\nul.web2py-menu-vertical li { margin:0; padding:0; border:0; width: 150px; background: black; text-align:left;}\\nul.web2py-menu-vertical li a { margin:0; padding: 1px 3px 1px 3px; border:0; width: 144px; color: white; font-size:12px;}\\ndiv.flash { position: fixed; float: right; padding: 10px; top: 10px; right: 30px; opacity: 0.75; margin: 10px 10px 10px 10px; text-align: center; clear: both; color: #fff; font-size: 11pt; text-align: center; vertical-align: middle; cursor: pointer; background: black; border: 2px solid #fff; -moz-border-radius: 5px; -webkit-border-radius: 5px; z-index: 2; }\\ndiv.error { background-color: red; color: white; padding: 3px; }\\n.auth_navbar { text-align:right; z-index:20; position: absolute; top: 2px; right:30px; border:0; padding:0 }\\n  </style>\\n </head>\\n <body>\\n  <!-- start header -->\\n  \', escape=False)\ntry:\n    response.write(auth.navbar(action=URL(\'default\',\'user\')))\nexcept:pass\nresponse.write(\'\\n\\n  <div id="container">\\n   <div id="border">\\n    <div id="header">\\n     <h1>\\n      \', escape=False)\nresponse.write(response.title or request.application)\nresponse.write(\'\\n     </h1>\\n     <h2>\\n      \', escape=False)\nresponse.write(response.subtitle or \'=response.subtitle\')\nresponse.write(\'\\n     </h2>\\n    </div>\\n    <div id="menu">\\n     \', escape=False)\nresponse.write(MENU(response.menu,_class=\'web2py-menu\'))\nresponse.write(\'\\n    <script>\\n      jQuery(document).ready(function(){jQuery(\\\'ul.web2py-menu\\\').superfish({delay:400});});\\n    </script>\\n    </div>\\n    <div id="content">\\n     <div class="flash">\', escape=False)\nresponse.write(response.flash or \'\')\nresponse.write(\'</div>\\n     \', escape=False)\nresponse.write(\'\\n<h1>Try this</h1>\\n\', escape=False)\nresponse.write(form.custom.begin)\nresponse.write(\'\\n<table>\\n\\t<tr>\\n\\t\\t<td><b>Signed</b></td>\\n\\t\\t<td><b>K </b></td>\\n\\t\\t<td>\', escape=False)\nresponse.write(form.custom.widget.k)\nresponse.write(\'</td>\\n\\t\\t<td><b>Unsigned</b></td>\\n\\t</tr>\\n\\t<tr>\\n\\t\\t<td>\', escape=False)\nresponse.write(left_first)\nresponse.write(\'</td>\\n\\t\\t<td>\', escape=False)\nresponse.write(form.custom.label.first_binary)\nresponse.write(\'</td>\\n\\t\\t<td>\', escape=False)\nresponse.write(form.custom.widget.first_binary)\nresponse.write(\'</td>\\n\\t\\t<td>\', escape=False)\nresponse.write(right_first)\nresponse.write(\'</td>\\n\\t</tr>\\n\\t<tr>\\n\\t\\t<td>\', escape=False)\nresponse.write(left_second)\nresponse.write(\'</td>\\n\\t\\t<td>\', escape=False)\nresponse.write(form.custom.label.second_binary)\nresponse.write(\'</td>\\n\\t\\t<td>\', escape=False)\nresponse.write(form.custom.widget.second_binary)\nresponse.write(\'</td>\\n\\t\\t<td>\', escape=False)\nresponse.write(right_second)\nresponse.write(\'</td>\\n\\t<tr>\\n\\t\\t<td>\', escape=False)\nresponse.write(left_result)\nresponse.write(\'</td>\\n\\t\\t<td>Result </td>\\n\\t\\t<td>\', escape=False)\nif unsigned_error==\'1\':\n    response.write(\'1-\', escape=False)\n    response.write(mid)\nelse:\n    response.write(mid)\n    pass\nresponse.write(\'</td>\\n\\t\\t<td>\', escape=False)\nresponse.write(right_result)\nresponse.write(\'</td>\\n\\t</tr>\\n\\t<tr>\\n\\t\\t<td>Signed Error-\', escape=False)\nresponse.write(signed_overflow)\nresponse.write(\'</td>\\n\\t\\t<td>\', escape=False)\nresponse.write(form.custom.submit)\nresponse.write(\'</td>\\n\\t\\t<td></td>\\n\\t\\t<td>Unsigned Error-\', escape=False)\nresponse.write(unsigned_overflow)\nresponse.write(\'</td>\\n\\t</tr>\\n</table>\\n\', escape=False)\nresponse.write(form.custom.end)\nresponse.write("\\n<h1>Instructions</h1>\\n<ol>\\n\\t<li>Enter any two binary numbers in the space provided\\n\\t<ul>\\n\\t\\t<li>The app takes last \'K\' bits of the numbers given</li>\\n\\t</ul>\\n\\t</li>\\n\\t<li>The result of binary addition is also \'K\' bits with an additional carry-out bit</li>\\n\\t<li>The left column under \'Signed\' shows the 2\'s complement signed decimal numbers of the corresponding binary numbers in the middle column</li>\\n\\t<li>The right column under \'Unsigned\' shows the unsigned decimal numbers of the corresponding binary numbers in the middle column</li>\\n\\t<li>In case of signed overflow \'Signed Error\' becomes \'1\'</li>\\n\\t<li>In case of unsigned overflow \'Unsigned Error\' becomes \'1\'</li>\\n</ol>\\n<h1>Note</h1>\\n<ul>\\n\\t<li>Note that binary result remains same, whether the addition is signed or unsigned.</li>\\n\\t<li>An overflow occurs when the result cannot be represented by the selected number of bits</li>\\n</ul>\\n\\n", escape=False)\nresponse.write(\'\\n    </div>\\n   </div>\\n   <div id="footer">\\n    <p>\\n     &copy; IIIT Hyderabad. Design:\\n     <a href="http://web.iiit.ac.in/~ravi.agarwal" title="ravi.agarwal@students.iiit.ac.in">\\n      Ravi Agarwal\\n     </a>\\n     CSS available from\\n     <a href="http://www.justfreetemplates.com" title="free web templates">\\n      Just Free Templates\\n     </a>\\n    </p>\\n   </div>\\n  </div>\\n </body>\\n</html>\\n\', escape=False)'
+p6
+sS'snapshot'
+p7
+(dp8
+S'exception'
+p9
+(dp10
+S'__hash__'
+p11
+S"<method-wrapper '__hash__' of exceptions.NameError object>"
+p12
+sS'__setattr__'
+p13
+S"<method-wrapper '__setattr__' of exceptions.NameError object>"
+p14
+sS'__reduce_ex__'
+p15
+S'<built-in method __reduce_ex__ of exceptions.NameError object>'
+p16
+sS'__getslice__'
+p17
+S"<method-wrapper '__getslice__' of exceptions.NameError object>"
+p18
+sS'__getitem__'
+p19
+S"<method-wrapper '__getitem__' of exceptions.NameError object>"
+p20
+sS'__setstate__'
+p21
+S'<built-in method __setstate__ of exceptions.NameError object>'
+p22
+sS'__reduce__'
+p23
+S'<built-in method __reduce__ of exceptions.NameError object>'
+p24
+sS'__str__'
+p25
+S"<method-wrapper '__str__' of exceptions.NameError object>"
+p26
+sS'__format__'
+p27
+S'<built-in method __format__ of exceptions.NameError object>'
+p28
+sS'__getattribute__'
+p29
+S"<method-wrapper '__getattribute__' of exceptions.NameError object>"
+p30
+sS'__class__'
+p31
+S"<type 'exceptions.NameError'>"
+p32
+sS'__unicode__'
+p33
+S'<built-in method __unicode__ of exceptions.NameError object>'
+p34
+sS'__delattr__'
+p35
+S"<method-wrapper '__delattr__' of exceptions.NameError object>"
+p36
+sS'__subclasshook__'
+p37
+S'<built-in method __subclasshook__ of type object>'
+p38
+sS'__repr__'
+p39
+S"<method-wrapper '__repr__' of exceptions.NameError object>"
+p40
+sS'args'
+p41
+S'("name \'unsigned_error\' is not defined",)'
+p42
+sS'__dict__'
+p43
+S'{}'
+p44
+sS'__sizeof__'
+p45
+S'<built-in method __sizeof__ of exceptions.NameError object>'
+p46
+sS'__doc__'
+p47
+S"'Name not found globally.'"
+p48
+sS'__init__'
+p49
+S"<method-wrapper '__init__' of exceptions.NameError object>"
+p50
+sS'__new__'
+p51
+S'<built-in method __new__ of type object>'
+p52
+ssS'evalue'
+p53
+S"name 'unsigned_error' is not defined"
+p54
+sS'request'
+p55
+(dp56
+S'function'
+p57
+S"'calc_add'"
+p58
+sS'body'
+p59
+S'<cStringIO.StringO object>'
+p60
+sS'wsgi'
+p61
+S"<Storage {'start_response': <function <lambda> a...ING': 'gzip,deflate', 'HTTP_KEEP_ALIVE': '115'}}>"
+p62
+sS'extension'
+p63
+S"'html'"
+p64
+sS'vars'
+p65
+S'<Storage {}>'
+p66
+sS'cid'
+p67
+S'None'
+p68
+sS'url'
+p69
+S'<gluon.html.XML object>'
+p70
+sg41
+S'[]'
+p71
+sS'controller'
+p72
+S"'default'"
+p73
+sS'cookies'
+p74
+S"<SimpleCookie: SESS1fda454ed642981b513705279fb62...0-1-39-227-1ff02897-0519-4ad7-85b5-b79daf5f1dc8'>"
+p75
+sS'application'
+p76
+S"'teach_me_binary'"
+p77
+sS'ajax'
+p78
+S'False'
+p79
+sS'client'
+p80
+S"'10.1.39.227'"
+p81
+sS'env'
+p82
+S"<Storage {'http_user_agent': 'Mozilla/5.0 (X11; ...te', 'query_string': '', 'wsgi_run_once': False}>"
+p83
+sS'raw_args'
+p84
+S'None'
+p85
+sS'get_vars'
+p86
+S'<Storage {}>'
+p87
+sS'folder'
+p88
+S"'/home/cvest.cso/public_html/LocalityAnalysis/web2py/applications/teach_me_binary/'"
+p89
+sS'now'
+p90
+S'datetime.datetime(2011, 1, 1, 11, 57, 25, 743401)'
+p91
+sS'post_vars'
+p92
+S'<Storage {}>'
+p93
+ssS'frames'
+p94
+(lp95
+(dp96
+S'file'
+p97
+S'/home/cvest.cso/public_html/LocalityAnalysis/web2py/gluon/restricted.py'
+p98
+sS'dump'
+p99
+(dp100
+S'environment'
+p101
+S"{'A': <class 'gluon.html.A'>, 'Auth': <class 'gluon.tools.Auth'>, 'B': <class 'gluon.html.B'>, 'BEAUTIFY': <class 'gluon.html.BEAUTIFY'>, 'BODY': <class 'gluon.html.BODY'>, 'BR': <class 'gluon.html.BR'>, 'CENTER': <class 'gluon.html.CENTER'>, 'CLEANUP': <class 'gluon.validators.CLEANUP'>, 'CODE': <class 'gluon.html.CODE'>, 'CRYPT': <class 'gluon.validators.CRYPT'>, ...}"
+p102
+sS'ccode'
+p103
+S'<code object <module> at 0x8aca5c0, file "/home/...h_me_binary/views/default/calc_add.html", line 1>'
+p104
+ssS'lnum'
+p105
+I188
+sS'lines'
+p106
+(dp107
+I192
+S'        # XXX Show exception in Wing IDE if running in debugger'
+p108
+sI183
+S'        if type(code) == types.CodeType:'
+p109
+sI184
+S'            ccode = code'
+p110
+sI185
+S'        else:'
+p111
+sI186
+S'            ccode = compile2(code,layer)'
+p112
+sI187
+S''
+sI188
+S'        exec ccode in environment'
+p113
+sI189
+S'    except HTTP:'
+p114
+sI190
+S'        raise'
+p115
+sI191
+S'    except Exception:'
+p116
+ssS'call'
+p117
+S'(code=\'response.write(\\\'<!DOCTYPE html PUBLIC "-//W3C//D...v>\\\\n  </div>\\\\n </body>\\\\n</html>\\\\n\\\', escape=False)\', environment={\'A\': <class \'gluon.html.A\'>, \'Auth\': <class \'gluon.tools.Auth\'>, \'B\': <class \'gluon.html.B\'>, \'BEAUTIFY\': <class \'gluon.html.BEAUTIFY\'>, \'BODY\': <class \'gluon.html.BODY\'>, \'BR\': <class \'gluon.html.BR\'>, \'CENTER\': <class \'gluon.html.CENTER\'>, \'CLEANUP\': <class \'gluon.validators.CLEANUP\'>, \'CODE\': <class \'gluon.html.CODE\'>, \'CRYPT\': <class \'gluon.validators.CRYPT\'>, ...}, layer=\'/home/cvest.cso/public_html/LocalityAnalysis/web...tions/teach_me_binary/views/default/calc_add.html\')'
+p118
+sS'func'
+p119
+S'restricted'
+p120
+sa(dp121
+g97
+S'/home/cvest.cso/public_html/LocalityAnalysis/web2py/applications/teach_me_binary/views/default/calc_add.html'
+p122
+sg99
+(dp123
+sg105
+I75
+sg106
+(dp124
+I66
+S"response.write('</td>\\n\\t\\t<td>', escape=False)"
+p125
+sI67
+S'response.write(form.custom.label.second_binary)'
+p126
+sI68
+S"response.write('</td>\\n\\t\\t<td>', escape=False)"
+p127
+sI69
+S'response.write(form.custom.widget.second_binary)'
+p128
+sI70
+S"response.write('</td>\\n\\t\\t<td>', escape=False)"
+p129
+sI71
+S'response.write(right_second)'
+p130
+sI72
+S"response.write('</td>\\n\\t<tr>\\n\\t\\t<td>', escape=False)"
+p131
+sI73
+S'response.write(left_result)'
+p132
+sI74
+S"response.write('</td>\\n\\t\\t<td>Result </td>\\n\\t\\t<td>', escape=False)"
+p133
+sI75
+S"if unsigned_error=='1':"
+p134
+sI76
+S"    response.write('1-', escape=False)"
+p135
+sI77
+S'    response.write(mid)'
+p136
+sI78
+S'else:'
+p137
+sI79
+S'    response.write(mid)'
+p138
+sI80
+S'    pass'
+p139
+sI81
+S"response.write('</td>\\n\\t\\t<td>', escape=False)"
+p140
+sI82
+S'response.write(right_result)'
+p141
+sI83
+S"response.write('</td>\\n\\t</tr>\\n\\t<tr>\\n\\t\\t<td>Signed Error-', escape=False)"
+p142
+sI84
+S'response.write(signed_overflow)'
+p143
+sI85
+S"response.write('</td>\\n\\t\\t<td>', escape=False)"
+p144
+ssg117
+S'()'
+p145
+sg119
+S'<module>'
+p146
+sasS'pyver'
+p147
+S'Python 2.6.6rc1+: /usr/bin/python'
+p148
+sS'session'
+p149
+(dp150
+S'_formkey[no_table_create]'
+p151
+S"'f43585f8-6ea8-4e51-9a7c-df7cbf8bcd00'"
+p152
+sS'_formkey[log_create]'
+p153
+S"'bd55ed42-9273-43cd-969d-77ac3519a932'"
+p154
+sS'k'
+S"'4'"
+p155
+sS'flash'
+p156
+S'None'
+p157
+sS'auth'
+p158
+S"<Storage {'expiration': 3600, 'user': <Storage {...1, 1, 1, 11, 57, 25, 743401), 'remember': False}>"
+p159
+sS'_formkey[login]'
+p160
+S"'637d8704-06f8-4760-8788-e47fbeb0bf19'"
+p161
+ssS'etype'
+p162
+S"<type 'exceptions.NameError'>"
+p163
+sS'date'
+p164
+S'Sat Jan  1 11:57:25 2011'
+p165
+sS'response'
+p166
+(dp167
+S'status'
+p168
+S'200'
+p169
+sg59
+S'<cStringIO.StringO object>'
+p170
+sg74
+S"<SimpleCookie: session_id_teach_me_binary='10-1-39-227-1ff02897-0519-4ad7-85b5-b79daf5f1dc8'>"
+p171
+sS'_vars'
+p172
+S"{'form': <gluon.sqlhtml.SQLFORM object>, 'left_first': None, 'left_result': None, 'left_second': None, 'mid': '', 'right_first': None, 'right_result': None, 'right_second': None, 'signed_overflow': None, 'unsigned_overflow': None}"
+p173
+sS'title'
+p174
+S"'teach_me_binary'"
+p175
+sS'session_file'
+p176
+S"<open file '/home/cvest.cso/public_html/Locality...ff02897-0519-4ad7-85b5-b79daf5f1dc8', mode 'rb+'>"
+p177
+sS'flash'
+p178
+S"''"
+p179
+sS'_custom_rollback'
+p180
+S'None'
+p181
+sS'session_id'
+p182
+S"'10-1-39-227-1ff02897-0519-4ad7-85b5-b79daf5f1dc8'"
+p183
+sS'headers'
+p184
+S"<Storage {'Expires': 'Sat, 01 Jan 2011 06:27:25 ...he, must-revalidate, post-check=0, pre-check=0'}>"
+p185
+sS'meta'
+p186
+S"<Storage {'keywords': 'CSO IIIT binary', 'descri...igned', 'author': 'Ravi Agarwal,IIIT Hyderabad'}>"
+p187
+sS'session_filename'
+p188
+S"'/home/cvest.cso/public_html/LocalityAnalysis/web.../10-1-39-227-1ff02897-0519-4ad7-85b5-b79daf5f1dc8'"
+p189
+sS'postprocessing'
+p190
+S'[]'
+p191
+sS'menu'
+p192
+S"[(<lazyT 'Start'>, False, <gluon.html.XML object>, [])]"
+p193
+sS'_view_environment'
+p194
+S"{'A': <class 'gluon.html.A'>, 'Auth': <class 'gluon.tools.Auth'>, 'B': <class 'gluon.html.B'>, 'BEAUTIFY': <class 'gluon.html.BEAUTIFY'>, 'BODY': <class 'gluon.html.BODY'>, 'BR': <class 'gluon.html.BR'>, 'CENTER': <class 'gluon.html.CENTER'>, 'CLEANUP': <class 'gluon.validators.CLEANUP'>, 'CODE': <class 'gluon.html.CODE'>, 'CRYPT': <class 'gluon.validators.CRYPT'>, ...}"
+p195
+sS'subtitle'
+p196
+S"<lazyT 'Isomorphic Binary Addition'>"
+p197
+sS'session_id_name'
+p198
+S"'session_id_teach_me_binary'"
+p199
+sS'_custom_commit'
+p200
+S'None'
+p201
+sS'_caller'
+p202
+S'<function <lambda>>'
+p203
+sS'files'
+p204
+S'[<gluon.html.XML object>, <gluon.html.XML object>, <gluon.html.XML object>, <gluon.html.XML object>, <gluon.html.XML object>]'
+p205
+sS'view'
+p206
+S"'default/calc_add.html'"
+p207
+ssS'locals'
+p208
+(dp209
+S'Service'
+p210
+S'<class gluon.tools.Service>'
+p211
+sS'OBJECT'
+p212
+S"<class 'gluon.html.OBJECT'>"
+p213
+sS'_file'
+p214
+S'<gluon.html.XML object>'
+p215
+sS'SQLDB'
+p216
+S"<class 'gluon.sql.SQLDB'>"
+p217
+sg149
+S"<Storage {'_formkey[no_table_create]': 'f43585f8...login]': '637d8704-06f8-4760-8788-e47fbeb0bf19'}>"
+p218
+sS'LINK'
+p219
+S"<class 'gluon.html.LINK'>"
+p220
+sS'BR'
+p221
+S"<class 'gluon.html.BR'>"
+p222
+sS'local_import'
+p223
+S'<function <lambda>>'
+p224
+sS'OPTGROUP'
+p225
+S"<class 'gluon.html.OPTGROUP'>"
+p226
+sS'left_result'
+p227
+S'None'
+p228
+sS'PRE'
+p229
+S"<class 'gluon.html.PRE'>"
+p230
+sS'IS_INT_IN_RANGE'
+p231
+S"<class 'gluon.validators.IS_INT_IN_RANGE'>"
+p232
+sS'IS_LOWER'
+p233
+S"<class 'gluon.validators.IS_LOWER'>"
+p234
+sS'IS_STRONG'
+p235
+S"<class 'gluon.validators.IS_STRONG'>"
+p236
+sS'Recaptcha'
+p237
+S"<class 'gluon.tools.Recaptcha'>"
+p238
+sS'cache'
+p239
+S'<gluon.cache.Cache object>'
+p240
+sS'IS_IN_DB'
+p241
+S"<class 'gluon.validators.IS_IN_DB'>"
+p242
+sS'TAG'
+p243
+S'<gluon.html.__TAG__ object>'
+p244
+sS'_k'
+p245
+S'4'
+sS'SQLField'
+p246
+S"<class 'gluon.sql.Field'>"
+p247
+sS'mail'
+p248
+S'<gluon.tools.Mail object>'
+p249
+sS'BODY'
+p250
+S"<class 'gluon.html.BODY'>"
+p251
+sS'IS_DATE_IN_RANGE'
+p252
+S"<class 'gluon.validators.IS_DATE_IN_RANGE'>"
+p253
+sS'TH'
+p254
+S"<class 'gluon.html.TH'>"
+p255
+sS'URL'
+p256
+S'<function _URL>'
+p257
+sS'db'
+p258
+S"<SQLDB {'_connection': <sqlite3.Connection objec...>, 'k': <gluon.sql.Field object at 0x8834acc>}>}>"
+p259
+sS'auth'
+p260
+S'<gluon.tools.Auth object>'
+p261
+sS'P'
+S"<class 'gluon.html.P'>"
+p262
+sS'TFOOT'
+p263
+S"<class 'gluon.html.TFOOT'>"
+p264
+sS'XHTML'
+p265
+S"<class 'gluon.html.XHTML'>"
+p266
+sS'ON'
+p267
+S'True'
+p268
+sS'OL'
+p269
+S"<class 'gluon.html.OL'>"
+p270
+sS'TEXTAREA'
+p271
+S"<class 'gluon.html.TEXTAREA'>"
+p272
+sS'MENU'
+p273
+S"<class 'gluon.html.MENU'>"
+p274
+sS'_file0'
+p275
+S"'/teach_me_binary/static/plugin_layouts/superfish.js'"
+p276
+sS'signed_overflow'
+p277
+S'None'
+p278
+sS'right_first'
+p279
+S'None'
+p280
+sS'LOAD'
+p281
+S'<gluon.compileapp.LoadFactory instance>'
+p282
+sS'CODE'
+p283
+S"<class 'gluon.html.CODE'>"
+p284
+sS'HTTP'
+p285
+S"<class 'gluon.http.HTTP'>"
+p286
+sS'HR'
+p287
+S"<class 'gluon.html.HR'>"
+p288
+sS'IS_DATETIME'
+p289
+S"<class 'gluon.validators.IS_DATETIME'>"
+p290
+sS'HEAD'
+p291
+S"<class 'gluon.html.HEAD'>"
+p292
+sS'LABEL'
+p293
+S"<class 'gluon.html.LABEL'>"
+p294
+sS'CLEANUP'
+p295
+S"<class 'gluon.validators.CLEANUP'>"
+p296
+sS'plugins'
+p297
+S'<gluon.tools.PluginManager object>'
+p298
+sS'SELECT'
+p299
+S"<class 'gluon.html.SELECT'>"
+p300
+sS'CENTER'
+p301
+S"<class 'gluon.html.CENTER'>"
+p302
+sS'prettydate'
+p303
+S'<function prettydate>'
+p304
+sS'Crud'
+p305
+S"<class 'gluon.tools.Crud'>"
+p306
+sS'Auth'
+p307
+S"<class 'gluon.tools.Auth'>"
+p308
+sS'__builtins__'
+p309
+S"{'ArithmeticError': <type 'exceptions.ArithmeticError'>, 'AssertionError': <type 'exceptions.AssertionError'>, 'AttributeError': <type 'exceptions.AttributeError'>, 'BaseException': <type 'exceptions.BaseException'>, 'BufferError': <type 'exceptions.BufferError'>, 'BytesWarning': <type 'exceptions.BytesWarning'>, 'DeprecationWarning': <type 'exceptions.DeprecationWarning'>, 'EOFError': <type 'exceptions.EOFError'>, 'Ellipsis': Ellipsis, 'EnvironmentError': <type 'exceptions.EnvironmentError'>, ...}"
+p310
+sS'IS_LIST_OF'
+p311
+S"<class 'gluon.validators.IS_LIST_OF'>"
+p312
+sS'SQLFORM'
+p313
+S"<class 'gluon.sqlhtml.SQLFORM'>"
+p314
+sS'left_first'
+p315
+S'None'
+p316
+sS'_item'
+p317
+S"'author'"
+p318
+sS'EM'
+p319
+S"<class 'gluon.html.EM'>"
+p320
+sS'redirect'
+p321
+S'<function redirect>'
+p322
+sS'FIELDSET'
+p323
+S"<class 'gluon.html.FIELDSET'>"
+p324
+sS'IS_EQUAL_TO'
+p325
+S"<class 'gluon.validators.IS_EQUAL_TO'>"
+p326
+sS'embed64'
+p327
+S'<function embed64>'
+p328
+sS'INPUT'
+p329
+S"<class 'gluon.html.INPUT'>"
+p330
+sS'EMBED'
+p331
+S"<class 'gluon.html.EMBED'>"
+p332
+sS'FORM'
+p333
+S"<class 'gluon.html.FORM'>"
+p334
+sS'H2'
+p335
+S"<class 'gluon.html.H2'>"
+p336
+sS'H3'
+p337
+S"<class 'gluon.html.H3'>"
+p338
+sS'H1'
+p339
+S"<class 'gluon.html.H1'>"
+p340
+sS'H6'
+p341
+S"<class 'gluon.html.H6'>"
+p342
+sS'H4'
+p343
+S"<class 'gluon.html.H4'>"
+p344
+sS'H5'
+p345
+S"<class 'gluon.html.H5'>"
+p346
+sS'UL'
+p347
+S"<class 'gluon.html.UL'>"
+p348
+sS'IS_UPPER'
+p349
+S"<class 'gluon.validators.IS_UPPER'>"
+p350
+sS'xmlescape'
+p351
+S'<function xmlescape>'
+p352
+sS'IS_TIME'
+p353
+S"<class 'gluon.validators.IS_TIME'>"
+p354
+sS'OPTION'
+p355
+S"<class 'gluon.html.OPTION'>"
+p356
+sS'TITLE'
+p357
+S"<class 'gluon.html.TITLE'>"
+p358
+sS'CRYPT'
+p359
+S"<class 'gluon.validators.CRYPT'>"
+p360
+sS'IS_EMPTY_OR'
+p361
+S"<class 'gluon.validators.IS_EMPTY_OR'>"
+p362
+sS'MARKMIN'
+p363
+S"<class 'gluon.html.MARKMIN'>"
+p364
+sS'service'
+p365
+S'<gluon.tools.Service instance>'
+p366
+sS'SCRIPT'
+p367
+S"<class 'gluon.html.SCRIPT'>"
+p368
+sS'geocode'
+p369
+S'<function geocode>'
+p370
+sS'TABLE'
+p371
+S"<class 'gluon.html.TABLE'>"
+p372
+sS'IS_IPV4'
+p373
+S"<class 'gluon.validators.IS_IPV4'>"
+p374
+sS'IS_LENGTH'
+p375
+S"<class 'gluon.validators.IS_LENGTH'>"
+p376
+sS'XML'
+p377
+S"<class 'gluon.html.XML'>"
+p378
+sS'B'
+S"<class 'gluon.html.B'>"
+p379
+sS'form'
+p380
+S'<gluon.sqlhtml.SQLFORM object>'
+p381
+sS'SQLTABLE'
+p382
+S"<class 'gluon.sqlhtml.SQLTABLE'>"
+p383
+sS'IS_MATCH'
+p384
+S"<class 'gluon.validators.IS_MATCH'>"
+p385
+sS'IS_ALPHANUMERIC'
+p386
+S"<class 'gluon.validators.IS_ALPHANUMERIC'>"
+p387
+sS'SPAN'
+p388
+S"<class 'gluon.html.SPAN'>"
+p389
+sS'IS_SLUG'
+p390
+S"<class 'gluon.validators.IS_SLUG'>"
+p391
+sS'BEAUTIFY'
+p392
+S"<class 'gluon.html.BEAUTIFY'>"
+p393
+sS'META'
+p394
+S"<class 'gluon.html.META'>"
+p395
+sS'left_second'
+p396
+S'None'
+p397
+sS'fetch'
+p398
+S'<function fetch>'
+p399
+sS'IS_DATE'
+p400
+S"<class 'gluon.validators.IS_DATE'>"
+p401
+sS'IS_EMAIL'
+p402
+S"<class 'gluon.validators.IS_EMAIL'>"
+p403
+sS'right_result'
+p404
+S'None'
+p405
+sS'IS_NOT_EMPTY'
+p406
+S"<class 'gluon.validators.IS_NOT_EMPTY'>"
+p407
+sg55
+S"<Storage {'function': 'calc_add', 'body': <cStri... 11, 57, 25, 743401), 'post_vars': <Storage {}>}>"
+p408
+sS'TBODY'
+p409
+S"<class 'gluon.html.TBODY'>"
+p410
+sS'Field'
+p411
+S"<class 'gluon.sql.Field'>"
+p412
+sS'Mail'
+p413
+S"<class 'gluon.tools.Mail'>"
+p414
+sS'DIV'
+p415
+S"<class 'gluon.html.DIV'>"
+p416
+sS'LEGEND'
+p417
+S"<class 'gluon.html.LEGEND'>"
+p418
+sS'form_factory'
+p419
+S'<function factory>'
+p420
+sS'IMG'
+p421
+S"<class 'gluon.html.IMG'>"
+p422
+sS'DAL'
+p423
+S'<function DAL>'
+p424
+sS'right_second'
+p425
+S'None'
+p426
+sS'TT'
+p427
+S"<class 'gluon.html.TT'>"
+p428
+sS'TR'
+p429
+S"<class 'gluon.html.TR'>"
+p430
+sS'mid'
+p431
+S"''"
+p432
+sS'LI'
+p433
+S"<class 'gluon.html.LI'>"
+p434
+sS'IFRAME'
+p435
+S"<class 'gluon.html.IFRAME'>"
+p436
+sS'TD'
+p437
+S"<class 'gluon.html.TD'>"
+p438
+sS'PluginManager'
+p439
+S"<class 'gluon.tools.PluginManager'>"
+p440
+sS'IS_URL'
+p441
+S"<class 'gluon.validators.IS_URL'>"
+p442
+sS'A'
+S"<class 'gluon.html.A'>"
+p443
+sS'STYLE'
+p444
+S"<class 'gluon.html.STYLE'>"
+p445
+sS'IS_DATETIME_IN_RANGE'
+p446
+S"<class 'gluon.validators.IS_DATETIME_IN_RANGE'>"
+p447
+sS'HTML'
+p448
+S"<class 'gluon.html.HTML'>"
+p449
+sS'IS_IMAGE'
+p450
+S"<class 'gluon.validators.IS_IMAGE'>"
+p451
+sS'I'
+S"<class 'gluon.html.I'>"
+p452
+sS'crud'
+p453
+S'<gluon.tools.Crud object>'
+p454
+sS'IS_NOT_IN_DB'
+p455
+S"<class 'gluon.validators.IS_NOT_IN_DB'>"
+p456
+sg166
+S"<Storage {'status': 200, 'body': <cStringIO.Stri...object at 0x8aa2a0c>], '_custom_rollback': None}>"
+p457
+sS'THEAD'
+p458
+S"<class 'gluon.html.THEAD'>"
+p459
+sS'IS_NULL_OR'
+p460
+S"<class 'gluon.validators.IS_EMPTY_OR'>"
+p461
+sS'IS_FLOAT_IN_RANGE'
+p462
+S"<class 'gluon.validators.IS_FLOAT_IN_RANGE'>"
+p463
+sS'IS_EXPR'
+p464
+S"<class 'gluon.validators.IS_EXPR'>"
+p465
+sS'T'
+S'<gluon.languages.translator object>'
+p466
+sS'IS_IN_SET'
+p467
+S"<class 'gluon.validators.IS_IN_SET'>"
+p468
+sS'unsigned_overflow'
+p469
+S'None'
+p470
+sS'IS_UPLOAD_FILENAME'
+p471
+S"<class 'gluon.validators.IS_UPLOAD_FILENAME'>"
+p472
+sS're'
+p473
+S"<module 're' from '/usr/lib/python2.6/re.pyc'>"
+p474
+sS'IS_DECIMAL_IN_RANGE'
+p475
+S"<class 'gluon.validators.IS_DECIMAL_IN_RANGE'>"
+p476
+sssS'traceback'
+p477
+S'Traceback (most recent call last):\n  File "/home/cvest.cso/public_html/LocalityAnalysis/web2py/gluon/restricted.py", line 188, in restricted\n    exec ccode in environment\n  File "/home/cvest.cso/public_html/LocalityAnalysis/web2py/applications/teach_me_binary/views/default/calc_add.html", line 75, in <module>\nNameError: name \'unsigned_error\' is not defined\n'
+p478
+s.

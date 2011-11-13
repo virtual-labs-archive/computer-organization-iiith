@@ -1,0 +1,88 @@
+timestamp: 2010-10-19T22:54:00.340976
+CREATE TABLE auth_user(
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    first_name CHAR(128),
+    last_name CHAR(128),
+    email CHAR(512),
+    password CHAR(512),
+    registration_key CHAR(512),
+    reset_password_key CHAR(512)
+);
+success!
+timestamp: 2010-10-19T22:54:00.478950
+CREATE TABLE auth_group(
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    role CHAR(512),
+    description TEXT
+);
+success!
+timestamp: 2010-10-19T22:54:00.572053
+CREATE TABLE auth_membership(
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    user_id INTEGER REFERENCES auth_user(id) ON DELETE CASCADE,
+    group_id INTEGER REFERENCES auth_group(id) ON DELETE CASCADE
+);
+success!
+timestamp: 2010-10-19T22:54:00.691751
+CREATE TABLE auth_permission(
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    group_id INTEGER REFERENCES auth_group(id) ON DELETE CASCADE,
+    name CHAR(512),
+    table_name CHAR(512),
+    record_id INTEGER
+);
+success!
+timestamp: 2010-10-19T22:54:00.785400
+CREATE TABLE auth_event(
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    time_stamp TIMESTAMP,
+    client_ip CHAR(512),
+    user_id INTEGER REFERENCES auth_user(id) ON DELETE CASCADE,
+    origin CHAR(512),
+    description TEXT
+);
+success!
+timestamp: 2010-10-19T22:54:00.919257
+CREATE TABLE programs(
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    file CHAR(512),
+    input_file CHAR(512),
+    i1_size INTEGER,
+    i1_associativity INTEGER,
+    i1_line_size INTEGER,
+    d1_size INTEGER,
+    d1_associativity INTEGER,
+    d1_line_size INTEGER,
+    l2_size INTEGER,
+    l2_associativity INTEGER,
+    l2_line_size INTEGER
+);
+success!
+timestamp: 2010-10-19T22:54:01.008180
+CREATE TABLE options(
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    pid INTEGER REFERENCES programs(id) ON DELETE CASCADE,
+    i1_size INTEGER,
+    i1_associativity INTEGER,
+    i1_line_size INTEGER,
+    d1_size INTEGER,
+    d1_associativity INTEGER,
+    d1_line_size INTEGER,
+    l2_size INTEGER,
+    l2_associativity INTEGER,
+    l2_line_size INTEGER
+);
+success!
+timestamp: 2010-10-23T20:21:30.954689
+ALTER TABLE programs ADD uploaded_by INTEGER REFERENCES auth_user(id) ON DELETE CASCADE;
+timestamp: 2010-10-30T02:21:36.030255
+CREATE TABLE p_count(
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    user_id INTEGER REFERENCES auth_user(id) ON DELETE CASCADE,
+    count INTEGER
+);
+success!
+timestamp: 2010-10-30T02:21:36.179147
+ALTER TABLE programs ADD if_error CHAR(1);
+timestamp: 2010-10-30T02:21:36.293795
+ALTER TABLE programs ADD output CHAR(512);

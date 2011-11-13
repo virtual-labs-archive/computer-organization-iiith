@@ -1,0 +1,39 @@
+{{extend 'layout.html'}}
+<html>
+	<head>
+		<script type="text/javascript" src="{{=URL(request.application,'static','js/jquery-1.4.2.min.js')}}"></script>
+	        <script language="javascript" type="text/javascript" src="{{=URL(request.application,'static','jquery.jqplot.min.js')}}"></script>
+	        <link rel="stylesheet" type="text/css" href="{{=URL(request.application,'static','jquery.jqplot.css')}}" />
+		<script type="text/javascript">
+			
+			$(document).ready(function(){
+					plot1 = $.jqplot('graph1', {{=ans1}},{axes:{xaxis:{ticks:{{=xticks}}}}});
+					plot2 = $.jqplot('graph2', {{=ans2}},{axes:{xaxis:{ticks:{{=xticks}}}}});
+					plot3 = $.jqplot('graph3', {{=ans3}},{axes:{xaxis:{ticks:{{=xticks}}}}});
+					plot = $.jqplot('graph', {{=ans}},{axes:{xaxis:{ticks:{{=xticks}}}}});
+			  });
+		  </script>
+
+	</head>
+
+	<body>
+		<table width="90%">
+			<tr>
+				<th width="30%" style="color:brown"> I1 Hit % </th>
+				<th width="30%" style="color:brown"> D1 Hit % </th>
+				<th width="30%" style="color:brown"> L2 Hit % </th>
+			</tr>
+			<tr>
+				<td><div id ="graph1" style="height:400 px;width:300px"> </div> <h4 style='text-align:center'>I1 Associativity</h4></td>
+				<td><div id ="graph2" style="height:400 px;width:300px"> </div><h4 style='text-align:center'> I1 Associativity</h4></td>
+				<td><div id ="graph3" style="height:400 px;width:300px"> </div><h4 style='text-align:center'> I1 Associativity</h4></td>
+			</tr>
+			<tr >
+				<td></td>
+				<td >
+					<br/><br/><h2 style="text-align:center;color:brown"> All Together </h2> <div id="graph" style="height:400 px; width:300px"> </div><h4 style='text-align:center'>I1 Associativity</h4> </td>
+				<td></td>
+			</tr>
+		</table>
+	</body>
+</html>

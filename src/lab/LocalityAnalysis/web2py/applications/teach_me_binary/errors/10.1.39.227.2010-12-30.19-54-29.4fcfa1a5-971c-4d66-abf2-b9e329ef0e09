@@ -1,0 +1,659 @@
+(dp1
+S'output'
+p2
+S''
+sS'layer'
+p3
+S'/home/cvest.cso/public_html/LocalityAnalysis/web2py/applications/teach_me_binary/controllers/default.py'
+p4
+sS'code'
+p5
+S'# -*- coding: utf-8 -*- \n\n#########################################################################\n## This is a samples controller\n## - index is the default action of any application\n## - user is required for authentication and authorization\n## - download is for downloading files uploaded in the db (does streaming)\n## - call exposes all registered services (none by default)\n#########################################################################  \n\n@auth.requires_login()\ndef index():\n    """\n    example action using the internationalization operator T and flash\n    rendered by views/default/index.html or views/generic.html\n    """\n    form=form_factory(Field(\'k\',\'integer\',requires=IS_LENGTH(10,1)))\n    if form.accepts(request.vars,session):\n\t    session.k=request.vars.k\n\t    redirect(URL(request.application,\'default\',\'calc_add\'))\n    response.flash = T(\'Welcome to Teach me Binary\')\n    return dict(message=T(\'A tool for CSO Course\'),form=form)\n\n@auth.requires_login()\ndef calc_add():\n\tright_first=None\n\tright_second=None\n\tright_result=None\n\tleft_first=None\n\tleft_second=None\n\tleft_result=None\n\tmid_result_bin=""\n\tunsigned_overflow=None\n\tsigned_overflow=None\n\tif len(session.k)<1:\n\t\tsession.flash=\'Enter value of k\'\n\t\tredirect(URL(request.application,\'default\',\'index\'))\n\tlast=request.vars\n\tdb.log.k.default=int(session.k,10)\n\tdb.log.first_binary.requires=IS_LENGTH(int(session.k,10),1)\n\tdb.log.second_binary.requires=IS_LENGTH(int(session.k,10),1)\n\tdb.log.user_id.default=auth.user.id\n\tif last:\n\t\tmaintain=int(session.k)*"0"\n\t\tlast.first_binary=maintain+str(last.first_binary)\n\t\tlast.second_binary=maintain+str(last.second_binary)\n\t\tlast.first_binary=last.first_binary[-int(session.k):]\n\t\tlast.second_binary=last.second_binary[-int(session.k):]\n\t\tdb.log.first_binary.default=last.first_binary\n\t\tdb.log.second_binary.default=last.second_binary\n\tform=SQLFORM(db.log)\n\tif request.vars:\n\t\tfirst=re.match(\'[10]+\',request.vars.first_binary)\n\t\tsecond=re.match(\'[10]+\',request.vars.second_binary)\n\t\tif first==None or second==None:\n\t    \t\tsession.flash=\'Numbers have to be in binary\'\n\t\t\tredirect(URL(request.application,\'default\',\'calc_add\'))\n\t\tif first.start()!=0 or first.end()!=len(request.vars.first_binary) or second.start()!=0 or second.end()!=len(request.vars.second_binary):\n\t    \t\tsession.flash=\'Numbers have to be in binary\'\n\t    \t\tredirect(URL(request.application,\'default\',\'calc_add\'))\n\tif form.accepts(request.vars,session):\n\t\tright_first=int(request.vars.first_binary,2)\n\t\tright_second=int(request.vars.second_binary,2)\n\t\tright_result=right_first+right_second\n\t\tif right_result>=pow(2,int(session.k)):\n\t\t\tunsigned_overflow=1\n\n\t\tmid_result_dec=right_result\n\t\tmid_result_bin=""\n\t\twhile mid_result_dec>0:\n\t\t\tquot=mid_result_dec/2\n\t\t\trem=mid_result_dec%2\n\t\t\tmid_result_dec=quot\n\t\t\tmid_result_bin=str(rem)+mid_result_bin\n\t\tmaintain=int(session.k)*"0"\n\t\tmid_result_bin=maintain+mid_result_bin\n\t\tmid_result_bin=mid_result_bin[-int(session.k):]\n\t\t\n\t\tleft_first=right_first\n\t\tleft_second=right_second\n\n\t\tif len(request.vars.first_binary)==int(session.k) and request.vars.first_binary[0]==\'1\':\n\t\t\tleft_first=right_first-(1<<int(session.k))\n\t\tif len(request.vars.second_binary)==int(session.k) and request.vars.second_binary[0]==\'1\':\n\t\t\tleft_second=right_second-(1<<int(session.k))\n\t\tleft_result=left_first+left_second\n\t\t\n\t\tif left_result not in range(-pow(2,int(session.k)-1),pow(2,int(session.k)-1)):\n\t\t\tsigned_overflow=1\n\t\tresponse.flash=\'successful\'\n\treturn dict(signed_overflow=signed_overflow,left_result=left_result,left_first=left_first,left_second=left_second,form=form,right_first=right_first, right_second=right_second,right_result=right_result,unsigned_overflow=unsigned_overflow,mid=mid_result_bin)\ndef user():\n    """\n    exposes:\n    http://..../[app]/default/user/login \n    http://..../[app]/default/user/logout\n    http://..../[app]/default/user/register\n    http://..../[app]/default/user/profile\n    http://..../[app]/default/user/retrieve_password\n    http://..../[app]/default/user/change_password\n    use @auth.requires_login()\n        @auth.requires_membership(\'group name\')\n        @auth.requires_permission(\'read\',\'table name\',record_id)\n    to decorate functions that need access control\n    """\n    return dict(form=auth())\n\n\ndef download():\n    """\n    allows downloading of uploaded files\n    http://..../[app]/default/download/[filename]\n    """\n    return response.download(request,db)\n\n\ndef call():\n    """\n    exposes services. for example:\n    http://..../[app]/default/call/jsonrpc\n    decorate with @services.jsonrpc the functions to expose\n    supports xml, json, xmlrpc, jsonrpc, amfrpc, rss, csv\n    """\n    session.forget()\n    return service()\n\n\n\nresponse._vars=response._caller(calc_add)\n'
+p6
+sS'snapshot'
+p7
+(dp8
+S'exception'
+p9
+(dp10
+S'__hash__'
+p11
+S"<method-wrapper '__hash__' of exceptions.OverflowError object>"
+p12
+sS'__setattr__'
+p13
+S"<method-wrapper '__setattr__' of exceptions.OverflowError object>"
+p14
+sS'__reduce_ex__'
+p15
+S'<built-in method __reduce_ex__ of exceptions.OverflowError object>'
+p16
+sS'__getslice__'
+p17
+S"<method-wrapper '__getslice__' of exceptions.OverflowError object>"
+p18
+sS'__getitem__'
+p19
+S"<method-wrapper '__getitem__' of exceptions.OverflowError object>"
+p20
+sS'__setstate__'
+p21
+S'<built-in method __setstate__ of exceptions.OverflowError object>'
+p22
+sS'__reduce__'
+p23
+S'<built-in method __reduce__ of exceptions.OverflowError object>'
+p24
+sS'__str__'
+p25
+S"<method-wrapper '__str__' of exceptions.OverflowError object>"
+p26
+sS'__format__'
+p27
+S'<built-in method __format__ of exceptions.OverflowError object>'
+p28
+sS'__getattribute__'
+p29
+S"<method-wrapper '__getattribute__' of exceptions.OverflowError object>"
+p30
+sS'__class__'
+p31
+S"<type 'exceptions.OverflowError'>"
+p32
+sS'__unicode__'
+p33
+S'<built-in method __unicode__ of exceptions.OverflowError object>'
+p34
+sS'__delattr__'
+p35
+S"<method-wrapper '__delattr__' of exceptions.OverflowError object>"
+p36
+sS'__subclasshook__'
+p37
+S'<built-in method __subclasshook__ of type object>'
+p38
+sS'__repr__'
+p39
+S"<method-wrapper '__repr__' of exceptions.OverflowError object>"
+p40
+sS'args'
+p41
+S"('range() result has too many items',)"
+p42
+sS'__dict__'
+p43
+S'{}'
+p44
+sS'__sizeof__'
+p45
+S'<built-in method __sizeof__ of exceptions.OverflowError object>'
+p46
+sS'__doc__'
+p47
+S"'Result too large to be represented.'"
+p48
+sS'__init__'
+p49
+S"<method-wrapper '__init__' of exceptions.OverflowError object>"
+p50
+sS'__new__'
+p51
+S'<built-in method __new__ of type object>'
+p52
+ssS'evalue'
+p53
+S'range() result has too many items'
+p54
+sS'request'
+p55
+(dp56
+S'function'
+p57
+S"'calc_add'"
+p58
+sS'body'
+p59
+S"<open file '<fdopen>', mode 'w+b'>"
+p60
+sS'wsgi'
+p61
+S"<Storage {'start_response': <function <lambda> a...ING': 'gzip,deflate', 'HTTP_KEEP_ALIVE': '115'}}>"
+p62
+sS'extension'
+p63
+S"'html'"
+p64
+sS'vars'
+p65
+S"<Storage {'_formkey': '9914f60a-3927-4703-9dfd-c...cond_binary': '0000000000000000000000000001010'}>"
+p66
+sS'cid'
+p67
+S'None'
+p68
+sS'url'
+p69
+S'<gluon.html.XML object>'
+p70
+sg41
+S'[]'
+p71
+sS'controller'
+p72
+S"'default'"
+p73
+sS'cookies'
+p74
+S"<SimpleCookie: SESS1fda454ed642981b513705279fb62...0-1-39-227-8763a97a-63d3-498d-8a6d-eb6bd1aef734'>"
+p75
+sS'application'
+p76
+S"'teach_me_binary'"
+p77
+sS'ajax'
+p78
+S'False'
+p79
+sS'client'
+p80
+S"'10.1.39.227'"
+p81
+sS'env'
+p82
+S"<Storage {'content_length': '578', 'http_user_ag...te', 'query_string': '', 'wsgi_run_once': False}>"
+p83
+sS'raw_args'
+p84
+S'None'
+p85
+sS'get_vars'
+p86
+S'<Storage {}>'
+p87
+sS'folder'
+p88
+S"'/home/cvest.cso/public_html/LocalityAnalysis/web2py/applications/teach_me_binary/'"
+p89
+sS'now'
+p90
+S'datetime.datetime(2010, 12, 30, 19, 54, 29, 762574)'
+p91
+sS'post_vars'
+p92
+S"<Storage {'_formkey': '9914f60a-3927-4703-9dfd-c...'first_binary': '1001', 'second_binary': '1010'}>"
+p93
+ssS'frames'
+p94
+(lp95
+(dp96
+S'file'
+p97
+S'/home/cvest.cso/public_html/LocalityAnalysis/web2py/gluon/restricted.py'
+p98
+sS'dump'
+p99
+(dp100
+S'environment'
+p101
+S"{'A': <class 'gluon.html.A'>, 'Auth': <class 'gluon.tools.Auth'>, 'B': <class 'gluon.html.B'>, 'BEAUTIFY': <class 'gluon.html.BEAUTIFY'>, 'BODY': <class 'gluon.html.BODY'>, 'BR': <class 'gluon.html.BR'>, 'CENTER': <class 'gluon.html.CENTER'>, 'CLEANUP': <class 'gluon.validators.CLEANUP'>, 'CODE': <class 'gluon.html.CODE'>, 'CRYPT': <class 'gluon.validators.CRYPT'>, ...}"
+p102
+sS'ccode'
+p103
+S'<code object <module> at 0x8afa578, file "/home/...teach_me_binary/controllers/default.py", line 11>'
+p104
+ssS'lnum'
+p105
+I188
+sS'lines'
+p106
+(dp107
+I192
+S'        # XXX Show exception in Wing IDE if running in debugger'
+p108
+sI183
+S'        if type(code) == types.CodeType:'
+p109
+sI184
+S'            ccode = code'
+p110
+sI185
+S'        else:'
+p111
+sI186
+S'            ccode = compile2(code,layer)'
+p112
+sI187
+S''
+sI188
+S'        exec ccode in environment'
+p113
+sI189
+S'    except HTTP:'
+p114
+sI190
+S'        raise'
+p115
+sI191
+S'    except Exception:'
+p116
+ssS'call'
+p117
+S"(code='# -*- coding: utf-8 -*- \\n\\n######################...e()\\n\\n\\n\\nresponse._vars=response._caller(calc_add)\\n', environment={'A': <class 'gluon.html.A'>, 'Auth': <class 'gluon.tools.Auth'>, 'B': <class 'gluon.html.B'>, 'BEAUTIFY': <class 'gluon.html.BEAUTIFY'>, 'BODY': <class 'gluon.html.BODY'>, 'BR': <class 'gluon.html.BR'>, 'CENTER': <class 'gluon.html.CENTER'>, 'CLEANUP': <class 'gluon.validators.CLEANUP'>, 'CODE': <class 'gluon.html.CODE'>, 'CRYPT': <class 'gluon.validators.CRYPT'>, ...}, layer='/home/cvest.cso/public_html/LocalityAnalysis/web...plications/teach_me_binary/controllers/default.py')"
+p118
+sS'func'
+p119
+S'restricted'
+p120
+sa(dp121
+g97
+S'/home/cvest.cso/public_html/LocalityAnalysis/web2py/applications/teach_me_binary/controllers/default.py'
+p122
+sg99
+(dp123
+sg105
+I129
+sg106
+(dp124
+I118
+S'    """'
+p125
+sI119
+S'    exposes services. for example:'
+p126
+sI120
+S'    http://..../[app]/default/call/jsonrpc'
+p127
+sI121
+S'    decorate with @services.jsonrpc the functions to expose'
+p128
+sI122
+S'    supports xml, json, xmlrpc, jsonrpc, amfrpc, rss, csv'
+p129
+sI123
+S'    """'
+p130
+sI124
+S'    session.forget()'
+p131
+sI125
+S'    return service()'
+p132
+sI126
+S''
+sI127
+S''
+ssg117
+S'()'
+p133
+sg119
+S'<module>'
+p134
+sa(dp135
+g97
+S'/home/cvest.cso/public_html/LocalityAnalysis/web2py/gluon/globals.py'
+p136
+sg99
+(dp137
+S'self'
+p138
+S'undefined'
+p139
+sS'f'
+S'<function calc_add>'
+p140
+ssg105
+I96
+sg106
+(dp141
+I96
+S'        self._caller = lambda f: f()'
+p142
+sI97
+S'        self._view_environment = None'
+p143
+sI98
+S'        self._custom_commit = None'
+p144
+sI99
+S'        self._custom_rollback = None'
+p145
+sI100
+S''
+sI91
+S"        self.flash = ''           # used by the default view layout"
+p146
+sI92
+S'        self.meta = Storage()     # used by web2py_ajax.html'
+p147
+sI93
+S'        self.menu = []            # used by the default view layout'
+p148
+sI94
+S'        self.files = []           # used by web2py_ajax.html'
+p149
+sI95
+S'        self._vars = None'
+p150
+ssg117
+S'(f=<function calc_add>)'
+p151
+sg119
+S'<lambda>'
+p152
+sa(dp153
+g97
+S'/home/cvest.cso/public_html/LocalityAnalysis/web2py/gluon/tools.py'
+p154
+sg99
+(dp155
+S'action'
+p156
+S'<function calc_add>'
+p157
+sS'a'
+S'()'
+p158
+sS'b'
+g44
+ssg105
+I2264
+sg106
+(dp159
+I2259
+S'                               vars=request.get_vars)'
+p160
+sI2260
+S'                    return call_or_redirect(self.settings.on_failed_authentication,'
+p161
+sI2261
+S'                                            self.settings.login_url + \\'
+p162
+sI2262
+S"                                                '?_next='+urllib.quote(next)"
+p163
+sI2263
+S'                                            )'
+p164
+sI2264
+S'                return action(*a, **b)'
+p165
+sI2265
+S'            f.__doc__ = action.__doc__'
+p166
+sI2266
+S'            f.__name__ = action.__name__'
+p167
+sI2267
+S'            f.__dict__.update(action.__dict__)'
+p168
+sI2268
+S'            return f'
+p169
+ssg117
+S'(*a=(), **b={})'
+p170
+sg119
+S'f'
+sa(dp171
+g97
+S'/home/cvest.cso/public_html/LocalityAnalysis/web2py/applications/teach_me_binary/controllers/default.py'
+p172
+sg99
+(dp173
+S'global session'
+p174
+S"<Storage {'_formkey[no_table_create]': 'c8096d77...login]': 'e4e0f74f-db23-4b3c-afd3-9be9867cb99a'}>"
+p175
+sS'builtinrange'
+p176
+S'<built-in function range>'
+p177
+sS'session.k'
+p178
+S"'31'"
+p179
+sS'left_result'
+p180
+S'19'
+p181
+sS'builtinpow'
+p182
+S'<built-in function pow>'
+p183
+sS'builtinint'
+p184
+S"<type 'int'>"
+p185
+ssg105
+I88
+sg106
+(dp186
+I83
+S'\t\t\tleft_first=right_first-(1<<int(session.k))'
+p187
+sI84
+S"\t\tif len(request.vars.second_binary)==int(session.k) and request.vars.second_binary[0]=='1':"
+p188
+sI85
+S'\t\t\tleft_second=right_second-(1<<int(session.k))'
+p189
+sI86
+S'\t\tleft_result=left_first+left_second'
+p190
+sI87
+S''
+sI88
+S'\t\tif left_result not in range(-pow(2,int(session.k)-1),pow(2,int(session.k)-1)):'
+p191
+sI89
+S'\t\t\tsigned_overflow=1'
+p192
+sI90
+S"\t\tresponse.flash='successful'"
+p193
+sI91
+S'\treturn dict(signed_overflow=signed_overflow,left_result=left_result,left_first=left_first,left_second=left_second,form=form,right_first=right_first, right_second=right_second,right_result=right_result,unsigned_overflow=unsigned_overflow,mid=mid_result_bin)'
+p194
+sI92
+S'def user():'
+p195
+ssg117
+S'()'
+p196
+sg119
+S'calc_add'
+p197
+sasS'pyver'
+p198
+S'Python 2.6.6rc1+: /usr/bin/python'
+p199
+sS'session'
+p200
+(dp201
+S'_formkey[no_table_create]'
+p202
+S"'c8096d77-e847-443f-9162-5920bcb660a8'"
+p203
+sS'_formkey[log_create]'
+p204
+S"'1981987f-26ff-4bad-96ee-f7283574b702'"
+p205
+sS'k'
+S"'31'"
+p206
+sS'flash'
+p207
+S'None'
+p208
+sS'auth'
+p209
+S"<Storage {'expiration': 3600, 'user': <Storage {... 12, 30, 19, 54, 29, 762574), 'remember': False}>"
+p210
+sS'_formkey[login]'
+p211
+S"'e4e0f74f-db23-4b3c-afd3-9be9867cb99a'"
+p212
+ssS'etype'
+p213
+S"<type 'exceptions.OverflowError'>"
+p214
+sS'date'
+p215
+S'Thu Dec 30 19:54:29 2010'
+p216
+sS'response'
+p217
+(dp218
+S'status'
+p219
+S'200'
+p220
+sg59
+S'<cStringIO.StringO object>'
+p221
+sg74
+S"<SimpleCookie: session_id_teach_me_binary='10-1-39-227-8763a97a-63d3-498d-8a6d-eb6bd1aef734'>"
+p222
+sS'_vars'
+p223
+S'None'
+p224
+sS'title'
+p225
+S"'teach_me_binary'"
+p226
+sS'session_file'
+p227
+S"<open file '/home/cvest.cso/public_html/Locality...763a97a-63d3-498d-8a6d-eb6bd1aef734', mode 'rb+'>"
+p228
+sS'flash'
+p229
+S"''"
+p230
+sS'_custom_rollback'
+p231
+S'None'
+p232
+sS'session_id'
+p233
+S"'10-1-39-227-8763a97a-63d3-498d-8a6d-eb6bd1aef734'"
+p234
+sS'headers'
+p235
+S"<Storage {'Expires': 'Thu, 30 Dec 2010 14:24:29 ...he, must-revalidate, post-check=0, pre-check=0'}>"
+p236
+sS'meta'
+p237
+S"<Storage {'keywords': 'CSO IIIT binary', 'descri...igned', 'author': 'Ravi Agarwal,IIIT Hyderabad'}>"
+p238
+sS'session_filename'
+p239
+S"'/home/cvest.cso/public_html/LocalityAnalysis/web.../10-1-39-227-8763a97a-63d3-498d-8a6d-eb6bd1aef734'"
+p240
+sS'postprocessing'
+p241
+S'[]'
+p242
+sS'menu'
+p243
+S"[(<lazyT 'Start'>, False, <gluon.html.XML object>, [])]"
+p244
+sS'_view_environment'
+p245
+S"{'A': <class 'gluon.html.A'>, 'Auth': <class 'gluon.tools.Auth'>, 'B': <class 'gluon.html.B'>, 'BEAUTIFY': <class 'gluon.html.BEAUTIFY'>, 'BODY': <class 'gluon.html.BODY'>, 'BR': <class 'gluon.html.BR'>, 'CENTER': <class 'gluon.html.CENTER'>, 'CLEANUP': <class 'gluon.validators.CLEANUP'>, 'CODE': <class 'gluon.html.CODE'>, 'CRYPT': <class 'gluon.validators.CRYPT'>, ...}"
+p246
+sS'subtitle'
+p247
+S"<lazyT 'Isomorphic Binary Addition'>"
+p248
+sS'session_id_name'
+p249
+S"'session_id_teach_me_binary'"
+p250
+sS'_custom_commit'
+p251
+S'None'
+p252
+sS'_caller'
+p253
+S'<function <lambda>>'
+p254
+sS'files'
+p255
+S'[]'
+p256
+sS'view'
+p257
+S"'default/calc_add.html'"
+p258
+ssS'locals'
+p259
+(dp260
+S'last'
+p261
+S"<Storage {'_formkey': '9914f60a-3927-4703-9dfd-c...cond_binary': '0000000000000000000000000001010'}>"
+p262
+sS'signed_overflow'
+p263
+S'None'
+p264
+sS'form'
+p265
+S'<gluon.sqlhtml.SQLFORM object>'
+p266
+sS'quot'
+p267
+S'0'
+sS'right_second'
+p268
+S'10'
+p269
+sS'left_first'
+p270
+S'9'
+sS'maintain'
+p271
+S"'0000000000000000000000000000000'"
+p272
+sS'second'
+p273
+S'<_sre.SRE_Match object>'
+p274
+sS'unsigned_overflow'
+p275
+S'None'
+p276
+sS'mid_result_dec'
+p277
+S'0'
+sS'mid_result_bin'
+p278
+S"'0000000000000000000000000010011'"
+p279
+sS'rem'
+p280
+S'1'
+sS'right_result'
+p281
+S'19'
+p282
+sS'left_second'
+p283
+S'10'
+p284
+sS'left_result'
+p285
+S'19'
+p286
+sS'right_first'
+p287
+S'9'
+sS'first'
+p288
+S'<_sre.SRE_Match object>'
+p289
+sssS'traceback'
+p290
+S'Traceback (most recent call last):\n  File "/home/cvest.cso/public_html/LocalityAnalysis/web2py/gluon/restricted.py", line 188, in restricted\n    exec ccode in environment\n  File "/home/cvest.cso/public_html/LocalityAnalysis/web2py/applications/teach_me_binary/controllers/default.py", line 129, in <module>\n  File "/home/cvest.cso/public_html/LocalityAnalysis/web2py/gluon/globals.py", line 96, in <lambda>\n    self._caller = lambda f: f()\n  File "/home/cvest.cso/public_html/LocalityAnalysis/web2py/gluon/tools.py", line 2264, in f\n    return action(*a, **b)\n  File "/home/cvest.cso/public_html/LocalityAnalysis/web2py/applications/teach_me_binary/controllers/default.py", line 88, in calc_add\n    if left_result not in range(-pow(2,int(session.k)-1),pow(2,int(session.k)-1)):\nOverflowError: range() result has too many items\n'
+p291
+s.

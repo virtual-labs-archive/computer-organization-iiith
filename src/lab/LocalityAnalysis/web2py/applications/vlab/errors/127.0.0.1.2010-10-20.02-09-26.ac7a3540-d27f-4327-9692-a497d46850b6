@@ -1,0 +1,592 @@
+(dp1
+S'output'
+p2
+S''
+sS'layer'
+p3
+S'/home/shrenik/web2py/applications/vlab/controllers/default.py'
+p4
+sS'code'
+p5
+S'# -*- coding: utf-8 -*- \n\n#########################################################################\n## This is a samples controller\n## - index is the default action of any application\n## - user is required for authentication and authorization\n## - download is for downloading files uploaded in the db (does streaming)\n## - call exposes all registered services (none by default)\n#########################################################################  \ndef index():\n    import os\n    import re\n    import commands\n    """\n    example action using the internationalization operator T and flash\n    rendered by views/default/index.html or views/generic.html\n    """\n    pid=[]\n    flag=0\n    list=[]\n    out="Test"\n    inp=None\n    out_mod=None\n    form=SQLFORM(db.programs)\n    if(form.accepts(request.vars,session)):\n         flag=1\n\t path=os.getcwd()\n         path=path+\'/applications/vlab/uploads/\'+form.vars.file\n         inp=commands.getstatusoutput(\'cc \'+path)\n         command=\'valgrind --tool=cachegrind --I1=\'+str(form.vars.i1_size)+\',\'+str(form.vars.i1_associativity)+\',\'+str(form.vars.i1_line_size)+\' ./a.out\'\n         if form.vars.input_file !=None:\n   \t \t input_path=os.getcwd()\n\t    \t input_path=input_path+\'/applications/vlab/uploads/\'+form.vars.input_file\n\t      \t command=command+\'<\'+input_path\n\t import time\n\n\t out=commands.getstatusoutput(command)\n\t """Wait for a process to finish, or raise exception after timeout"""\n\t seconds=5\n\t proc=out\n\t start = time.time()\n         end = start + seconds\n\t interval = min(seconds / 1000.0, .25)\n\t while True:\n\t\t     result = proc.poll()\n    \t\t     if result is not None:\n\t\t\t     print result\n\t\t\t     break\n\t\t     if time.time() >= end:\n\t\t\t     raise RuntimeError("Process timed out")\n\t\t     time.sleep(interval)\n\n\n\t out_mod=re.split(\'\\n\',out[1])\n\t regex="==(\\d*)==\\s*([^:]*):\\s*(\\d+.*)"\n\t for i in out_mod:\n\t\t match=re.findall(regex,i)\n\t\t if len(match)>0:\n\t\t \tprocid=match[0][0]\n\t\t\tif procid not in pid:\n\t\t\t\t pid.append(procid)\n\t\t\tlist.append(match[0])\t\n    \n    response.flash = T(\'Welcome to web2py\')\n    return dict(form=form,message=T(\'Hello World\'),list=list,pid=pid,flag=flag)\n\ndef customize():\n    form=SQLFORM(db.options)\n    \ndef user():\n    """\n    exposes:\n    http://..../[app]/default/user/login \n    http://..../[app]/default/user/logout\n    http://..../[app]/default/user/register\n    http://..../[app]/default/user/profile\n    http://..../[app]/default/user/retrieve_password\n    http://..../[app]/default/user/change_password\n    use @auth.requires_login()\n        @auth.requires_membership(\'group name\')\n        @auth.requires_permission(\'read\',\'table name\',record_id)\n    to decorate functions that need access control\n    """\n    return dict(form=auth())\n\n\ndef download():\n    """\n    allows downloading of uploaded files\n    http://..../[app]/default/download/[filename]\n    """\n    return response.download(request,db)\n\n\ndef call():\n    """\n    exposes services. for example:\n    http://..../[app]/default/call/jsonrpc\n    decorate with @services.jsonrpc the functions to expose\n    supports xml, json, xmlrpc, jsonrpc, amfrpc, rss, csv\n    """\n    session.forget()\n    return service()\n\nresponse._vars=response._caller(index)\n'
+p6
+sS'snapshot'
+p7
+(dp8
+S'exception'
+p9
+(dp10
+S'__hash__'
+p11
+S"<method-wrapper '__hash__' of exceptions.AttributeError object>"
+p12
+sS'__setattr__'
+p13
+S"<method-wrapper '__setattr__' of exceptions.AttributeError object>"
+p14
+sS'__reduce_ex__'
+p15
+S'<built-in method __reduce_ex__ of exceptions.AttributeError object>'
+p16
+sS'__getslice__'
+p17
+S"<method-wrapper '__getslice__' of exceptions.AttributeError object>"
+p18
+sS'__getitem__'
+p19
+S"<method-wrapper '__getitem__' of exceptions.AttributeError object>"
+p20
+sS'__setstate__'
+p21
+S'<built-in method __setstate__ of exceptions.AttributeError object>'
+p22
+sS'__reduce__'
+p23
+S'<built-in method __reduce__ of exceptions.AttributeError object>'
+p24
+sS'__str__'
+p25
+S"<method-wrapper '__str__' of exceptions.AttributeError object>"
+p26
+sS'__format__'
+p27
+S'<built-in method __format__ of exceptions.AttributeError object>'
+p28
+sS'__getattribute__'
+p29
+S"<method-wrapper '__getattribute__' of exceptions.AttributeError object>"
+p30
+sS'__class__'
+p31
+S"<type 'exceptions.AttributeError'>"
+p32
+sS'__unicode__'
+p33
+S'<built-in method __unicode__ of exceptions.AttributeError object>'
+p34
+sS'__delattr__'
+p35
+S"<method-wrapper '__delattr__' of exceptions.AttributeError object>"
+p36
+sS'__subclasshook__'
+p37
+S'<built-in method __subclasshook__ of type object>'
+p38
+sS'__repr__'
+p39
+S"<method-wrapper '__repr__' of exceptions.AttributeError object>"
+p40
+sS'args'
+p41
+S'("\'tuple\' object has no attribute \'poll\'",)'
+p42
+sS'__dict__'
+p43
+S'{}'
+p44
+sS'__sizeof__'
+p45
+S'<built-in method __sizeof__ of exceptions.AttributeError object>'
+p46
+sS'__doc__'
+p47
+S"'Attribute not found.'"
+p48
+sS'__init__'
+p49
+S"<method-wrapper '__init__' of exceptions.AttributeError object>"
+p50
+sS'__new__'
+p51
+S'<built-in method __new__ of type object>'
+p52
+ssS'evalue'
+p53
+S"'tuple' object has no attribute 'poll'"
+p54
+sS'request'
+p55
+(dp56
+S'function'
+p57
+S"'index'"
+p58
+sS'body'
+p59
+S"<open file '<fdopen>', mode 'w+b'>"
+p60
+sS'wsgi'
+p61
+S"<Storage {'start_response': <function <lambda> a...ING': 'gzip,deflate', 'HTTP_KEEP_ALIVE': '115'}}>"
+p62
+sS'extension'
+p63
+S"'html'"
+p64
+sS'vars'
+p65
+S"<Storage {'i1_associativity': '2', 'd1_size': '6...ciativity': '2', '_formname': 'programs_create'}>"
+p66
+sS'cid'
+p67
+S'None'
+p68
+sS'url'
+p69
+S'<gluon.html.XML object>'
+p70
+sg41
+S'[]'
+p71
+sS'controller'
+p72
+S"'default'"
+p73
+sS'cookies'
+p74
+S"<SimpleCookie: session_id_admin='127-0-0-1-020b2...'127-0-0-1-d51e55bb-1989-4c66-91bc-ad4e17601eab'>"
+p75
+sS'application'
+p76
+S"'vlab'"
+p77
+sS'ajax'
+p78
+S'False'
+p79
+sS'client'
+p80
+S"'127.0.0.1'"
+p81
+sS'env'
+p82
+S"<Storage {'content_length': '1707', 'http_user_a...te', 'query_string': '', 'wsgi_run_once': False}>"
+p83
+sS'raw_args'
+p84
+S'None'
+p85
+sS'get_vars'
+p86
+S'<Storage {}>'
+p87
+sS'folder'
+p88
+S"'/home/shrenik/web2py/applications/vlab/'"
+p89
+sS'now'
+p90
+S'datetime.datetime(2010, 10, 20, 2, 9, 26, 559056)'
+p91
+sS'post_vars'
+p92
+S"<Storage {'i1_associativity': '2', 'd1_size': '6...ciativity': '2', '_formname': 'programs_create'}>"
+p93
+ssS'frames'
+p94
+(lp95
+(dp96
+S'file'
+p97
+S'/home/shrenik/web2py/gluon/restricted.py'
+p98
+sS'dump'
+p99
+(dp100
+S'environment'
+p101
+S"{'A': <class 'gluon.html.A'>, 'Auth': <class 'gluon.tools.Auth'>, 'B': <class 'gluon.html.B'>, 'BEAUTIFY': <class 'gluon.html.BEAUTIFY'>, 'BODY': <class 'gluon.html.BODY'>, 'BR': <class 'gluon.html.BR'>, 'CENTER': <class 'gluon.html.CENTER'>, 'CLEANUP': <class 'gluon.validators.CLEANUP'>, 'CODE': <class 'gluon.html.CODE'>, 'CRYPT': <class 'gluon.validators.CRYPT'>, ...}"
+p102
+sS'ccode'
+p103
+S'<code object <module> at 0x940a800, file "/home/...plications/vlab/controllers/default.py", line 10>'
+p104
+ssS'lnum'
+p105
+I188
+sS'lines'
+p106
+(dp107
+I192
+S'        # XXX Show exception in Wing IDE if running in debugger'
+p108
+sI183
+S'        if type(code) == types.CodeType:'
+p109
+sI184
+S'            ccode = code'
+p110
+sI185
+S'        else:'
+p111
+sI186
+S'            ccode = compile2(code,layer)'
+p112
+sI187
+S''
+sI188
+S'        exec ccode in environment'
+p113
+sI189
+S'    except HTTP:'
+p114
+sI190
+S'        raise'
+p115
+sI191
+S'    except Exception:'
+p116
+ssS'call'
+p117
+S"(code='# -*- coding: utf-8 -*- \\n\\n######################...ervice()\\n\\nresponse._vars=response._caller(index)\\n', environment={'A': <class 'gluon.html.A'>, 'Auth': <class 'gluon.tools.Auth'>, 'B': <class 'gluon.html.B'>, 'BEAUTIFY': <class 'gluon.html.BEAUTIFY'>, 'BODY': <class 'gluon.html.BODY'>, 'BR': <class 'gluon.html.BR'>, 'CENTER': <class 'gluon.html.CENTER'>, 'CLEANUP': <class 'gluon.validators.CLEANUP'>, 'CODE': <class 'gluon.html.CODE'>, 'CRYPT': <class 'gluon.validators.CRYPT'>, ...}, layer='/home/shrenik/web2py/applications/vlab/controllers/default.py')"
+p118
+sS'func'
+p119
+S'restricted'
+p120
+sa(dp121
+g97
+S'/home/shrenik/web2py/applications/vlab/controllers/default.py'
+p122
+sg99
+(dp123
+sg105
+I105
+sg106
+(dp124
+I96
+S'    """'
+p125
+sI97
+S'    exposes services. for example:'
+p126
+sI98
+S'    http://..../[app]/default/call/jsonrpc'
+p127
+sI99
+S'    decorate with @services.jsonrpc the functions to expose'
+p128
+sI100
+S'    supports xml, json, xmlrpc, jsonrpc, amfrpc, rss, csv'
+p129
+sI101
+S'    """'
+p130
+sI102
+S'    session.forget()'
+p131
+sI103
+S'    return service()'
+p132
+sI94
+S''
+sI95
+S'def call():'
+p133
+ssg117
+S'()'
+p134
+sg119
+S'<module>'
+p135
+sa(dp136
+g97
+S'/home/shrenik/web2py/gluon/globals.py'
+p137
+sg99
+(dp138
+S'self'
+p139
+S'undefined'
+p140
+sS'f'
+S'<function index>'
+p141
+ssg105
+I96
+sg106
+(dp142
+I96
+S'        self._caller = lambda f: f()'
+p143
+sI97
+S'        self._view_environment = None'
+p144
+sI98
+S'        self._custom_commit = None'
+p145
+sI99
+S'        self._custom_rollback = None'
+p146
+sI100
+S''
+sI91
+S"        self.flash = ''           # used by the default view layout"
+p147
+sI92
+S'        self.meta = Storage()     # used by web2py_ajax.html'
+p148
+sI93
+S'        self.menu = []            # used by the default view layout'
+p149
+sI94
+S'        self.files = []           # used by web2py_ajax.html'
+p150
+sI95
+S'        self._vars = None'
+p151
+ssg117
+S'(f=<function index>)'
+p152
+sg119
+S'<lambda>'
+p153
+sa(dp154
+g97
+S'/home/shrenik/web2py/applications/vlab/controllers/default.py'
+p155
+sg99
+(dp156
+S'proc.poll'
+p157
+g140
+sS'proc'
+p158
+S"(32256, 'valgrind: ./a.out: No such file or directory')"
+p159
+sS'result'
+p160
+g140
+ssg105
+I45
+sg106
+(dp161
+I40
+S'\t proc=out'
+p162
+sI41
+S'\t start = time.time()'
+p163
+sI42
+S'         end = start + seconds'
+p164
+sI43
+S'\t interval = min(seconds / 1000.0, .25)'
+p165
+sI44
+S'\t while True:'
+p166
+sI45
+S'\t\t     result = proc.poll()'
+p167
+sI46
+S'    \t\t     if result is not None:'
+p168
+sI47
+S'\t\t\t     print result'
+p169
+sI48
+S'\t\t\t     break'
+p170
+sI49
+S'\t\t     if time.time() >= end:'
+p171
+ssg117
+S'()'
+p172
+sg119
+S'index'
+p173
+sasS'pyver'
+p174
+S'Python 2.6.6: /usr/bin/python'
+p175
+sS'session'
+p176
+(dp177
+S'count'
+p178
+S'1'
+sS'auth'
+p179
+S'None'
+p180
+sS'_formkey[programs_create]'
+p181
+S"'731f0458-37ff-44a1-b426-3617f4a20a20'"
+p182
+ssS'etype'
+p183
+S"<type 'exceptions.AttributeError'>"
+p184
+sS'date'
+p185
+S'Wed Oct 20 02:09:26 2010'
+p186
+sS'response'
+p187
+(dp188
+S'status'
+p189
+S'200'
+p190
+sg59
+S'<cStringIO.StringO object>'
+p191
+sg74
+S"<SimpleCookie: session_id_vlab='127-0-0-1-bd6aca27-1ced-49d5-b876-eb675abd268c'>"
+p192
+sS'_vars'
+p193
+S'None'
+p194
+sS'title'
+p195
+S"'vlab'"
+p196
+sS'session_file'
+p197
+S"<open file '/home/shrenik/web2py/applications/vl...d6aca27-1ced-49d5-b876-eb675abd268c', mode 'rb+'>"
+p198
+sS'flash'
+p199
+S"''"
+p200
+sS'_custom_rollback'
+p201
+S'None'
+p202
+sS'session_id'
+p203
+S"'127-0-0-1-bd6aca27-1ced-49d5-b876-eb675abd268c'"
+p204
+sS'headers'
+p205
+S"<Storage {'Expires': 'Tue, 19 Oct 2010 20:39:26 ...he, must-revalidate, post-check=0, pre-check=0'}>"
+p206
+sS'meta'
+p207
+S"<Storage {'keywords': 'bla bla bla', 'description': 'describe your app', 'author': 'you'}>"
+p208
+sS'session_filename'
+p209
+S"'/home/shrenik/web2py/applications/vlab/sessions/127-0-0-1-bd6aca27-1ced-49d5-b876-eb675abd268c'"
+p210
+sS'postprocessing'
+p211
+S'[]'
+p212
+sS'menu'
+p213
+S"[(<lazyT 'Index'>, False, <gluon.html.XML object>, []), ('Change Layout', False, <gluon.html.XML object>)]"
+p214
+sS'_view_environment'
+p215
+S"{'A': <class 'gluon.html.A'>, 'Auth': <class 'gluon.tools.Auth'>, 'B': <class 'gluon.html.B'>, 'BEAUTIFY': <class 'gluon.html.BEAUTIFY'>, 'BODY': <class 'gluon.html.BODY'>, 'BR': <class 'gluon.html.BR'>, 'CENTER': <class 'gluon.html.CENTER'>, 'CLEANUP': <class 'gluon.validators.CLEANUP'>, 'CODE': <class 'gluon.html.CODE'>, 'CRYPT': <class 'gluon.validators.CRYPT'>, ...}"
+p216
+sS'subtitle'
+p217
+S"<lazyT 'customize me!'>"
+p218
+sS'session_id_name'
+p219
+S"'session_id_vlab'"
+p220
+sS'_custom_commit'
+p221
+S'None'
+p222
+sS'_caller'
+p223
+S'<function <lambda>>'
+p224
+sS'files'
+p225
+S'[]'
+p226
+sS'view'
+p227
+S"'default/index.html'"
+p228
+ssS'locals'
+p229
+(dp230
+S'out_mod'
+p231
+S'None'
+p232
+sS'proc'
+p233
+S"(32256, 'valgrind: ./a.out: No such file or directory')"
+p234
+sS'end'
+p235
+S'1287520771.6316121'
+p236
+sS'form'
+p237
+S'<gluon.sqlhtml.SQLFORM object>'
+p238
+sS'start'
+p239
+S'1287520766.6316121'
+p240
+sS'seconds'
+p241
+S'5'
+sS'pid'
+p242
+S'[]'
+p243
+sS'inp'
+p244
+S'(256, "/usr/bin/ld: /usr/lib/debug/usr/lib/crt1.o(.debu...nce to `main\'\\ncollect2: ld returned 1 exit status")'
+p245
+sS'interval'
+p246
+S'0.0050000000000000001'
+p247
+sS'list'
+p248
+S'[]'
+p249
+sS'commands'
+p250
+S"<module 'commands' from '/usr/lib/python2.6/commands.pyc'>"
+p251
+sS're'
+p252
+S"<module 're' from '/usr/lib/python2.6/re.pyc'>"
+p253
+sS'flag'
+p254
+S'1'
+sS'command'
+p255
+S"'valgrind --tool=cachegrind --I1=65536,2,64 ./a.out</home/shrenik/web2py/applications/vlab/uploads/'"
+p256
+sS'time'
+p257
+S"<module 'time' (built-in)>"
+p258
+sS'input_path'
+p259
+S"'/home/shrenik/web2py/applications/vlab/uploads/'"
+p260
+sS'path'
+p261
+S"'/home/shrenik/web2py/applications/vlab/uploads/programs.file.bca8ca65e047fade.322e63.c'"
+p262
+sS'os'
+p263
+S"<module 'os' from '/usr/lib/python2.6/os.pyc'>"
+p264
+sS'out'
+p265
+S"(32256, 'valgrind: ./a.out: No such file or directory')"
+p266
+sssS'traceback'
+p267
+S'Traceback (most recent call last):\n  File "/home/shrenik/web2py/gluon/restricted.py", line 188, in restricted\n    exec ccode in environment\n  File "/home/shrenik/web2py/applications/vlab/controllers/default.py", line 105, in <module>\n  File "/home/shrenik/web2py/gluon/globals.py", line 96, in <lambda>\n    self._caller = lambda f: f()\n  File "/home/shrenik/web2py/applications/vlab/controllers/default.py", line 45, in index\n    result = proc.poll()\nAttributeError: \'tuple\' object has no attribute \'poll\'\n'
+p268
+s.

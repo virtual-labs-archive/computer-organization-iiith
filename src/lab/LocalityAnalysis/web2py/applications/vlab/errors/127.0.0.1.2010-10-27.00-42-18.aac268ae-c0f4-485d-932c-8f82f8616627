@@ -1,0 +1,931 @@
+(dp1
+S'output'
+p2
+S''
+sS'layer'
+p3
+S'/home/shrenik/web2py/applications/vlab/views/default/show_graphs.html'
+p4
+sS'code'
+p5
+S'response.write(\'<!doctype html>\\n<html lang="en" class="no-js">\\n<head>\\n  <meta charset="utf-8">\\n\\n  <!-- www.phpied.com/conditional-comments-block-downloads/ -->\\n  <!--[if IE]><![endif]-->\\n\\n  <!-- Always force latest IE rendering engine (even in intranet) & Chrome Frame \\n       Remove this if you use the .htaccess -->\\n  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">\\n\\n  <title>Locality Analysis of Programs using Cachegrind Tool </title>\\n  <meta name="description" content="">\\n  <meta name="author" content="">\\n\\n  <!--  Mobile Viewport Fix\\n        j.mp/mobileviewport & davidbcalhoun.com/2010/viewport-metatag \\n  device-width : Occupy full width of the screen in its current orientation\\n  initial-scale = 1.0 retains dimensions instead of zooming out if page height > device height\\n  maximum-scale = 1.0 retains dimensions instead of zooming in if page width < device width\\n  -->\\n  <meta name="viewport" content="width=device-width; initial-scale=1.0; maximum-scale=1.0;">\\n\\n\\n  <!-- Place favicon.ico and apple-touch-icon.png in the root of your domain and delete these references -->\\n  <link rel="shortcut icon" href="\', escape=False)\nresponse.write(URL(request.application,\'static\',\'images.jpeg\'))\nresponse.write(\'">\\n  <link rel="apple-touch-icon" href="\', escape=False)\nresponse.write(URL(request.application,\'static\',\'apple-touch-icon.png\'))\nresponse.write(\'">\\n\\n\\n  <!-- CSS : implied media="all" -->\\n  <link rel="stylesheet" href="\', escape=False)\nresponse.write(URL(request.application,\'static\',\'css/default.css?v=1\'))\nresponse.write(\'">\\n  \\n\\n  <!-- For the less-enabled mobile browsers like Opera Mini -->\\n  <link rel="stylesheet" media="handheld" href="\', escape=False)\nresponse.write(URL(request.application,\'static\',\'css/handheld.css?v=1\'))\nresponse.write(\'">\\n\\n  <!-- ********************************** CHANGE /OVERRIDE STYLESHEETS HERE ********************************** -->\\n  <!-- MAIN STYLE SHEET : style.css -->\\n  <link rel="stylesheet" href="\', escape=False)\nresponse.write(URL(request.application,\'static\',\'css/style.css?v=1\'))\nresponse.write(\'">\\n  <link rel="stylesheet" href="\', escape=False)\nresponse.write(URL(request.application,\'static\',\'css/override.css?v=1\'))\nresponse.write(\'">\\n  <!-- ******************************************************************************************************* -->\\t\\n \\n  <!-- All JavaScript at the bottom, except for Modernizr which enables HTML5 elements & feature detects -->\\n  <script src="\', escape=False)\nresponse.write(URL(request.application,\'static\',\'js/modernizr-1.5.min.js\'))\nresponse.write(\'"></script>\\n\\n</head>\\n\\n<!-- paulirish.com/2008/conditional-stylesheets-vs-css-hacks-answer-neither/ -->\\n\\n<!--[if lt IE 7 ]> <body class="ie6"> <![endif]-->\\n<!--[if IE 7 ]>    <body class="ie7"> <![endif]-->\\n<!--[if IE 8 ]>    <body class="ie8"> <![endif]-->\\n<!--[if IE 9 ]>    <body class="ie9"> <![endif]-->\\n<!--[if (gt IE 9)|!(IE)]><!--> <body> <!--<![endif]-->\\n  <div id="container">\\n\\t<header id="site_head">\\n\\t\\t<div class="header_cont"> <!-- 960px header-->\\n\\t\\t\\t<!-- LOGO of the company-->\\n\\t\\t\\t<div id="logo">\\n\\t\\t\\t<h1 id="labname"> <a href="\', escape=False)\nresponse.write(URL(request.application,\'default\',\'index\'))\nresponse.write(\'">COMPUTER SYSTEMS ORGANISATION LAB</a> </h1>\\n\\n\\t\\t\\t</div>\\n\\n\\t\\t\\t<div id="help-menu">\\n\\t\\t\\t<h1> <a href="\', escape=False)\nresponse.write(URL(request.application,\'static\',\'help/index.html\'))\nresponse.write(\'"> Help </a> </h1>\\n\\t\\t\\t</div>\\n\\t\\t</div>\\n\\t\\t\\t<!-- Menu -->\\n\\n\\t</header>\\n\\n\\t<article id="main_content"> <!--960px limit -->\\n\\t\\t<header id="main-title">\\n\\t\\t\\t<h1>Locality Analysis of Programs using Cachegrind Tool</h1>\\n\\t\\t</header>\\n\\t\\t<nav id="head-nav">\\n\\t\\t<ul>\\n\\t\\t\\t\', escape=False)\nif auth.user:\n    response.write(\'\\n\\t\\t\\t<li><a href="\', escape=False)\n    response.write(URL(request.application,\'default\',\'index\'))\n    response.write(\'">Simulation</a></li>\\n\\t\\t\\t<li><a href="\', escape=False)\n    response.write(URL(request.application,\'default\',\'user/logout\'))\n    response.write(\'">LogOut</a></li>\\n\\t\\t\\t\', escape=False)\nelse:\n    response.write(\'\\n\\t\\t\\t<li><a href="\', escape=False)\n    response.write(URL(request.application,\'default\',\'user/register\'))\n    response.write(\'">Register</a></li>\\n\\t\\t\\t<li><a href="\', escape=False)\n    response.write(URL(request.application,\'default\',\'user/login\'))\n    response.write(\'">LogIn</a></li>\\n\\t\\t\\t\', escape=False)\n    pass\nresponse.write(\'\\n\\t\\t</ul>\\n\\t\\t</nav>\\n\\t\\t<section id="hidden-content">\\n\\t\\t</section>\\t\\t\\n\\t\\t<section id="left-content">\\n\\t\\t\\t\\n\', escape=False)\nresponse.write(\'\\n<html>\\n\\t<head>\\n\\t\\t<script type="text/javascript" src="\', escape=False)\nresponse.write(URL(request.application,\'static\',\'js/jquery-1.4.2.min.js\'))\nresponse.write(\'"></script>\\n\\t        <script language="javascript" type="text/javascript" src="\', escape=False)\nresponse.write(URL(request.application,\'static\',\'jquery.jqplot.min.js\'))\nresponse.write(\'"></script>\\n\\t        <link rel="stylesheet" type="text/css" href="\', escape=False)\nresponse.write(URL(request.application,\'static\',\'jquery.jqplot.css\'))\nresponse.write(\'" />\\n\\t\\t<script type="text/javascript">\\n\\t\\t\\t\\t$(document).ready(function(){\\n\\t\\t\\t\\t\\t\\tvar data1 = [];\\n\\t\\t\\t\\t\\t\\t\', escape=False)\nj=0\nresponse.write(\'\\n\\t\\t\\t\\t\\tfor(var i=0;i<7;i+=1){\\n\\t\\t\\t\\t\\tdata1[i]=(\', escape=False)\nresponse.write(y1[j])\nresponse.write(\');\\n\\t\\t\\t\\t\\t\', escape=False)\nj+=1\nresponse.write(\'\\n\\t\\t\\t\\t\\t}\\n\\t\\t\\t\\t\\tfor (var i=0; i<7; i+=1){ \\n\\t\\t\\t\\t\\tdata1[i]=[i+2,data1[i]];\\n\\t\\t\\t\\t\\t\\t}\\n\\n\\t\\t\\t\\t\\tplot2 = $.jqplot(\\\'graph1\\\', [data1]);\\n\\t\\t\\t  });\\n\\t\\t  </script>\\n\\n\\t</head>\\n\\n\\t<body>\\n\\t\\t<div id ="graph1" style="height:400 px;width:300px"> </div>\\n\\t\\t\', escape=False)\nresponse.write(y1)\nresponse.write(\'\\n\\t</body>\\n</html>\\n\', escape=False)\nresponse.write(\' \\n\\t\\t</section>\\n\\t\\t\\t\\t\\t\\n\\t\\t<aside>\\n\\t\\t\\t\\n\\t\\t</aside>\\n\\n\\t\\t<footer class="bottom">\\n\\t\\t</footer>\\n\\t</div>\\n\\n  </div> <!--! end of #container -->\\n\\n\\n  <!-- Javascript at the bottom for fast page loading -->\\n\\n  <!-- Grab Google CDN\\\'s jQuery. fall back to local if necessary -->\\n  <!--<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.2/jquery.min.js"></script>-->\\n  <script>!window.jQuery && document.write(\\\'<script src="../js/jquery-1.4.2.min.js"><\\\\/script>\\\')</script>\\n  \\n  <script src="../js/MathJax/MathJax.js"> </script>\\n\\n  <!-- ********************************** ADD/OVERRIDE JAVASCRIPT FILES HERE ********************************* -->\\n  \\n\\n  <!-- ******************************************************************************************************* -->\\n\\n  <script src="../js/plugins.js?v=1"></script>\\n  <script src="../js/script.js?v=1"></script>\\n\\n  <!--[if lt IE 7 ]>\\n    <script src="js/dd_belatedpng.js?v=1"></script>\\n  <![endif]-->\\n\\n\\n  <!-- yui profiler and profileviewer - remove for production -->\\n  <script src="../js/profiling/yahoo-profiling.min.js?v=1"></script>\\n  <script src="../js/profiling/config.js?v=1"></script>\\n  <!-- end profiling code -->\\n\\n\\n  <!-- asynchronous google analytics: mathiasbynens.be/notes/async-analytics-snippet \\n       change the UA-XXXXX-X to be your site\\\'s ID -->\\n  <!--<script>\\n   var _gaq = [[\\\'_setAccount\\\', \\\'UA-XXXXX-X\\\'], [\\\'_trackPageview\\\']];\\n   (function(d, t) {\\n    var g = d.createElement(t),\\n        s = d.getElementsByTagName(t)[0];\\n    g.async = true;\\n    g.src = \\\'//www.google-analytics.com/ga.js\\\';\\n    s.parentNode.insertBefore(g, s);\\n   })(document, \\\'script\\\');\\n  </script>-->\\n</body>\\n</html>\\n\', escape=False)'
+p6
+sS'snapshot'
+p7
+(dp8
+S'exception'
+p9
+(dp10
+S'__hash__'
+p11
+S"<method-wrapper '__hash__' of exceptions.IndexError object>"
+p12
+sS'__setattr__'
+p13
+S"<method-wrapper '__setattr__' of exceptions.IndexError object>"
+p14
+sS'__reduce_ex__'
+p15
+S'<built-in method __reduce_ex__ of exceptions.IndexError object>'
+p16
+sS'__getslice__'
+p17
+S"<method-wrapper '__getslice__' of exceptions.IndexError object>"
+p18
+sS'__getitem__'
+p19
+S"<method-wrapper '__getitem__' of exceptions.IndexError object>"
+p20
+sS'__setstate__'
+p21
+S'<built-in method __setstate__ of exceptions.IndexError object>'
+p22
+sS'__reduce__'
+p23
+S'<built-in method __reduce__ of exceptions.IndexError object>'
+p24
+sS'__str__'
+p25
+S"<method-wrapper '__str__' of exceptions.IndexError object>"
+p26
+sS'__format__'
+p27
+S'<built-in method __format__ of exceptions.IndexError object>'
+p28
+sS'__getattribute__'
+p29
+S"<method-wrapper '__getattribute__' of exceptions.IndexError object>"
+p30
+sS'__class__'
+p31
+S"<type 'exceptions.IndexError'>"
+p32
+sS'__unicode__'
+p33
+S'<built-in method __unicode__ of exceptions.IndexError object>'
+p34
+sS'__delattr__'
+p35
+S"<method-wrapper '__delattr__' of exceptions.IndexError object>"
+p36
+sS'__subclasshook__'
+p37
+S'<built-in method __subclasshook__ of type object>'
+p38
+sS'__repr__'
+p39
+S"<method-wrapper '__repr__' of exceptions.IndexError object>"
+p40
+sS'args'
+p41
+S"('list index out of range',)"
+p42
+sS'__dict__'
+p43
+S'{}'
+p44
+sS'__sizeof__'
+p45
+S'<built-in method __sizeof__ of exceptions.IndexError object>'
+p46
+sS'__doc__'
+p47
+S"'Sequence index out of range.'"
+p48
+sS'__init__'
+p49
+S"<method-wrapper '__init__' of exceptions.IndexError object>"
+p50
+sS'__new__'
+p51
+S'<built-in method __new__ of type object>'
+p52
+ssS'evalue'
+p53
+S'list index out of range'
+p54
+sS'request'
+p55
+(dp56
+S'function'
+p57
+S"'show_graphs'"
+p58
+sS'body'
+p59
+S'<cStringIO.StringO object>'
+p60
+sS'wsgi'
+p61
+S"<Storage {'start_response': <function <lambda> a...ING': 'gzip,deflate', 'HTTP_KEEP_ALIVE': '115'}}>"
+p62
+sS'extension'
+p63
+S"'html'"
+p64
+sS'vars'
+p65
+S'<Storage {}>'
+p66
+sS'cid'
+p67
+S'None'
+p68
+sS'url'
+p69
+S'<gluon.html.XML object>'
+p70
+sg41
+S'[]'
+p71
+sS'controller'
+p72
+S"'default'"
+p73
+sS'cookies'
+p74
+S"<SimpleCookie: __utma='96992031.1671719183.12879...'127-0-0-1-7c81a3a8-064b-4080-b26a-e68a38b3f52f'>"
+p75
+sS'application'
+p76
+S"'vlab'"
+p77
+sS'ajax'
+p78
+S'False'
+p79
+sS'client'
+p80
+S"'127.0.0.1'"
+p81
+sS'env'
+p82
+S"<Storage {'http_user_agent': 'Mozilla/5.0 (X11; ...False, 'path_info': '/vlab/default/show_graphs'}>"
+p83
+sS'raw_args'
+p84
+S'None'
+p85
+sS'get_vars'
+p86
+S'<Storage {}>'
+p87
+sS'folder'
+p88
+S"'/home/shrenik/web2py/applications/vlab/'"
+p89
+sS'now'
+p90
+S'datetime.datetime(2010, 10, 27, 0, 42, 16, 317870)'
+p91
+sS'post_vars'
+p92
+S'<Storage {}>'
+p93
+ssS'frames'
+p94
+(lp95
+(dp96
+S'file'
+p97
+S'/home/shrenik/web2py/gluon/restricted.py'
+p98
+sS'dump'
+p99
+(dp100
+S'environment'
+p101
+S"{'A': <class 'gluon.html.A'>, 'Auth': <class 'gluon.tools.Auth'>, 'B': <class 'gluon.html.B'>, 'BEAUTIFY': <class 'gluon.html.BEAUTIFY'>, 'BODY': <class 'gluon.html.BODY'>, 'BR': <class 'gluon.html.BR'>, 'CENTER': <class 'gluon.html.CENTER'>, 'CLEANUP': <class 'gluon.validators.CLEANUP'>, 'CODE': <class 'gluon.html.CODE'>, 'CRYPT': <class 'gluon.validators.CRYPT'>, ...}"
+p102
+sS'ccode'
+p103
+S'<code object <module> at 0x94efba8, file "/home/...ons/vlab/views/default/show_graphs.html", line 1>'
+p104
+ssS'lnum'
+p105
+I188
+sS'lines'
+p106
+(dp107
+I192
+S'        # XXX Show exception in Wing IDE if running in debugger'
+p108
+sI183
+S'        if type(code) == types.CodeType:'
+p109
+sI184
+S'            ccode = code'
+p110
+sI185
+S'        else:'
+p111
+sI186
+S'            ccode = compile2(code,layer)'
+p112
+sI187
+S''
+sI188
+S'        exec ccode in environment'
+p113
+sI189
+S'    except HTTP:'
+p114
+sI190
+S'        raise'
+p115
+sI191
+S'    except Exception:'
+p116
+ssS'call'
+p117
+S'(code=\'response.write(\\\'<!doctype html>\\\\n<html lang="en"... </script>-->\\\\n</body>\\\\n</html>\\\\n\\\', escape=False)\', environment={\'A\': <class \'gluon.html.A\'>, \'Auth\': <class \'gluon.tools.Auth\'>, \'B\': <class \'gluon.html.B\'>, \'BEAUTIFY\': <class \'gluon.html.BEAUTIFY\'>, \'BODY\': <class \'gluon.html.BODY\'>, \'BR\': <class \'gluon.html.BR\'>, \'CENTER\': <class \'gluon.html.CENTER\'>, \'CLEANUP\': <class \'gluon.validators.CLEANUP\'>, \'CODE\': <class \'gluon.html.CODE\'>, \'CRYPT\': <class \'gluon.validators.CRYPT\'>, ...}, layer=\'/home/shrenik/web2py/applications/vlab/views/default/show_graphs.html\')'
+p118
+sS'func'
+p119
+S'restricted'
+p120
+sa(dp121
+g97
+S'/home/shrenik/web2py/applications/vlab/views/default/show_graphs.html'
+p122
+sg99
+(dp123
+sg105
+I43
+sg106
+(dp124
+I34
+S'response.write(\'\\n<html>\\n\\t<head>\\n\\t\\t<script type="text/javascript" src="\', escape=False)'
+p125
+sI35
+S"response.write(URL(request.application,'static','js/jquery-1.4.2.min.js'))"
+p126
+sI36
+S'response.write(\'"></script>\\n\\t        <script language="javascript" type="text/javascript" src="\', escape=False)'
+p127
+sI37
+S"response.write(URL(request.application,'static','jquery.jqplot.min.js'))"
+p128
+sI38
+S'response.write(\'"></script>\\n\\t        <link rel="stylesheet" type="text/css" href="\', escape=False)'
+p129
+sI39
+S"response.write(URL(request.application,'static','jquery.jqplot.css'))"
+p130
+sI40
+S'response.write(\'" />\\n\\t\\t<script type="text/javascript">\\n\\t\\t\\t\\t$(document).ready(function(){\\n\\t\\t\\t\\t\\t\\tvar data1 = [];\\n\\t\\t\\t\\t\\t\\t\', escape=False)'
+p131
+sI41
+S'j=0'
+p132
+sI42
+S"response.write('\\n\\t\\t\\t\\t\\tfor(var i=0;i<7;i+=1){\\n\\t\\t\\t\\t\\tdata1[i]=(', escape=False)"
+p133
+sI43
+S'response.write(y1[j])'
+p134
+sI44
+S"response.write(');\\n\\t\\t\\t\\t\\t', escape=False)"
+p135
+sI45
+S'j+=1'
+p136
+sI46
+S'response.write(\'\\n\\t\\t\\t\\t\\t}\\n\\t\\t\\t\\t\\tfor (var i=0; i<7; i+=1){ \\n\\t\\t\\t\\t\\tdata1[i]=[i+2,data1[i]];\\n\\t\\t\\t\\t\\t\\t}\\n\\n\\t\\t\\t\\t\\tplot2 = $.jqplot(\\\'graph1\\\', [data1]);\\n\\t\\t\\t  });\\n\\t\\t  </script>\\n\\n\\t</head>\\n\\n\\t<body>\\n\\t\\t<div id ="graph1" style="height:400 px;width:300px"> </div>\\n\\t\\t\', escape=False)'
+p137
+sI47
+S'response.write(y1)'
+p138
+sI48
+S"response.write('\\n\\t</body>\\n</html>\\n', escape=False)"
+p139
+sI49
+S'response.write(\' \\n\\t\\t</section>\\n\\t\\t\\t\\t\\t\\n\\t\\t<aside>\\n\\t\\t\\t\\n\\t\\t</aside>\\n\\n\\t\\t<footer class="bottom">\\n\\t\\t</footer>\\n\\t</div>\\n\\n  </div> <!--! end of #container -->\\n\\n\\n  <!-- Javascript at the bottom for fast page loading -->\\n\\n  <!-- Grab Google CDN\\\'s jQuery. fall back to local if necessary -->\\n  <!--<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.2/jquery.min.js"></script>-->\\n  <script>!window.jQuery && document.write(\\\'<script src="../js/jquery-1.4.2.min.js"><\\\\/script>\\\')</script>\\n  \\n  <script src="../js/MathJax/MathJax.js"> </script>\\n\\n  <!-- ********************************** ADD/OVERRIDE JAVASCRIPT FILES HERE ********************************* -->\\n  \\n\\n  <!-- ******************************************************************************************************* -->\\n\\n  <script src="../js/plugins.js?v=1"></script>\\n  <script src="../js/script.js?v=1"></script>\\n\\n  <!--[if lt IE 7 ]>\\n    <script src="js/dd_belatedpng.js?v=1"></script>\\n  <![endif]-->\\n\\n\\n  <!-- yui profiler and profileviewer - remove for production -->\\n  <script src="../js/profiling/yahoo-profiling.min.js?v=1"></script>\\n  <script src="../js/profiling/config.js?v=1"></script>\\n  <!-- end profiling code -->\\n\\n\\n  <!-- asynchronous google analytics: mathiasbynens.be/notes/async-analytics-snippet \\n       change the UA-XXXXX-X to be your site\\\'s ID -->\\n  <!--<script>\\n   var _gaq = [[\\\'_setAccount\\\', \\\'UA-XXXXX-X\\\'], [\\\'_trackPageview\\\']];\\n   (function(d, t) {\\n    var g = d.createElement(t),\\n        s = d.getElementsByTagName(t)[0];\\n    g.async = true;\\n    g.src = \\\'//www.google-analytics.com/ga.js\\\';\\n    s.parentNode.insertBefore(g, s);\\n   })(document, \\\'script\\\');\\n  </script>-->\\n</body>\\n</html>\\n\', escape=False)'
+p140
+ssg117
+S'()'
+p141
+sg119
+S'<module>'
+p142
+sasS'pyver'
+p143
+S'Python 2.6.6: /usr/bin/python'
+p144
+sS'session'
+p145
+(dp146
+S'flash'
+p147
+S'None'
+p148
+sS'auth'
+p149
+S"<Storage {'expiration': 3600, 'user': <Storage {..., 10, 27, 0, 42, 16, 317870), 'remember': False}>"
+p150
+sS'compile'
+p151
+S'True'
+p152
+sS'i1_s'
+p153
+S'2048'
+p154
+sS'_formkey[programs_create]'
+p155
+S"'6dbf7c81-151f-4aaf-a13e-cd43e7cd9b36'"
+p156
+sS'input'
+p157
+S"'/home/shrenik/web2py/applications/vlab/uploads/programs.input_file.9a04fc8700554ee4.74657374.txt'"
+p158
+sS'_formkey[login]'
+p159
+S"'f2d45f6a-61fc-44bd-9639-0a4a5bc8f4d7'"
+p160
+ssS'etype'
+p161
+S"<type 'exceptions.IndexError'>"
+p162
+sS'date'
+p163
+S'Wed Oct 27 00:42:18 2010'
+p164
+sS'response'
+p165
+(dp166
+S'status'
+p167
+S'200'
+p168
+sg59
+S'<cStringIO.StringO object>'
+p169
+sg74
+S"<SimpleCookie: session_id_vlab='127-0-0-1-7c81a3a8-064b-4080-b26a-e68a38b3f52f'>"
+p170
+sS'_vars'
+p171
+S"{'y1': []}"
+p172
+sS'title'
+p173
+S"'vlab'"
+p174
+sS'session_file'
+p175
+S"<open file '/home/shrenik/web2py/applications/vl...c81a3a8-064b-4080-b26a-e68a38b3f52f', mode 'rb+'>"
+p176
+sS'flash'
+p177
+S"''"
+p178
+sS'_custom_rollback'
+p179
+S'None'
+p180
+sS'session_id'
+p181
+S"'127-0-0-1-7c81a3a8-064b-4080-b26a-e68a38b3f52f'"
+p182
+sS'headers'
+p183
+S"<Storage {'Expires': 'Tue, 26 Oct 2010 19:12:16 ...he, must-revalidate, post-check=0, pre-check=0'}>"
+p184
+sS'meta'
+p185
+S"<Storage {'keywords': 'bla bla bla', 'description': 'describe your app', 'author': 'you'}>"
+p186
+sS'session_filename'
+p187
+S"'/home/shrenik/web2py/applications/vlab/sessions/127-0-0-1-7c81a3a8-064b-4080-b26a-e68a38b3f52f'"
+p188
+sS'postprocessing'
+p189
+S'[]'
+p190
+sS'menu'
+p191
+S"[(<lazyT 'Index'>, False, <gluon.html.XML object>, []), ('Change Layout', False, <gluon.html.XML object>)]"
+p192
+sS'_view_environment'
+p193
+S"{'A': <class 'gluon.html.A'>, 'Auth': <class 'gluon.tools.Auth'>, 'B': <class 'gluon.html.B'>, 'BEAUTIFY': <class 'gluon.html.BEAUTIFY'>, 'BODY': <class 'gluon.html.BODY'>, 'BR': <class 'gluon.html.BR'>, 'CENTER': <class 'gluon.html.CENTER'>, 'CLEANUP': <class 'gluon.validators.CLEANUP'>, 'CODE': <class 'gluon.html.CODE'>, 'CRYPT': <class 'gluon.validators.CRYPT'>, ...}"
+p194
+sS'subtitle'
+p195
+S"<lazyT 'customize me!'>"
+p196
+sS'session_id_name'
+p197
+S"'session_id_vlab'"
+p198
+sS'_custom_commit'
+p199
+S'None'
+p200
+sS'_caller'
+p201
+S'<function <lambda>>'
+p202
+sS'files'
+p203
+S'[]'
+p204
+sS'view'
+p205
+S"'default/show_graphs.html'"
+p206
+ssS'locals'
+p207
+(dp208
+S'Service'
+p209
+S'<class gluon.tools.Service>'
+p210
+sS'OBJECT'
+p211
+S"<class 'gluon.html.OBJECT'>"
+p212
+sS'SQLDB'
+p213
+S"<class 'gluon.sql.SQLDB'>"
+p214
+sg145
+S"<Storage {'compile': True, 'i1_s': 2048, '_formk...10, 27, 0, 42, 16, 317870), 'remember': False}>}>"
+p215
+sS'LINK'
+p216
+S"<class 'gluon.html.LINK'>"
+p217
+sS'BR'
+p218
+S"<class 'gluon.html.BR'>"
+p219
+sS'local_import'
+p220
+S'<function <lambda>>'
+p221
+sS'y1'
+p222
+S'[]'
+p223
+sS'PRE'
+p224
+S"<class 'gluon.html.PRE'>"
+p225
+sS'IS_INT_IN_RANGE'
+p226
+S"<class 'gluon.validators.IS_INT_IN_RANGE'>"
+p227
+sS'IS_LOWER'
+p228
+S"<class 'gluon.validators.IS_LOWER'>"
+p229
+sS'IS_STRONG'
+p230
+S"<class 'gluon.validators.IS_STRONG'>"
+p231
+sS'Recaptcha'
+p232
+S"<class 'gluon.tools.Recaptcha'>"
+p233
+sS'cache'
+p234
+S'<gluon.cache.Cache object>'
+p235
+sS'IS_IN_DB'
+p236
+S"<class 'gluon.validators.IS_IN_DB'>"
+p237
+sS'TAG'
+p238
+S'<gluon.html.__TAG__ object>'
+p239
+sS'SQLField'
+p240
+S"<class 'gluon.sql.Field'>"
+p241
+sS'mail'
+p242
+S'<gluon.tools.Mail object>'
+p243
+sS'BODY'
+p244
+S"<class 'gluon.html.BODY'>"
+p245
+sS'IS_DATE_IN_RANGE'
+p246
+S"<class 'gluon.validators.IS_DATE_IN_RANGE'>"
+p247
+sS'TH'
+p248
+S"<class 'gluon.html.TH'>"
+p249
+sS'URL'
+p250
+S'<function _URL>'
+p251
+sS'db'
+p252
+S"<SQLDB {'_connection': <sqlite3.Connection objec...0x943682c>}>, '_migrate': True, '_pool_size': 0}>"
+p253
+sS'auth'
+p254
+S'<gluon.tools.Auth object>'
+p255
+sS'P'
+S"<class 'gluon.html.P'>"
+p256
+sS'TFOOT'
+p257
+S"<class 'gluon.html.TFOOT'>"
+p258
+sS'XHTML'
+p259
+S"<class 'gluon.html.XHTML'>"
+p260
+sS'ON'
+p261
+g152
+sS'OL'
+p262
+S"<class 'gluon.html.OL'>"
+p263
+sS'TEXTAREA'
+p264
+S"<class 'gluon.html.TEXTAREA'>"
+p265
+sS'MENU'
+p266
+S"<class 'gluon.html.MENU'>"
+p267
+sS'LOAD'
+p268
+S'<gluon.compileapp.LoadFactory instance>'
+p269
+sS'CODE'
+p270
+S"<class 'gluon.html.CODE'>"
+p271
+sS'HTTP'
+p272
+S"<class 'gluon.http.HTTP'>"
+p273
+sS'HR'
+p274
+S"<class 'gluon.html.HR'>"
+p275
+sS'IS_DATETIME'
+p276
+S"<class 'gluon.validators.IS_DATETIME'>"
+p277
+sS'HEAD'
+p278
+S"<class 'gluon.html.HEAD'>"
+p279
+sS'LABEL'
+p280
+S"<class 'gluon.html.LABEL'>"
+p281
+sS'OPTGROUP'
+p282
+S"<class 'gluon.html.OPTGROUP'>"
+p283
+sS'CLEANUP'
+p284
+S"<class 'gluon.validators.CLEANUP'>"
+p285
+sS'plugins'
+p286
+S'<gluon.tools.PluginManager object>'
+p287
+sS'SELECT'
+p288
+S"<class 'gluon.html.SELECT'>"
+p289
+sS'CENTER'
+p290
+S"<class 'gluon.html.CENTER'>"
+p291
+sS'prettydate'
+p292
+S'<function prettydate>'
+p293
+sS'Crud'
+p294
+S"<class 'gluon.tools.Crud'>"
+p295
+sS'Auth'
+p296
+S"<class 'gluon.tools.Auth'>"
+p297
+sS'__builtins__'
+p298
+S"{'ArithmeticError': <type 'exceptions.ArithmeticError'>, 'AssertionError': <type 'exceptions.AssertionError'>, 'AttributeError': <type 'exceptions.AttributeError'>, 'BaseException': <type 'exceptions.BaseException'>, 'BufferError': <type 'exceptions.BufferError'>, 'BytesWarning': <type 'exceptions.BytesWarning'>, 'DeprecationWarning': <type 'exceptions.DeprecationWarning'>, 'EOFError': <type 'exceptions.EOFError'>, 'Ellipsis': Ellipsis, 'EnvironmentError': <type 'exceptions.EnvironmentError'>, ...}"
+p299
+sS'IS_LIST_OF'
+p300
+S"<class 'gluon.validators.IS_LIST_OF'>"
+p301
+sS'SQLFORM'
+p302
+S"<class 'gluon.sqlhtml.SQLFORM'>"
+p303
+sS'EM'
+p304
+S"<class 'gluon.html.EM'>"
+p305
+sS'redirect'
+p306
+S'<function redirect>'
+p307
+sS'FIELDSET'
+p308
+S"<class 'gluon.html.FIELDSET'>"
+p309
+sS'IS_EQUAL_TO'
+p310
+S"<class 'gluon.validators.IS_EQUAL_TO'>"
+p311
+sS'embed64'
+p312
+S'<function embed64>'
+p313
+sS'INPUT'
+p314
+S"<class 'gluon.html.INPUT'>"
+p315
+sS'EMBED'
+p316
+S"<class 'gluon.html.EMBED'>"
+p317
+sS'FORM'
+p318
+S"<class 'gluon.html.FORM'>"
+p319
+sS'H2'
+p320
+S"<class 'gluon.html.H2'>"
+p321
+sS'H3'
+p322
+S"<class 'gluon.html.H3'>"
+p323
+sS'H1'
+p324
+S"<class 'gluon.html.H1'>"
+p325
+sS'H6'
+p326
+S"<class 'gluon.html.H6'>"
+p327
+sS'H4'
+p328
+S"<class 'gluon.html.H4'>"
+p329
+sS'H5'
+p330
+S"<class 'gluon.html.H5'>"
+p331
+sS'UL'
+p332
+S"<class 'gluon.html.UL'>"
+p333
+sS'IS_UPPER'
+p334
+S"<class 'gluon.validators.IS_UPPER'>"
+p335
+sS'xmlescape'
+p336
+S'<function xmlescape>'
+p337
+sS'IS_TIME'
+p338
+S"<class 'gluon.validators.IS_TIME'>"
+p339
+sS'OPTION'
+p340
+S"<class 'gluon.html.OPTION'>"
+p341
+sS'TITLE'
+p342
+S"<class 'gluon.html.TITLE'>"
+p343
+sS'CRYPT'
+p344
+S"<class 'gluon.validators.CRYPT'>"
+p345
+sS'IS_EMPTY_OR'
+p346
+S"<class 'gluon.validators.IS_EMPTY_OR'>"
+p347
+sS'MARKMIN'
+p348
+S"<class 'gluon.html.MARKMIN'>"
+p349
+sS'service'
+p350
+S'<gluon.tools.Service instance>'
+p351
+sS'SCRIPT'
+p352
+S"<class 'gluon.html.SCRIPT'>"
+p353
+sS'geocode'
+p354
+S'<function geocode>'
+p355
+sS'TABLE'
+p356
+S"<class 'gluon.html.TABLE'>"
+p357
+sS'IS_IPV4'
+p358
+S"<class 'gluon.validators.IS_IPV4'>"
+p359
+sS'IS_LENGTH'
+p360
+S"<class 'gluon.validators.IS_LENGTH'>"
+p361
+sS'XML'
+p362
+S"<class 'gluon.html.XML'>"
+p363
+sS'B'
+S"<class 'gluon.html.B'>"
+p364
+sS'IMG'
+p365
+S"<class 'gluon.html.IMG'>"
+p366
+sS'SQLTABLE'
+p367
+S"<class 'gluon.sqlhtml.SQLTABLE'>"
+p368
+sS'IS_MATCH'
+p369
+S"<class 'gluon.validators.IS_MATCH'>"
+p370
+sS'IS_ALPHANUMERIC'
+p371
+S"<class 'gluon.validators.IS_ALPHANUMERIC'>"
+p372
+sS'SPAN'
+p373
+S"<class 'gluon.html.SPAN'>"
+p374
+sS'j'
+S'0'
+sS'IS_SLUG'
+p375
+S"<class 'gluon.validators.IS_SLUG'>"
+p376
+sS'BEAUTIFY'
+p377
+S"<class 'gluon.html.BEAUTIFY'>"
+p378
+sS'META'
+p379
+S"<class 'gluon.html.META'>"
+p380
+sS'fetch'
+p381
+S'<function fetch>'
+p382
+sS'IS_DATE'
+p383
+S"<class 'gluon.validators.IS_DATE'>"
+p384
+sS'IS_EMAIL'
+p385
+S"<class 'gluon.validators.IS_EMAIL'>"
+p386
+sS'IS_NOT_EMPTY'
+p387
+S"<class 'gluon.validators.IS_NOT_EMPTY'>"
+p388
+sg55
+S"<Storage {'function': 'show_graphs', 'body': <cS..., 0, 42, 16, 317870), 'post_vars': <Storage {}>}>"
+p389
+sS'TBODY'
+p390
+S"<class 'gluon.html.TBODY'>"
+p391
+sS'Field'
+p392
+S"<class 'gluon.sql.Field'>"
+p393
+sS'Mail'
+p394
+S"<class 'gluon.tools.Mail'>"
+p395
+sS'DIV'
+p396
+S"<class 'gluon.html.DIV'>"
+p397
+sS'LEGEND'
+p398
+S"<class 'gluon.html.LEGEND'>"
+p399
+sS'DAL'
+p400
+S'<function DAL>'
+p401
+sS'TT'
+p402
+S"<class 'gluon.html.TT'>"
+p403
+sS'TR'
+p404
+S"<class 'gluon.html.TR'>"
+p405
+sS'LI'
+p406
+S"<class 'gluon.html.LI'>"
+p407
+sS'IFRAME'
+p408
+S"<class 'gluon.html.IFRAME'>"
+p409
+sS'TD'
+p410
+S"<class 'gluon.html.TD'>"
+p411
+sS'PluginManager'
+p412
+S"<class 'gluon.tools.PluginManager'>"
+p413
+sS'IS_URL'
+p414
+S"<class 'gluon.validators.IS_URL'>"
+p415
+sS'A'
+S"<class 'gluon.html.A'>"
+p416
+sS'STYLE'
+p417
+S"<class 'gluon.html.STYLE'>"
+p418
+sS'IS_DATETIME_IN_RANGE'
+p419
+S"<class 'gluon.validators.IS_DATETIME_IN_RANGE'>"
+p420
+sS'HTML'
+p421
+S"<class 'gluon.html.HTML'>"
+p422
+sS'IS_IMAGE'
+p423
+S"<class 'gluon.validators.IS_IMAGE'>"
+p424
+sS'I'
+S"<class 'gluon.html.I'>"
+p425
+sS'crud'
+p426
+S'<gluon.tools.Crud object>'
+p427
+sS'IS_NOT_IN_DB'
+p428
+S"<class 'gluon.validators.IS_NOT_IN_DB'>"
+p429
+sg165
+S"<Storage {'status': 200, 'body': <cStringIO.Stri...t': None, 'files': [], '_custom_rollback': None}>"
+p430
+sS'THEAD'
+p431
+S"<class 'gluon.html.THEAD'>"
+p432
+sS'IS_NULL_OR'
+p433
+S"<class 'gluon.validators.IS_EMPTY_OR'>"
+p434
+sS'IS_FLOAT_IN_RANGE'
+p435
+S"<class 'gluon.validators.IS_FLOAT_IN_RANGE'>"
+p436
+sS'IS_EXPR'
+p437
+S"<class 'gluon.validators.IS_EXPR'>"
+p438
+sS'T'
+S'<gluon.languages.translator object>'
+p439
+sS'IS_IN_SET'
+p440
+S"<class 'gluon.validators.IS_IN_SET'>"
+p441
+sS'IS_UPLOAD_FILENAME'
+p442
+S"<class 'gluon.validators.IS_UPLOAD_FILENAME'>"
+p443
+sS'IS_DECIMAL_IN_RANGE'
+p444
+S"<class 'gluon.validators.IS_DECIMAL_IN_RANGE'>"
+p445
+sssS'traceback'
+p446
+S'Traceback (most recent call last):\n  File "/home/shrenik/web2py/gluon/restricted.py", line 188, in restricted\n    exec ccode in environment\n  File "/home/shrenik/web2py/applications/vlab/views/default/show_graphs.html", line 43, in <module>\nIndexError: list index out of range\n'
+p447
+s.

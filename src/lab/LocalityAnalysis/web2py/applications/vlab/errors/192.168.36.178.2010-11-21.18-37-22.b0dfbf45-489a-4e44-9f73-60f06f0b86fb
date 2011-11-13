@@ -1,0 +1,516 @@
+(dp1
+S'output'
+p2
+S''
+sS'layer'
+p3
+S'/home/cvest.cso/public_html/LocalityAnalysis/web2py/applications/vlab/controllers/default.py'
+p4
+sS'code'
+p5
+S'\n#########################################################################\n## This is a samples controller\n## - index is the default action of any application\n## - user is required for authentication and authorization\n## - download is for downloading files uploaded in the db (does streaming)\n## - call exposes all registered services (none by default)\n#########################################################################  \ndef register():\n\treturn dict(form=auth.register(next=URL(request.application,\'default\',\'create_count\')))\n\ndef create_count():\n\tuser_id=auth.user.id\n\tdb.p_count.insert(user_id=user_id,count=0)\n\tredirect(URL(request.application,\'default\',\'index\'))\n\n@auth.requires_login()\ndef index():\n    import os\n    import re\n    import commands\n    """\n    example action using the internationalization operator T and flash\n    rendered by views/default/index.html or views/generic.html\n    """\n    last=request.vars\n    if last:\n\t db.programs.i1_size.default=last.i1_size\n   \t db.programs.i1_associativity.default=last.i1_associativity\n   \t db.programs.i1_line_size.default=last.i1_line_size\n\t db.programs.d1_size.default=last.d1_size\n   \t db.programs.d1_associativity.default=last.d1_associativity\n   \t db.programs.d1_line_size.default=last.d1_line_size\n\t db.programs.l2_size.default=last.l2_size\n   \t db.programs.l2_associativity.default=last.l2_associativity\n   \t db.programs.l2_line_size.default=last.l2_line_size\n\t session.l2_line_size=last.l2_line_size\n\t #session.n=last.n\n\t #session.B=last.B\n\t session.i1_associativity=last.i1_associativity\n\t session.i1_line_size=last.i1_line_size\n\t session.d1_associativity=last.d1_associativity\n\t session.d1_line_size=last.d1_line_size\n\t session.l2_associativity=last.l2_associativity\n    \n    else:\n   \t db.programs.i1_size.default=2\n   \t db.programs.i1_associativity.default=2\n   \t db.programs.i1_line_size.default=64\n   \t db.programs.d1_size.default=2\n   \t db.programs.d1_associativity.default=2\n   \t db.programs.d1_line_size.default=64\n   \t db.programs.l2_size.default=8\n   \t db.programs.l2_associativity.default=8\n   \t db.programs.l2_line_size.default=64\n    default_code=glob[\'code\']\n    db.programs.uploaded_by.default=auth.user.id\n    curr_count=db(db.p_count.user_id==auth.user.id).select()\n\n    pid=[]\n    values={}\n    flag=0\n    compile=True\n    list=[]\n    out="Test"\n    inp=None\n    out_mod=None\n    input_path=""; i1_s=0\n    form=SQLFORM(db.programs)\n    file_name=str(auth.user.id)+\'_\'+str(curr_count[0].count)+\'.c\'\n#    if request.vars.file!=None and len(request.vars.file)>0:\n #       request.vars.file.filename=file_name\n    if(form.accepts(request.vars,session)):\n\t session.i1_ass=form.vars.i1_associativity\n         flag=1\n\t path=os.getcwd()\n         path=path+\'/applications/vlab/uploads/\'#+form.vars.file\n         if len(form.vars.file)>0:\n       \t\t  inp=commands.getstatusoutput(\'cc \'+path+form.vars.file+\' -o\'+path+str(auth.user.id))\n\t\t  fp=open(path+form.vars.file,"r")\n\t\t  default_code=fp.read()\n\t\t  fp.close()\n\t else:\n\t\t  file_name=str(auth.user.id)+\'_\'+str(curr_count[0].count)+\'.c\'\n\t\t  db(db.programs.id==form.vars.id).update(file=file_name)\n\t\t  fp=open(path+file_name,"w")\n\t\t  fp.write(request.vars.code)\n\t\t  fp.close()\n\t\t  default_code=request.vars.code\n       \t\t  inp=commands.getstatusoutput(\'cc \'+path+file_name+\' -o\'+path+str(auth.user.id))\n\t if inp[0] != 0:\n\t\t compile=False\n\t i1_s=form.vars.i1_size * 1024; \n\t d1_s=form.vars.d1_size * 1024; \n\t l2_s=form.vars.l2_size * 1024; \n\t session.i1_s=i1_s\n\t session.d1_s=d1_s\n\t session.l2_s=l2_s\n\t values["compile"]=compile; values["input"]=""\n\t if compile==True:\n          command=\'valgrind --tool=cachegrind --I1=\'+str(i1_s)+\',\'+str(form.vars.i1_associativity)+\',\'+str(form.vars.i1_line_size)+\' \'+\'--D1=\'+str(d1_s)+\',\'+str(form.vars.d1_associativity)+\',\'+str(form.vars.d1_line_size)+\' \'+\'--L2=\'+str(l2_s)+\',\'+str(form.vars.l2_associativity)+\',\'+str(form.vars.l2_line_size)+ \' --cachegrind-out-file=\'+path+str(auth.user.id)+\'.\'+str(curr_count[0].count)+\'.%p \'+path+str(auth.user.id)\n          if len(form.vars.input_file)>0:\n\t     input_path=os.getcwd()\n             input_path=input_path+\'/applications/vlab/uploads/\'+form.vars.input_file; values["input"]=input_path\n             command=command+\'<\'+input_path\n          \n\t  start_time=time.time()\n\t  child=os.fork()\n\t#  if child==0:\n\t  \tout=commands.getstatusoutput(command)\n\t # else:\n\t \'\'\'\n\t\twhile(1):\n\t\t\tcurr_time=time.time()\n\t\t\tif curr_time-start_time>10:\n\t\t\t\tos.kill(child)\n\t\t\tif not os.path.exists(\'/proc/\'+str(child)):\n\t\t\t\tos.kill(child)\n\n\t  \'\'\'\n\t  f=open(\'te\',\'w\')\n\t  f.write(out[1])\n\t  f.close()\n\t  out_mod=re.split(\'\\n\',out[1])\n\t  regex="==(\\d*)==\\s*([^:]*):\\s*(\\d+.*)"\n\t  for i in out_mod:\n\t\t match=re.findall(regex,i)\n\t\t if len(match)>0:\n\t\t \tprocid=match[0][0]\n\t\t\tif procid not in pid:\n\t\t\t\t pid.append(procid)\n\t\t\tlist.append(match[0])\t\n    if len(list)>0:\n\tregex="([^\\(]+)\\(\\s*(\\S+)[^\\+]*\\+\\s*(\\S+).*" ; t1= re.findall(regex,list[5][2]) ; values["a"]=t1[0][0] ; values["a_1"]=t1[0][1] ; values["a_2"] = t1[0][2] \n\tt2= re.findall(regex,list[6][2]) ; values["c"]=t2[0][0] ; values["c_1"]=t2[0][1] ; values["c_2"] = t2[0][2] ; values["e"]=values["c"] ; values["e_1"] = values["c_1"]; values["e_2"]=values["c_2"] \n\tt3= re.findall(regex,list[8][2]) ; values["d"]=t3[0][0] ; values["d_1"]=t3[0][1] ; values["d_2"] = t3[0][2] \n\tt4= re.findall(regex,list[7][2]) ; values["g"]=t4[0][0] ; values["g_1"]=t4[0][1] ; values["g_2"] = t4[0][2]\n\tvalues["b"]= int(values["a"].replace(",",""))-int(values["c"].replace(",","")) ; values["b_1"]= int(values["a_1"].replace(",",""))-int(values["c_1"].replace(",","")) ; values["b_2"]= int(values["a_2"].replace(",",""))-int(values["c_2"].replace(",","")) \n\tvalues["f"]= int(values["e"].replace(",",""))-int(values["g"].replace(",","")) ; values["f_1"]= int(values["e_1"].replace(",",""))-int(values["g_1"].replace(",","")) ; values["f_2"]= int(values["e_2"].replace(",",""))-int(values["g_2"].replace(",","")) \n\tvalues["h"]=str("%.2f"%((float(values["g"].replace(",",""))/float(values["e"].replace(",","")))*100))+"%" \n\tvalues["h_1"]=str("%.2f"%((float(values["g_1"].replace(",",""))/float(values["e_1"].replace(",","")))*100))+"%"\n\tvalues["h_2"]=str("%.2f"%((float(values["g_2"].replace(",",""))/float(values["e_2"].replace(",","")))*100))+"%"\n#update count table on successful run...ensure updation on deletion too-to be done\t\n\tcurr_count=db(db.p_count.user_id==auth.user.id).select()\n\tcurr_count=curr_count[0].count+1\n\tdb(db.p_count.user_id==auth.user.id).update(count=curr_count)\n    #session.values={}\n    #session.values=values\n    session.input=input_path\n    session.compile=compile\n    #session.i1_s=i1_s\n\n    response.flash = T(\'Welcome to web2py\')\n    return dict(default_code=default_code,form=form,message=T(\'Hello World\'),list=list,pid=pid,flag=flag,values=values,compile=compile)\n\ndef show_session():\n\treturn dict(session=session)\n\ndef show_graphs():\n\t import os\n\t import re\n\t import commands\n\t list=[]\n\t #values=session.values\n\t y1=[]\n\t y2=[]\n\t y3=[]\n\t import time\n\t path=os.getcwd()\n         path=path+\'/applications/vlab/uploads/\'\n\t input_path=session.input\n\t if session.compile==True:\n\t\tfor i in [1,2,4,8]: \n\t\t\tlist=[]\n\t\t#\tcommand=\'valgrind --tool=cachegrind --I1=\'+str(session.i1_s)+\',\'+str(session.i1_associativity)+\',\'+str(session.i1_line_size)+\' \'+\'--D1=\'+str(session.d1_s)+\',\'+str(session.d1_associativity)+\',\'+str(session.d1_l    ine_size)+\' \'+\'--L2=\'+str(session.l2_s)+\',\'+str(session.l2_associativity)+\',\'+str(session.l2_line_size)+ \' --cachegrind-out-file=\'+path+str(auth.user.id)+\'.%p \'+path+str(auth.user.id)\n\t\t\tcommand=\'valgrind --tool=cachegrind --I1=\'+str(session.i1_s)+\',\'+str(i)+\',\'+str(64)+ \' --cachegrind-out-file=\'+path+str(auth.user.id)+\'.%p \'+path+str(auth.user.id)\n\t\t\tif input_path != "":\n\t   \t\t\tcommand=command + \'<\' +input_path\n\t\t\tout=commands.getstatusoutput(command)\n\t\t\tout_mod=re.split(\'\\n\',out[1])\n\t  \t\tregex="==(\\d*)==\\s*([^:]*):\\s*(\\d+.*)"\n\t  \t\tfor j in out_mod:\n\t\t \t\tmatch=re.findall(regex,j)\n\t\t \t\tif len(match)>0:\n\t\t\t\t\tlist.append(match[0])\n\t\t\tif len(list) >0:\n\t\t\t\t\n\t\t\t\ty1.append(100 - float(re.findall(\'[^%]+\',(list[3][2]))[0]))\n\t\t\t\tregex="([^\\(]+)\\(\\s*(\\S+)[^\\+]*\\+\\s*(\\S+).*"\n\t\t\t\tt3= re.findall(regex,list[8][2])\n\t\t\t\ty2.append(100 -float(re.findall(\'[^%]+\',t3[0][0])[0]))\n\t\t\t\tl2i_miss=int(list[2][2].replace(",",""))\n\t\t\t\tl2d_miss= re.findall(regex,list[7][2])[0][0]\n\t\t\t\tl2_miss=l2i_miss+int(l2d_miss.replace(",",""))\n\t\t\t\tl2i_ref=int(list[1][2].replace(\',\',\'\'))\n\t\t\t\tl2d_ref=re.findall(regex,list[6][2])[0][0]\n\t\t\t\tl2_ref=l2i_ref+int(l2d_ref.replace(\',\',\'\'))\n\t\t\t\tl2_miss_rate=((float(l2_miss)/l2_ref)*100)\n\t\t\t\ty3.append(100 - l2_miss_rate)\n\t\t\n\t\txticks=\'[1,2,4,8]\'\n\t\tctr=0\n\t\tans1="[["\n\t\tfor i in [1,2,4,8]:\n\t\t\tans1=ans1+\'[\'+str(i)+\',\'+str(y1[ctr])+\']\'\n\t\t\tif i!=8:\n\t\t\t\tans1+=\',\'\n\t\t\tctr+=1\n\t\tans1+="]]"\n\t\tans2="[["\n\t\tctr=0\n\t\tfor i in [1,2,4,8]:\n\t\t\tans2=ans2+\'[\'+str(i)+\',\'+str(y2[ctr])+\']\'\n\t\t\tif i!=8:\n\t\t\t\tans2+=\',\'\n\t\t\tctr+=1\n\t\tans2+=\']]\'\n\t\tans3="[["\n\t\tctr=0\n\t\tfor i in [1,2,4,8]:\n\t\t\tans3=ans3+\'[\'+str(i)+\',\'+str(y3[ctr])+\']\'\n\t\t\tif i!=8:\n\t\t\t\tans3+=\',\'\n\t\t\tctr+=1\n\t\tans3+=\']]\'\n\t\tctr=0\n\t\tans="[["\n\t\tfor i in [1,2,4,8]:\n\t\t\tans=ans+\'[\'+str(i)+\',\'+str(y1[ctr])+\']\'\n\t\t\tif i!=8:\n\t\t\t\tans+=\',\'\n\t\t\tctr+=1\n\t\tans+=\'],\'\n\t\tans+="["\n\t\tctr=0\n\t\tfor i in [1,2,4,8]:\n\t\t\tans=ans+\'[\'+str(i)+\',\'+str(y2[ctr])+\']\'\n\t\t\tif i!=8:\n\t\t\t\tans+=\',\'\n\t\t\tctr+=1\n\t\tans+=\'],\'\n\t\tans+="["\n\t\tctr=0\n\t\tfor i in [1,2,4,8]:\n\t\t\tans=ans+\'[\'+str(i)+\',\'+str(y3[ctr])+\']\'\n\t\t\tif i!=8:\n\t\t\t\tans+=\',\'\n\t\t\tctr+=1\n\t\tans+=\']]\'\n         return dict(ans1=ans1,ans2=ans2,ans3=ans3,ans=ans,xticks=xticks)\n\n\t \n\n\ndef customize():\n    form=SQLFORM(db.options)\n    \ndef user():\n    """\n    exposes:\n    http://..../[app]/default/user/login \n    http://..../[app]/default/user/logout\n    http://..../[app]/default/user/register\n    http://..../[app]/default/user/profile\n    http://..../[app]/default/user/retrieve_password\n    http://..../[app]/default/user/change_password\n    use @auth.requires_login()\n        @auth.requires_membership(\'group name\')\n        @auth.requires_permission(\'read\',\'table name\',record_id)\n    to decorate functions that need access control\n    """\n    if request.args(0)==\'register\':\n\t    redirect(URL(request.application,\'default\',\'register\'))\n    return dict(form=auth())\n\n\ndef download():\n    """\n    allows downloading of uploaded files\n    http://..../[app]/default/download/[filename]\n    """\n   \n    return response.stream(open(os.path.join(request.folder,\'uploads\',request.args[0]),\'rb\'))\n    #return response.download(request,db)\n\n\ndef call():\n    """\n    exposes services. for example:\n    http://..../[app]/default/call/jsonrpc\n    decorate with @services.jsonrpc the functions to expose\n    supports xml, json, xmlrpc, jsonrpc, amfrpc, rss, csv\n    """\n    session.forget()\n    return service()\n\nresponse._vars=response._caller(index)\n'
+p6
+sS'snapshot'
+p7
+(dp8
+S'exception'
+p9
+(dp10
+S'__getslice__'
+p11
+S"<method-wrapper '__getslice__' of exceptions.IndentationError object>"
+p12
+sS'text'
+p13
+S"'\\t  \\tout=commands.getstatusoutput(command)\\n'"
+p14
+sS'__str__'
+p15
+S"<method-wrapper '__str__' of exceptions.IndentationError object>"
+p16
+sS'__reduce__'
+p17
+S'<built-in method __reduce__ of exceptions.IndentationError object>'
+p18
+sS'__dict__'
+p19
+S'{}'
+p20
+sS'__sizeof__'
+p21
+S'<built-in method __sizeof__ of exceptions.IndentationError object>'
+p22
+sS'__init__'
+p23
+S"<method-wrapper '__init__' of exceptions.IndentationError object>"
+p24
+sS'__setattr__'
+p25
+S"<method-wrapper '__setattr__' of exceptions.IndentationError object>"
+p26
+sS'__reduce_ex__'
+p27
+S'<built-in method __reduce_ex__ of exceptions.IndentationError object>'
+p28
+sS'__new__'
+p29
+S'<built-in method __new__ of type object>'
+p30
+sS'__format__'
+p31
+S'<built-in method __format__ of exceptions.IndentationError object>'
+p32
+sS'__class__'
+p33
+S"<type 'exceptions.IndentationError'>"
+p34
+sS'filename'
+p35
+S"'/home/cvest.cso/public_html/LocalityAnalysis/web2py/applications/vlab/controllers/default.py'"
+p36
+sS'lineno'
+p37
+S'110'
+p38
+sS'msg'
+p39
+S"'unexpected indent'"
+p40
+sS'__doc__'
+p41
+S"'Improper indentation.'"
+p42
+sS'__getitem__'
+p43
+S"<method-wrapper '__getitem__' of exceptions.IndentationError object>"
+p44
+sS'__setstate__'
+p45
+S'<built-in method __setstate__ of exceptions.IndentationError object>'
+p46
+sS'__getattribute__'
+p47
+S"<method-wrapper '__getattribute__' of exceptions.IndentationError object>"
+p48
+sS'print_file_and_line'
+p49
+S'None'
+p50
+sS'args'
+p51
+S"('unexpected indent', ('/home/cvest.cso/public_html/LocalityAnalysis/web2py/applications/vlab/controllers/default.py', 110, 4, '\\t  \\tout=commands.getstatusoutput(command)\\n'))"
+p52
+sS'__subclasshook__'
+p53
+S'<built-in method __subclasshook__ of type object>'
+p54
+sS'offset'
+p55
+S'4'
+sS'__unicode__'
+p56
+S'<built-in method __unicode__ of exceptions.IndentationError object>'
+p57
+sS'__delattr__'
+p58
+S"<method-wrapper '__delattr__' of exceptions.IndentationError object>"
+p59
+sS'__repr__'
+p60
+S"<method-wrapper '__repr__' of exceptions.IndentationError object>"
+p61
+sS'__hash__'
+p62
+S"<method-wrapper '__hash__' of exceptions.IndentationError object>"
+p63
+ssS'evalue'
+p64
+S'unexpected indent (default.py, line 110)'
+p65
+sS'request'
+p66
+(dp67
+S'function'
+p68
+S"'index'"
+p69
+sS'body'
+p70
+S'<cStringIO.StringO object>'
+p71
+sS'wsgi'
+p72
+S"<Storage {'start_response': <function <lambda> a...ING': 'gzip,deflate', 'HTTP_KEEP_ALIVE': '300'}}>"
+p73
+sS'extension'
+p74
+S"'html'"
+p75
+sS'vars'
+p76
+S'<Storage {}>'
+p77
+sS'cid'
+p78
+S'None'
+p79
+sS'url'
+p80
+S'<gluon.html.XML object>'
+p81
+sg51
+S'[]'
+p82
+sS'controller'
+p83
+S"'default'"
+p84
+sS'cookies'
+p85
+S"<SimpleCookie: session_id_admin='192-168-36-178-...168-36-178-d6e8aafc-6aa8-466a-919f-344ff9adc569'>"
+p86
+sS'application'
+p87
+S"'vlab'"
+p88
+sS'ajax'
+p89
+S'False'
+p90
+sS'client'
+p91
+S"'192.168.36.178'"
+p92
+sS'env'
+p93
+S"<Storage {'http_user_agent': 'Mozilla/5.0 (X11; ...nce': False, 'path_info': '/vlab/default/index'}>"
+p94
+sS'raw_args'
+p95
+S'None'
+p96
+sS'get_vars'
+p97
+S'<Storage {}>'
+p98
+sS'folder'
+p99
+S"'/home/cvest.cso/public_html/LocalityAnalysis/web2py/applications/vlab/'"
+p100
+sS'now'
+p101
+S'datetime.datetime(2010, 11, 21, 18, 37, 22, 428821)'
+p102
+sS'post_vars'
+p103
+S'<Storage {}>'
+p104
+ssS'frames'
+p105
+(lp106
+(dp107
+S'file'
+p108
+S'/home/cvest.cso/public_html/LocalityAnalysis/web2py/gluon/restricted.py'
+p109
+sS'dump'
+p110
+(dp111
+S'code'
+p112
+S"'\\n###############################################...ervice()\\n\\nresponse._vars=response._caller(index)\\n'"
+p113
+sS'layer'
+p114
+S"'/home/cvest.cso/public_html/LocalityAnalysis/web2py/applications/vlab/controllers/default.py'"
+p115
+sS'global compile2'
+p116
+S'<function compile2>'
+p117
+sS'ccode'
+p118
+S'undefined'
+p119
+ssS'lnum'
+p120
+I186
+sS'lines'
+p121
+(dp122
+I181
+S''
+sI182
+S'    try:'
+p123
+sI183
+S'        if type(code) == types.CodeType:'
+p124
+sI184
+S'            ccode = code'
+p125
+sI185
+S'        else:'
+p126
+sI186
+S'            ccode = compile2(code,layer)'
+p127
+sI187
+S''
+sI188
+S'        exec ccode in environment'
+p128
+sI189
+S'    except HTTP:'
+p129
+sI190
+S'        raise'
+p130
+ssS'call'
+p131
+S"(code='\\n###############################################...ervice()\\n\\nresponse._vars=response._caller(index)\\n', environment={'A': <class 'gluon.html.A'>, 'Auth': <class 'gluon.tools.Auth'>, 'B': <class 'gluon.html.B'>, 'BEAUTIFY': <class 'gluon.html.BEAUTIFY'>, 'BODY': <class 'gluon.html.BODY'>, 'BR': <class 'gluon.html.BR'>, 'CENTER': <class 'gluon.html.CENTER'>, 'CLEANUP': <class 'gluon.validators.CLEANUP'>, 'CODE': <class 'gluon.html.CODE'>, 'CRYPT': <class 'gluon.validators.CRYPT'>, ...}, layer='/home/cvest.cso/public_html/LocalityAnalysis/web2py/applications/vlab/controllers/default.py')"
+p132
+sS'func'
+p133
+S'restricted'
+p134
+sa(dp135
+g108
+S'/home/cvest.cso/public_html/LocalityAnalysis/web2py/gluon/restricted.py'
+p136
+sg110
+(dp137
+S'builtincompile'
+p138
+S'<built-in function compile>'
+p139
+sS'code'
+p140
+S"'\\n###############################################...ervice()\\n\\nresponse._vars=response._caller(index)\\n'"
+p141
+sS'code.rstrip'
+p142
+S'<built-in method rstrip of str object>'
+p143
+sS').replace'
+p144
+g119
+sS'layer'
+p145
+S"'/home/cvest.cso/public_html/LocalityAnalysis/web2py/applications/vlab/controllers/default.py'"
+p146
+ssg120
+I173
+sg121
+(dp147
+I168
+S''
+sI169
+S'def compile2(code,layer):'
+p148
+sI170
+S'    """'
+p149
+sI171
+S"    The +'\\n' is necessary else compile fails when code ends in a comment."
+p150
+sI172
+S'    """'
+p151
+sI173
+S"    return compile(code.rstrip().replace('\\r\\n','\\n')+'\\n', layer, 'exec')"
+p152
+sI174
+S''
+sI175
+S"def restricted(code, environment={}, layer='Unknown'):"
+p153
+sI176
+S'    """'
+p154
+sI177
+S'    runs code in environment and returns the output. if an exception occurs'
+p155
+ssg131
+S"(code='\\n###############################################...ervice()\\n\\nresponse._vars=response._caller(index)\\n', layer='/home/cvest.cso/public_html/LocalityAnalysis/web2py/applications/vlab/controllers/default.py')"
+p156
+sg133
+S'compile2'
+p157
+sasS'pyver'
+p158
+S'Python 2.6.6rc1+: /usr/bin/python'
+p159
+sS'session'
+p160
+(dp161
+S'l2_s'
+p162
+S'8192'
+p163
+sS'i1_associativity'
+p164
+S"'2'"
+p165
+sS'l2_associativity'
+p166
+S"'8'"
+p167
+sS'l2_line_size'
+p168
+S"'64'"
+p169
+sS'i1_ass'
+p170
+S'2'
+sS'flash'
+p171
+S'None'
+p172
+sS'auth'
+p173
+S"<Storage {'expiration': 3600, 'user': <Storage {... 11, 21, 18, 37, 22, 428821), 'remember': False}>"
+p174
+sS'd1_s'
+p175
+S'2048'
+p176
+sS'compile'
+p177
+S'True'
+p178
+sS'i1_s'
+p179
+S'2048'
+p180
+sS'i1_line_size'
+p181
+S"'64'"
+p182
+sS'd1_line_size'
+p183
+S"'64'"
+p184
+sS'_formkey[programs_create]'
+p185
+S"'cecdeab5-f189-4831-89a3-42a4e6f22002'"
+p186
+sS'input'
+p187
+S"''"
+p188
+sS'd1_associativity'
+p189
+S"'2'"
+p190
+sS'_formkey[login]'
+p191
+S"'dc93f8fb-6dec-404b-ac86-d7a44ca615b1'"
+p192
+ssS'etype'
+p193
+S"<type 'exceptions.IndentationError'>"
+p194
+sS'date'
+p195
+S'Sun Nov 21 18:37:22 2010'
+p196
+sS'response'
+p197
+(dp198
+S'status'
+p199
+S'200'
+p200
+sg70
+S'<cStringIO.StringO object>'
+p201
+sg85
+S"<SimpleCookie: session_id_vlab='192-168-36-178-15081186-f8bd-4486-876c-7f5caea55928'>"
+p202
+sS'_vars'
+p203
+S'None'
+p204
+sS'title'
+p205
+S"'vlab'"
+p206
+sS'session_file'
+p207
+S"<open file '/home/cvest.cso/public_html/Locality...5081186-f8bd-4486-876c-7f5caea55928', mode 'rb+'>"
+p208
+sS'flash'
+p209
+S"''"
+p210
+sS'_custom_rollback'
+p211
+S'None'
+p212
+sS'session_id'
+p213
+S"'192-168-36-178-15081186-f8bd-4486-876c-7f5caea55928'"
+p214
+sS'headers'
+p215
+S"<Storage {'Expires': 'Sun, 21 Nov 2010 13:07:22 ...he, must-revalidate, post-check=0, pre-check=0'}>"
+p216
+sS'meta'
+p217
+S"<Storage {'keywords': 'bla bla bla', 'description': 'describe your app', 'author': 'you'}>"
+p218
+sS'session_filename'
+p219
+S"'/home/cvest.cso/public_html/LocalityAnalysis/web...2-168-36-178-15081186-f8bd-4486-876c-7f5caea55928'"
+p220
+sS'postprocessing'
+p221
+S'[]'
+p222
+sS'menu'
+p223
+S"[(<lazyT 'Index'>, False, <gluon.html.XML object>, []), ('Change Layout', False, <gluon.html.XML object>)]"
+p224
+sS'_view_environment'
+p225
+S"{'A': <class 'gluon.html.A'>, 'Auth': <class 'gluon.tools.Auth'>, 'B': <class 'gluon.html.B'>, 'BEAUTIFY': <class 'gluon.html.BEAUTIFY'>, 'BODY': <class 'gluon.html.BODY'>, 'BR': <class 'gluon.html.BR'>, 'CENTER': <class 'gluon.html.CENTER'>, 'CLEANUP': <class 'gluon.validators.CLEANUP'>, 'CODE': <class 'gluon.html.CODE'>, 'CRYPT': <class 'gluon.validators.CRYPT'>, ...}"
+p226
+sS'subtitle'
+p227
+S"<lazyT 'customize me!'>"
+p228
+sS'session_id_name'
+p229
+S"'session_id_vlab'"
+p230
+sS'_custom_commit'
+p231
+S'None'
+p232
+sS'_caller'
+p233
+S'<function <lambda>>'
+p234
+sS'files'
+p235
+S'[]'
+p236
+sS'view'
+p237
+S"'default/index.html'"
+p238
+ssS'locals'
+p239
+(dp240
+g3
+S"'/home/cvest.cso/public_html/LocalityAnalysis/web2py/applications/vlab/controllers/default.py'"
+p241
+sg5
+S"'\\n###############################################...ervice()\\n\\nresponse._vars=response._caller(index)\\n'"
+p242
+sssS'traceback'
+p243
+S'Traceback (most recent call last):\n  File "/home/cvest.cso/public_html/LocalityAnalysis/web2py/gluon/restricted.py", line 186, in restricted\n    ccode = compile2(code,layer)\n  File "/home/cvest.cso/public_html/LocalityAnalysis/web2py/gluon/restricted.py", line 173, in compile2\n    return compile(code.rstrip().replace(\'\\r\\n\',\'\\n\')+\'\\n\', layer, \'exec\')\n  File "/home/cvest.cso/public_html/LocalityAnalysis/web2py/applications/vlab/controllers/default.py", line 110\n    out=commands.getstatusoutput(command)\n   ^\nIndentationError: unexpected indent\n'
+p244
+s.

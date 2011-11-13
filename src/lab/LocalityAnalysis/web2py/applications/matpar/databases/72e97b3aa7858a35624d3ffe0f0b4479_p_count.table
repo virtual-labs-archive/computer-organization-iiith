@@ -1,0 +1,14 @@
+(dp1
+S'count'
+p2
+S'INTEGER'
+p3
+sS'user_id'
+p4
+S'INTEGER REFERENCES auth_user(id) ON DELETE CASCADE'
+p5
+sS'id'
+p6
+S'INTEGER PRIMARY KEY AUTOINCREMENT'
+p7
+s.

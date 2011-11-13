@@ -1,0 +1,508 @@
+(dp1
+S'output'
+p2
+S''
+sS'layer'
+p3
+S'/home/shrenik/web2py/applications/vlab/controllers/default.py'
+p4
+sS'code'
+p5
+S'# -*- coding: utf-8 -*- \n\n#########################################################################\n## This is a samples controller\n## - index is the default action of any application\n## - user is required for authentication and authorization\n## - download is for downloading files uploaded in the db (does streaming)\n## - call exposes all registered services (none by default)\n#########################################################################  \ncount=0\ndef index():\n    count+=1\n    import os\n    import re\n    import commands\n    """\n    example action using the internationalization operator T and flash\n    rendered by views/default/index.html or views/generic.html\n    """\n    pid=[]\n    list=[]\n    out="Test"\n    inp=None\n    out_mod=None\n    form=SQLFORM(db.programs)\n    if(form.accepts(request.vars,session)):\n         path=os.getcwd()\n         path=path+\'/applications/vlab/uploads/\'+form.vars.file\n         inp=commands.getstatusoutput(\'cc \'+path)\n         command=\'valgrind --tool=cachegrind --I1=\'+str(form.vars.i1_size)+\',\'+str(form.vars.i1_associativity)+\',\'+str(form.vars.i1_line_size)+\' ./a.out\'\n         if form.vars.input_file !=None:\n             input_path=os.getcwd()\n             input_path=input_path+\'/applications/vlab/uploads/\'+form.vars.input_file\n             command=command+\'<\'+input_path\n         out=commands.getstatusoutput(command)\n         out_mod=re.split(\'\\n\',out[1])\n\t regex="==(\\d*)==\\s*([^:]*):(.*)"\n\t for i in out_mod:\n\t \t match=re.findall(regex,i)\n\t\t if len(match)>0:\n\t\t \tprocid=match[0][0]\n\t\t\tif procid not in pid:\n\t\t\t\t pid.append(procid)\n\t\t\tlist.append(match[0])\t\n    response.flash = T(\'Welcome to web2py\')\n    return dict(form=form,message=T(\'Hello World\'),list=list,pid=pid,count=count)\n\ndef customize():\n    form=SQLFORM(db.options)\n    \ndef user():\n    """\n    exposes:\n    http://..../[app]/default/user/login \n    http://..../[app]/default/user/logout\n    http://..../[app]/default/user/register\n    http://..../[app]/default/user/profile\n    http://..../[app]/default/user/retrieve_password\n    http://..../[app]/default/user/change_password\n    use @auth.requires_login()\n        @auth.requires_membership(\'group name\')\n        @auth.requires_permission(\'read\',\'table name\',record_id)\n    to decorate functions that need access control\n    """\n    return dict(form=auth())\n\n\ndef download():\n    """\n    allows downloading of uploaded files\n    http://..../[app]/default/download/[filename]\n    """\n    return response.download(request,db)\n\n\ndef call():\n    """\n    exposes services. for example:\n    http://..../[app]/default/call/jsonrpc\n    decorate with @services.jsonrpc the functions to expose\n    supports xml, json, xmlrpc, jsonrpc, amfrpc, rss, csv\n    """\n    session.forget()\n    return service()\n\nresponse._vars=response._caller(index)\n'
+p6
+sS'snapshot'
+p7
+(dp8
+S'exception'
+p9
+(dp10
+S'__hash__'
+p11
+S"<method-wrapper '__hash__' of exceptions.UnboundLocalError object>"
+p12
+sS'__setattr__'
+p13
+S"<method-wrapper '__setattr__' of exceptions.UnboundLocalError object>"
+p14
+sS'__reduce_ex__'
+p15
+S'<built-in method __reduce_ex__ of exceptions.UnboundLocalError object>'
+p16
+sS'__getslice__'
+p17
+S"<method-wrapper '__getslice__' of exceptions.UnboundLocalError object>"
+p18
+sS'__getitem__'
+p19
+S"<method-wrapper '__getitem__' of exceptions.UnboundLocalError object>"
+p20
+sS'__setstate__'
+p21
+S'<built-in method __setstate__ of exceptions.UnboundLocalError object>'
+p22
+sS'__reduce__'
+p23
+S'<built-in method __reduce__ of exceptions.UnboundLocalError object>'
+p24
+sS'__str__'
+p25
+S"<method-wrapper '__str__' of exceptions.UnboundLocalError object>"
+p26
+sS'__format__'
+p27
+S'<built-in method __format__ of exceptions.UnboundLocalError object>'
+p28
+sS'__getattribute__'
+p29
+S"<method-wrapper '__getattribute__' of exceptions.UnboundLocalError object>"
+p30
+sS'__class__'
+p31
+S"<type 'exceptions.UnboundLocalError'>"
+p32
+sS'__unicode__'
+p33
+S'<built-in method __unicode__ of exceptions.UnboundLocalError object>'
+p34
+sS'__delattr__'
+p35
+S"<method-wrapper '__delattr__' of exceptions.UnboundLocalError object>"
+p36
+sS'__subclasshook__'
+p37
+S'<built-in method __subclasshook__ of type object>'
+p38
+sS'__repr__'
+p39
+S"<method-wrapper '__repr__' of exceptions.UnboundLocalError object>"
+p40
+sS'args'
+p41
+S'("local variable \'count\' referenced before assignment",)'
+p42
+sS'__dict__'
+p43
+S'{}'
+p44
+sS'__sizeof__'
+p45
+S'<built-in method __sizeof__ of exceptions.UnboundLocalError object>'
+p46
+sS'__doc__'
+p47
+S"'Local name referenced but not bound to a value.'"
+p48
+sS'__init__'
+p49
+S"<method-wrapper '__init__' of exceptions.UnboundLocalError object>"
+p50
+sS'__new__'
+p51
+S'<built-in method __new__ of type object>'
+p52
+ssS'evalue'
+p53
+S"local variable 'count' referenced before assignment"
+p54
+sS'request'
+p55
+(dp56
+S'function'
+p57
+S"'index'"
+p58
+sS'body'
+p59
+S'<cStringIO.StringO object>'
+p60
+sS'wsgi'
+p61
+S"<Storage {'start_response': <function <lambda> a...ING': 'gzip,deflate', 'HTTP_KEEP_ALIVE': '115'}}>"
+p62
+sS'extension'
+p63
+S"'html'"
+p64
+sS'vars'
+p65
+S'<Storage {}>'
+p66
+sS'cid'
+p67
+S'None'
+p68
+sS'url'
+p69
+S'<gluon.html.XML object>'
+p70
+sg41
+S'[]'
+p71
+sS'controller'
+p72
+S"'default'"
+p73
+sS'cookies'
+p74
+S"<SimpleCookie: session_id_admin='127-0-0-1-020b2...'127-0-0-1-d51e55bb-1989-4c66-91bc-ad4e17601eab'>"
+p75
+sS'application'
+p76
+S"'vlab'"
+p77
+sS'ajax'
+p78
+S'False'
+p79
+sS'client'
+p80
+S"'127.0.0.1'"
+p81
+sS'env'
+p82
+S"<Storage {'http_user_agent': 'Mozilla/5.0 (X11; ...', 'wsgi_run_once': False, 'path_info': '/vlab'}>"
+p83
+sS'raw_args'
+p84
+S'None'
+p85
+sS'get_vars'
+p86
+S'<Storage {}>'
+p87
+sS'folder'
+p88
+S"'/home/shrenik/web2py/applications/vlab/'"
+p89
+sS'now'
+p90
+S'datetime.datetime(2010, 10, 20, 0, 16, 52, 865832)'
+p91
+sS'post_vars'
+p92
+S'<Storage {}>'
+p93
+ssS'frames'
+p94
+(lp95
+(dp96
+S'file'
+p97
+S'/home/shrenik/web2py/gluon/restricted.py'
+p98
+sS'dump'
+p99
+(dp100
+S'environment'
+p101
+S"{'A': <class 'gluon.html.A'>, 'Auth': <class 'gluon.tools.Auth'>, 'B': <class 'gluon.html.B'>, 'BEAUTIFY': <class 'gluon.html.BEAUTIFY'>, 'BODY': <class 'gluon.html.BODY'>, 'BR': <class 'gluon.html.BR'>, 'CENTER': <class 'gluon.html.CENTER'>, 'CLEANUP': <class 'gluon.validators.CLEANUP'>, 'CODE': <class 'gluon.html.CODE'>, 'CRYPT': <class 'gluon.validators.CRYPT'>, ...}"
+p102
+sS'ccode'
+p103
+S'<code object <module> at 0x8b5bad0, file "/home/...plications/vlab/controllers/default.py", line 10>'
+p104
+ssS'lnum'
+p105
+I188
+sS'lines'
+p106
+(dp107
+I192
+S'        # XXX Show exception in Wing IDE if running in debugger'
+p108
+sI183
+S'        if type(code) == types.CodeType:'
+p109
+sI184
+S'            ccode = code'
+p110
+sI185
+S'        else:'
+p111
+sI186
+S'            ccode = compile2(code,layer)'
+p112
+sI187
+S''
+sI188
+S'        exec ccode in environment'
+p113
+sI189
+S'    except HTTP:'
+p114
+sI190
+S'        raise'
+p115
+sI191
+S'    except Exception:'
+p116
+ssS'call'
+p117
+S"(code='# -*- coding: utf-8 -*- \\n\\n######################...ervice()\\n\\nresponse._vars=response._caller(index)\\n', environment={'A': <class 'gluon.html.A'>, 'Auth': <class 'gluon.tools.Auth'>, 'B': <class 'gluon.html.B'>, 'BEAUTIFY': <class 'gluon.html.BEAUTIFY'>, 'BODY': <class 'gluon.html.BODY'>, 'BR': <class 'gluon.html.BR'>, 'CENTER': <class 'gluon.html.CENTER'>, 'CLEANUP': <class 'gluon.validators.CLEANUP'>, 'CODE': <class 'gluon.html.CODE'>, 'CRYPT': <class 'gluon.validators.CRYPT'>, ...}, layer='/home/shrenik/web2py/applications/vlab/controllers/default.py')"
+p118
+sS'func'
+p119
+S'restricted'
+p120
+sa(dp121
+g97
+S'/home/shrenik/web2py/applications/vlab/controllers/default.py'
+p122
+sg99
+(dp123
+sg105
+I86
+sg106
+(dp124
+I75
+S''
+sI76
+S'def call():'
+p125
+sI77
+S'    """'
+p126
+sI78
+S'    exposes services. for example:'
+p127
+sI79
+S'    http://..../[app]/default/call/jsonrpc'
+p128
+sI80
+S'    decorate with @services.jsonrpc the functions to expose'
+p129
+sI81
+S'    supports xml, json, xmlrpc, jsonrpc, amfrpc, rss, csv'
+p130
+sI82
+S'    """'
+p131
+sI83
+S'    session.forget()'
+p132
+sI84
+S'    return service()'
+p133
+ssg117
+S'()'
+p134
+sg119
+S'<module>'
+p135
+sa(dp136
+g97
+S'/home/shrenik/web2py/gluon/globals.py'
+p137
+sg99
+(dp138
+S'self'
+p139
+S'undefined'
+p140
+sS'f'
+S'<function index>'
+p141
+ssg105
+I96
+sg106
+(dp142
+I96
+S'        self._caller = lambda f: f()'
+p143
+sI97
+S'        self._view_environment = None'
+p144
+sI98
+S'        self._custom_commit = None'
+p145
+sI99
+S'        self._custom_rollback = None'
+p146
+sI100
+S''
+sI91
+S"        self.flash = ''           # used by the default view layout"
+p147
+sI92
+S'        self.meta = Storage()     # used by web2py_ajax.html'
+p148
+sI93
+S'        self.menu = []            # used by the default view layout'
+p149
+sI94
+S'        self.files = []           # used by web2py_ajax.html'
+p150
+sI95
+S'        self._vars = None'
+p151
+ssg117
+S'(f=<function index>)'
+p152
+sg119
+S'<lambda>'
+p153
+sa(dp154
+g97
+S'/home/shrenik/web2py/applications/vlab/controllers/default.py'
+p155
+sg99
+(dp156
+S'global count'
+p157
+S'0'
+ssg105
+I12
+sg106
+(dp158
+I7
+S'## - download is for downloading files uploaded in the db (does streaming)'
+p159
+sI8
+S'## - call exposes all registered services (none by default)'
+p160
+sI9
+S'#########################################################################'
+p161
+sI10
+S'count=0'
+p162
+sI11
+S'def index():'
+p163
+sI12
+S'    count+=1'
+p164
+sI13
+S'    import os'
+p165
+sI14
+S'    import re'
+p166
+sI15
+S'    import commands'
+p167
+sI16
+S'    """'
+p168
+ssg117
+S'()'
+p169
+sg119
+S'index'
+p170
+sasS'pyver'
+p171
+S'Python 2.6.6: /usr/bin/python'
+p172
+sS'session'
+p173
+(dp174
+S'auth'
+p175
+S'None'
+p176
+sS'_formkey[programs_create]'
+p177
+S"'b5038446-2852-491a-ae0b-88037b14abbe'"
+p178
+ssS'etype'
+p179
+S"<type 'exceptions.UnboundLocalError'>"
+p180
+sS'date'
+p181
+S'Wed Oct 20 00:16:52 2010'
+p182
+sS'response'
+p183
+(dp184
+S'status'
+p185
+S'200'
+p186
+sg59
+S'<cStringIO.StringO object>'
+p187
+sg74
+S"<SimpleCookie: session_id_vlab='127-0-0-1-bd6aca27-1ced-49d5-b876-eb675abd268c'>"
+p188
+sS'_vars'
+p189
+S'None'
+p190
+sS'title'
+p191
+S"'vlab'"
+p192
+sS'session_file'
+p193
+S"<open file '/home/shrenik/web2py/applications/vl...d6aca27-1ced-49d5-b876-eb675abd268c', mode 'rb+'>"
+p194
+sS'flash'
+p195
+S"''"
+p196
+sS'_custom_rollback'
+p197
+S'None'
+p198
+sS'session_id'
+p199
+S"'127-0-0-1-bd6aca27-1ced-49d5-b876-eb675abd268c'"
+p200
+sS'headers'
+p201
+S"<Storage {'Expires': 'Tue, 19 Oct 2010 18:46:52 ...he, must-revalidate, post-check=0, pre-check=0'}>"
+p202
+sS'meta'
+p203
+S"<Storage {'keywords': 'bla bla bla', 'description': 'describe your app', 'author': 'you'}>"
+p204
+sS'session_filename'
+p205
+S"'/home/shrenik/web2py/applications/vlab/sessions/127-0-0-1-bd6aca27-1ced-49d5-b876-eb675abd268c'"
+p206
+sS'postprocessing'
+p207
+S'[]'
+p208
+sS'menu'
+p209
+S"[(<lazyT 'Index'>, False, <gluon.html.XML object>, [])]"
+p210
+sS'_view_environment'
+p211
+S"{'A': <class 'gluon.html.A'>, 'Auth': <class 'gluon.tools.Auth'>, 'B': <class 'gluon.html.B'>, 'BEAUTIFY': <class 'gluon.html.BEAUTIFY'>, 'BODY': <class 'gluon.html.BODY'>, 'BR': <class 'gluon.html.BR'>, 'CENTER': <class 'gluon.html.CENTER'>, 'CLEANUP': <class 'gluon.validators.CLEANUP'>, 'CODE': <class 'gluon.html.CODE'>, 'CRYPT': <class 'gluon.validators.CRYPT'>, ...}"
+p212
+sS'subtitle'
+p213
+S"<lazyT 'customize me!'>"
+p214
+sS'session_id_name'
+p215
+S"'session_id_vlab'"
+p216
+sS'_custom_commit'
+p217
+S'None'
+p218
+sS'_caller'
+p219
+S'<function <lambda>>'
+p220
+sS'files'
+p221
+S'[]'
+p222
+sS'view'
+p223
+S"'default/index.html'"
+p224
+ssS'locals'
+p225
+(dp226
+ssS'traceback'
+p227
+S'Traceback (most recent call last):\n  File "/home/shrenik/web2py/gluon/restricted.py", line 188, in restricted\n    exec ccode in environment\n  File "/home/shrenik/web2py/applications/vlab/controllers/default.py", line 86, in <module>\n  File "/home/shrenik/web2py/gluon/globals.py", line 96, in <lambda>\n    self._caller = lambda f: f()\n  File "/home/shrenik/web2py/applications/vlab/controllers/default.py", line 12, in index\n    count+=1\nUnboundLocalError: local variable \'count\' referenced before assignment\n'
+p228
+s.

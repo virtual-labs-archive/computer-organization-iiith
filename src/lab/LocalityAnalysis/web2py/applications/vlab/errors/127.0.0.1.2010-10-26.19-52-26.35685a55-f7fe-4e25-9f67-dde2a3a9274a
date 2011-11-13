@@ -1,0 +1,552 @@
+(dp1
+S'output'
+p2
+S''
+sS'layer'
+p3
+S'/home/shrenik/web2py/applications/vlab/controllers/default.py'
+p4
+sS'code'
+p5
+S'\n#########################################################################\n## This is a samples controller\n## - index is the default action of any application\n## - user is required for authentication and authorization\n## - download is for downloading files uploaded in the db (does streaming)\n## - call exposes all registered services (none by default)\n#########################################################################  \n@auth.requires_login()\ndef index():\n    import os\n    import re\n    import commands\n    """\n    example action using the internationalization operator T and flash\n    rendered by views/default/index.html or views/generic.html\n    """\n    pid=[]\n    values={}\n    flag=0\n    compile=True\n    list=[]\n    out="Test"\n    inp=None\n    out_mod=None\n    form=SQLFORM(db.programs)\n    if(form.accepts(request.vars,session)):\n         flag=1\n\t path=os.getcwd()\n         path=path+\'/applications/vlab/uploads/\'#+form.vars.file\n         inp=commands.getstatusoutput(\'cc \'+path+form.vars.file+\' -o\'+path+str(auth.user.id))\n\t if inp[0] != 0:\n\t\t compile=False\n\t i1_s=form.vars.i1_size * 1024; values["i1_s"]=i1_s\n\t d1_s=form.vars.d1_size * 1024; values["d1_s"]=d1_s\n\t l2_s=form.vars.l2_size * 1024; values["l2_s"]=l2_s\n\t values["compile"]=compile; values["input"]=""\n\t if compile==True:\n          command=\'valgrind --tool=cachegrind --I1=\'+str(i1_s)+\',\'+str(form.vars.i1_associativity)+\',\'+str(form.vars.i1_line_size)+ \' --cachegrind-out-file=\'+path+str(auth.user.id)+\'.%p \'+path+str(auth.user.id)\n          if len(form.vars.input_file)>0:\n\t     input_path=os.getcwd()\n             input_path=input_path+\'/applications/vlab/uploads/\'+form.vars.input_file; values["input"]=input_path\n             command=command+\'<\'+input_path\n         \n\t  out=commands.getstatusoutput(command)\n\t  out_mod=re.split(\'\\n\',out[1])\n\t  regex="==(\\d*)==\\s*([^:]*):\\s*(\\d+.*)"\n\t  for i in out_mod:\n\t\t match=re.findall(regex,i)\n\t\t if len(match)>0:\n\t\t \tprocid=match[0][0]\n\t\t\tif procid not in pid:\n\t\t\t\t pid.append(procid)\n\t\t\tlist.append(match[0])\t\n    if len(list)>0:\n\tregex="([^\\(]+)\\(\\s*(\\S+)[^\\+]*\\+\\s*(\\S+).*" ; t1= re.findall(regex,list[5][2]) ; values["a"]=t1[0][0] ; values["a_1"]=t1[0][1] ; values["a_2"] = t1[0][2] \n\tt2= re.findall(regex,list[6][2]) ; values["c"]=t2[0][0] ; values["c_1"]=t2[0][1] ; values["c_2"] = t2[0][2] ; values["e"]=values["c"] ; values["e_1"] = values["c_1"]; values["e_2"]=values["c_2"] \n\tt3= re.findall(regex,list[8][2]) ; values["d"]=t3[0][0] ; values["d_1"]=t3[0][1] ; values["d_2"] = t3[0][2] \n\tt4= re.findall(regex,list[7][2]) ; values["g"]=t4[0][0] ; values["g_1"]=t4[0][1] ; values["g_2"] = t4[0][2]\n\tvalues["b"]= int(values["a"].replace(",",""))-int(values["c"].replace(",","")) ; values["b_1"]= int(values["a_1"].replace(",",""))-int(values["c_1"].replace(",","")) ; values["b_2"]= int(values["a_2"].replace(",",""))-int(values["c_2"].replace(",","")) \n\tvalues["f"]= int(values["e"].replace(",",""))-int(values["g"].replace(",","")) ; values["f_1"]= int(values["e_1"].replace(",",""))-int(values["g_1"].replace(",","")) ; values["f_2"]= int(values["e_2"].replace(",",""))-int(values["g_2"].replace(",","")) \n\tvalues["h"]=str("%.2f"%((float(values["g"].replace(",",""))/float(values["e"].replace(",","")))*100))+"%" \n\tvalues["h_1"]=str("%.2f"%((float(values["g_1"].replace(",",""))/float(values["e_1"].replace(",","")))*100))+"%"\n\tvalues["h_2"]=str("%.2f"%((float(values["g_2"].replace(",",""))/float(values["e_2"].replace(",","")))*100))+"%"\n    session.values={}\n    session.values=values\n    \n    response.flash = T(\'Welcome to web2py\')\n    return dict(form=form,message=T(\'Hello World\'),list=list,pid=pid,flag=flag,values=values,compile=compile)\n\ndef show_session():\n\treturn dict(session=session)\n\ndef show_graphs():\n\t import os\n\t import re\n\t import commands\n\t list=[]\n\t values={}\n\t values=session.values\n\t y1=[]\n\t path=os.getcwd()\n         path=path+\'/applications/vlab/uploads/\'\n\t input_path=values["input"]\n\t if values["compile"]==True:\n\t\tfor i in range (2,9): \n\t\t\tcommand=\'valgrind --tool=cachegrind --I1=\'+str(values["i1_s"])+\',\'+str(i)+\',\'+str(64)+ \' --cachegrind-out-file=\'+path+str(auth.user.id)+\'.%p \'+path+str(auth.user.id)\n\t \t\tif input_path != None:\n\t   \t\t\tcommand=command + \'<\' +input_path\n\t\t\tout=commands.getstatusoutput(command)\n\t\t\tout_mod=re.split(\'\\n\',out[1])\n\t  \t\tregex="==(\\d*)==\\s*([^:]*):\\s*(\\d+.*)"\n\t  \t\tfor i in out_mod:\n\t\t \t\tmatch=re.findall(regex,i)\n\t\t \t\tif len(match)>0:\n\t\t\t\t\tlist.append(match[0])\n\n\t\t\tif len(list) >0:\n\t\t\t\ty1.append(list[3][2])\n         return dict(y1=y1)\n\n\t \n\n\ndef customize():\n    form=SQLFORM(db.options)\n    \ndef user():\n    """\n    exposes:\n    http://..../[app]/default/user/login \n    http://..../[app]/default/user/logout\n    http://..../[app]/default/user/register\n    http://..../[app]/default/user/profile\n    http://..../[app]/default/user/retrieve_password\n    http://..../[app]/default/user/change_password\n    use @auth.requires_login()\n        @auth.requires_membership(\'group name\')\n        @auth.requires_permission(\'read\',\'table name\',record_id)\n    to decorate functions that need access control\n    """\n    return dict(form=auth())\n\n\ndef download():\n    """\n    allows downloading of uploaded files\n    http://..../[app]/default/download/[filename]\n    """\n    return response.download(request,db)\n\n\ndef call():\n    """\n    exposes services. for example:\n    http://..../[app]/default/call/jsonrpc\n    decorate with @services.jsonrpc the functions to expose\n    supports xml, json, xmlrpc, jsonrpc, amfrpc, rss, csv\n    """\n    session.forget()\n    return service()\n\nresponse._vars=response._caller(show_graphs)\n'
+p6
+sS'snapshot'
+p7
+(dp8
+S'exception'
+p9
+(dp10
+S'__hash__'
+p11
+S"<method-wrapper '__hash__' of exceptions.TypeError object>"
+p12
+sS'__setattr__'
+p13
+S"<method-wrapper '__setattr__' of exceptions.TypeError object>"
+p14
+sS'__reduce_ex__'
+p15
+S'<built-in method __reduce_ex__ of exceptions.TypeError object>'
+p16
+sS'__getslice__'
+p17
+S"<method-wrapper '__getslice__' of exceptions.TypeError object>"
+p18
+sS'__getitem__'
+p19
+S"<method-wrapper '__getitem__' of exceptions.TypeError object>"
+p20
+sS'__setstate__'
+p21
+S'<built-in method __setstate__ of exceptions.TypeError object>'
+p22
+sS'__reduce__'
+p23
+S'<built-in method __reduce__ of exceptions.TypeError object>'
+p24
+sS'__str__'
+p25
+S"<method-wrapper '__str__' of exceptions.TypeError object>"
+p26
+sS'__format__'
+p27
+S'<built-in method __format__ of exceptions.TypeError object>'
+p28
+sS'__getattribute__'
+p29
+S"<method-wrapper '__getattribute__' of exceptions.TypeError object>"
+p30
+sS'__class__'
+p31
+S"<type 'exceptions.TypeError'>"
+p32
+sS'__unicode__'
+p33
+S'<built-in method __unicode__ of exceptions.TypeError object>'
+p34
+sS'__delattr__'
+p35
+S"<method-wrapper '__delattr__' of exceptions.TypeError object>"
+p36
+sS'__subclasshook__'
+p37
+S'<built-in method __subclasshook__ of type object>'
+p38
+sS'__repr__'
+p39
+S"<method-wrapper '__repr__' of exceptions.TypeError object>"
+p40
+sS'args'
+p41
+S'("\'builtin_function_or_method\' object is unsubscriptable",)'
+p42
+sS'__dict__'
+p43
+S'{}'
+p44
+sS'__sizeof__'
+p45
+S'<built-in method __sizeof__ of exceptions.TypeError object>'
+p46
+sS'__doc__'
+p47
+S"'Inappropriate argument type.'"
+p48
+sS'__init__'
+p49
+S"<method-wrapper '__init__' of exceptions.TypeError object>"
+p50
+sS'__new__'
+p51
+S'<built-in method __new__ of type object>'
+p52
+ssS'evalue'
+p53
+S"'builtin_function_or_method' object is unsubscriptable"
+p54
+sS'request'
+p55
+(dp56
+S'function'
+p57
+S"'show_graphs'"
+p58
+sS'body'
+p59
+S'<cStringIO.StringO object>'
+p60
+sS'wsgi'
+p61
+S"<Storage {'start_response': <function <lambda> a...ING': 'gzip,deflate', 'HTTP_KEEP_ALIVE': '115'}}>"
+p62
+sS'extension'
+p63
+S"'html'"
+p64
+sS'vars'
+p65
+S'<Storage {}>'
+p66
+sS'cid'
+p67
+S'None'
+p68
+sS'url'
+p69
+S'<gluon.html.XML object>'
+p70
+sg41
+S'[]'
+p71
+sS'controller'
+p72
+S"'default'"
+p73
+sS'cookies'
+p74
+S"<SimpleCookie: __utma='96992031.1671719183.12879...'127-0-0-1-f5ba4403-e05c-44df-9e39-b1e16f3bf0d8'>"
+p75
+sS'application'
+p76
+S"'vlab'"
+p77
+sS'ajax'
+p78
+S'False'
+p79
+sS'client'
+p80
+S"'127.0.0.1'"
+p81
+sS'env'
+p82
+S"<Storage {'http_user_agent': 'Mozilla/5.0 (X11; ...False, 'path_info': '/vlab/default/show_graphs'}>"
+p83
+sS'raw_args'
+p84
+S'None'
+p85
+sS'get_vars'
+p86
+S'<Storage {}>'
+p87
+sS'folder'
+p88
+S"'/home/shrenik/web2py/applications/vlab/'"
+p89
+sS'now'
+p90
+S'datetime.datetime(2010, 10, 26, 19, 52, 26, 453968)'
+p91
+sS'post_vars'
+p92
+S'<Storage {}>'
+p93
+ssS'frames'
+p94
+(lp95
+(dp96
+S'file'
+p97
+S'/home/shrenik/web2py/gluon/restricted.py'
+p98
+sS'dump'
+p99
+(dp100
+S'environment'
+p101
+S"{'A': <class 'gluon.html.A'>, 'Auth': <class 'gluon.tools.Auth'>, 'B': <class 'gluon.html.B'>, 'BEAUTIFY': <class 'gluon.html.BEAUTIFY'>, 'BODY': <class 'gluon.html.BODY'>, 'BR': <class 'gluon.html.BR'>, 'CENTER': <class 'gluon.html.CENTER'>, 'CLEANUP': <class 'gluon.validators.CLEANUP'>, 'CODE': <class 'gluon.html.CODE'>, 'CRYPT': <class 'gluon.validators.CRYPT'>, ...}"
+p102
+sS'ccode'
+p103
+S'<code object <module> at 0x9771a88, file "/home/...pplications/vlab/controllers/default.py", line 9>'
+p104
+ssS'lnum'
+p105
+I188
+sS'lines'
+p106
+(dp107
+I192
+S'        # XXX Show exception in Wing IDE if running in debugger'
+p108
+sI183
+S'        if type(code) == types.CodeType:'
+p109
+sI184
+S'            ccode = code'
+p110
+sI185
+S'        else:'
+p111
+sI186
+S'            ccode = compile2(code,layer)'
+p112
+sI187
+S''
+sI188
+S'        exec ccode in environment'
+p113
+sI189
+S'    except HTTP:'
+p114
+sI190
+S'        raise'
+p115
+sI191
+S'    except Exception:'
+p116
+ssS'call'
+p117
+S"(code='\\n###############################################...()\\n\\nresponse._vars=response._caller(show_graphs)\\n', environment={'A': <class 'gluon.html.A'>, 'Auth': <class 'gluon.tools.Auth'>, 'B': <class 'gluon.html.B'>, 'BEAUTIFY': <class 'gluon.html.BEAUTIFY'>, 'BODY': <class 'gluon.html.BODY'>, 'BR': <class 'gluon.html.BR'>, 'CENTER': <class 'gluon.html.CENTER'>, 'CLEANUP': <class 'gluon.validators.CLEANUP'>, 'CODE': <class 'gluon.html.CODE'>, 'CRYPT': <class 'gluon.validators.CRYPT'>, ...}, layer='/home/shrenik/web2py/applications/vlab/controllers/default.py')"
+p118
+sS'func'
+p119
+S'restricted'
+p120
+sa(dp121
+g97
+S'/home/shrenik/web2py/applications/vlab/controllers/default.py'
+p122
+sg99
+(dp123
+sg105
+I143
+sg106
+(dp124
+I132
+S''
+sI133
+S'def call():'
+p125
+sI134
+S'    """'
+p126
+sI135
+S'    exposes services. for example:'
+p127
+sI136
+S'    http://..../[app]/default/call/jsonrpc'
+p128
+sI137
+S'    decorate with @services.jsonrpc the functions to expose'
+p129
+sI138
+S'    supports xml, json, xmlrpc, jsonrpc, amfrpc, rss, csv'
+p130
+sI139
+S'    """'
+p131
+sI140
+S'    session.forget()'
+p132
+sI141
+S'    return service()'
+p133
+ssg117
+S'()'
+p134
+sg119
+S'<module>'
+p135
+sa(dp136
+g97
+S'/home/shrenik/web2py/gluon/globals.py'
+p137
+sg99
+(dp138
+S'self'
+p139
+S'undefined'
+p140
+sS'f'
+S'<function show_graphs>'
+p141
+ssg105
+I96
+sg106
+(dp142
+I96
+S'        self._caller = lambda f: f()'
+p143
+sI97
+S'        self._view_environment = None'
+p144
+sI98
+S'        self._custom_commit = None'
+p145
+sI99
+S'        self._custom_rollback = None'
+p146
+sI100
+S''
+sI91
+S"        self.flash = ''           # used by the default view layout"
+p147
+sI92
+S'        self.meta = Storage()     # used by web2py_ajax.html'
+p148
+sI93
+S'        self.menu = []            # used by the default view layout'
+p149
+sI94
+S'        self.files = []           # used by web2py_ajax.html'
+p150
+sI95
+S'        self._vars = None'
+p151
+ssg117
+S'(f=<function show_graphs>)'
+p152
+sg119
+S'<lambda>'
+p153
+sa(dp154
+g97
+S'/home/shrenik/web2py/applications/vlab/controllers/default.py'
+p155
+sg99
+(dp156
+S'values'
+p157
+S'<built-in method values of Session object>'
+p158
+sS'input_path'
+p159
+g140
+ssg105
+I84
+sg106
+(dp160
+I79
+S'\t values={}'
+p161
+sI80
+S'\t values=session.values'
+p162
+sI81
+S'\t y1=[]'
+p163
+sI82
+S'\t path=os.getcwd()'
+p164
+sI83
+S"         path=path+'/applications/vlab/uploads/'"
+p165
+sI84
+S'\t input_path=values["input"]'
+p166
+sI85
+S'\t if values["compile"]==True:'
+p167
+sI86
+S'\t\tfor i in range (2,9):'
+p168
+sI87
+S'\t\t\tcommand=\'valgrind --tool=cachegrind --I1=\'+str(values["i1_s"])+\',\'+str(i)+\',\'+str(64)+ \' --cachegrind-out-file=\'+path+str(auth.user.id)+\'.%p \'+path+str(auth.user.id)'
+p169
+sI88
+S'\t \t\tif input_path != None:'
+p170
+ssg117
+S'()'
+p171
+sg119
+S'show_graphs'
+p172
+sasS'pyver'
+p173
+S'Python 2.6.6: /usr/bin/python'
+p174
+sS'session'
+p175
+(dp176
+S'flash'
+p177
+S'None'
+p178
+sS'values'
+p179
+S"{'a': '151,190  ', 'a_1': '102,785', 'a_2': '48,405', 'b': 148944, 'b_1': 100867, 'b_2': 48077, 'c': '2,246  ', 'c_1': '1,918', 'c_2': '328', 'compile': True, ...}"
+p180
+sS'_formkey[login]'
+p181
+S"'32f67b3d-2403-41af-ad6e-11ba7dcd235f'"
+p182
+sS'auth'
+p183
+S"<Storage {'expiration': 3600, 'user': <Storage {... 10, 26, 19, 52, 26, 453968), 'remember': False}>"
+p184
+sS'_formkey[programs_create]'
+p185
+S"'ef2c9e92-61e8-4fbc-832d-cabc7d845e5d'"
+p186
+ssS'etype'
+p187
+S"<type 'exceptions.TypeError'>"
+p188
+sS'date'
+p189
+S'Tue Oct 26 19:52:26 2010'
+p190
+sS'response'
+p191
+(dp192
+S'status'
+p193
+S'200'
+p194
+sg59
+S'<cStringIO.StringO object>'
+p195
+sg74
+S"<SimpleCookie: session_id_vlab='127-0-0-1-9ad01b29-ea99-4946-9e76-5ac5b38707e0'>"
+p196
+sS'_vars'
+p197
+S'None'
+p198
+sS'title'
+p199
+S"'vlab'"
+p200
+sS'session_file'
+p201
+S"<open file '/home/shrenik/web2py/applications/vl...ad01b29-ea99-4946-9e76-5ac5b38707e0', mode 'rb+'>"
+p202
+sS'flash'
+p203
+S"''"
+p204
+sS'_custom_rollback'
+p205
+S'None'
+p206
+sS'session_id'
+p207
+S"'127-0-0-1-9ad01b29-ea99-4946-9e76-5ac5b38707e0'"
+p208
+sS'headers'
+p209
+S"<Storage {'Expires': 'Tue, 26 Oct 2010 14:22:26 ...he, must-revalidate, post-check=0, pre-check=0'}>"
+p210
+sS'meta'
+p211
+S"<Storage {'keywords': 'bla bla bla', 'description': 'describe your app', 'author': 'you'}>"
+p212
+sS'session_filename'
+p213
+S"'/home/shrenik/web2py/applications/vlab/sessions/127-0-0-1-9ad01b29-ea99-4946-9e76-5ac5b38707e0'"
+p214
+sS'postprocessing'
+p215
+S'[]'
+p216
+sS'menu'
+p217
+S"[(<lazyT 'Index'>, False, <gluon.html.XML object>, []), ('Change Layout', False, <gluon.html.XML object>)]"
+p218
+sS'_view_environment'
+p219
+S"{'A': <class 'gluon.html.A'>, 'Auth': <class 'gluon.tools.Auth'>, 'B': <class 'gluon.html.B'>, 'BEAUTIFY': <class 'gluon.html.BEAUTIFY'>, 'BODY': <class 'gluon.html.BODY'>, 'BR': <class 'gluon.html.BR'>, 'CENTER': <class 'gluon.html.CENTER'>, 'CLEANUP': <class 'gluon.validators.CLEANUP'>, 'CODE': <class 'gluon.html.CODE'>, 'CRYPT': <class 'gluon.validators.CRYPT'>, ...}"
+p220
+sS'subtitle'
+p221
+S"<lazyT 'customize me!'>"
+p222
+sS'session_id_name'
+p223
+S"'session_id_vlab'"
+p224
+sS'_custom_commit'
+p225
+S'None'
+p226
+sS'_caller'
+p227
+S'<function <lambda>>'
+p228
+sS'files'
+p229
+S'[]'
+p230
+sS'view'
+p231
+S"'default/show_graphs.html'"
+p232
+ssS'locals'
+p233
+(dp234
+S'commands'
+p235
+S"<module 'commands' from '/usr/lib/python2.6/commands.pyc'>"
+p236
+sS'list'
+p237
+S'[]'
+p238
+sS're'
+p239
+S"<module 're' from '/usr/lib/python2.6/re.pyc'>"
+p240
+sS'values'
+p241
+S'<built-in method values of Session object>'
+p242
+sS'y1'
+p243
+S'[]'
+p244
+sS'path'
+p245
+S"'/home/shrenik/web2py/applications/vlab/uploads/'"
+p246
+sS'os'
+p247
+S"<module 'os' from '/usr/lib/python2.6/os.pyc'>"
+p248
+sssS'traceback'
+p249
+S'Traceback (most recent call last):\n  File "/home/shrenik/web2py/gluon/restricted.py", line 188, in restricted\n    exec ccode in environment\n  File "/home/shrenik/web2py/applications/vlab/controllers/default.py", line 143, in <module>\n  File "/home/shrenik/web2py/gluon/globals.py", line 96, in <lambda>\n    self._caller = lambda f: f()\n  File "/home/shrenik/web2py/applications/vlab/controllers/default.py", line 84, in show_graphs\n    input_path=values["input"]\nTypeError: \'builtin_function_or_method\' object is unsubscriptable\n'
+p250
+s.

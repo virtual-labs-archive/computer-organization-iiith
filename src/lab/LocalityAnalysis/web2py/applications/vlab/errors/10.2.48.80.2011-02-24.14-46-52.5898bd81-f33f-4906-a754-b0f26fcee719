@@ -1,0 +1,1063 @@
+(dp1
+S'output'
+p2
+S''
+sS'layer'
+p3
+S'Framework'
+p4
+sS'code'
+p5
+S''
+sS'snapshot'
+p6
+(dp7
+S'exception'
+p8
+(dp9
+S'__hash__'
+p10
+S"<method-wrapper '__hash__' of exceptions.IOError object at 0x916777c>"
+p11
+sS'__setattr__'
+p12
+S"<method-wrapper '__setattr__' of exceptions.IOError object at 0x916777c>"
+p13
+sS'__reduce_ex__'
+p14
+S'<built-in method __reduce_ex__ of exceptions.IOError object at 0x916777c>'
+p15
+sS'__getslice__'
+p16
+S"<method-wrapper '__getslice__' of exceptions.IOError object at 0x916777c>"
+p17
+sS'__getitem__'
+p18
+S"<method-wrapper '__getitem__' of exceptions.IOError object at 0x916777c>"
+p19
+sS'__setstate__'
+p20
+S'<built-in method __setstate__ of exceptions.IOError object at 0x916777c>'
+p21
+sS'__reduce__'
+p22
+S'<built-in method __reduce__ of exceptions.IOError object at 0x916777c>'
+p23
+sS'__str__'
+p24
+S"<method-wrapper '__str__' of exceptions.IOError object at 0x916777c>"
+p25
+sS'args'
+p26
+S"(5, 'Input/output error')"
+p27
+sS'__getattribute__'
+p28
+S"<method-wrapper '__getattribute__' of exceptions.IOError object at 0x916777c>"
+p29
+sS'__class__'
+p30
+S"<type 'exceptions.IOError'>"
+p31
+sS'filename'
+p32
+S'None'
+p33
+sS'__delattr__'
+p34
+S"<method-wrapper '__delattr__' of exceptions.IOError object at 0x916777c>"
+p35
+sS'strerror'
+p36
+S"'Input/output error'"
+p37
+sS'__repr__'
+p38
+S"<method-wrapper '__repr__' of exceptions.IOError object at 0x916777c>"
+p39
+sS'errno'
+p40
+S'5'
+sS'__dict__'
+p41
+S'{}'
+p42
+sS'__doc__'
+p43
+S"'I/O operation failed.'"
+p44
+sS'__init__'
+p45
+S"<method-wrapper '__init__' of exceptions.IOError object at 0x916777c>"
+p46
+sS'__new__'
+p47
+S'<built-in method __new__ of type object at 0x8144fe0>'
+p48
+ssS'evalue'
+p49
+S'[Errno 5] Input/output error'
+p50
+sS'request'
+p51
+(dp52
+S'function'
+p53
+S"'index'"
+p54
+sS'body'
+p55
+S'<cStringIO.StringO object at 0x90dab20>'
+p56
+sS'wsgi'
+p57
+S"<Storage {'start_response': <function <lambda> a...ING': 'gzip,deflate', 'HTTP_KEEP_ALIVE': '115'}}>"
+p58
+sS'extension'
+p59
+S"'html'"
+p60
+sS'vars'
+p61
+S'<Storage {}>'
+p62
+sS'cid'
+p63
+S'None'
+p64
+sS'url'
+p65
+S'<gluon.html.XML object at 0x90dadac>'
+p66
+sg26
+S'[]'
+p67
+sS'controller'
+p68
+S"'default'"
+p69
+sS'cookies'
+p70
+S'<SimpleCookie: >'
+p71
+sS'application'
+p72
+S"'vlab'"
+p73
+sS'ajax'
+p74
+S'False'
+p75
+sS'client'
+p76
+S"'10.2.48.80'"
+p77
+sS'env'
+p78
+S"<Storage {'http_user_agent': 'Mozilla/5.0 (X11; ...', 'wsgi_run_once': False, 'path_info': '/vlab'}>"
+p79
+sS'raw_args'
+p80
+S'None'
+p81
+sS'get_vars'
+p82
+S'<Storage {}>'
+p83
+sS'folder'
+p84
+S"'/home/cse11/public_html/final-build/LocalityAnalysis/web2py/applications/vlab/'"
+p85
+sS'now'
+p86
+S'datetime.datetime(2011, 2, 24, 14, 46, 52, 757217)'
+p87
+sS'post_vars'
+p88
+S'<Storage {}>'
+p89
+ssS'frames'
+p90
+(lp91
+(dp92
+S'file'
+p93
+S'/home/cse11/public_html/final-build/LocalityAnalysis/web2py/gluon/main.py'
+p94
+sS'dump'
+p95
+(dp96
+S'global serve_controller'
+p97
+S'<function serve_controller at 0x8fce87c>'
+p98
+sS'session'
+p99
+S'<Storage {}>'
+p100
+sS'request'
+p101
+S"<Storage {'function': 'index', 'body': <cStringI... 14, 46, 52, 757217), 'post_vars': <Storage {}>}>"
+p102
+sS'response'
+p103
+S"<Storage {'status': 200, 'body': <cStringIO.Stri...t': None, 'files': [], '_custom_rollback': None}>"
+p104
+ssS'lnum'
+p105
+I413
+sS'lines'
+p106
+(dp107
+I416
+S'                if static_file:'
+p108
+sI417
+S'                    return http_response.to(responder)'
+p109
+sI408
+S''
+sI409
+S'                # ##################################################'
+p110
+sI410
+S'                # run controller'
+p111
+sI411
+S'                # ##################################################'
+p112
+sI412
+S''
+sI413
+S'                serve_controller(request, response, session)'
+p113
+sI414
+S''
+sI415
+S'            except HTTP, http_response:'
+p114
+ssS'call'
+p115
+S"(environ={'HTTP_ACCEPT': 'text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8', 'HTTP_ACCEPT_CHARSET': 'ISO-8859-1,utf-8;q=0.7,*;q=0.7', 'HTTP_ACCEPT_ENCODING': 'gzip,deflate', 'HTTP_ACCEPT_LANGUAGE': 'en-us,en;q=0.5', 'HTTP_CONNECTION': 'keep-alive', 'HTTP_HOST': '10.4.3.117:8080', 'HTTP_KEEP_ALIVE': '115', 'HTTP_USER_AGENT': 'Mozilla/5.0 (X11; U; Linux i686; en-US; rv:1.9.2...ecko/20101027 Ubuntu/10.04 (lucid) Firefox/3.6.12', 'PATH_INFO': '/vlab', 'QUERY_STRING': '', ...}, responder=<function responder2 at 0x9062f7c>)"
+p116
+sS'func'
+p117
+S'wsgibase'
+p118
+sa(dp119
+g93
+S'/home/cse11/public_html/final-build/LocalityAnalysis/web2py/gluon/main.py'
+p120
+sg95
+(dp121
+S'environment'
+p122
+S'undefined'
+p123
+sS'session'
+p124
+S'<Storage {}>'
+p125
+sS'request'
+p126
+S"<Storage {'function': 'index', 'body': <cStringI... 14, 46, 52, 757217), 'post_vars': <Storage {}>}>"
+p127
+sS'response'
+p128
+S"<Storage {'status': 200, 'body': <cStringIO.Stri...t': None, 'files': [], '_custom_rollback': None}>"
+p129
+sS'global build_environment'
+p130
+S'<function build_environment at 0x8faa5dc>'
+p131
+ssg105
+I169
+sg106
+(dp132
+I164
+S''
+sI165
+S'    # ##################################################'
+p133
+sI166
+S'    # build environment for controller and view'
+p134
+sI167
+S'    # ##################################################'
+p135
+sI168
+S''
+sI169
+S'    environment = build_environment(request, response, session)'
+p136
+sI170
+S''
+sI171
+S'    # set default view, controller can override it'
+p137
+sI172
+S''
+sI173
+S"    response.view = '%s/%s.%s' % (request.controller,"
+p138
+ssg115
+S"(request=<Storage {'function': 'index', 'body': <cStringI... 14, 46, 52, 757217), 'post_vars': <Storage {}>}>, response=<Storage {'status': 200, 'body': <cStringIO.Stri...t': None, 'files': [], '_custom_rollback': None}>, session=<Storage {}>)"
+p139
+sg117
+S'serve_controller'
+p140
+sa(dp141
+g93
+S'/home/cse11/public_html/final-build/LocalityAnalysis/web2py/gluon/compileapp.py'
+p142
+sg95
+(dp143
+S'environment'
+p144
+S"{'A': <class 'gluon.html.A'>, 'B': <class 'gluon.html.B'>, 'BEAUTIFY': <class 'gluon.html.BEAUTIFY'>, 'BODY': <class 'gluon.html.BODY'>, 'BR': <class 'gluon.html.BR'>, 'CENTER': <class 'gluon.html.CENTER'>, 'CLEANUP': <class 'gluon.validators.CLEANUP'>, 'CODE': <class 'gluon.html.CODE'>, 'CRYPT': <class 'gluon.validators.CRYPT'>, 'DIV': <class 'gluon.html.DIV'>, ...}"
+p145
+sS'global Cache'
+p146
+S"<class 'gluon.cache.Cache'>"
+p147
+sS'request'
+p148
+S"<Storage {'function': 'index', 'body': <cStringI... 14, 46, 52, 757217), 'post_vars': <Storage {}>}>"
+p149
+ssg105
+I231
+sg106
+(dp150
+I226
+S"    environment['HTTP'] = HTTP"
+p151
+sI227
+S"    environment['redirect'] = redirect"
+p152
+sI228
+S"    environment['request'] = request"
+p153
+sI229
+S"    environment['response'] = response"
+p154
+sI230
+S"    environment['session'] = session"
+p155
+sI231
+S"    environment['cache'] = Cache(request)"
+p156
+sI232
+S"    environment['DAL'] = DAL"
+p157
+sI233
+S"    environment['Field'] = Field"
+p158
+sI234
+S"    environment['SQLDB'] = SQLDB        # for backward compatibility"
+p159
+sI235
+S"    environment['SQLField'] = SQLField  # for backward compatibility"
+p160
+ssg115
+S"(request=<Storage {'function': 'index', 'body': <cStringI... 14, 46, 52, 757217), 'post_vars': <Storage {}>}>, response=<Storage {'status': 200, 'body': <cStringIO.Stri...t': None, 'files': [], '_custom_rollback': None}>, session=<Storage {}>)"
+p161
+sg117
+S'build_environment'
+p162
+sa(dp163
+g93
+S'/home/cse11/public_html/final-build/LocalityAnalysis/web2py/gluon/cache.py'
+p164
+sg95
+(dp165
+S'logger.warning'
+p166
+S'<bound method Logger.warning of <logging.Logger instance at 0x8fa560c>>'
+p167
+sS'global logger'
+p168
+S'<logging.Logger instance at 0x8fa560c>'
+p169
+ssg105
+I367
+sg106
+(dp170
+I362
+S'            # Otherwise use ram (and try also disk)'
+p171
+sI363
+S'            self.ram = CacheInRam(request)'
+p172
+sI364
+S'            try:'
+p173
+sI365
+S'                self.disk = CacheOnDisk(request)'
+p174
+sI366
+S'            except IOError:'
+p175
+sI367
+S"                logger.warning('no cache.disk (IOError)')"
+p176
+sI368
+S'            except AttributeError:'
+p177
+sI369
+S'                # normally not expected anymore, as GAE has already'
+p178
+sI370
+S'                # been accounted for'
+p179
+sI371
+S"                logger.warning('no cache.disk (AttributeError)')"
+p180
+ssg115
+S"(self=<gluon.cache.Cache object at 0x90dae4c>, request=<Storage {'function': 'index', 'body': <cStringI... 14, 46, 52, 757217), 'post_vars': <Storage {}>}>)"
+p181
+sg117
+g45
+sa(dp182
+g93
+S'/usr/lib/python2.5/logging/__init__.py'
+p183
+sg95
+(dp184
+S'builtinapply'
+p185
+S'<built-in function apply>'
+p186
+sS'self'
+p187
+S'<logging.Logger instance at 0x8fa560c>'
+p188
+sS'args'
+p189
+S'()'
+p190
+sS'kwargs'
+p191
+g42
+sS'msg'
+p192
+S"'no cache.disk (IOError)'"
+p193
+sS'global WARNING'
+p194
+S'30'
+p195
+sS'self._log'
+p196
+S'<bound method Logger._log of <logging.Logger instance at 0x8fa560c>>'
+p197
+ssg105
+I999
+sg106
+(dp198
+I994
+S'        logger.warning("Houston, we have a %s", "bit of a problem", exc_info=1)'
+p199
+sI995
+S'        """'
+p200
+sI996
+S'        if self.manager.disable >= WARNING:'
+p201
+sI997
+S'            return'
+p202
+sI998
+S'        if self.isEnabledFor(WARNING):'
+p203
+sI999
+S'            apply(self._log, (WARNING, msg, args), kwargs)'
+p204
+sI1000
+S''
+sI1001
+S'    warn = warning'
+p205
+sI1002
+S''
+sI1003
+S'    def error(self, msg, *args, **kwargs):'
+p206
+ssg115
+S"(self=<logging.Logger instance at 0x8fa560c>, msg='no cache.disk (IOError)', *args=(), **kwargs={})"
+p207
+sg117
+S'warning'
+p208
+sa(dp209
+g93
+S'/usr/lib/python2.5/logging/__init__.py'
+p210
+sg95
+(dp211
+S'record'
+p212
+S'<logging.LogRecord instance at 0x916ff4c>'
+p213
+sS'self'
+p214
+S'<logging.Logger instance at 0x8fa560c>'
+p215
+sS'self.handle'
+p216
+S'<bound method Logger.handle of <logging.Logger instance at 0x8fa560c>>'
+p217
+ssg105
+I1101
+sg106
+(dp218
+I1096
+S'            fn, lno, func = "(unknown file)", 0, "(unknown function)"'
+p219
+sI1097
+S'        if exc_info:'
+p220
+sI1098
+S'            if type(exc_info) != types.TupleType:'
+p221
+sI1099
+S'                exc_info = sys.exc_info()'
+p222
+sI1100
+S'        record = self.makeRecord(self.name, level, fn, lno, msg, args, exc_info, func, extra)'
+p223
+sI1101
+S'        self.handle(record)'
+p224
+sI1102
+S''
+sI1103
+S'    def handle(self, record):'
+p225
+sI1104
+S'        """'
+p226
+sI1105
+S'        Call the handlers for the specified record.'
+p227
+ssg115
+S"(self=<logging.Logger instance at 0x8fa560c>, level=30, msg='no cache.disk (IOError)', args=(), exc_info=None, extra=None)"
+p228
+sg117
+S'_log'
+p229
+sa(dp230
+g93
+S'/usr/lib/python2.5/logging/__init__.py'
+p231
+sg95
+(dp232
+S'record'
+p233
+S'<logging.LogRecord instance at 0x916ff4c>'
+p234
+sS'self'
+p235
+S'<logging.Logger instance at 0x8fa560c>'
+p236
+sS'self.callHandlers'
+p237
+S'<bound method Logger.callHandlers of <logging.Logger instance at 0x8fa560c>>'
+p238
+ssg105
+I1111
+sg106
+(dp239
+I1106
+S''
+sI1107
+S'        This method is used for unpickled records received from a socket, as'
+p240
+sI1108
+S'        well as those created locally. Logger-level filtering is applied.'
+p241
+sI1109
+S'        """'
+p242
+sI1110
+S'        if (not self.disabled) and self.filter(record):'
+p243
+sI1111
+S'            self.callHandlers(record)'
+p244
+sI1112
+S''
+sI1113
+S'    def addHandler(self, hdlr):'
+p245
+sI1114
+S'        """'
+p246
+sI1115
+S'        Add the specified handler to this logger.'
+p247
+ssg115
+S'(self=<logging.Logger instance at 0x8fa560c>, record=<logging.LogRecord instance at 0x916ff4c>)'
+p248
+sg117
+S'handle'
+p249
+sa(dp250
+g93
+S'/usr/lib/python2.5/logging/__init__.py'
+p251
+sg95
+(dp252
+S'hdlr.handle'
+p253
+S'<bound method StreamHandler.handle of <logging.StreamHandler instance at 0xb7117c8c>>'
+p254
+sS'hdlr'
+p255
+S'<logging.StreamHandler instance at 0xb7117c8c>'
+p256
+sS'record'
+p257
+S'<logging.LogRecord instance at 0x916ff4c>'
+p258
+ssg105
+I1148
+sg106
+(dp259
+I1152
+S'                c = c.parent'
+p260
+sI1143
+S'        found = 0'
+p261
+sI1144
+S'        while c:'
+p262
+sI1145
+S'            for hdlr in c.handlers:'
+p263
+sI1146
+S'                found = found + 1'
+p264
+sI1147
+S'                if record.levelno >= hdlr.level:'
+p265
+sI1148
+S'                    hdlr.handle(record)'
+p266
+sI1149
+S'            if not c.propagate:'
+p267
+sI1150
+S'                c = None    #break out'
+p268
+sI1151
+S'            else:'
+p269
+ssg115
+S'(self=<logging.Logger instance at 0x8fa560c>, record=<logging.LogRecord instance at 0x916ff4c>)'
+p270
+sg117
+S'callHandlers'
+p271
+sa(dp272
+g93
+S'/usr/lib/python2.5/logging/__init__.py'
+p273
+sg95
+(dp274
+S'record'
+p275
+S'<logging.LogRecord instance at 0x916ff4c>'
+p276
+sS'self'
+p277
+S'<logging.StreamHandler instance at 0xb7117c8c>'
+p278
+sS'self.emit'
+p279
+S'<bound method StreamHandler.emit of <logging.StreamHandler instance at 0xb7117c8c>>'
+p280
+ssg105
+I655
+sg106
+(dp281
+I650
+S'        """'
+p282
+sI651
+S'        rv = self.filter(record)'
+p283
+sI652
+S'        if rv:'
+p284
+sI653
+S'            self.acquire()'
+p285
+sI654
+S'            try:'
+p286
+sI655
+S'                self.emit(record)'
+p287
+sI656
+S'            finally:'
+p288
+sI657
+S'                self.release()'
+p289
+sI658
+S'        return rv'
+p290
+sI659
+S''
+ssg115
+S'(self=<logging.StreamHandler instance at 0xb7117c8c>, record=<logging.LogRecord instance at 0x916ff4c>)'
+p291
+sg117
+g249
+sa(dp292
+g93
+S'/usr/lib/python2.5/logging/__init__.py'
+p293
+sg95
+(dp294
+S'record'
+p295
+S'<logging.LogRecord instance at 0x916ff4c>'
+p296
+sS'self'
+p297
+S'<logging.StreamHandler instance at 0xb7117c8c>'
+p298
+sS'self.handleError'
+p299
+S'<bound method StreamHandler.handleError of <logging.StreamHandler instance at 0xb7117c8c>>'
+p300
+ssg105
+I757
+sg106
+(dp301
+I752
+S'                    self.stream.write(fs % msg.encode("UTF-8"))'
+p302
+sI753
+S'            self.flush()'
+p303
+sI754
+S'        except (KeyboardInterrupt, SystemExit):'
+p304
+sI755
+S'            raise'
+p305
+sI756
+S'        except:'
+p306
+sI757
+S'            self.handleError(record)'
+p307
+sI758
+S''
+sI759
+S'class FileHandler(StreamHandler):'
+p308
+sI760
+S'    """'
+p309
+sI761
+S'    A handler class which writes formatted logging records to disk files.'
+p310
+ssg115
+S'(self=<logging.StreamHandler instance at 0xb7117c8c>, record=<logging.LogRecord instance at 0x916ff4c>)'
+p311
+sg117
+S'emit'
+p312
+sa(dp313
+g93
+S'/usr/lib/python2.5/logging/__init__.py'
+p314
+sg95
+(dp315
+S'builtinNone'
+p316
+S'None'
+p317
+sS'ei'
+p318
+S"(<type 'exceptions.IOError'>, IOError(5, 'Input/output error'), <traceback object at 0x9174aa4>)"
+p319
+sS'traceback.print_exception'
+p320
+S'<function print_exception at 0xb71e1f44>'
+p321
+sS'global sys'
+p322
+S"<module 'sys' (built-in)>"
+p323
+sS'sys.stderr'
+p324
+S"<open file '<stderr>', mode 'w' at 0xb75700b0>"
+p325
+sS'global traceback'
+p326
+S"<module 'traceback' from '/usr/lib/python2.5/traceback.pyc'>"
+p327
+ssg105
+I706
+sg106
+(dp328
+I704
+S'        if raiseExceptions:'
+p329
+sI705
+S'            ei = sys.exc_info()'
+p330
+sI706
+S'            traceback.print_exception(ei[0], ei[1], ei[2], None, sys.stderr)'
+p331
+sI707
+S'            del ei'
+p332
+sI708
+S''
+sI709
+S'class StreamHandler(Handler):'
+p333
+sI710
+S'    """'
+p334
+sI701
+S'        You could, however, replace this with a custom handler if you wish.'
+p335
+sI702
+S'        The record which was being processed is passed in to this method.'
+p336
+sI703
+S'        """'
+p337
+ssg115
+S'(self=<logging.StreamHandler instance at 0xb7117c8c>, record=<logging.LogRecord instance at 0x916ff4c>)'
+p338
+sg117
+S'handleError'
+p339
+sa(dp340
+g93
+S'/usr/lib/python2.5/traceback.py'
+p341
+sg95
+(dp342
+S'file'
+p343
+S"<open file '<stderr>', mode 'w' at 0xb75700b0>"
+p344
+sS'global _print'
+p345
+S'<function _print at 0xb71e1df4>'
+p346
+ssg105
+I124
+sg106
+(dp347
+I128
+S"        _print(file, line, ' ')"
+p348
+sI119
+S'    position of the error.'
+p349
+sI120
+S'    """'
+p350
+sI121
+S'    if file is None:'
+p351
+sI122
+S'        file = sys.stderr'
+p352
+sI123
+S'    if tb:'
+p353
+sI124
+S"        _print(file, 'Traceback (most recent call last):')"
+p354
+sI125
+S'        print_tb(tb, limit, file)'
+p355
+sI126
+S'    lines = format_exception_only(etype, value)'
+p356
+sI127
+S'    for line in lines[:-1]:'
+p357
+ssg115
+S"(etype=<type 'exceptions.IOError'>, value=IOError(5, 'Input/output error'), tb=<traceback object at 0x9174aa4>, limit=None, file=<open file '<stderr>', mode 'w' at 0xb75700b0>)"
+p358
+sg117
+S'print_exception'
+p359
+sa(dp360
+g93
+S'/usr/lib/python2.5/traceback.py'
+p361
+sg95
+(dp362
+S'terminator'
+p363
+S"'\\n'"
+p364
+sS'str'
+p365
+S"'Traceback (most recent call last):'"
+p366
+sS'file'
+p367
+S"<open file '<stderr>', mode 'w' at 0xb75700b0>"
+p368
+sS'file.write'
+p369
+S'<built-in method write of file object at 0xb75700b0>'
+p370
+ssg105
+I13
+sg106
+(dp371
+I8
+S"           'format_exception_only', 'format_list', 'format_stack',"
+p372
+sI9
+S"           'format_tb', 'print_exc', 'format_exc', 'print_exception',"
+p373
+sI10
+S"           'print_last', 'print_stack', 'print_tb', 'tb_lineno']"
+p374
+sI11
+S''
+sI12
+S"def _print(file, str='', terminator='\\n'):"
+p375
+sI13
+S'    file.write(str+terminator)'
+p376
+sI14
+S''
+sI15
+S''
+sI16
+S'def print_list(extracted_list, file=None):'
+p377
+sI17
+S'    """Print the list of tuples as returned by extract_tb() or'
+p378
+ssg115
+S"(file=<open file '<stderr>', mode 'w' at 0xb75700b0>, str='Traceback (most recent call last):', terminator='\\n')"
+p379
+sg117
+S'_print'
+p380
+sasS'pyver'
+p381
+S'Python 2.5.2: /usr/bin/python'
+p382
+sS'session'
+p383
+(dp384
+sS'etype'
+p385
+S"<type 'exceptions.IOError'>"
+p386
+sS'date'
+p387
+S'Thu Feb 24 14:46:52 2011'
+p388
+sS'response'
+p389
+(dp390
+S'status'
+p391
+S'200'
+p392
+sg55
+S'<cStringIO.StringO object at 0x90dac20>'
+p393
+sg70
+S"<SimpleCookie: session_id_vlab='10-2-48-80-49adad14-7b4b-4f6c-b373-647f153b9b89'>"
+p394
+sS'_vars'
+p395
+S'None'
+p396
+sS'menu'
+p397
+S'[]'
+p398
+sS'flash'
+p399
+S"''"
+p400
+sS'session_new'
+p401
+S'True'
+p402
+sS'session_id'
+p403
+S"'10-2-48-80-49adad14-7b4b-4f6c-b373-647f153b9b89'"
+p404
+sS'headers'
+p405
+S"<Storage {'Expires': 'Thu, 24 Feb 2011 09:16:52 ...he, must-revalidate, post-check=0, pre-check=0'}>"
+p406
+sS'meta'
+p407
+S'<Storage {}>'
+p408
+sS'session_filename'
+p409
+S"'/home/cse11/public_html/final-build/LocalityAnal...s/10-2-48-80-49adad14-7b4b-4f6c-b373-647f153b9b89'"
+p410
+sS'postprocessing'
+p411
+S'[]'
+p412
+sS'_caller'
+p413
+S'<function <lambda> at 0x9170dbc>'
+p414
+sS'_view_environment'
+p415
+S'None'
+p416
+sS'session_id_name'
+p417
+S"'session_id_vlab'"
+p418
+sS'_custom_commit'
+p419
+S'None'
+p420
+sS'files'
+p421
+S'[]'
+p422
+sS'_custom_rollback'
+p423
+S'None'
+p424
+ssS'locals'
+p425
+(dp426
+S'str'
+p427
+S"'Traceback (most recent call last):'"
+p428
+sS'terminator'
+p429
+S"'\\n'"
+p430
+sg93
+S"<open file '<stderr>', mode 'w' at 0xb75700b0>"
+p431
+sssS'traceback'
+p432
+S'Traceback (most recent call last):\n  File "/home/cse11/public_html/final-build/LocalityAnalysis/web2py/gluon/main.py", line 413, in wsgibase\n    serve_controller(request, response, session)\n  File "/home/cse11/public_html/final-build/LocalityAnalysis/web2py/gluon/main.py", line 169, in serve_controller\n    environment = build_environment(request, response, session)\n  File "/home/cse11/public_html/final-build/LocalityAnalysis/web2py/gluon/compileapp.py", line 231, in build_environment\n    environment[\'cache\'] = Cache(request)\n  File "/home/cse11/public_html/final-build/LocalityAnalysis/web2py/gluon/cache.py", line 367, in __init__\n    logger.warning(\'no cache.disk (IOError)\')\n  File "/usr/lib/python2.5/logging/__init__.py", line 999, in warning\n    apply(self._log, (WARNING, msg, args), kwargs)\n  File "/usr/lib/python2.5/logging/__init__.py", line 1101, in _log\n    self.handle(record)\n  File "/usr/lib/python2.5/logging/__init__.py", line 1111, in handle\n    self.callHandlers(record)\n  File "/usr/lib/python2.5/logging/__init__.py", line 1148, in callHandlers\n    hdlr.handle(record)\n  File "/usr/lib/python2.5/logging/__init__.py", line 655, in handle\n    self.emit(record)\n  File "/usr/lib/python2.5/logging/__init__.py", line 757, in emit\n    self.handleError(record)\n  File "/usr/lib/python2.5/logging/__init__.py", line 706, in handleError\n    traceback.print_exception(ei[0], ei[1], ei[2], None, sys.stderr)\n  File "/usr/lib/python2.5/traceback.py", line 124, in print_exception\n    _print(file, \'Traceback (most recent call last):\')\n  File "/usr/lib/python2.5/traceback.py", line 13, in _print\n    file.write(str+terminator)\nIOError: [Errno 5] Input/output error\n'
+p433
+s.

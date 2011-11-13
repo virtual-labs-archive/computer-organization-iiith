@@ -1,0 +1,236 @@
+<!DOCTYPE HTML PUBLIC "-//w3c//dtd xhtml 1.0 strict//en" "http://www.w3.org/tr/xhtml1/dtd/xhtml1-strict.dtd">
+<html xml:lang="en" xmlns="http://www.w3.org/1999/xhtml" lang="en"><head>
+  
+    
+      <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+      <meta http-equiv="keywords" content="None">
+      <meta http-equiv="description" content="None">
+      <meta http-equiv="author" content="Massimo Di Pierro">
+      <title>
+	Old web2py Blog
+      </title>
+      
+      
+      
+      
+      
+      
+     <script src="50_files/jquery_002.js" type="text/javascript"></script>
+     <link href="50_files/calendar.css" rel="stylesheet" type="text/css">
+     <script src="50_files/calendar.js" type="text/javascript"></script>
+     <link href="50_files/stylesheet.css" rel="stylesheet" type="text/css">
+     <script src="50_files/jquery_004.js" type="text/javascript"></script>
+     <script src="50_files/jquery_003.js" type="text/javascript"></script>
+     <script src="50_files/jquery_005.js" type="text/javascript"></script>
+     <script src="50_files/jquery.js" type="text/javascript"></script>
+<script type="text/javascript"><!--
+function popup(url) {
+  newwindow=window.open(url,'name','height=400,width=600');
+  if (window.focus) newwindow.focus();
+  return false;
+}
+function collapse(id) { jQuery('#'+id).slideToggle(); }
+function fade(id,value) { if(value>0) jQuery('#'+id).hide().fadeIn('slow'); else jQuery('#'+id).show().fadeOut('slow'); }
+function ajax(u,s,t) {
+    query = '';
+    if (typeof s == "string") {
+        d = jQuery(s).serialize();
+        if(d){ query = d; }
+    } else {
+        pcs = [];
+        for(i=0; i<s.length; i++) {
+            q = jQuery("#"+s[i]).serialize();
+            if(q){pcs.push(q);}
+        }
+        if (pcs.length>0){query = pcs.join("&");}
+    }
+    jQuery.ajax({type: "POST", url: u, data: query, success: function(msg) { if(t) { if(t==':eval') eval(msg); else jQuery("#" + t).html(msg); } } }); 
+}
+String.prototype.reverse = function () { return this.split('').reverse().join('');};
+function web2py_ajax_init() {
+  jQuery('.hidden').hide();
+  jQuery('.error').hide().slideDown('slow');
+  jQuery('.flash').click(function() { jQuery(this).fadeOut('slow'); return false; });
+  jQuery('input.integer').keyup(function(){this.value=this.value.reverse().replace(/[^0-9\-]|\-(?=.)/g,'').reverse();});
+  jQuery('input.double').keyup(function(){this.value=this.value.reverse().replace(/[^0-9\-\.]|[\-](?=.)|[\.](?=[0-9]*[\.])/g,'').reverse();});
+  jQuery("input[type='checkbox'].delete").each(function(){jQuery(this).click(function() { if(this.checked) if(!confirm("Sure you want to delete this object?")) this.checked=false; });});
+  try {jQuery("input.date").focus( function() {Calendar.setup({
+     inputField:this.id, ifFormat:"%Y-%m-%d", showsTime:false
+  }); }); } catch(e) {};
+  try { jQuery("input.datetime").focus( function() {Calendar.setup({
+     inputField:this.id, ifFormat:"%Y-%m-%d %H:%M:%S", showsTime: true,timeFormat: "24"
+  }); }); } catch(e) {};
+  try { jQuery("input.time").clockpick({
+      starthour:0, endhour:23, showminutes:true, military:true
+  }); } catch(e) {};
+};
+jQuery(document).ready(function(){
+   jQuery('.flash').hide();
+   if(jQuery('.flash').html()!='') jQuery('.flash').slideDown('slow');
+   web2py_ajax_init();});
+
+function web2py_trap_form(action,target) {
+   jQuery('#'+target+' form').each(function(i){
+      var form=jQuery(this);
+      if(!form.hasClass('no_trap'))
+        form.submit(function(obj){
+         jQuery('.flash').hide().html('');
+         web2py_ajax_page('post',action,form.serialize(),target);
+         return false;
+      });
+   });
+}
+
+function web2py_ajax_page(method,action,data,target) {
+  jQuery.ajax({'type':method,'url':action,'data':data,
+    'beforeSend':function(xhr){
+      xhr.setRequestHeader('web2py-component-location',document.location);
+      xhr.setRequestHeader('web2py-component-element',target);},
+    'complete':function(xhr,text){
+      command=xhr.getResponseHeader('web2py-component-command');
+      if(command) eval(command);
+      flash=xhr.getResponseHeader('web2py-component-flash');
+      if(flash) jQuery('.flash').html(flash).slideDown();
+      },
+    'success': function(text) {
+      jQuery('#'+target).html(text);
+      web2py_trap_form(action,target);
+      web2py_ajax_init();
+      }
+    });
+}
+function web2py_component(action,target) {
+    jQuery(document).ready(function(){ web2py_ajax_page('get',action,null,target); });
+}
+//--></script>
+
+      <!--script>
+      jQuery(document).ready(function(){
+          jQuery(".article a").each(function() {
+               var href=jQuery(this).attr('href');             
+               jQuery(this).qtip({content: href, show: 'mouseover', 
+                                  hide: 'mouseout', style: { name: 'cream'} });
+          });
+      });
+      </script-->
+      <!--[if ie 6]>
+        <link rel="stylesheet" href="css/stylesheet-ie6.css" type="text/css" media="screen" />
+        <![endif]-->
+      </head><body>
+        <div id="outer">
+          <div id="container">
+            <div id="header">
+              <h2>AlterEgo</h2><h1>old web2py blog</h1>
+            </div>
+            <div id="sidebar">
+              <h3>
+                Useful Links
+              </h3>	      
+	      <form action="/AlterEgo/default/search">
+		<input style="width: 200px;" name="search" type="text">
+	      </form>
+	      <table>
+		<tbody><tr>
+		  <td>
+		    <a href="http://www.web2py.com/AlterEgo/default/index">List all entries</a>
+		  </td>
+		</tr>
+		<tr>
+		  <td>
+		    <a href="http://web2py.com/">Book</a>
+		  </td>
+		</tr>
+		<tr>
+		  <td>
+		    <a href="http://web2py.com/examples/default/examples">Interactive Examples</a>
+		  </td>
+		</tr>
+		<tr>
+		  <td>
+		    <a href="http://web2py.com/AlterEgo">F.A.Q.</a>
+		  </td>
+		</tr>
+		<tr>
+		  <td>
+		    <a href="http://web2py.com/appliances">Free Applications</a>
+		  </td>
+		</tr>
+		<tr>
+		  <td>
+		    <a href="http://web2py.com/plugins">Plugins</a>
+		  </td>
+		</tr>
+		<tr>
+		  <td>
+		    <a href="http://web2pyslices.com/">Recipes</a>
+		  </td>
+		</tr>
+		<tr>
+		  <td>
+		    <a href="http://web2py.com/demo_admin">Demo of Admin Interface</a>
+		  </td>
+		</tr>
+		<tr>
+		  <td>
+		    <a href="http://web2py.com/semantic">Semantic web extension</a>
+		  </td>
+		</tr>
+	      </tbody></table>
+	      <br><br>
+<object height="60" width="234"><param name="movie" value="http://widget.chipin.com/widget/id/3fd524816850020c"><param name="allowScriptAccess" value="always"><param name="wmode" value="transparent"><param name="event_title" value="Support%20web2py"><param name="color_scheme" value="gray"><embed src="50_files/3fd524816850020c.swf" flashvars="event_title=Support%20web2py&amp;color_scheme=gray" type="application/x-shockwave-flash" allowscriptaccess="always" wmode="transparent" height="60" width="234"></object>
+            </div>
+            <div class="article">
+	      <div style="display: block;" class="flash">Some of the information here may be outdated, please check the book instead</div>
+	      
+
+
+[<a href="http://www.web2py.com/AlterEgo/default/edit/50">edit</a>]<br>
+
+<p>Example.</p>
+
+<p>in models/db.py</p>
+
+<pre><code>db.define_table('image',SQLField('file','upload'),SQLField('filename'))
+</code></pre>
+
+<p>in controllers/db.py</p>
+
+<pre><code>def test():
+    form=SQLFORM(db.image,fields=['file'])
+    if request.vars.file!=None:
+        form.vars.filename=strip_path_and_sanitize(request.vars.file.filename)
+    if form.accepts(request.vars,session):
+        response.flash='file uploaded'
+    return dict(form=form)
+
+def download():
+    return response.stream(open(os.path.join(request.folder,'uploads',request.args[0]),'rb'))
+</code></pre>
+
+<p>you can link the file as</p>
+
+<pre><code>/app/controller/download/{{=image.file}}/{{=image.filename}}
+</code></pre>
+
+<p>You need your own strip_path_and_sanitize function</p>
+
+
+
+            </div>
+	    <div id="footer-1">
+	    </div>
+	    <div id="footer-2">
+	    </div>
+          </div>
+          <div class="credits">
+            © 2008-2010 by Massimo Di Pierro - 
+	    All rights reserved - Powered by <a href="http://web2py.com/">web2py</a>
+            - design derived from a theme by
+	    <a href="http://theearlybird.co.uk/">the earlybird</a><br>	    
+	    The content of this book is released under the 
+	    <a href="http://www.opensource.org/licenses/artistic-license-2.0.php">Artistic License 2.0</a> -
+	    Modified content cannot be reproduced.
+          </div>
+        </div>
+          
+</body></html>

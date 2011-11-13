@@ -1,0 +1,927 @@
+(dp1
+S'output'
+p2
+S''
+sS'layer'
+p3
+S'/home/shrenik/web2py/applications/vlab/views/default/index.html'
+p4
+sS'code'
+p5
+S'response.write(\'<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">\\n<!--\\nDesign by Free CSS Templates\\nhttp://www.freecsstemplates.org\\nReleased for free under a Creative Commons Attribution 2.5 License\\n-->\\n<html xmlns="http://www.w3.org/1999/xhtml">\\n <head>\\n  <title>\\n   \', escape=False)\nresponse.write(response.title or request.application)\nresponse.write(\'\\n  </title>\\n  \', escape=False)\nresponse.files.append(URL(request.application,\'static\',\'plugin_layouts/layouts/Logistix/default.css\'))\nresponse.write(\'\\n\', escape=False)\nresponse.files.insert(0,URL(r=request,c=\'static\',f=\'jquery.js\'))\nresponse.files.insert(1,URL(r=request,c=\'static\',f=\'calendar.css\'))\nresponse.files.insert(2,URL(r=request,c=\'static\',f=\'calendar.js\'))\nfor _item in response.meta or []:\n    response.write(\'\\n     <meta name="\', escape=False)\n    response.write(_item)\n    response.write(\'" content="\', escape=False)\n    response.write(response.meta[_item])\n    response.write(\'" />\', escape=False)\n    pass\nfor _k,_file in enumerate(response.files or []):\n    if _file in response.files[:_k]:\n        continue\n    elif _file.lower().endswith(\'.css\'):\n        response.write(\'\\n     <link href="\', escape=False)\n        response.write(_file)\n        response.write(\'" rel="stylesheet" type="text/css" />\', escape=False)\n    elif _file.lower().endswith(\'.js\'):\n        response.write(\'\\n     <script src="\', escape=False)\n        response.write(_file)\n        response.write(\'" type="text/javascript"></script>\', escape=False)\n        pass\n    pass\nresponse.write(\'\\n<script type="text/javascript"><!--\\nfunction popup(url) {\\n  newwindow=window.open(url,\\\'name\\\',\\\'height=400,width=600\\\');\\n  if (window.focus) newwindow.focus();\\n  return false;\\n}\\nfunction collapse(id) { jQuery(\\\'#\\\'+id).slideToggle(); }\\nfunction fade(id,value) { if(value>0) jQuery(\\\'#\\\'+id).hide().fadeIn(\\\'slow\\\'); else jQuery(\\\'#\\\'+id).show().fadeOut(\\\'slow\\\'); }\\nfunction ajax(u,s,t) {\\n    query = \\\'\\\';\\n    if (typeof s == "string") {\\n        d = jQuery(s).serialize();\\n        if(d){ query = d; }\\n    } else {\\n        pcs = [];\\n        for(i=0; i<s.length; i++) {\\n            q = jQuery("#"+s[i]).serialize();\\n            if(q){pcs.push(q);}\\n        }\\n        if (pcs.length>0){query = pcs.join("&");}\\n    }\\n    jQuery.ajax({type: "POST", url: u, data: query, success: function(msg) { if(t) { if(t==\\\':eval\\\') eval(msg); else jQuery("#" + t).html(msg); } } }); \\n}\\nString.prototype.reverse = function () { return this.split(\\\'\\\').reverse().join(\\\'\\\');};\\nfunction web2py_ajax_init() {\\n  jQuery(\\\'.hidden\\\').hide();\\n  jQuery(\\\'.error\\\').hide().slideDown(\\\'slow\\\');\\n  jQuery(\\\'.flash\\\').click(function() { jQuery(this).fadeOut(\\\'slow\\\'); return false; });\\n  jQuery(\\\'input.integer\\\').keyup(function(){this.value=this.value.reverse().replace(/[^0-9\\\\-]|\\\\-(?=.)/g,\\\'\\\').reverse();});\\n  jQuery(\\\'input.double\\\').keyup(function(){this.value=this.value.reverse().replace(/[^0-9\\\\-\\\\.]|[\\\\-](?=.)|[\\\\.](?=[0-9]*[\\\\.])/g,\\\'\\\').reverse();});\\n  jQuery("input[type=\\\'checkbox\\\'].delete").each(function(){jQuery(this).click(function() { if(this.checked) if(!confirm("\', escape=False)\nresponse.write(T(\'Sure you want to delete this object?\'))\nresponse.write(\'")) this.checked=false; });});\\n  try {jQuery("input.date").focus( function() {Calendar.setup({\\n     inputField:this.id, ifFormat:"\', escape=False)\nresponse.write(T(\'%Y-%m-%d\'))\nresponse.write(\'", showsTime:false\\n  }); }); } catch(e) {};\\n  try { jQuery("input.datetime").focus( function() {Calendar.setup({\\n     inputField:this.id, ifFormat:"\', escape=False)\nresponse.write(T(\'%Y-%m-%d %H:%M:%S\'))\nresponse.write(\'", showsTime: true,timeFormat: "24"\\n  }); }); } catch(e) {};\\n  try { jQuery("input.time").clockpick({\\n      starthour:0, endhour:23, showminutes:true, military:true\\n  }); } catch(e) {};\\n};\\njQuery(document).ready(function(){\\n   jQuery(\\\'.flash\\\').hide();\\n   if(jQuery(\\\'.flash\\\').html()!=\\\'\\\') jQuery(\\\'.flash\\\').slideDown(\\\'slow\\\');\\n   web2py_ajax_init();});\\n\\nfunction web2py_trap_form(action,target) {\\n   jQuery(\\\'#\\\'+target+\\\' form\\\').each(function(i){\\n      var form=jQuery(this);\\n      if(!form.hasClass(\\\'no_trap\\\'))\\n        form.submit(function(obj){\\n         jQuery(\\\'.flash\\\').hide().html(\\\'\\\');\\n         web2py_ajax_page(\\\'post\\\',action,form.serialize(),target);\\n         return false;\\n      });\\n   });\\n}\\n\\nfunction web2py_ajax_page(method,action,data,target) {\\n  jQuery.ajax({\\\'type\\\':method,\\\'url\\\':action,\\\'data\\\':data,\\n    \\\'beforeSend\\\':function(xhr){\\n      xhr.setRequestHeader(\\\'web2py-component-location\\\',document.location);\\n      xhr.setRequestHeader(\\\'web2py-component-element\\\',target);},\\n    \\\'complete\\\':function(xhr,text){\\n      command=xhr.getResponseHeader(\\\'web2py-component-command\\\');\\n      if(command) eval(command);\\n      flash=xhr.getResponseHeader(\\\'web2py-component-flash\\\');\\n      if(flash) jQuery(\\\'.flash\\\').html(flash).slideDown();\\n      },\\n    \\\'success\\\': function(text) {\\n      jQuery(\\\'#\\\'+target).html(text);\\n      web2py_trap_form(action,target);\\n      web2py_ajax_init();\\n      }\\n    });\\n}\\nfunction web2py_component(action,target) {\\n    jQuery(document).ready(function(){ web2py_ajax_page(\\\'get\\\',action,null,target); });\\n}\\n//--></script>\\n\', escape=False)\nresponse.write(\'\\n  <style>\\n   .flash {\\n    z-index: 2;\\n    position: absolute;\\n    top: 0px;\\n    right: 20%;\\n    width: 60%;\\n    height: 50px;\\n    opacity: 0.75;\\n    margin: 0 auto;\\n    text-align: center;\\n    clear: both;\\n    border: 1px #000000 solid;\\n    color: black;\\n    font-size: 12pt;\\n    padding: 100px 10px 10px 10px;\\n    cursor: pointer;\\n    background: white;\\n\\n}\\ndiv.error {\\n    background-color: red;\\n    color: white;\\n    padding: 3px;\\n}\\n  </style>\\n </head>\\n <body>\\n  <div id="header">\\n   <h1>\\n    \', escape=False)\nresponse.write(response.title or request.application)\nresponse.write(\'\\n   </h1>\\n   <h2>\\n    \', escape=False)\nresponse.write(response.subtitle or \'=response.subtitle\')\nresponse.write(\'\\n   </h2>\\n  </div>\\n  <!-- end #header -->\\n  <div id="menu">\\n   \', escape=False)\nresponse.write(MENU(response.menu))\nresponse.write(\'\\n  </div>\\n  <!-- end #menu -->\\n  <div id="content">\\n   <div class="flash">\', escape=False)\nresponse.write(response.flash or \'\')\nresponse.write(\'</div>\\n   \', escape=False)\nresponse.write(\'\\n\', escape=False)\nresponse.write(form)\nresponse.write(\'\\n<table>\\n\\t<tr width>\\n\\t\\t<th width="20%"> pid </th>\\n\\t\\t<th width="40%"> type of misses </th>\\n\\t\\t<th width="40%"> no of misses </th>\\n\\t</tr>\\n\\t\', escape=False)\nfor l in list:\n    response.write(\'\\n\\t<tr>\\n\\t\\t<td> \', escape=False)\n    response.write(l[0])\n    response.write(\' </td>\\n\\t\\t<td> \', escape=False)\n    response.write(l[1])\n    response.write(\' </td>\\n\\t\\t<td> \', escape=False)\n    response.write(l[2])\n    response.write(\' </td>\\n\\t</tr>\\n\\t\', escape=False)\n    pass\nresponse.write(\'\\n\\t\', escape=False)\nresponse.write(out_1)\nresponse.write(\'<br/>\\n\\t\', escape=False)\nresponse.write(out_0)\nresponse.write(\'<br/>\\n</table>\\n\', escape=False)\nresponse.write(\'\\n  </div>\\n  <!-- end #content -->\\n  <div id="footer">\\n   <p id="legal">\\n    Copyright &copy; 2007 Logistix. Designed by\\n    <a href="http://www.freecsstemplates.org/">\\n     Free CSS Templates\\n    </a>\\n   </p>\\n  </div>\\n  <!-- end #footer -->\\n </body>\\n</html>\\n\', escape=False)'
+p6
+sS'snapshot'
+p7
+(dp8
+S'exception'
+p9
+(dp10
+S'__hash__'
+p11
+S"<method-wrapper '__hash__' of exceptions.NameError object>"
+p12
+sS'__setattr__'
+p13
+S"<method-wrapper '__setattr__' of exceptions.NameError object>"
+p14
+sS'__reduce_ex__'
+p15
+S'<built-in method __reduce_ex__ of exceptions.NameError object>'
+p16
+sS'__getslice__'
+p17
+S"<method-wrapper '__getslice__' of exceptions.NameError object>"
+p18
+sS'__getitem__'
+p19
+S"<method-wrapper '__getitem__' of exceptions.NameError object>"
+p20
+sS'__setstate__'
+p21
+S'<built-in method __setstate__ of exceptions.NameError object>'
+p22
+sS'__reduce__'
+p23
+S'<built-in method __reduce__ of exceptions.NameError object>'
+p24
+sS'__str__'
+p25
+S"<method-wrapper '__str__' of exceptions.NameError object>"
+p26
+sS'__format__'
+p27
+S'<built-in method __format__ of exceptions.NameError object>'
+p28
+sS'__getattribute__'
+p29
+S"<method-wrapper '__getattribute__' of exceptions.NameError object>"
+p30
+sS'__class__'
+p31
+S"<type 'exceptions.NameError'>"
+p32
+sS'__unicode__'
+p33
+S'<built-in method __unicode__ of exceptions.NameError object>'
+p34
+sS'__delattr__'
+p35
+S"<method-wrapper '__delattr__' of exceptions.NameError object>"
+p36
+sS'__subclasshook__'
+p37
+S'<built-in method __subclasshook__ of type object>'
+p38
+sS'__repr__'
+p39
+S"<method-wrapper '__repr__' of exceptions.NameError object>"
+p40
+sS'args'
+p41
+S'("name \'out_1\' is not defined",)'
+p42
+sS'__dict__'
+p43
+S'{}'
+p44
+sS'__sizeof__'
+p45
+S'<built-in method __sizeof__ of exceptions.NameError object>'
+p46
+sS'__doc__'
+p47
+S"'Name not found globally.'"
+p48
+sS'__init__'
+p49
+S"<method-wrapper '__init__' of exceptions.NameError object>"
+p50
+sS'__new__'
+p51
+S'<built-in method __new__ of type object>'
+p52
+ssS'evalue'
+p53
+S"name 'out_1' is not defined"
+p54
+sS'request'
+p55
+(dp56
+S'function'
+p57
+S"'index'"
+p58
+sS'body'
+p59
+S"<open file '<fdopen>', mode 'w+b'>"
+p60
+sS'wsgi'
+p61
+S"<Storage {'start_response': <function <lambda> a...ING': 'gzip,deflate', 'HTTP_KEEP_ALIVE': '115'}}>"
+p62
+sS'extension'
+p63
+S"'html'"
+p64
+sS'vars'
+p65
+S"<Storage {'i1_associativity': '2', 'd1_size': '6...ciativity': '2', '_formname': 'programs_create'}>"
+p66
+sS'cid'
+p67
+S'None'
+p68
+sS'url'
+p69
+S'<gluon.html.XML object>'
+p70
+sg41
+S'[]'
+p71
+sS'controller'
+p72
+S"'default'"
+p73
+sS'cookies'
+p74
+S"<SimpleCookie: session_id_admin='127-0-0-1-020b2...'127-0-0-1-d51e55bb-1989-4c66-91bc-ad4e17601eab'>"
+p75
+sS'application'
+p76
+S"'vlab'"
+p77
+sS'ajax'
+p78
+S'False'
+p79
+sS'client'
+p80
+S"'127.0.0.1'"
+p81
+sS'env'
+p82
+S"<Storage {'content_length': '1731', 'http_user_a...te', 'query_string': '', 'wsgi_run_once': False}>"
+p83
+sS'raw_args'
+p84
+S'None'
+p85
+sS'get_vars'
+p86
+S'<Storage {}>'
+p87
+sS'folder'
+p88
+S"'/home/shrenik/web2py/applications/vlab/'"
+p89
+sS'now'
+p90
+S'datetime.datetime(2010, 10, 20, 0, 5, 23, 973279)'
+p91
+sS'post_vars'
+p92
+S"<Storage {'i1_associativity': '2', 'd1_size': '6...ciativity': '2', '_formname': 'programs_create'}>"
+p93
+ssS'frames'
+p94
+(lp95
+(dp96
+S'file'
+p97
+S'/home/shrenik/web2py/gluon/restricted.py'
+p98
+sS'dump'
+p99
+(dp100
+S'environment'
+p101
+S"{'A': <class 'gluon.html.A'>, 'Auth': <class 'gluon.tools.Auth'>, 'B': <class 'gluon.html.B'>, 'BEAUTIFY': <class 'gluon.html.BEAUTIFY'>, 'BODY': <class 'gluon.html.BODY'>, 'BR': <class 'gluon.html.BR'>, 'CENTER': <class 'gluon.html.CENTER'>, 'CLEANUP': <class 'gluon.validators.CLEANUP'>, 'CODE': <class 'gluon.html.CODE'>, 'CRYPT': <class 'gluon.validators.CRYPT'>, ...}"
+p102
+sS'ccode'
+p103
+S'<code object <module> at 0x8b0eb60, file "/home/...lications/vlab/views/default/index.html", line 1>'
+p104
+ssS'lnum'
+p105
+I188
+sS'lines'
+p106
+(dp107
+I192
+S'        # XXX Show exception in Wing IDE if running in debugger'
+p108
+sI183
+S'        if type(code) == types.CodeType:'
+p109
+sI184
+S'            ccode = code'
+p110
+sI185
+S'        else:'
+p111
+sI186
+S'            ccode = compile2(code,layer)'
+p112
+sI187
+S''
+sI188
+S'        exec ccode in environment'
+p113
+sI189
+S'    except HTTP:'
+p114
+sI190
+S'        raise'
+p115
+sI191
+S'    except Exception:'
+p116
+ssS'call'
+p117
+S'(code=\'response.write(\\\'<!DOCTYPE html PUBLIC "-//W3C//D... #footer -->\\\\n </body>\\\\n</html>\\\\n\\\', escape=False)\', environment={\'A\': <class \'gluon.html.A\'>, \'Auth\': <class \'gluon.tools.Auth\'>, \'B\': <class \'gluon.html.B\'>, \'BEAUTIFY\': <class \'gluon.html.BEAUTIFY\'>, \'BODY\': <class \'gluon.html.BODY\'>, \'BR\': <class \'gluon.html.BR\'>, \'CENTER\': <class \'gluon.html.CENTER\'>, \'CLEANUP\': <class \'gluon.validators.CLEANUP\'>, \'CODE\': <class \'gluon.html.CODE\'>, \'CRYPT\': <class \'gluon.validators.CRYPT\'>, ...}, layer=\'/home/shrenik/web2py/applications/vlab/views/default/index.html\')'
+p118
+sS'func'
+p119
+S'restricted'
+p120
+sa(dp121
+g97
+S'/home/shrenik/web2py/applications/vlab/views/default/index.html'
+p122
+sg99
+(dp123
+sg105
+I58
+sg106
+(dp124
+I49
+S"    response.write('\\n\\t<tr>\\n\\t\\t<td> ', escape=False)"
+p125
+sI50
+S'    response.write(l[0])'
+p126
+sI51
+S"    response.write(' </td>\\n\\t\\t<td> ', escape=False)"
+p127
+sI52
+S'    response.write(l[1])'
+p128
+sI53
+S"    response.write(' </td>\\n\\t\\t<td> ', escape=False)"
+p129
+sI54
+S'    response.write(l[2])'
+p130
+sI55
+S"    response.write(' </td>\\n\\t</tr>\\n\\t', escape=False)"
+p131
+sI56
+S'    pass'
+p132
+sI57
+S"response.write('\\n\\t', escape=False)"
+p133
+sI58
+S'response.write(out_1)'
+p134
+sI59
+S"response.write('<br/>\\n\\t', escape=False)"
+p135
+sI60
+S'response.write(out_0)'
+p136
+sI61
+S"response.write('<br/>\\n</table>\\n', escape=False)"
+p137
+sI62
+S'response.write(\'\\n  </div>\\n  <!-- end #content -->\\n  <div id="footer">\\n   <p id="legal">\\n    Copyright &copy; 2007 Logistix. Designed by\\n    <a href="http://www.freecsstemplates.org/">\\n     Free CSS Templates\\n    </a>\\n   </p>\\n  </div>\\n  <!-- end #footer -->\\n </body>\\n</html>\\n\', escape=False)'
+p138
+ssg117
+S'()'
+p139
+sg119
+S'<module>'
+p140
+sasS'pyver'
+p141
+S'Python 2.6.6: /usr/bin/python'
+p142
+sS'session'
+p143
+(dp144
+S'auth'
+p145
+S'None'
+p146
+sS'_formkey[programs_create]'
+p147
+S"'4c3c3d9c-bf49-4a88-9bbd-11d3cdc9c81c'"
+p148
+ssS'etype'
+p149
+S"<type 'exceptions.NameError'>"
+p150
+sS'date'
+p151
+S'Wed Oct 20 00:05:24 2010'
+p152
+sS'response'
+p153
+(dp154
+S'status'
+p155
+S'200'
+p156
+sg59
+S'<cStringIO.StringO object>'
+p157
+sg74
+S"<SimpleCookie: session_id_vlab='127-0-0-1-bd6aca27-1ced-49d5-b876-eb675abd268c'>"
+p158
+sS'_vars'
+p159
+S"{'form': <gluon.sqlhtml.SQLFORM object>, 'list': [], 'message': <lazyT 'Hello World'>, 'pid': []}"
+p160
+sS'title'
+p161
+S"'vlab'"
+p162
+sS'session_file'
+p163
+S"<open file '/home/shrenik/web2py/applications/vl...d6aca27-1ced-49d5-b876-eb675abd268c', mode 'rb+'>"
+p164
+sS'flash'
+p165
+S"<lazyT 'Welcome to web2py'>"
+p166
+sS'_custom_rollback'
+p167
+S'None'
+p168
+sS'session_id'
+p169
+S"'127-0-0-1-bd6aca27-1ced-49d5-b876-eb675abd268c'"
+p170
+sS'headers'
+p171
+S"<Storage {'Expires': 'Tue, 19 Oct 2010 18:35:23 ...he, must-revalidate, post-check=0, pre-check=0'}>"
+p172
+sS'meta'
+p173
+S"<Storage {'keywords': 'bla bla bla', 'description': 'describe your app', 'author': 'you'}>"
+p174
+sS'session_filename'
+p175
+S"'/home/shrenik/web2py/applications/vlab/sessions/127-0-0-1-bd6aca27-1ced-49d5-b876-eb675abd268c'"
+p176
+sS'postprocessing'
+p177
+S'[]'
+p178
+sS'menu'
+p179
+S"[(<lazyT 'Index'>, False, <gluon.html.XML object>, []), ('Change Layout', False, <gluon.html.XML object>)]"
+p180
+sS'_view_environment'
+p181
+S"{'A': <class 'gluon.html.A'>, 'Auth': <class 'gluon.tools.Auth'>, 'B': <class 'gluon.html.B'>, 'BEAUTIFY': <class 'gluon.html.BEAUTIFY'>, 'BODY': <class 'gluon.html.BODY'>, 'BR': <class 'gluon.html.BR'>, 'CENTER': <class 'gluon.html.CENTER'>, 'CLEANUP': <class 'gluon.validators.CLEANUP'>, 'CODE': <class 'gluon.html.CODE'>, 'CRYPT': <class 'gluon.validators.CRYPT'>, ...}"
+p182
+sS'subtitle'
+p183
+S"<lazyT 'customize me!'>"
+p184
+sS'session_id_name'
+p185
+S"'session_id_vlab'"
+p186
+sS'_custom_commit'
+p187
+S'None'
+p188
+sS'_caller'
+p189
+S'<function <lambda>>'
+p190
+sS'files'
+p191
+S'[<gluon.html.XML object>, <gluon.html.XML object>, <gluon.html.XML object>, <gluon.html.XML object>]'
+p192
+sS'view'
+p193
+S"'default/index.html'"
+p194
+ssS'locals'
+p195
+(dp196
+S'Service'
+p197
+S'<class gluon.tools.Service>'
+p198
+sS'OBJECT'
+p199
+S"<class 'gluon.html.OBJECT'>"
+p200
+sS'_file'
+p201
+S'<gluon.html.XML object>'
+p202
+sS'SQLDB'
+p203
+S"<class 'gluon.sql.SQLDB'>"
+p204
+sg143
+S"<Storage {'auth': None, '_formkey[programs_create]': '4c3c3d9c-bf49-4a88-9bbd-11d3cdc9c81c'}>"
+p205
+sS'LINK'
+p206
+S"<class 'gluon.html.LINK'>"
+p207
+sS'BR'
+p208
+S"<class 'gluon.html.BR'>"
+p209
+sS'local_import'
+p210
+S'<function <lambda>>'
+p211
+sS'OPTGROUP'
+p212
+S"<class 'gluon.html.OPTGROUP'>"
+p213
+sS'PRE'
+p214
+S"<class 'gluon.html.PRE'>"
+p215
+sS'IS_INT_IN_RANGE'
+p216
+S"<class 'gluon.validators.IS_INT_IN_RANGE'>"
+p217
+sS'IS_LOWER'
+p218
+S"<class 'gluon.validators.IS_LOWER'>"
+p219
+sS'IS_STRONG'
+p220
+S"<class 'gluon.validators.IS_STRONG'>"
+p221
+sS'Recaptcha'
+p222
+S"<class 'gluon.tools.Recaptcha'>"
+p223
+sS'cache'
+p224
+S'<gluon.cache.Cache object>'
+p225
+sS'IS_IN_DB'
+p226
+S"<class 'gluon.validators.IS_IN_DB'>"
+p227
+sS'TAG'
+p228
+S'<gluon.html.__TAG__ object>'
+p229
+sS'_k'
+p230
+S'3'
+sS'SQLField'
+p231
+S"<class 'gluon.sql.Field'>"
+p232
+sS'mail'
+p233
+S'<gluon.tools.Mail object>'
+p234
+sS'BODY'
+p235
+S"<class 'gluon.html.BODY'>"
+p236
+sS'IS_DATE_IN_RANGE'
+p237
+S"<class 'gluon.validators.IS_DATE_IN_RANGE'>"
+p238
+sS'TH'
+p239
+S"<class 'gluon.html.TH'>"
+p240
+sS'URL'
+p241
+S'<function _URL>'
+p242
+sS'db'
+p243
+S"<SQLDB {'_connection': <sqlite3.Connection objec...0x8fdc42c>}>, '_migrate': True, '_pool_size': 0}>"
+p244
+sS'auth'
+p245
+S'<gluon.tools.Auth object>'
+p246
+sS'P'
+S"<class 'gluon.html.P'>"
+p247
+sS'TFOOT'
+p248
+S"<class 'gluon.html.TFOOT'>"
+p249
+sS'XHTML'
+p250
+S"<class 'gluon.html.XHTML'>"
+p251
+sS'ON'
+p252
+S'True'
+p253
+sS'OL'
+p254
+S"<class 'gluon.html.OL'>"
+p255
+sS'TEXTAREA'
+p256
+S"<class 'gluon.html.TEXTAREA'>"
+p257
+sS'MENU'
+p258
+S"<class 'gluon.html.MENU'>"
+p259
+sS'list'
+p260
+S'[]'
+p261
+sS'LOAD'
+p262
+S'<gluon.compileapp.LoadFactory instance>'
+p263
+sS'CODE'
+p264
+S"<class 'gluon.html.CODE'>"
+p265
+sS'HTTP'
+p266
+S"<class 'gluon.http.HTTP'>"
+p267
+sS'HR'
+p268
+S"<class 'gluon.html.HR'>"
+p269
+sS'IS_DATETIME'
+p270
+S"<class 'gluon.validators.IS_DATETIME'>"
+p271
+sS'HEAD'
+p272
+S"<class 'gluon.html.HEAD'>"
+p273
+sS'LABEL'
+p274
+S"<class 'gluon.html.LABEL'>"
+p275
+sS'CLEANUP'
+p276
+S"<class 'gluon.validators.CLEANUP'>"
+p277
+sS'plugins'
+p278
+S'<gluon.tools.PluginManager object>'
+p279
+sS'SELECT'
+p280
+S"<class 'gluon.html.SELECT'>"
+p281
+sS'CENTER'
+p282
+S"<class 'gluon.html.CENTER'>"
+p283
+sS'prettydate'
+p284
+S'<function prettydate>'
+p285
+sS'Crud'
+p286
+S"<class 'gluon.tools.Crud'>"
+p287
+sS'Auth'
+p288
+S"<class 'gluon.tools.Auth'>"
+p289
+sS'__builtins__'
+p290
+S"{'ArithmeticError': <type 'exceptions.ArithmeticError'>, 'AssertionError': <type 'exceptions.AssertionError'>, 'AttributeError': <type 'exceptions.AttributeError'>, 'BaseException': <type 'exceptions.BaseException'>, 'BufferError': <type 'exceptions.BufferError'>, 'BytesWarning': <type 'exceptions.BytesWarning'>, 'DeprecationWarning': <type 'exceptions.DeprecationWarning'>, 'EOFError': <type 'exceptions.EOFError'>, 'Ellipsis': Ellipsis, 'EnvironmentError': <type 'exceptions.EnvironmentError'>, ...}"
+p291
+sS'IS_LIST_OF'
+p292
+S"<class 'gluon.validators.IS_LIST_OF'>"
+p293
+sS'SQLFORM'
+p294
+S"<class 'gluon.sqlhtml.SQLFORM'>"
+p295
+sS'_item'
+p296
+S"'author'"
+p297
+sS'EM'
+p298
+S"<class 'gluon.html.EM'>"
+p299
+sS'redirect'
+p300
+S'<function redirect>'
+p301
+sS'FIELDSET'
+p302
+S"<class 'gluon.html.FIELDSET'>"
+p303
+sS'IS_EQUAL_TO'
+p304
+S"<class 'gluon.validators.IS_EQUAL_TO'>"
+p305
+sS'embed64'
+p306
+S'<function embed64>'
+p307
+sS'INPUT'
+p308
+S"<class 'gluon.html.INPUT'>"
+p309
+sS'EMBED'
+p310
+S"<class 'gluon.html.EMBED'>"
+p311
+sS'FORM'
+p312
+S"<class 'gluon.html.FORM'>"
+p313
+sS'H2'
+p314
+S"<class 'gluon.html.H2'>"
+p315
+sS'H3'
+p316
+S"<class 'gluon.html.H3'>"
+p317
+sS'H1'
+p318
+S"<class 'gluon.html.H1'>"
+p319
+sS'H6'
+p320
+S"<class 'gluon.html.H6'>"
+p321
+sS'H4'
+p322
+S"<class 'gluon.html.H4'>"
+p323
+sS'H5'
+p324
+S"<class 'gluon.html.H5'>"
+p325
+sS'UL'
+p326
+S"<class 'gluon.html.UL'>"
+p327
+sS'IS_UPPER'
+p328
+S"<class 'gluon.validators.IS_UPPER'>"
+p329
+sS'xmlescape'
+p330
+S'<function xmlescape>'
+p331
+sS'IS_TIME'
+p332
+S"<class 'gluon.validators.IS_TIME'>"
+p333
+sS'OPTION'
+p334
+S"<class 'gluon.html.OPTION'>"
+p335
+sS'TITLE'
+p336
+S"<class 'gluon.html.TITLE'>"
+p337
+sS'CRYPT'
+p338
+S"<class 'gluon.validators.CRYPT'>"
+p339
+sS'IS_EMPTY_OR'
+p340
+S"<class 'gluon.validators.IS_EMPTY_OR'>"
+p341
+sS'MARKMIN'
+p342
+S"<class 'gluon.html.MARKMIN'>"
+p343
+sS'message'
+p344
+S"<lazyT 'Hello World'>"
+p345
+sS'service'
+p346
+S'<gluon.tools.Service instance>'
+p347
+sS'SCRIPT'
+p348
+S"<class 'gluon.html.SCRIPT'>"
+p349
+sS'geocode'
+p350
+S'<function geocode>'
+p351
+sS'TABLE'
+p352
+S"<class 'gluon.html.TABLE'>"
+p353
+sS'IS_IPV4'
+p354
+S"<class 'gluon.validators.IS_IPV4'>"
+p355
+sS'IS_LENGTH'
+p356
+S"<class 'gluon.validators.IS_LENGTH'>"
+p357
+sS'XML'
+p358
+S"<class 'gluon.html.XML'>"
+p359
+sS'B'
+S"<class 'gluon.html.B'>"
+p360
+sS'form'
+p361
+S'<gluon.sqlhtml.SQLFORM object>'
+p362
+sS'SQLTABLE'
+p363
+S"<class 'gluon.sqlhtml.SQLTABLE'>"
+p364
+sS'IS_MATCH'
+p365
+S"<class 'gluon.validators.IS_MATCH'>"
+p366
+sS'IS_ALPHANUMERIC'
+p367
+S"<class 'gluon.validators.IS_ALPHANUMERIC'>"
+p368
+sS'SPAN'
+p369
+S"<class 'gluon.html.SPAN'>"
+p370
+sS'IS_SLUG'
+p371
+S"<class 'gluon.validators.IS_SLUG'>"
+p372
+sS'BEAUTIFY'
+p373
+S"<class 'gluon.html.BEAUTIFY'>"
+p374
+sS'META'
+p375
+S"<class 'gluon.html.META'>"
+p376
+sS'fetch'
+p377
+S'<function fetch>'
+p378
+sS'IS_DATE'
+p379
+S"<class 'gluon.validators.IS_DATE'>"
+p380
+sS'IS_EMAIL'
+p381
+S"<class 'gluon.validators.IS_EMAIL'>"
+p382
+sS'IS_NOT_EMPTY'
+p383
+S"<class 'gluon.validators.IS_NOT_EMPTY'>"
+p384
+sg55
+S"<Storage {'function': 'index', 'body': <open fil...ativity': '2', '_formname': 'programs_create'}>}>"
+p385
+sS'pid'
+p386
+S'[]'
+p387
+sS'TBODY'
+p388
+S"<class 'gluon.html.TBODY'>"
+p389
+sS'Field'
+p390
+S"<class 'gluon.sql.Field'>"
+p391
+sS'Mail'
+p392
+S"<class 'gluon.tools.Mail'>"
+p393
+sS'DIV'
+p394
+S"<class 'gluon.html.DIV'>"
+p395
+sS'LEGEND'
+p396
+S"<class 'gluon.html.LEGEND'>"
+p397
+sS'IMG'
+p398
+S"<class 'gluon.html.IMG'>"
+p399
+sS'DAL'
+p400
+S'<function DAL>'
+p401
+sS'TT'
+p402
+S"<class 'gluon.html.TT'>"
+p403
+sS'TR'
+p404
+S"<class 'gluon.html.TR'>"
+p405
+sS'LI'
+p406
+S"<class 'gluon.html.LI'>"
+p407
+sS'IFRAME'
+p408
+S"<class 'gluon.html.IFRAME'>"
+p409
+sS'TD'
+p410
+S"<class 'gluon.html.TD'>"
+p411
+sS'PluginManager'
+p412
+S"<class 'gluon.tools.PluginManager'>"
+p413
+sS'IS_URL'
+p414
+S"<class 'gluon.validators.IS_URL'>"
+p415
+sS'A'
+S"<class 'gluon.html.A'>"
+p416
+sS'STYLE'
+p417
+S"<class 'gluon.html.STYLE'>"
+p418
+sS'IS_DATETIME_IN_RANGE'
+p419
+S"<class 'gluon.validators.IS_DATETIME_IN_RANGE'>"
+p420
+sS'HTML'
+p421
+S"<class 'gluon.html.HTML'>"
+p422
+sS'IS_IMAGE'
+p423
+S"<class 'gluon.validators.IS_IMAGE'>"
+p424
+sS'I'
+S"<class 'gluon.html.I'>"
+p425
+sS'crud'
+p426
+S'<gluon.tools.Crud object>'
+p427
+sS'IS_NOT_IN_DB'
+p428
+S"<class 'gluon.validators.IS_NOT_IN_DB'>"
+p429
+sg153
+S"<Storage {'status': 200, 'body': <cStringIO.Stri...object at 0x8fa762c>], '_custom_rollback': None}>"
+p430
+sS'THEAD'
+p431
+S"<class 'gluon.html.THEAD'>"
+p432
+sS'IS_NULL_OR'
+p433
+S"<class 'gluon.validators.IS_EMPTY_OR'>"
+p434
+sS'IS_FLOAT_IN_RANGE'
+p435
+S"<class 'gluon.validators.IS_FLOAT_IN_RANGE'>"
+p436
+sS'IS_EXPR'
+p437
+S"<class 'gluon.validators.IS_EXPR'>"
+p438
+sS'T'
+S'<gluon.languages.translator object>'
+p439
+sS'IS_IN_SET'
+p440
+S"<class 'gluon.validators.IS_IN_SET'>"
+p441
+sS'IS_UPLOAD_FILENAME'
+p442
+S"<class 'gluon.validators.IS_UPLOAD_FILENAME'>"
+p443
+sS'IS_DECIMAL_IN_RANGE'
+p444
+S"<class 'gluon.validators.IS_DECIMAL_IN_RANGE'>"
+p445
+sssS'traceback'
+p446
+S'Traceback (most recent call last):\n  File "/home/shrenik/web2py/gluon/restricted.py", line 188, in restricted\n    exec ccode in environment\n  File "/home/shrenik/web2py/applications/vlab/views/default/index.html", line 58, in <module>\nNameError: name \'out_1\' is not defined\n'
+p447
+s.

@@ -1,0 +1,628 @@
+(dp1
+S'output'
+p2
+S''
+sS'layer'
+p3
+S'Framework'
+p4
+sS'code'
+p5
+S''
+sS'snapshot'
+p6
+(dp7
+S'exception'
+p8
+(dp9
+S'__module__'
+p10
+S"'socket'"
+p11
+sS'__getslice__'
+p12
+S"<method-wrapper '__getslice__' of error object>"
+p13
+sS'__str__'
+p14
+S"<method-wrapper '__str__' of error object>"
+p15
+sS'__reduce__'
+p16
+S'<built-in method __reduce__ of error object>'
+p17
+sS'__dict__'
+p18
+S'{}'
+p19
+sS'__sizeof__'
+p20
+S'<built-in method __sizeof__ of error object>'
+p21
+sS'__weakref__'
+p22
+S'None'
+p23
+sS'__init__'
+p24
+S"<method-wrapper '__init__' of error object>"
+p25
+sS'__setattr__'
+p26
+S"<method-wrapper '__setattr__' of error object>"
+p27
+sS'__reduce_ex__'
+p28
+S'<built-in method __reduce_ex__ of error object>'
+p29
+sS'__new__'
+p30
+S'<built-in method __new__ of type object>'
+p31
+sS'errno'
+p32
+S'104'
+p33
+sS'__format__'
+p34
+S'<built-in method __format__ of error object>'
+p35
+sS'__class__'
+p36
+S"<class 'socket.error'>"
+p37
+sS'filename'
+p38
+S'None'
+p39
+sS'__doc__'
+p40
+S'None'
+p41
+sS'__getitem__'
+p42
+S"<method-wrapper '__getitem__' of error object>"
+p43
+sS'__setstate__'
+p44
+S'<built-in method __setstate__ of error object>'
+p45
+sS'__getattribute__'
+p46
+S"<method-wrapper '__getattribute__' of error object>"
+p47
+sS'args'
+p48
+S"(104, 'Connection reset by peer')"
+p49
+sS'__subclasshook__'
+p50
+S'<built-in method __subclasshook__ of type object>'
+p51
+sS'__unicode__'
+p52
+S'<built-in method __unicode__ of error object>'
+p53
+sS'strerror'
+p54
+S"'Connection reset by peer'"
+p55
+sS'__delattr__'
+p56
+S"<method-wrapper '__delattr__' of error object>"
+p57
+sS'__repr__'
+p58
+S"<method-wrapper '__repr__' of error object>"
+p59
+sS'__hash__'
+p60
+S"<method-wrapper '__hash__' of error object>"
+p61
+ssS'evalue'
+p62
+S'[Errno 104] Connection reset by peer'
+p63
+sS'request'
+p64
+(dp65
+S'function'
+p66
+S"'index'"
+p67
+sS'wsgi'
+p68
+S'<Storage {}>'
+p69
+sS'extension'
+p70
+S"'html'"
+p71
+sS'vars'
+p72
+S'<Storage {}>'
+p73
+sS'cid'
+p74
+S'None'
+p75
+sS'url'
+p76
+S'<gluon.html.XML object>'
+p77
+sg48
+S'[]'
+p78
+sS'controller'
+p79
+S"'default'"
+p80
+sS'cookies'
+p81
+S'<SimpleCookie: >'
+p82
+sS'application'
+p83
+S"'vlab'"
+p84
+sS'ajax'
+p85
+S'False'
+p86
+sS'client'
+p87
+S"'218.248.64.177'"
+p88
+sS'env'
+p89
+S"<Storage {'content_length': '2468', 'http_user_a...te', 'query_string': '', 'wsgi_run_once': False}>"
+p90
+sS'raw_args'
+p91
+S'None'
+p92
+sS'get_vars'
+p93
+S'<Storage {}>'
+p94
+sS'folder'
+p95
+S"'/home/cvest.cso/public_html/LocalityAnalysis/web2py/applications/vlab/'"
+p96
+sS'now'
+p97
+S'datetime.datetime(2010, 11, 4, 0, 56, 40, 888997)'
+p98
+sS'post_vars'
+p99
+S'<Storage {}>'
+p100
+ssS'frames'
+p101
+(lp102
+(dp103
+S'file'
+p104
+S'/home/cvest.cso/public_html/LocalityAnalysis/web2py/gluon/main.py'
+p105
+sS'dump'
+p106
+(dp107
+S'global parse_get_post_vars'
+p108
+S'<function parse_get_post_vars>'
+p109
+sS'request'
+p110
+S"<Storage {'function': 'index', 'wsgi': <Storage ..., 0, 56, 40, 888997), 'post_vars': <Storage {}>}>"
+p111
+sS'environ'
+p112
+S"{'CONTENT_LENGTH': '2468', 'CONTENT_TYPE': 'multipart/form-data; boundary=---------------------------7da9a1f404b0', 'HTTP_ACCEPT': 'image/gif, image/x-xbitmap, image/jpeg, image/pj...cation/msword, application/x-shockwave-flash, */*', 'HTTP_ACCEPT_ENCODING': 'gzip, deflate', 'HTTP_ACCEPT_LANGUAGE': 'en-in', 'HTTP_CACHE_CONTROL': 'no-cache', 'HTTP_CONNECTION': 'Keep-Alive', 'HTTP_CONTENT_LENGTH': '2468', 'HTTP_CONTENT_TYPE': 'multipart/form-data; boundary=---------------------------7da9a1f404b0', 'HTTP_COOKIE': 'session_id_welcome=218-248-64-172-3c3d56b1-6ab2-...8-248-64-172-65f6e0e8-b7cd-4c87-9c13-4bfdf7f2d6fd', ...}"
+p113
+ssS'lnum'
+p114
+I370
+sS'lines'
+p115
+(dp116
+I365
+S''
+sI366
+S'                # ##################################################'
+p117
+sI367
+S'                # get the GET and POST data'
+p118
+sI368
+S'                # ##################################################'
+p119
+sI369
+S''
+sI370
+S'                parse_get_post_vars(request, environ)'
+p120
+sI371
+S''
+sI372
+S'                # ##################################################'
+p121
+sI373
+S'                # expose wsgi hooks for convenience'
+p122
+sI374
+S'                # ##################################################'
+p123
+ssS'call'
+p124
+S"(environ={'CONTENT_LENGTH': '2468', 'CONTENT_TYPE': 'multipart/form-data; boundary=---------------------------7da9a1f404b0', 'HTTP_ACCEPT': 'image/gif, image/x-xbitmap, image/jpeg, image/pj...cation/msword, application/x-shockwave-flash, */*', 'HTTP_ACCEPT_ENCODING': 'gzip, deflate', 'HTTP_ACCEPT_LANGUAGE': 'en-in', 'HTTP_CACHE_CONTROL': 'no-cache', 'HTTP_CONNECTION': 'Keep-Alive', 'HTTP_CONTENT_LENGTH': '2468', 'HTTP_CONTENT_TYPE': 'multipart/form-data; boundary=---------------------------7da9a1f404b0', 'HTTP_COOKIE': 'session_id_welcome=218-248-64-172-3c3d56b1-6ab2-...8-248-64-172-65f6e0e8-b7cd-4c87-9c13-4bfdf7f2d6fd', ...}, responder=<function responder2>)"
+p125
+sS'func'
+p126
+S'wsgibase'
+p127
+sa(dp128
+g104
+S'/home/cvest.cso/public_html/LocalityAnalysis/web2py/gluon/main.py'
+p129
+sg106
+(dp130
+S'global copystream_progress'
+p131
+S'<function copystream_progress>'
+p132
+sS'request.body'
+p133
+S'None'
+p134
+sS'request'
+p135
+S"<Storage {'function': 'index', 'wsgi': <Storage ..., 0, 56, 40, 888997), 'post_vars': <Storage {}>}>"
+p136
+ssg114
+I252
+sg115
+(dp137
+I256
+S"        is_multipart = dpost.type[:10] == 'multipart/'"
+p138
+sI247
+S'        else:'
+p139
+sI248
+S'            request.get_vars[key] = value'
+p140
+sI249
+S'        request.vars[key] = request.get_vars[key]'
+p141
+sI250
+S''
+sI251
+S'    # parse POST variables on POST, PUT, BOTH only in post_vars'
+p142
+sI252
+S'    request.body = copystream_progress(request) ### stores request body'
+p143
+sI253
+S"    if (request.body and request.env.request_method in ('POST', 'PUT', 'BOTH')):"
+p144
+sI254
+S'        dpost = cgi.FieldStorage(fp=request.body,environ=environ,keep_blank_values=1)'
+p145
+sI255
+S'        # The same detection used by FieldStorage to detect multipart POSTs'
+p146
+ssg124
+S"(request=<Storage {'function': 'index', 'wsgi': <Storage ..., 0, 56, 40, 888997), 'post_vars': <Storage {}>}>, environ={'CONTENT_LENGTH': '2468', 'CONTENT_TYPE': 'multipart/form-data; boundary=---------------------------7da9a1f404b0', 'HTTP_ACCEPT': 'image/gif, image/x-xbitmap, image/jpeg, image/pj...cation/msword, application/x-shockwave-flash, */*', 'HTTP_ACCEPT_ENCODING': 'gzip, deflate', 'HTTP_ACCEPT_LANGUAGE': 'en-in', 'HTTP_CACHE_CONTROL': 'no-cache', 'HTTP_CONNECTION': 'Keep-Alive', 'HTTP_CONTENT_LENGTH': '2468', 'HTTP_CONTENT_TYPE': 'multipart/form-data; boundary=---------------------------7da9a1f404b0', 'HTTP_COOKIE': 'session_id_welcome=218-248-64-172-3c3d56b1-6ab2-...8-248-64-172-65f6e0e8-b7cd-4c87-9c13-4bfdf7f2d6fd', ...})"
+p147
+sg126
+S'parse_get_post_vars'
+p148
+sa(dp149
+g104
+S'/home/cvest.cso/public_html/LocalityAnalysis/web2py/gluon/main.py'
+p150
+sg106
+(dp151
+S'dest'
+p152
+S"<open file '<fdopen>', mode 'w+b'>"
+p153
+sS'source'
+p154
+S'<socket._fileobject object>'
+p155
+sS'chunk_size'
+p156
+S'100000'
+p157
+sS'global copystream'
+p158
+S'<function copystream>'
+p159
+sS'size'
+p160
+S'2468'
+p161
+ssg114
+I125
+sg115
+(dp162
+I128
+S'    cache = Cache(request)'
+p163
+sI129
+S"    cache.ram(cache_key+':length', lambda: size, 0)"
+p164
+sI120
+S'        return cStringIO.StringIO()'
+p165
+sI121
+S'    source = request.env.wsgi_input'
+p166
+sI122
+S'    size = int(request.env.content_length)'
+p167
+sI123
+S'    dest = tempfile.TemporaryFile()'
+p168
+sI124
+S"    if not 'X-Progress-ID' in request.vars:"
+p169
+sI125
+S'        copystream(source, dest, size, chunk_size)'
+p170
+sI126
+S'        return dest'
+p171
+sI127
+S"    cache_key = 'X-Progress-ID:'+request.vars['X-Progress-ID']"
+p172
+ssg124
+S"(request=<Storage {'function': 'index', 'wsgi': <Storage ..., 0, 56, 40, 888997), 'post_vars': <Storage {}>}>, chunk_size=100000)"
+p173
+sg126
+S'copystream_progress'
+p174
+sa(dp175
+g104
+S'/home/cvest.cso/public_html/LocalityAnalysis/web2py/gluon/fileutils.py'
+p176
+sg106
+(dp177
+S'src'
+p178
+S'<socket._fileobject object>'
+p179
+sS'data'
+p180
+S'undefined'
+p181
+sS'src.read'
+p182
+S'<bound method _fileobject.read of <socket._fileobject object>>'
+p183
+sS'size'
+p184
+S'2468'
+p185
+ssg114
+I302
+sg115
+(dp186
+I297
+S'    """'
+p187
+sI298
+S'    this is here because I think there is a bug in shutil.copyfileobj'
+p188
+sI299
+S'    """'
+p189
+sI300
+S'    while size > 0:'
+p190
+sI301
+S'        if size < chunk_size:'
+p191
+sI302
+S'            data = src.read(size)'
+p192
+sI303
+S'        else:'
+p193
+sI304
+S'            data = src.read(chunk_size)'
+p194
+sI305
+S'        length = len(data)'
+p195
+sI306
+S'        if length > size:'
+p196
+ssg124
+S"(src=<socket._fileobject object>, dest=<open file '<fdopen>', mode 'w+b'>, size=2468, chunk_size=100000)"
+p197
+sg126
+S'copystream'
+p198
+sa(dp199
+g104
+S'/usr/lib/python2.6/socket.py'
+p200
+sg106
+(dp201
+S'self._sock.recv'
+p202
+S'<built-in method recv of _socket.socket object>'
+p203
+sS'self._sock'
+p204
+S'<socket object, fd=33, family=2, type=1, protocol=0>'
+p205
+sS'self'
+p206
+S'<socket._fileobject object>'
+p207
+sS'data'
+p208
+g181
+sS'left'
+p209
+S'1108'
+p210
+ssg114
+I377
+sg115
+(dp211
+I372
+S'                # parameter even though it often returns much less data'
+p212
+sI373
+S'                # than that.  The returned data string is short lived'
+p213
+sI374
+S'                # as we copy it into a StringIO and free it.  This avoids'
+p214
+sI375
+S'                # fragmentation issues on many platforms.'
+p215
+sI376
+S'                try:'
+p216
+sI377
+S'                    data = self._sock.recv(left)'
+p217
+sI378
+S'                except error, e:'
+p218
+sI379
+S'                    if e.args[0] == EINTR:'
+p219
+sI380
+S'                        continue'
+p220
+sI381
+S'                    raise'
+p221
+ssg124
+S'(self=<socket._fileobject object>, size=2468)'
+p222
+sg126
+S'read'
+p223
+sasS'pyver'
+p224
+S'Python 2.6.6rc1+: /usr/bin/python'
+p225
+sS'session'
+p226
+(dp227
+sS'etype'
+p228
+S"<class 'socket.error'>"
+p229
+sS'date'
+p230
+S'Thu Nov  4 00:56:44 2010'
+p231
+sS'response'
+p232
+(dp233
+S'status'
+p234
+S'200'
+p235
+sS'body'
+p236
+S'<cStringIO.StringO object>'
+p237
+sg81
+S'<SimpleCookie: >'
+p238
+sS'_vars'
+p239
+S'None'
+p240
+sS'menu'
+p241
+S'[]'
+p242
+sS'flash'
+p243
+S"''"
+p244
+sS'session_id'
+p245
+S'None'
+p246
+sS'headers'
+p247
+S'<Storage {}>'
+p248
+sS'meta'
+p249
+S'<Storage {}>'
+p250
+sS'postprocessing'
+p251
+S'[]'
+p252
+sS'_caller'
+p253
+S'<function <lambda>>'
+p254
+sS'_view_environment'
+p255
+S'None'
+p256
+sS'_custom_commit'
+p257
+S'None'
+p258
+sS'files'
+p259
+S'[]'
+p260
+sS'_custom_rollback'
+p261
+S'None'
+p262
+ssS'locals'
+p263
+(dp264
+S'e'
+S"error(104, 'Connection reset by peer')"
+p265
+sS'self'
+p266
+S'<socket._fileobject object>'
+p267
+sS'n'
+S'1360'
+p268
+sS'rbufsize'
+p269
+S'16384'
+p270
+sS'buf_len'
+p271
+S'1360'
+p272
+sS'left'
+p273
+S'1108'
+p274
+sS'buf'
+p275
+S'<cStringIO.StringO object>'
+p276
+sS'size'
+p277
+S'2468'
+p278
+sssS'traceback'
+p279
+S'Traceback (most recent call last):\n  File "/home/cvest.cso/public_html/LocalityAnalysis/web2py/gluon/main.py", line 370, in wsgibase\n    parse_get_post_vars(request, environ)\n  File "/home/cvest.cso/public_html/LocalityAnalysis/web2py/gluon/main.py", line 252, in parse_get_post_vars\n    request.body = copystream_progress(request) ### stores request body\n  File "/home/cvest.cso/public_html/LocalityAnalysis/web2py/gluon/main.py", line 125, in copystream_progress\n    copystream(source, dest, size, chunk_size)\n  File "/home/cvest.cso/public_html/LocalityAnalysis/web2py/gluon/fileutils.py", line 302, in copystream\n    data = src.read(size)\n  File "/usr/lib/python2.6/socket.py", line 377, in read\n    data = self._sock.recv(left)\nerror: [Errno 104] Connection reset by peer\n'
+p280
+s.

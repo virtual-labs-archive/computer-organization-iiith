@@ -1,0 +1,177 @@
+<!DOCTYPE html><head>
+	<style type="text/css">
+	.code
+	{
+		background-color:white;
+		border:1px solid #b2bbc0;
+		padding:10px;
+		margin-top:20px;
+	}
+		
+	.sm		{ margin-top:0; margin-bottom:0; }
+	.mini   { font-size:85%;	}
+	.keyw	{ color:#0000D0;	}
+	.cmt	{ color:#007000;	}
+	.str	{ color:#800080;	}
+	.num	{ color:#C000C0;	}
+	.rem	{ color:red;		}
+	.ack	{ font-weight:bold; color:red;	}
+
+	.marge	{ margin:0.5em;		}
+	.style1 {
+	font-family: "Times New Roman", Times, serif;
+	font-style: italic;
+}
+    </style>
+</head>
+
+<h1 id="main-title">
+Computing Expressions using MIPS ISA</h1>
+
+<div id="introduction">
+	<h2>Introduction </h2>
+	<p>A High Level Programming Language like C provides <strong>abstractions</strong> to program an underlying computing system. The following is a broad classification of various abstractions.</p>
+	<ol>
+	  <li>
+	    <div align="justify"><strong>Data Abstractions:</strong> Data Abstractions provide certain primitive data types like int, float, char etc. and a mechanism (like structures, arrays etc.) to hierarichaly compose the primitive data types to create new abstract data types.</div>
+	  </li>
+      <li>
+        <div align="justify"><strong>Data Processing Abstractions:</strong> Data Processing Abstractions provide operations (like addition, multiplication, comparison etc.) which act on the primitive data types which can again be composed to act on user-defined data types.</div>
+      </li>
+      <li>
+        <div align="justify"><strong>Control Abstractions:</strong> Control abstractions include language features like conditional/unconditional goto, if-then-else, for-loop, while-loop etc. A language which doesn't support at least one these Control Abstractions will not be Turing Complete which means there exists certain functions which are not computable using the language features alone.</div>
+      </li>
+      <li>
+        <div align="justify"><strong>Procedural Abstraction: </strong>Procedures allows a user to define his/her own operation to act upon primitive or user defined data types. Further it allows modular development of programs enabling software readability, maintainability and efficiency also.</div>
+      </li>
+      <li>
+        <div align="justify"><strong>More Abstractions: </strong>Object-oriented languages like C++ and Java provide features like classes, inheritance, polymorphism etc. Similary different langugages can provide different sets of abstraction depending upon their design philosophy and utility.</div>
+      </li>
+  </ol>
+	<p align="justify">In this assignment and in the next few we shall learn how to implement these High Level Language Abstractions in the Assembly Language. There are 3 sets of assignments corresponding to MIPS, ARM and x86 Instruction Set Architectures (ISAs). MIPS and ARM ISA follow RISC philosophy and x86 follows a CISC philosophy. It would be good to know one RISC ISA and one CISC ISA. So you can first work on either the MIPS or ARM assignments followed by the assignments on x86 ISA.</p>
+</div>
+<div id="theory">
+	<h2 align="justify">Theory</h2>
+	<hr />
+	<h2 align="justify">MIPS ISA Versions</h2>
+	<p align="justify">There are several versions of the MIPS ISA and the one which we will be making use of in our assignments is a subset of MIPS32 Release 3. In particular our simulator supports only the MIPS CPU core instructions and these instructions are sufficient to do all the assignments. Please refer the document <em>MIPS Architecure For Programmers, Volum I-A: Introduction to the MIPS 32 Architecture </em>for more details.</p>
+	<p align="justify"><img src="images/MIPSISAVersions.gif" width="854" height="665" /></p>
+	<hr />
+	<p><font size="+2"><strong>Structure of an Assembly Language Program</strong></font></p>
+	<p>Every assembly language program contains a Text Section (also called as Code Section) and an optional Data Section. In the Data Section we allocate memory to various program variables using Assembly Language Directives and in the Text Section the assembly code which is a sequence of assembly language instructions to manipulate the data items declared in the Data Section. In High Level Programming Languages Compiler takes care of memory allocation to program variables by using the variable declarations like<span class="style1"> int a, b[10];</span>, whereas in assembly the programmer has to do it explicitly with the assistance of the assembler. The following is a sample MIPS program evaluating the expression <em><font face="Times New Roman, Times, serif">vara = varb + varc</font> </em>where variables <font face="Times New Roman, Times, serif">var<em>a, varb</em></font> and<em> <font face="Times New Roman, Times, serif">varc</font></em> are integer.	  </p>
+  
+  <pre class="code"><span class=cmt>
+// Data Section</span>
+<span class="keyw">.data</span>
+
+vara .word 
+varb .word 10
+varc .word 20
+
+<span class=cmt>
+
+// Code Section</span>
+.text
+lw $r8, varb
+lw $r9, varc
+add $r10, $r8, $r9
+sw varc, $r10 
+halt 
+</pre>
+  <p>&nbsp;</p>
+	<p>&nbsp;</p>
+</div>
+
+<div id="objective">
+	<h2> Objective </h2> 
+	<p>The following are the objectives of this set of assignments.</p>
+	<ol>
+	  <li>Introduce the Structure of an Assembly Language Program: Data and Text Sections.</li>
+      <li>Introduce Assembly Directives to allocate memory in the Data Section.</li>
+      <li>Introduce the idea that MIPS is a Load-Store Architecture and data has to be moved to registers before any operations can be performed on them.</li>
+      <li>Difference between Signed and Unsigned Arithmetic.</li>
+      <li>What if there are program constants whose size is greater than 16 bits?</li>
+      <li>How to convert a complex expression into an Assembly Program evaluating that expression?</li>
+  </ol>
+  <div id="objective2"></div>
+</div>
+
+
+<div id="simulation">
+	<h2>Simulation</h2>
+</div>
+
+<div id="manual">
+	<h2> Manual </h2> 
+ 	<p><strong> 
+	Assembly Directives</strong></p>
+ 	<p><strong>Instructions</strong></p>
+ 	<p><strong>How to use the Simulator?</strong></p>
+ 	<h3>&nbsp;</h3> 
+</div>
+
+<div id="quizzes">
+	<h2>Quiz</h2> 
+	<p><b>Q1.</b> Time taken for one complete oscillation is called Time Period of the oscillator. <br> 
+	  <input type="radio" name="q1" id="q1" value="1"> 
+	  <font color="green"> True </font> <br> 
+	  <input type="radio" name="q1" id="q1" value="0">
+	  <font color="red"> False </font> <br/>
+	  <br/> 
+	  <b>Q2.</b> Time period of the oscillator is constant for given values of mass, length and initial conditions.<br> 
+	  <input type="radio" name="q2" id="q2" value="1"> 
+	  <font color="green"> True </font> <br> 
+	  <input type="radio" name="q2" id="q2"value="0">
+	  <font color="red"> False </font> <br/>
+	  <br/> 
+	  <b>Q3.</b> Value of Time period depends on initial conditions. <br> 
+	  <input type="radio" name="q3" id="q3" value="1"> 
+	  <font color="green"> True </font> <br> 
+	  <input type="radio" name="q3" id="q3"value="0">
+	  <font color="red"> False </font> <br/>
+	  <br/> 
+	  <b>Q4.</b> Value of time period depends on mass. <br> 
+	  <input type="radio" name="q4" id="q4" value="1"> 
+	  <font color="green"> True </font> <br> 
+	  <input type="radio" name="q4" id="q4" value="0">
+	  <font color="red"> False </font> <br/>
+	  <br/> 
+	  <b>Q5.</b> Value of time period depends on length of the oscillator. <br> 
+	  <input type="radio" name="q5" id="q5" value="1"> 
+	  <font color="green"> True </font> <br> 
+	  <input type="radio" name="q5" id="q5"value="0">
+	  <font color="red"> False </font> <br/>
+	  <br/> 
+	  <input type="submit" value="Submit Answers" class="button" />
+	</p>
+</div>
+
+<div id="procedure">
+	<h2> Procedure </h2>
+	<p>Write MIPS Assembly Language Programs computing the following expressions or program segments.</p>
+	<ol>
+	  <li>Variables are of type unsigned integers and word sized. Also the variables b, c, d and e are initialized to values 10, 20, 30 and 40 respectively.
+	    <blockquote>
+	      <p class="code"> b = a + 256 . <br>
+	      c = b - 1<br />
+	      a = (b + c) - (d+e+0xffffe)</p>
+        </blockquote>
+	</li>
+      <li>Variables are of type signed integers and half-word sized.<q> </q>Variables b, c, d and e are initialized to values -10, 20, 30 and -40 respectively.
+      <blockquote>
+	      <p class="code"> a = (b + c) - (d + e)</p>
+        </blockquote>
+      </li>
+      <li>Dot Product of two integer array vectors of size 5. The ith element of the first array is initialized to the integer and the ith element of the second array is initialized to 5-i.</li>
+  </ol>
+</div>
+<div id="readings"> 
+	<h2> Further Readings </h2>
+	<ol>
+	  <li>MIPS Architecture For Programmers, Volume I-A: Introduction to the MIPS32 Architecture.</li>
+      <li>MIPS Architecture For Programmers, Volume II-A: The MIPS32 Instruction Set</li>
+      <li> Patterson, D. A. and Hennessy, J. L. &nbsp;Computer Organization and Design: the Hardware/Software Interface. 3rd Edition.</li>
+  </ol>
+</div>
+
+

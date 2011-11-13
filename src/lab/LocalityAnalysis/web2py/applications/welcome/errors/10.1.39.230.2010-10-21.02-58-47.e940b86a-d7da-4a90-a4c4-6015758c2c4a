@@ -1,0 +1,677 @@
+(dp1
+S'output'
+p2
+S''
+sS'layer'
+p3
+S'/home/cvest.cso/public_html/LocalityAnalysis/web2py/applications/welcome/controllers/default.py'
+p4
+sS'code'
+p5
+S'# -*- coding: utf-8 -*- \n\n#########################################################################\n## This is a samples controller\n## - index is the default action of any application\n## - user is required for authentication and authorization\n## - download is for downloading files uploaded in the db (does streaming)\n## - call exposes all registered services (none by default)\n#########################################################################  \n\ndef index():\n    """\n    example action using the internationalization operator T and flash\n    rendered by views/default/index.html or views/generic.html\n    """\n    redirect(URL(request.application,\'index\',\'../../vlab\'))\n    response.flash = T(\'Welcome to web2py\')\n    return dict(message=T(\'Hello World\'))\n\n\ndef user():\n    """\n    exposes:\n    http://..../[app]/default/user/login \n    http://..../[app]/default/user/logout\n    http://..../[app]/default/user/register\n    http://..../[app]/default/user/profile\n    http://..../[app]/default/user/retrieve_password\n    http://..../[app]/default/user/change_password\n    use @auth.requires_login()\n        @auth.requires_membership(\'group name\')\n        @auth.requires_permission(\'read\',\'table name\',record_id)\n    to decorate functions that need access control\n    """\n    return dict(form=auth())\n\n\ndef download():\n    """\n    allows downloading of uploaded files\n    http://..../[app]/default/download/[filename]\n    """\n    return response.download(request,db)\n\n\ndef call():\n    """\n    exposes services. for example:\n    http://..../[app]/default/call/jsonrpc\n    decorate with @services.jsonrpc the functions to expose\n    supports xml, json, xmlrpc, jsonrpc, amfrpc, rss, csv\n    """\n    session.forget()\n    return service()\n\n\n\nresponse._vars=response._caller(index)\n'
+p6
+sS'snapshot'
+p7
+(dp8
+S'exception'
+p9
+(dp10
+S'__getslice__'
+p11
+S"<method-wrapper '__getslice__' of exceptions.SyntaxError object>"
+p12
+sS'text'
+p13
+S'None'
+p14
+sS'__str__'
+p15
+S"<method-wrapper '__str__' of exceptions.SyntaxError object>"
+p16
+sS'__reduce__'
+p17
+S'<built-in method __reduce__ of exceptions.SyntaxError object>'
+p18
+sS'__dict__'
+p19
+S'{}'
+p20
+sS'__sizeof__'
+p21
+S'<built-in method __sizeof__ of exceptions.SyntaxError object>'
+p22
+sS'__init__'
+p23
+S"<method-wrapper '__init__' of exceptions.SyntaxError object>"
+p24
+sS'__setattr__'
+p25
+S"<method-wrapper '__setattr__' of exceptions.SyntaxError object>"
+p26
+sS'__reduce_ex__'
+p27
+S'<built-in method __reduce_ex__ of exceptions.SyntaxError object>'
+p28
+sS'__new__'
+p29
+S'<built-in method __new__ of type object>'
+p30
+sS'__format__'
+p31
+S'<built-in method __format__ of exceptions.SyntaxError object>'
+p32
+sS'__class__'
+p33
+S"<type 'exceptions.SyntaxError'>"
+p34
+sS'filename'
+p35
+S'None'
+p36
+sS'lineno'
+p37
+S'None'
+p38
+sS'msg'
+p39
+S"'not enough information to build the url'"
+p40
+sS'__doc__'
+p41
+S"'Invalid syntax.'"
+p42
+sS'__getitem__'
+p43
+S"<method-wrapper '__getitem__' of exceptions.SyntaxError object>"
+p44
+sS'__setstate__'
+p45
+S'<built-in method __setstate__ of exceptions.SyntaxError object>'
+p46
+sS'__getattribute__'
+p47
+S"<method-wrapper '__getattribute__' of exceptions.SyntaxError object>"
+p48
+sS'print_file_and_line'
+p49
+S'None'
+p50
+sS'args'
+p51
+S"('not enough information to build the url',)"
+p52
+sS'__subclasshook__'
+p53
+S'<built-in method __subclasshook__ of type object>'
+p54
+sS'offset'
+p55
+S'None'
+p56
+sS'__unicode__'
+p57
+S'<built-in method __unicode__ of exceptions.SyntaxError object>'
+p58
+sS'__delattr__'
+p59
+S"<method-wrapper '__delattr__' of exceptions.SyntaxError object>"
+p60
+sS'__repr__'
+p61
+S"<method-wrapper '__repr__' of exceptions.SyntaxError object>"
+p62
+sS'__hash__'
+p63
+S"<method-wrapper '__hash__' of exceptions.SyntaxError object>"
+p64
+ssS'evalue'
+p65
+S'not enough information to build the url'
+p66
+sS'request'
+p67
+(dp68
+S'function'
+p69
+S"'index'"
+p70
+sS'body'
+p71
+S'<cStringIO.StringO object>'
+p72
+sS'wsgi'
+p73
+S"<Storage {'start_response': <function <lambda> a...ING': 'gzip,deflate', 'HTTP_KEEP_ALIVE': '115'}}>"
+p74
+sS'extension'
+p75
+S"'html'"
+p76
+sS'vars'
+p77
+S'<Storage {}>'
+p78
+sS'cid'
+p79
+S'None'
+p80
+sS'url'
+p81
+S'<gluon.html.XML object>'
+p82
+sg51
+S'[]'
+p83
+sS'controller'
+p84
+S"'default'"
+p85
+sS'cookies'
+p86
+S"<SimpleCookie: SESS1fda454ed642981b513705279fb62...0-1-39-230-048e300d-b367-42bc-bc91-0ebde0ddac6e'>"
+p87
+sS'application'
+p88
+S"'welcome'"
+p89
+sS'ajax'
+p90
+S'False'
+p91
+sS'client'
+p92
+S"'10.1.39.230'"
+p93
+sS'env'
+p94
+S"<Storage {'http_user_agent': 'Mozilla/5.0 (X11; ...wsgi_run_once': False, 'path_info': '/welcome/'}>"
+p95
+sS'raw_args'
+p96
+S'None'
+p97
+sS'get_vars'
+p98
+S'<Storage {}>'
+p99
+sS'folder'
+p100
+S"'/home/cvest.cso/public_html/LocalityAnalysis/web2py/applications/welcome/'"
+p101
+sS'now'
+p102
+S'datetime.datetime(2010, 10, 21, 2, 58, 47, 904342)'
+p103
+sS'post_vars'
+p104
+S'<Storage {}>'
+p105
+ssS'frames'
+p106
+(lp107
+(dp108
+S'file'
+p109
+S'/home/cvest.cso/public_html/LocalityAnalysis/web2py/gluon/restricted.py'
+p110
+sS'dump'
+p111
+(dp112
+S'environment'
+p113
+S"{'A': <class 'gluon.html.A'>, 'Auth': <class 'gluon.tools.Auth'>, 'B': <class 'gluon.html.B'>, 'BEAUTIFY': <class 'gluon.html.BEAUTIFY'>, 'BODY': <class 'gluon.html.BODY'>, 'BR': <class 'gluon.html.BR'>, 'CENTER': <class 'gluon.html.CENTER'>, 'CLEANUP': <class 'gluon.validators.CLEANUP'>, 'CODE': <class 'gluon.html.CODE'>, 'CRYPT': <class 'gluon.validators.CRYPT'>, ...}"
+p114
+sS'ccode'
+p115
+S'<code object <module> at 0x8d7a3c8, file "/home/...cations/welcome/controllers/default.py", line 11>'
+p116
+ssS'lnum'
+p117
+I188
+sS'lines'
+p118
+(dp119
+I192
+S'        # XXX Show exception in Wing IDE if running in debugger'
+p120
+sI183
+S'        if type(code) == types.CodeType:'
+p121
+sI184
+S'            ccode = code'
+p122
+sI185
+S'        else:'
+p123
+sI186
+S'            ccode = compile2(code,layer)'
+p124
+sI187
+S''
+sI188
+S'        exec ccode in environment'
+p125
+sI189
+S'    except HTTP:'
+p126
+sI190
+S'        raise'
+p127
+sI191
+S'    except Exception:'
+p128
+ssS'call'
+p129
+S"(code='# -*- coding: utf-8 -*- \\n\\n######################...vice()\\n\\n\\n\\nresponse._vars=response._caller(index)\\n', environment={'A': <class 'gluon.html.A'>, 'Auth': <class 'gluon.tools.Auth'>, 'B': <class 'gluon.html.B'>, 'BEAUTIFY': <class 'gluon.html.BEAUTIFY'>, 'BODY': <class 'gluon.html.BODY'>, 'BR': <class 'gluon.html.BR'>, 'CENTER': <class 'gluon.html.CENTER'>, 'CLEANUP': <class 'gluon.validators.CLEANUP'>, 'CODE': <class 'gluon.html.CODE'>, 'CRYPT': <class 'gluon.validators.CRYPT'>, ...}, layer='/home/cvest.cso/public_html/LocalityAnalysis/web2py/applications/welcome/controllers/default.py')"
+p130
+sS'func'
+p131
+S'restricted'
+p132
+sa(dp133
+g109
+S'/home/cvest.cso/public_html/LocalityAnalysis/web2py/applications/welcome/controllers/default.py'
+p134
+sg111
+(dp135
+sg117
+I58
+sg118
+(dp136
+I47
+S'    """'
+p137
+sI48
+S'    exposes services. for example:'
+p138
+sI49
+S'    http://..../[app]/default/call/jsonrpc'
+p139
+sI50
+S'    decorate with @services.jsonrpc the functions to expose'
+p140
+sI51
+S'    supports xml, json, xmlrpc, jsonrpc, amfrpc, rss, csv'
+p141
+sI52
+S'    """'
+p142
+sI53
+S'    session.forget()'
+p143
+sI54
+S'    return service()'
+p144
+sI55
+S''
+sI56
+S''
+ssg129
+S'()'
+p145
+sg131
+S'<module>'
+p146
+sa(dp147
+g109
+S'/home/cvest.cso/public_html/LocalityAnalysis/web2py/gluon/globals.py'
+p148
+sg111
+(dp149
+S'self'
+p150
+S'undefined'
+p151
+sS'f'
+S'<function index>'
+p152
+ssg117
+I96
+sg118
+(dp153
+I96
+S'        self._caller = lambda f: f()'
+p154
+sI97
+S'        self._view_environment = None'
+p155
+sI98
+S'        self._custom_commit = None'
+p156
+sI99
+S'        self._custom_rollback = None'
+p157
+sI100
+S''
+sI91
+S"        self.flash = ''           # used by the default view layout"
+p158
+sI92
+S'        self.meta = Storage()     # used by web2py_ajax.html'
+p159
+sI93
+S'        self.menu = []            # used by the default view layout'
+p160
+sI94
+S'        self.files = []           # used by web2py_ajax.html'
+p161
+sI95
+S'        self._vars = None'
+p162
+ssg129
+S'(f=<function index>)'
+p163
+sg131
+S'<lambda>'
+p164
+sa(dp165
+g109
+S'/home/cvest.cso/public_html/LocalityAnalysis/web2py/applications/welcome/controllers/default.py'
+p166
+sg111
+(dp167
+S'global URL'
+p168
+S'<function _URL>'
+p169
+sS'global request'
+p170
+S"<Storage {'function': 'index', 'body': <cStringI..., 2, 58, 47, 904342), 'post_vars': <Storage {}>}>"
+p171
+sS'request.application'
+p172
+S"'welcome'"
+p173
+sS'global redirect'
+p174
+S'<function redirect>'
+p175
+ssg117
+I16
+sg118
+(dp176
+I11
+S'def index():'
+p177
+sI12
+S'    """'
+p178
+sI13
+S'    example action using the internationalization operator T and flash'
+p179
+sI14
+S'    rendered by views/default/index.html or views/generic.html'
+p180
+sI15
+S'    """'
+p181
+sI16
+S"    redirect(URL(request.application,'index','../../vlab'))"
+p182
+sI17
+S"    response.flash = T('Welcome to web2py')"
+p183
+sI18
+S"    return dict(message=T('Hello World'))"
+p184
+sI19
+S''
+sI20
+S''
+ssg129
+S'()'
+p185
+sg131
+S'index'
+p186
+sa(dp187
+g109
+S'/home/cvest.cso/public_html/LocalityAnalysis/web2py/gluon/html.py'
+p188
+sg111
+(dp189
+S'global URL'
+p190
+S'<function URL>'
+p191
+sS'args'
+p192
+S"('welcome', 'index', '../../vlab')"
+p193
+sS'kwargs'
+p194
+g20
+ssg117
+I228
+sg118
+(dp195
+I224
+S'                args = []'
+p196
+sI225
+S"            if len(args) == 2 and not 'f' in kwargs and not 'c' in kwargs:"
+p197
+sI226
+S"                kwargs['c'], kwargs['f'] = args[0], args[1]"
+p198
+sI227
+S'                args = []'
+p199
+sI228
+S'        return URL(*args, **kwargs)'
+p200
+sI229
+S'    _URL.__doc__ = URL.__doc__'
+p201
+sI230
+S'    return _URL'
+p202
+sI231
+S''
+sI232
+S''
+sI223
+S"                kwargs['f'] = args[0]"
+p203
+ssg129
+S"(*args=('welcome', 'index', '../../vlab'), **kwargs={})"
+p204
+sg131
+S'_URL'
+p205
+sa(dp206
+g109
+S'/home/cvest.cso/public_html/LocalityAnalysis/web2py/gluon/html.py'
+p207
+sg111
+(dp208
+S'builtinSyntaxError'
+p209
+S"<type 'exceptions.SyntaxError'>"
+p210
+ssg117
+I188
+sg118
+(dp211
+I192
+S'        args = [args]'
+p212
+sI183
+S"            function, extension = f.split('.',1)"
+p213
+sI184
+S'        else:'
+p214
+sI185
+S'            function = f'
+p215
+sI186
+S''
+sI187
+S'    if not (application and controller and function):'
+p216
+sI188
+S"        raise SyntaxError, 'not enough information to build the url'"
+p217
+sI189
+S''
+sI190
+S"    other = ''"
+p218
+sI191
+S'    if args != [] and not isinstance(args, (list, tuple)):'
+p219
+ssg129
+S"(a='welcome', c='index', f='../../vlab', r=None, args=[], vars={}, anchor='', extension='./../vlab', env=None)"
+p220
+sg131
+S'URL'
+p221
+sasS'pyver'
+p222
+S'Python 2.6.6rc1+: /usr/bin/python'
+p223
+sS'session'
+p224
+(dp225
+S'auth'
+p226
+S'None'
+p227
+ssS'etype'
+p228
+S"<type 'exceptions.SyntaxError'>"
+p229
+sS'date'
+p230
+S'Thu Oct 21 02:58:47 2010'
+p231
+sS'response'
+p232
+(dp233
+S'status'
+p234
+S'200'
+p235
+sg71
+S'<cStringIO.StringO object>'
+p236
+sg86
+S"<SimpleCookie: session_id_welcome='10-1-39-230-048e300d-b367-42bc-bc91-0ebde0ddac6e'>"
+p237
+sS'_vars'
+p238
+S'None'
+p239
+sS'title'
+p240
+S"'welcome'"
+p241
+sS'session_file'
+p242
+S"<open file '/home/cvest.cso/public_html/Locality...48e300d-b367-42bc-bc91-0ebde0ddac6e', mode 'rb+'>"
+p243
+sS'flash'
+p244
+S"''"
+p245
+sS'_custom_rollback'
+p246
+S'None'
+p247
+sS'session_id'
+p248
+S"'10-1-39-230-048e300d-b367-42bc-bc91-0ebde0ddac6e'"
+p249
+sS'headers'
+p250
+S"<Storage {'Expires': 'Wed, 20 Oct 2010 21:28:47 ...he, must-revalidate, post-check=0, pre-check=0'}>"
+p251
+sS'meta'
+p252
+S"<Storage {'keywords': 'bla bla bla', 'description': 'describe your app', 'author': 'you'}>"
+p253
+sS'session_filename'
+p254
+S"'/home/cvest.cso/public_html/LocalityAnalysis/web.../10-1-39-230-048e300d-b367-42bc-bc91-0ebde0ddac6e'"
+p255
+sS'postprocessing'
+p256
+S'[]'
+p257
+sS'menu'
+p258
+S"[(<lazyT 'Index'>, False, <gluon.html.XML object>, []), (<lazyT 'Edit'>, False, <gluon.html.XML object>, [(<lazyT 'Controller'>, False, <gluon.html.XML object>), (<lazyT 'View'>, False, <gluon.html.XML object>), (<lazyT 'Layout'>, False, <gluon.html.XML object>), (<lazyT 'Stylesheet'>, False, <gluon.html.XML object>), (<lazyT 'DB Model'>, False, <gluon.html.XML object>), (<lazyT 'Menu Model'>, False, <gluon.html.XML object>), (<lazyT 'Database'>, False, <gluon.html.XML object>)])]"
+p259
+sS'_view_environment'
+p260
+S"{'A': <class 'gluon.html.A'>, 'Auth': <class 'gluon.tools.Auth'>, 'B': <class 'gluon.html.B'>, 'BEAUTIFY': <class 'gluon.html.BEAUTIFY'>, 'BODY': <class 'gluon.html.BODY'>, 'BR': <class 'gluon.html.BR'>, 'CENTER': <class 'gluon.html.CENTER'>, 'CLEANUP': <class 'gluon.validators.CLEANUP'>, 'CODE': <class 'gluon.html.CODE'>, 'CRYPT': <class 'gluon.validators.CRYPT'>, ...}"
+p261
+sS'subtitle'
+p262
+S"<lazyT 'customize me!'>"
+p263
+sS'session_id_name'
+p264
+S"'session_id_welcome'"
+p265
+sS'_custom_commit'
+p266
+S'None'
+p267
+sS'_caller'
+p268
+S'<function <lambda>>'
+p269
+sS'files'
+p270
+S'[]'
+p271
+sS'view'
+p272
+S"'default/index.html'"
+p273
+ssS'locals'
+p274
+(dp275
+g69
+S"''"
+p276
+sS'a'
+S"'welcome'"
+p277
+sS'c'
+S"'index'"
+p278
+sg77
+g20
+sg75
+S"'./../vlab'"
+p279
+sS'f'
+S"'../../vlab'"
+p280
+sg51
+S'[]'
+p281
+sg88
+S"'welcome'"
+p282
+sg84
+S"'index'"
+p283
+sS'r'
+S'None'
+p284
+sg94
+S'None'
+p285
+sS'anchor'
+p286
+S"''"
+p287
+sssS'traceback'
+p288
+S'Traceback (most recent call last):\n  File "/home/cvest.cso/public_html/LocalityAnalysis/web2py/gluon/restricted.py", line 188, in restricted\n    exec ccode in environment\n  File "/home/cvest.cso/public_html/LocalityAnalysis/web2py/applications/welcome/controllers/default.py", line 58, in <module>\n  File "/home/cvest.cso/public_html/LocalityAnalysis/web2py/gluon/globals.py", line 96, in <lambda>\n    self._caller = lambda f: f()\n  File "/home/cvest.cso/public_html/LocalityAnalysis/web2py/applications/welcome/controllers/default.py", line 16, in index\n    redirect(URL(request.application,\'index\',\'../../vlab\'))\n  File "/home/cvest.cso/public_html/LocalityAnalysis/web2py/gluon/html.py", line 228, in _URL\n    return URL(*args, **kwargs)\n  File "/home/cvest.cso/public_html/LocalityAnalysis/web2py/gluon/html.py", line 188, in URL\n    raise SyntaxError, \'not enough information to build the url\'\nSyntaxError: not enough information to build the url\n'
+p289
+s.

@@ -1,0 +1,57 @@
+{{extend 'layout.html'}}
+<h1>Try this</h1>
+<h3>Signed Range {{=-(range_s)}} to {{=range_s-1}}</h3>
+<h3>Unsigned Range 0 to {{=range_s*2-1}}</h3>
+{{=form.custom.begin}}
+<table>
+		
+	<tr>
+		<td><b>Signed</b></td>
+		<td><b>K </b></td>
+		<td>{{=form.custom.widget.k}}</td>
+		<td><b>Unsigned</b></td>
+	</tr>
+	<tr>
+		<td>{{=left_first}}</td>
+		<td>{{=form.custom.label.first_binary}}</td>
+		<td>{{=form.custom.widget.first_binary}}</td>
+		<td>{{=right_first}}</td>
+	</tr>
+	<tr>
+		<td>{{=left_second}}</td>
+		<td>{{=form.custom.label.second_binary}}</td>
+		<td>{{=form.custom.widget.second_binary}}</td>
+		<td>{{=right_second}}</td>
+	<tr>
+		<td>{{=left_result}}</td>
+		<td>Result </td>
+		<td>{{if unsigned_overflow==1:}}1-{{=mid}}{{else:}}0-{{=mid}}{{pass}}</td>
+		<td>{{=right_result}}</td>
+	</tr>
+	<tr>
+		<td>Signed Error-{{=signed_overflow}}</td>
+		<td>{{=form.custom.submit}}</td>
+		<td></td>
+		<td>Unsigned Error-{{=unsigned_overflow}}</td>
+	</tr>
+</table>
+{{=form.custom.end}}
+<h1>Instructions</h1>
+<ol>
+	<li>Enter any two binary numbers in the space provided
+	<ul>
+		<li>The app takes last 'K' bits of the numbers given</li>
+	</ul>
+	</li>
+	<li>The result of binary addition is also 'K' bits with an additional carry-out bit</li>
+	<li>The left column under 'Signed' shows the 2's complement signed decimal numbers of the corresponding binary numbers in the middle column</li>
+	<li>The right column under 'Unsigned' shows the unsigned decimal numbers of the corresponding binary numbers in the middle column</li>
+	<li>In case of signed overflow 'Signed Error' becomes '1'</li>
+	<li>In case of unsigned overflow 'Unsigned Error' becomes '1'</li>
+</ol>
+<h1>Note</h1>
+<ul>
+	<li>Note that binary result remains same, whether the addition is signed or unsigned.</li>
+	<li>An overflow occurs when the result cannot be represented by the selected number of bits</li>
+</ul>
+

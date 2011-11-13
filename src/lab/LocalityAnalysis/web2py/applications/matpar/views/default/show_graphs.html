@@ -1,0 +1,39 @@
+{{extend 'layout.html'}}
+<html>
+	<head>
+		<script type="text/javascript" src="{{=URL(request.application,'static','js/jquery-1.4.2.min.js')}}"></script>
+	        <script language="javascript" type="text/javascript" src="{{=URL(request.application,'static','jquery.jqplot.min.js')}}"></script>
+	        <link rel="stylesheet" type="text/css" href="{{=URL(request.application,'static','jquery.jqplot.css')}}" />
+		<script type="text/javascript">
+			{{tit='{title:'}}
+				{{name='shrenik'}}
+				$(document).ready(function(){
+						plot1 = $.jqplot('graph1',{{=ans1}},{axes:{xaxis:{ticks:{{=xticks}}}}});
+						plot2 = $.jqplot('graph2', {{=ans2}},{axes:{xaxis:{ticks:{{=xticks}}}}});
+						plot3 = $.jqplot('graph3', {{=ans3}},{axes:{xaxis:{ticks:{{=xticks}}}}});
+						plot = $.jqplot('graph', {{=ans}},{axes:{xaxis:{ticks:{{=xticks}}}}});
+			  });
+		  </script>
+
+	</head>
+
+	<body>
+		<table>
+			<tr>
+				<td style="text-align:center;color:brown"> I1 Hit % </td>
+				<td style="text-align:center;color:brown"> D1 Hit % </td>
+				<td style="text-align:center;color:brown"> L2 Hit % </td>
+			</tr>
+			<tr>
+				<td><div id ="graph1" style="height:500 px;width:400px"> </div><h4 style='text-align:center'> Tile/Block Size </h4></td>
+				<td><div id ="graph2" style="height:500 px;width:400px"> </div><h4 style='text-align:center'> Tile/Block Size </h4></td>
+				<td><div id ="graph3" style="height:500 px;width:400px"> </div><h4 style='text-align:center'> Tile/Block Size </h4></td>
+			</tr>
+			<tr >
+				<td><br/></td>
+				<td ><br/><h2 style="text-align:center;color:brown"> All Together </h2> <div id="graph" style="height:500 px; width:400px"> </div> <h4 style='text-align:center'> Tile/Block Size </h4></td>
+				<td><br/></td>
+			</tr>
+		</table>
+	</body>
+</html>

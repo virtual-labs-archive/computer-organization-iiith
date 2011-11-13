@@ -1,0 +1,470 @@
+(dp1
+S'output'
+p2
+S''
+sS'layer'
+p3
+S'/home/shrenik/web2py/applications/vlab/controllers/default.py'
+p4
+sS'code'
+p5
+S'\n#########################################################################\n## This is a samples controller\n## - index is the default action of any application\n## - user is required for authentication and authorization\n## - download is for downloading files uploaded in the db (does streaming)\n## - call exposes all registered services (none by default)\n#########################################################################  \n@auth.requires_login()\ndef index():\n    import os\n    import re\n    import commands\n    """\n    example action using the internationalization operator T and flash\n    rendered by views/default/index.html or views/generic.html\n    """\n    pid=[]\n    values={}\n    flag=0\n    compile=True\n    list=[]\n    out="Test"\n    inp=None\n    out_mod=None\n    form=SQLFORM(db.programs)\n    if(form.accepts(request.vars,session)):\n         flag=1\n\t path=os.getcwd()\n         path=path+\'/applications/vlab/uploads/\'#+form.vars.file\n         inp=commands.getstatusoutput(\'cc \'+path+form.vars.file+\' -o\'+path+str(auth.user.id))\n\t if inp[0] != 0:\n\t\t compile=False\n\t i1_s=form.vars.i1_size * 1024; values["i1_s"]=i1_s\n\t d1_s=form.vars.d1_size * 1024; values["d1_s"]=d1_s\n\t l2_s=form.vars.l2_size * 1024; values["l2_s"]=l2_s\n\t values["compile"]=compile; values["input"]=""\n\t if compile==True:\n          command=\'valgrind --tool=cachegrind --I1=\'+str(i1_s)+\',\'+str(form.vars.i1_associativity)+\',\'+str(form.vars.i1_line_size)+ \' --cachegrind-out-file=\'+path+str(auth.user.id)+\'.%p \'+path+str(auth.user.id)\n          if len(form.vars.input_file)>0:\n\t     input_path=os.getcwd()\n             input_path=input_path+\'/applications/vlab/uploads/\'+form.vars.input_file; values["input"]=input_path\n             command=command+\'<\'+input_path\n         \n\t  out=commands.getstatusoutput(command)\n\t  out_mod=re.split(\'\\n\',out[1])\n\t  regex="==(\\d*)==\\s*([^:]*):\\s*(\\d+.*)"\n\t  for i in out_mod:\n\t\t match=re.findall(regex,i)\n\t\t if len(match)>0:\n\t\t \tprocid=match[0][0]\n\t\t\tif procid not in pid:\n\t\t\t\t pid.append(procid)\n\t\t\tlist.append(match[0])\t\n    if len(list)>0:\n\tregex="([^\\(]+)\\(\\s*(\\S+)[^\\+]*\\+\\s*(\\S+).*" ; t1= re.findall(regex,list[5][2]) ; values["a"]=t1[0][0] ; values["a_1"]=t1[0][1] ; values["a_2"] = t1[0][2] \n\tt2= re.findall(regex,list[6][2]) ; values["c"]=t2[0][0] ; values["c_1"]=t2[0][1] ; values["c_2"] = t2[0][2] ; values["e"]=values["c"] ; values["e_1"] = values["c_1"]; values["e_2"]=values["c_2"] \n\tt3= re.findall(regex,list[8][2]) ; values["d"]=t3[0][0] ; values["d_1"]=t3[0][1] ; values["d_2"] = t3[0][2] \n\tt4= re.findall(regex,list[7][2]) ; values["g"]=t4[0][0] ; values["g_1"]=t4[0][1] ; values["g_2"] = t4[0][2]\n\tvalues["b"]= int(values["a"].replace(",",""))-int(values["c"].replace(",","")) ; values["b_1"]= int(values["a_1"].replace(",",""))-int(values["c_1"].replace(",","")) ; values["b_2"]= int(values["a_2"].replace(",",""))-int(values["c_2"].replace(",","")) \n\tvalues["f"]= int(values["e"].replace(",",""))-int(values["g"].replace(",","")) ; values["f_1"]= int(values["e_1"].replace(",",""))-int(values["g_1"].replace(",","")) ; values["f_2"]= int(values["e_2"].replace(",",""))-int(values["g_2"].replace(",","")) \n\tvalues["h"]=str("%.2f"%((float(values["g"].replace(",",""))/float(values["e"].replace(",","")))*100))+"%" \n\tvalues["h_1"]=str("%.2f"%((float(values["g_1"].replace(",",""))/float(values["e_1"].replace(",","")))*100))+"%"\n\tvalues["h_2"]=str("%.2f"%((float(values["g_2"].replace(",",""))/float(values["e_2"].replace(",","")))*100))+"%"\n    session.values=values\n    \n    response.flash = T(\'Welcome to web2py\')\n    return dict(form=form,message=T(\'Hello World\'),list=list,pid=pid,flag=flag,values=values,compile=compile)\n\ndef show_graphs():\n\t list=[]\n\t y1=[]\n\t path=os.getcwd()\n         path=path+\'/applications/vlab/uploads/\'\n\t input_path=session.values["input"]\n\t if session.values["compile"]==True:\n\t\tfor i in range (2,9): \n\t\t\tcommand=\'valgrind --tool=cachegrind --I1=\'+str(session.values["i1_s"])+\',\'+str(i)+\',\'+str(64)+ \' --cachegrind-out-file=\'+path+str(auth.user.id)+\'.%p \'+path+str(auth.user.id)\n\t \t\tif input_path != None:\n\t   \t\t\tcommand=command + \'<\' +input_path\n\t\t\tout=commands.getstatusoutput(command)\n\t\t\tout_mod=re.split(\'\\n\',out[1])\n\t  \t\tregex="==(\\d*)==\\s*([^:]*):\\s*(\\d+.*)"\n\t  \t\tfor i in out_mod:\n\t\t \t\tmatch=re.findall(regex,i)\n\t\t \t\tif len(match)>0:\n\t\t\t\t\tlist.append(match[0])\n\n\t\t\tif len(list) >0:\n\t\t\t\ty1.append(list[3][2])\nreturn dict(y1=y1)\n\n\t \n\n\ndef customize():\n    form=SQLFORM(db.options)\n    \ndef user():\n    """\n    exposes:\n    http://..../[app]/default/user/login \n    http://..../[app]/default/user/logout\n    http://..../[app]/default/user/register\n    http://..../[app]/default/user/profile\n    http://..../[app]/default/user/retrieve_password\n    http://..../[app]/default/user/change_password\n    use @auth.requires_login()\n        @auth.requires_membership(\'group name\')\n        @auth.requires_permission(\'read\',\'table name\',record_id)\n    to decorate functions that need access control\n    """\n    return dict(form=auth())\n\n\ndef download():\n    """\n    allows downloading of uploaded files\n    http://..../[app]/default/download/[filename]\n    """\n    return response.download(request,db)\n\n\ndef call():\n    """\n    exposes services. for example:\n    http://..../[app]/default/call/jsonrpc\n    decorate with @services.jsonrpc the functions to expose\n    supports xml, json, xmlrpc, jsonrpc, amfrpc, rss, csv\n    """\n    session.forget()\n    return service()\n\nresponse._vars=response._caller(index)\n'
+p6
+sS'snapshot'
+p7
+(dp8
+S'exception'
+p9
+(dp10
+S'__getslice__'
+p11
+S"<method-wrapper '__getslice__' of exceptions.SyntaxError object>"
+p12
+sS'text'
+p13
+S"'return dict(y1=y1)\\n'"
+p14
+sS'__str__'
+p15
+S"<method-wrapper '__str__' of exceptions.SyntaxError object>"
+p16
+sS'__reduce__'
+p17
+S'<built-in method __reduce__ of exceptions.SyntaxError object>'
+p18
+sS'__dict__'
+p19
+S'{}'
+p20
+sS'__sizeof__'
+p21
+S'<built-in method __sizeof__ of exceptions.SyntaxError object>'
+p22
+sS'__init__'
+p23
+S"<method-wrapper '__init__' of exceptions.SyntaxError object>"
+p24
+sS'__setattr__'
+p25
+S"<method-wrapper '__setattr__' of exceptions.SyntaxError object>"
+p26
+sS'__reduce_ex__'
+p27
+S'<built-in method __reduce_ex__ of exceptions.SyntaxError object>'
+p28
+sS'__new__'
+p29
+S'<built-in method __new__ of type object>'
+p30
+sS'__format__'
+p31
+S'<built-in method __format__ of exceptions.SyntaxError object>'
+p32
+sS'__class__'
+p33
+S"<type 'exceptions.SyntaxError'>"
+p34
+sS'filename'
+p35
+S"'/home/shrenik/web2py/applications/vlab/controllers/default.py'"
+p36
+sS'lineno'
+p37
+S'91'
+p38
+sS'msg'
+p39
+S'"\'return\' outside function"'
+p40
+sS'__doc__'
+p41
+S"'Invalid syntax.'"
+p42
+sS'__getitem__'
+p43
+S"<method-wrapper '__getitem__' of exceptions.SyntaxError object>"
+p44
+sS'__setstate__'
+p45
+S'<built-in method __setstate__ of exceptions.SyntaxError object>'
+p46
+sS'__getattribute__'
+p47
+S"<method-wrapper '__getattribute__' of exceptions.SyntaxError object>"
+p48
+sS'print_file_and_line'
+p49
+S'None'
+p50
+sS'args'
+p51
+S'("\'return\' outside function", (\'/home/shrenik/web2py/applications/vlab/controllers/default.py\', 91, None, \'return dict(y1=y1)\\n\'))'
+p52
+sS'__subclasshook__'
+p53
+S'<built-in method __subclasshook__ of type object>'
+p54
+sS'offset'
+p55
+S'None'
+p56
+sS'__unicode__'
+p57
+S'<built-in method __unicode__ of exceptions.SyntaxError object>'
+p58
+sS'__delattr__'
+p59
+S"<method-wrapper '__delattr__' of exceptions.SyntaxError object>"
+p60
+sS'__repr__'
+p61
+S"<method-wrapper '__repr__' of exceptions.SyntaxError object>"
+p62
+sS'__hash__'
+p63
+S"<method-wrapper '__hash__' of exceptions.SyntaxError object>"
+p64
+ssS'evalue'
+p65
+S"'return' outside function (default.py, line 91)"
+p66
+sS'request'
+p67
+(dp68
+S'function'
+p69
+S"'index'"
+p70
+sS'body'
+p71
+S"<open file '<fdopen>', mode 'w+b'>"
+p72
+sS'wsgi'
+p73
+S"<Storage {'start_response': <function <lambda> a...ING': 'gzip,deflate', 'HTTP_KEEP_ALIVE': '115'}}>"
+p74
+sS'extension'
+p75
+S"'html'"
+p76
+sS'vars'
+p77
+S"<Storage {'i1_associativity': '2', 'd1_size': '2...ciativity': '2', '_formname': 'programs_create'}>"
+p78
+sS'cid'
+p79
+S'None'
+p80
+sS'url'
+p81
+S'<gluon.html.XML object>'
+p82
+sg51
+S'[]'
+p83
+sS'controller'
+p84
+S"'default'"
+p85
+sS'cookies'
+p86
+S"<SimpleCookie: __utma='96992031.1671719183.12879...'127-0-0-1-f5ba4403-e05c-44df-9e39-b1e16f3bf0d8'>"
+p87
+sS'application'
+p88
+S"'vlab'"
+p89
+sS'ajax'
+p90
+S'False'
+p91
+sS'client'
+p92
+S"'127.0.0.1'"
+p93
+sS'env'
+p94
+S"<Storage {'content_length': '6157', 'http_user_a...te', 'query_string': '', 'wsgi_run_once': False}>"
+p95
+sS'raw_args'
+p96
+S'None'
+p97
+sS'get_vars'
+p98
+S'<Storage {}>'
+p99
+sS'folder'
+p100
+S"'/home/shrenik/web2py/applications/vlab/'"
+p101
+sS'now'
+p102
+S'datetime.datetime(2010, 10, 26, 19, 40, 52, 275222)'
+p103
+sS'post_vars'
+p104
+S"<Storage {'i1_associativity': '2', 'd1_size': '2...ciativity': '2', '_formname': 'programs_create'}>"
+p105
+ssS'frames'
+p106
+(lp107
+(dp108
+S'file'
+p109
+S'/home/shrenik/web2py/gluon/restricted.py'
+p110
+sS'dump'
+p111
+(dp112
+S'code'
+p113
+S"'\\n###############################################...ervice()\\n\\nresponse._vars=response._caller(index)\\n'"
+p114
+sS'layer'
+p115
+S"'/home/shrenik/web2py/applications/vlab/controllers/default.py'"
+p116
+sS'global compile2'
+p117
+S'<function compile2>'
+p118
+sS'ccode'
+p119
+S'undefined'
+p120
+ssS'lnum'
+p121
+I186
+sS'lines'
+p122
+(dp123
+I181
+S''
+sI182
+S'    try:'
+p124
+sI183
+S'        if type(code) == types.CodeType:'
+p125
+sI184
+S'            ccode = code'
+p126
+sI185
+S'        else:'
+p127
+sI186
+S'            ccode = compile2(code,layer)'
+p128
+sI187
+S''
+sI188
+S'        exec ccode in environment'
+p129
+sI189
+S'    except HTTP:'
+p130
+sI190
+S'        raise'
+p131
+ssS'call'
+p132
+S"(code='\\n###############################################...ervice()\\n\\nresponse._vars=response._caller(index)\\n', environment={'A': <class 'gluon.html.A'>, 'Auth': <class 'gluon.tools.Auth'>, 'B': <class 'gluon.html.B'>, 'BEAUTIFY': <class 'gluon.html.BEAUTIFY'>, 'BODY': <class 'gluon.html.BODY'>, 'BR': <class 'gluon.html.BR'>, 'CENTER': <class 'gluon.html.CENTER'>, 'CLEANUP': <class 'gluon.validators.CLEANUP'>, 'CODE': <class 'gluon.html.CODE'>, 'CRYPT': <class 'gluon.validators.CRYPT'>, ...}, layer='/home/shrenik/web2py/applications/vlab/controllers/default.py')"
+p133
+sS'func'
+p134
+S'restricted'
+p135
+sa(dp136
+g109
+S'/home/shrenik/web2py/gluon/restricted.py'
+p137
+sg111
+(dp138
+S'builtincompile'
+p139
+S'<built-in function compile>'
+p140
+sS'code'
+p141
+S"'\\n###############################################...ervice()\\n\\nresponse._vars=response._caller(index)\\n'"
+p142
+sS'code.rstrip'
+p143
+S'<built-in method rstrip of str object>'
+p144
+sS').replace'
+p145
+g120
+sS'layer'
+p146
+S"'/home/shrenik/web2py/applications/vlab/controllers/default.py'"
+p147
+ssg121
+I173
+sg122
+(dp148
+I168
+S''
+sI169
+S'def compile2(code,layer):'
+p149
+sI170
+S'    """'
+p150
+sI171
+S"    The +'\\n' is necessary else compile fails when code ends in a comment."
+p151
+sI172
+S'    """'
+p152
+sI173
+S"    return compile(code.rstrip().replace('\\r\\n','\\n')+'\\n', layer, 'exec')"
+p153
+sI174
+S''
+sI175
+S"def restricted(code, environment={}, layer='Unknown'):"
+p154
+sI176
+S'    """'
+p155
+sI177
+S'    runs code in environment and returns the output. if an exception occurs'
+p156
+ssg132
+S"(code='\\n###############################################...ervice()\\n\\nresponse._vars=response._caller(index)\\n', layer='/home/shrenik/web2py/applications/vlab/controllers/default.py')"
+p157
+sg134
+S'compile2'
+p158
+sasS'pyver'
+p159
+S'Python 2.6.6: /usr/bin/python'
+p160
+sS'session'
+p161
+(dp162
+S'flash'
+p163
+S'None'
+p164
+sS'_formkey[login]'
+p165
+S"'32f67b3d-2403-41af-ad6e-11ba7dcd235f'"
+p166
+sS'auth'
+p167
+S"<Storage {'expiration': 3600, 'user': <Storage {... 10, 26, 19, 40, 52, 275222), 'remember': False}>"
+p168
+sS'_formkey[programs_create]'
+p169
+S"'0f47327a-d585-492f-9371-b5729b4c4dc9'"
+p170
+ssS'etype'
+p171
+S"<type 'exceptions.SyntaxError'>"
+p172
+sS'date'
+p173
+S'Tue Oct 26 19:40:52 2010'
+p174
+sS'response'
+p175
+(dp176
+S'status'
+p177
+S'200'
+p178
+sg71
+S'<cStringIO.StringO object>'
+p179
+sg86
+S"<SimpleCookie: session_id_vlab='127-0-0-1-9ad01b29-ea99-4946-9e76-5ac5b38707e0'>"
+p180
+sS'_vars'
+p181
+S'None'
+p182
+sS'title'
+p183
+S"'vlab'"
+p184
+sS'session_file'
+p185
+S"<open file '/home/shrenik/web2py/applications/vl...ad01b29-ea99-4946-9e76-5ac5b38707e0', mode 'rb+'>"
+p186
+sS'flash'
+p187
+S"''"
+p188
+sS'_custom_rollback'
+p189
+S'None'
+p190
+sS'session_id'
+p191
+S"'127-0-0-1-9ad01b29-ea99-4946-9e76-5ac5b38707e0'"
+p192
+sS'headers'
+p193
+S"<Storage {'Expires': 'Tue, 26 Oct 2010 14:10:52 ...he, must-revalidate, post-check=0, pre-check=0'}>"
+p194
+sS'meta'
+p195
+S"<Storage {'keywords': 'bla bla bla', 'description': 'describe your app', 'author': 'you'}>"
+p196
+sS'session_filename'
+p197
+S"'/home/shrenik/web2py/applications/vlab/sessions/127-0-0-1-9ad01b29-ea99-4946-9e76-5ac5b38707e0'"
+p198
+sS'postprocessing'
+p199
+S'[]'
+p200
+sS'menu'
+p201
+S"[(<lazyT 'Index'>, False, <gluon.html.XML object>, []), ('Change Layout', False, <gluon.html.XML object>)]"
+p202
+sS'_view_environment'
+p203
+S"{'A': <class 'gluon.html.A'>, 'Auth': <class 'gluon.tools.Auth'>, 'B': <class 'gluon.html.B'>, 'BEAUTIFY': <class 'gluon.html.BEAUTIFY'>, 'BODY': <class 'gluon.html.BODY'>, 'BR': <class 'gluon.html.BR'>, 'CENTER': <class 'gluon.html.CENTER'>, 'CLEANUP': <class 'gluon.validators.CLEANUP'>, 'CODE': <class 'gluon.html.CODE'>, 'CRYPT': <class 'gluon.validators.CRYPT'>, ...}"
+p204
+sS'subtitle'
+p205
+S"<lazyT 'customize me!'>"
+p206
+sS'session_id_name'
+p207
+S"'session_id_vlab'"
+p208
+sS'_custom_commit'
+p209
+S'None'
+p210
+sS'_caller'
+p211
+S'<function <lambda>>'
+p212
+sS'files'
+p213
+S'[]'
+p214
+sS'view'
+p215
+S"'default/index.html'"
+p216
+ssS'locals'
+p217
+(dp218
+g3
+S"'/home/shrenik/web2py/applications/vlab/controllers/default.py'"
+p219
+sg5
+S"'\\n###############################################...ervice()\\n\\nresponse._vars=response._caller(index)\\n'"
+p220
+sssS'traceback'
+p221
+S'Traceback (most recent call last):\n  File "/home/shrenik/web2py/gluon/restricted.py", line 186, in restricted\n    ccode = compile2(code,layer)\n  File "/home/shrenik/web2py/gluon/restricted.py", line 173, in compile2\n    return compile(code.rstrip().replace(\'\\r\\n\',\'\\n\')+\'\\n\', layer, \'exec\')\n  File "/home/shrenik/web2py/applications/vlab/controllers/default.py", line 91\n    return dict(y1=y1)\nSyntaxError: \'return\' outside function\n'
+p222
+s.
