@@ -1,0 +1,423 @@
+<!-- This file needs to be edited by the lab developer to suit
+the requirements of their lab in particular.-->
+
+<!-- Add class="default" to include any element as it is
+specified in default.html. 
+Do not include class="default" to the elements that you want to
+edit -->
+
+<!DOCTYPE html>
+<html>
+<head></head>
+<body>
+
+<div id="experiment"> <!-- The Experiment Document Container-->
+
+  <!-- The lab Header contains the logo and the name of the lab,
+  usually displayed on the top of the page-->
+
+  <header id="experiment-header" class="default">
+  
+    <div id="experiment-header-logo" class="logo">
+      <!-- Enclose the logo image of your lab or write it in 
+      text-->
+      <img src="../images/logo.jpg" />
+    </div>
+
+    <div id="experiment-header-heading" class="heading">
+      <!-- Write the name of your lab and link it to the home 
+      page of your lab (h1 tag is preferred while writing your 
+      lab name)-->
+      <a href="../index.html">CSO Lab</a>	
+    </div>
+
+    <!-- Add any additional element you want to add to the lab 
+    header, For example : Help (Enclosing them with suitable 
+    div is recommended)-->
+
+  </header>
+
+
+  <!-- The lab article is the main content area where all the 
+  experiment content sits-->
+  <article id="experiment-article">
+  
+    <!-- The lab article has an header, optional navigational 
+    menu, number of sections, an optional sidebar and a closing 
+    footer-->
+     <div id="experiment-article-breadcrumb" class="breadcrumb">
+     </div>
+    
+      <header id="experiment-article-heading" class="heading">
+        <!-- You can add a welcome message or title of the 
+        experiment here -->
+        ARM Assembly Language Programming
+        <!-- Add any additional element if required with proper 
+        enclosing-->
+      </header>
+
+      <!-- Navigation menu is useful to organize the view of 
+      multiple sections inside the article-->
+      <nav id="experiment-article-navigation" class="default">
+        <ul id="experiment-article-navigation-menu">
+          <!-- The menu can be dynamically generated to contain 
+          the headings of your sections or instead write the 
+          menu items of your choice individually enclosedu in 
+          <li> tag as shown below-->
+        </ul>
+      </nav>
+
+      <!-- All the sections of your lab or experiment can be 
+      enclosed together with a div element as shown below-->
+      <div id="experiment-article-sections">
+
+        <!-- First section of the article-->
+        <section id="experiment-article-section-1">
+          
+          <div id="experiment-article-section-1-icon" 
+          class="icon">
+	    <!-- Enclose the icon image of your lab -->
+	    <img src="../images/introduction.jpg" />
+	  </div>	
+          
+          <!-- The heading for the section can be enclosed in a 
+          div tag. -->
+          <div id="experiment-article-section-1-heading" 
+          class="heading">
+            Introduction
+          </div>
+
+          <!-- Write the section content inside a paragraph 
+          element, You can also include images with <img> tag -->
+          <div id="experiment-article-section-1-content" 
+          class="content">	
+   	<p>A High Level Programming Language like C provides <strong>abstractions</strong> to program an underlying computing system. The following is a broad classification of various abstractions.</p>
+	<ol>
+	  <li>
+	    <div align="justify"><strong>Data Abstractions:</strong> Data Abstractions provide certain primitive data types like int, float, char etc. and a mechanism (like structures, arrays etc.) to hierarchilaly compose the primitive data types to create new abstract data types.</div>
+	  </li>
+      <li>
+        <div align="justify"><strong>Data Processing Abstractions:</strong> Data Processing Abstractions provide operations (like addition, multiplication, comparison etc.) which act on the primitive data types which can again be composed to act on user-defined data types.</div>
+      </li>
+      <li>
+        <div align="justify"><strong>Control Abstractions:</strong> Control abstractions include language features like conditional/unconditional goto, if-then-else, for-loop, while-loop etc. A language which doesn't support at least one these Control Abstractions will not be Turing Complete which means there exists certain functions which are not computable using the language features alone.</div>
+      </li>
+      <li>
+        <div align="justify"><strong>Procedural Abstraction: </strong>Procedures allows a user to define his/her own operation to act upon primitive or user defined data types. Further it allows modular development of programs enabling software readability, maintainability and efficiency also.</div>
+      </li>
+      <li>
+        <div align="justify"><strong>More Abstractions: </strong>Object-oriented languages like C++ and Java provide features like classes, inheritance, polymorphism etc. Similary different langugages can provide different sets of abstraction depending upon their design philosophy and utility.</div>
+      </li>
+  </ol>
+	<p align="justify">In this assignment and in the next few we shall learn how to implement these High Level Language Abstractions in the ARM Assembly Language. </p>
+        </div>
+
+
+      </section>
+
+      <!-- Second section of the article-->
+      <section id="experiment-article-section-2">
+        
+        <div id="experiment-article-section-2-icon" 
+        class="icon">
+	  <!-- Enclose the icon image of your lab. -->
+	  <img src="../images/theory.jpg" />
+	</div>
+				
+        <!-- The heading for the section can be enclosed in a 
+        div tag. -->
+        <div id="experiment-article-section-2-heading" 
+        class="heading">
+          Theory
+        </div>
+
+
+        <!-- Write the section content inside a paragraph 
+        element, we can also include images with <img> tag -->
+        <div id="experiment-article-section-2-content" 
+        class="content">
+	<p align="justify">ARM ISA has been evolving. You can download code examples from <a href="Armcode.tar">here.</a> </p>     
+
+	</div>
+      </section>
+
+
+      <section id="experiment-article-section-3">
+        
+        <div id="experiment-article-section-3-icon" 
+        class="icon">
+	  <!-- Enclose the icon image of your lab. -->
+	  <img src="../images/objective.jpg" />
+	</div>
+     
+        <div id="experiment-article-section-3-heading" 
+        class="heading">
+          Objective
+        </div>
+
+        <div id="experiment-article-section-3-content" 
+        class="content">
+       
+	<p>The following are the objectives of this series of assignments.</p>
+	<ol>
+	  <li>Introduce the Structure of an Assembly Language Program: Data and Text Sections.</li>
+      <li>Introduce Assembly Directives to allocate memory in the Data Section.</li>
+      <li>Introduce the idea that ARM is a Load-Store Architecture and data has to be moved to registers before any operations can be performed on them.</li>
+      <li>Difference between Signed and Unsigned Arithmetic.</li>
+      <li>What if there are program constants whose size is greater than 16 bits?</li>
+      <li>How to convert a complex expression into an Assembly Program evaluating that expression?</li>
+      <li>How to translate if-then-else statements into Assembly?</li>
+      <li>How to write loops in Assembly?</li>
+  </ol>
+
+        </div>
+
+      </section>
+
+
+      <section id="experiment-article-section-4">
+
+        <div id="experiment-article-section-4-icon" 
+        class="icon">
+	  <!-- Enclose the icon image of your lab.-->
+	  <img src="../images/simulation.jpg" />
+	</div>
+
+        <div id="experiment-article-section-4-heading" 
+        class="heading">
+          Experiment
+        </div>
+
+        <div id="experiment-article-section-4-content" 
+        class="content">
+           <p>
+    <APPLET codebase="ArmSimulator/build/classes" code="armsimulator/Interface.class" width=1000 height=700> 
+        </APPLET></p>
+        </div>
+
+      </section>
+
+      <section id="experiment-article-section-5">
+   
+        <div id="experiment-article-section-5-icon" 
+        class="icon">
+	  <!-- Enclose the icon image of your lab.-->
+	  <img src="../images/manual.jpg" />
+	</div>
+
+        <div id="experiment-article-section-5-heading" 
+        class="heading">
+          Manual
+        </div>
+
+        <div id="experiment-article-section-5-content" 
+        class="content">
+         
+	<p><strong> 
+	Assembly Directives</strong></p>
+ 	<p>The following are the Assembly Language Directives that are supported by the current version of the MaxSim. More directives would be supported later.</p>
+ 	<ul>
+ 	  <li>.text</li>
+ 	  <li>.data</li>
+ 	  <li>.word</li>
+ 	  <li>.space</li>
+  </ul>
+    <p><strong>Alignment Assumptions</strong></p>
+  <p>Data is automatically aligned on to the word boundaries</p>
+  <p><strong>Instructions</strong></p>
+ 	<p>The simulator supports ARMV4  Instruction Set.</p>
+  <p><strong>Branch Delay Slot</strong></p>
+ 	<p>Branch Delay Slot is not supported</p>
+          </div>
+
+        </section>
+
+        <section id="experiment-article-section-6">
+      
+          <div id="experiment-article-section-6-icon" 
+          class="icon">
+	    <!-- Enclose the icon image of your lab.-->
+	    <img src="../images/quizzes.jpg" />
+	  </div>
+
+          <div id="experiment-article-section-6-heading" 
+          class="heading">
+            Quizzes
+          </div>
+
+          <div id="experiment-article-section-6-content" 
+          class="content">
+            
+            
+
+          </div>
+
+        </section>
+
+        <section id="experiment-article-section-7">
+	  
+          <div id="experiment-article-section-7-icon" 
+          class="icon">
+	    <!-- Enclose the icon image of your lab. -->
+	    <img src="../images/procedure.jpg" />
+	  </div>
+	
+          <div id="experiment-article-section-7-heading" 
+          class="heading">
+	    Procedure
+	  </div>
+	
+          <div id="experiment-article-section-7-content" 
+          class="content">
+	    <p>
+	      <p>Write ARM Assembly Language Programs computing the following expressions or program segments.</p>
+	<ol>
+	  <li>Variables are of type unsigned integers and word sized. Also the variables b, c, d and e are initialized to values 10, 20, 30 and 40 respectively.    
+       <blockquote>
+	      <p class="code"> a = (b + c) - (d + e)<br>
+	      </p>
+        </blockquote>  </li>
+      <li>Variables are of type signed integers and half-word sized.<q> </q>Variables b, c, d and e are initialized to values -10, 20, 30 and -40 respectively.
+        <blockquote>
+            <p class="code"> a = (b + c) - (d + e)</p>
+        </blockquote>
+      </li>
+      <li>Variables are of type unsigned integers and word sized. Also the variables b, c, d and e are initialized to values 10, 20, 30 and 40 respectively.
+	    <blockquote>
+	      <p class="code"> b = a + 256 . <br>
+	      c = b - 0xfffff<br />
+	      a = (b + c) - (d + e + 0xffffe)</p>
+        </blockquote>
+      </li>
+      <li>Dot Product of two signed half-word sized integer array vectors A and B each of dimension 5. The resultant dot-product value should reside in the register $r1 by the end of computation.<br />
+      </li>
+      <li>A and B are two unsigned word-sized integer array vectors each of size dimension 5. Compute the following expression.
+
+        <blockquote>
+          <p class="code"> CONV = A[0] * B[4] + A[1] * B[3] + A[2] * B[2] + A[3] * B[1] + A[4] * B[0] </p>
+        </blockquote>
+      </li>
+  </ol>
+    <p>&nbsp;</p>
+    <p>Write ARM Assembly Language Programs equivalent to the following C-code fragements.    </p>
+    <ol>
+      <li>
+        <p class="code">if ( a &lt; b) { &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="cmt">// a and b are signed integers</span><br />
+  &nbsp;&nbsp;&nbsp;c = a - b;<br />
+          }<br />
+        </p>
+      </li>
+      <li>
+        <p class="code">if ( a &lt; b) { &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="cmt">// a and b are unsigned integers</span><br />
+          &nbsp;&nbsp;&nbsp;c = a - b;<br />
+          }<br />
+        </p>
+      </li>
+      <li>
+        <p class="code">if ( a &lt; -1234) { &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="cmt">// a is a signed integer</span><br />
+          &nbsp;&nbsp;&nbsp;a  = 4 * a ;<br />
+          }<br />
+          else {<br />
+          &nbsp;&nbsp;&nbsp;a = a/4;<br />
+          }<br />
+        </p>
+      </li>
+      <li>
+        <p class="code">if ( a &lt; b ) { &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="cmt">// a, b, c are unsigned integer</span><br />
+          &nbsp;&nbsp;&nbsp;if ( a &lt; c) { <br />
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;min = a;<br />
+          &nbsp;&nbsp;&nbsp;}<br />
+          &nbsp;&nbsp;&nbsp;else { min = b &lt; c ? b : c; }<br />
+          }<br />
+          else {<br />
+          &nbsp;&nbsp;&nbsp;min = b &lt; c ? b : c<br />
+          }</p>
+      </li>
+    </ol>
+  <p>.</p>
+  <p>Write ARM Assembly Language Programs equivalent to the following C-code fragments..</p>
+  <ol>
+    <li>
+      <blockquote>
+        <p class="code"> sqrsum = 0; <br />
+          for( i = 0 ; i &lt; 100; ++i) <br />
+          &nbsp;&nbsp;&nbsp;&nbsp;sqrsum = sqrsum + a[i] * a[i];<br />
+        </p>
+      </blockquote>
+    </li>
+    <li>
+      <blockquote>
+        <p class="code">convsum = 0;<br />
+          for ( i = 0, j = 99; i &lt;100; ++i, --j )<br />
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;convsum += a[i] * b[j] ; <br />
+        </p>
+      </blockquote>
+    </li>
+    <li>
+      <blockquote>
+        <p class="code">sum = 0; <br />
+          for( i = 0 ; i &lt; 100; ++i)<br />
+          &nbsp;&nbsp;&nbsp;&nbsp;for( j = 0; j &lt; 100; ++j)<br />
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;sum = sum + a[i, j] ;</p>
+      </blockquote>
+    </li>
+  </ol>
+	    </p>
+	  </div>
+	
+        </section>
+			
+		
+        <section id="experiment-article-section-8">
+   
+          <div id="experiment-article-section-8-icon" 
+          class="icon">
+	    <!-- Enclose the icon image of your lab.-->
+	    <img src="../images/readings.jpg" />
+	  </div>
+
+          <div id="experiment-article-section-8-heading" 
+          class="heading">
+            Further Readings
+          </div>
+
+          <div id="experiment-article-section-8-content" 
+          class="content">
+           <ol>
+	  <li> Patterson, D. A. and Hennessy, J. L. &nbsp;Computer Organization and Design: the Hardware/Software Interface. ARM Edition.</li>
+  </ol>
+          </div>
+
+        </section>
+
+      </div>
+
+
+    <!-- An article can have a sidebar that contain related 
+    links and additional material (however it is kept optional 
+    at this moment) -->
+    <aside id="lab-article-sidebar" class="default">
+      <!-- put the content that you want to appear in the 
+      sidebar -->	
+    </aside>
+
+
+    <!-- Article footer can display related content and 
+    additional links -->						
+    <footer id="lab-article-footer" class="default">
+      <!-- Put the content that you want to appear here -->
+    </footer>
+
+  </article>
+
+
+  <!-- Links to other labs, about us page can be kept the lab 
+  footer-->
+  <footer id="lab-footer" class="default">
+    <!-- Put the content here-->
+  </footer>
+
+</div>		
+
+</body>
+</html>
