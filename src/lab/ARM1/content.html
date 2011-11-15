@@ -8,7 +8,8 @@ edit -->
 
 <!DOCTYPE html>
 <html>
-<head></head>
+<head>
+</head>
 <body>
 
 <div id="experiment"> <!-- The Experiment Document Container-->
@@ -136,12 +137,12 @@ edit -->
         element, we can also include images with <img> tag -->
         <div id="experiment-article-section-2-content" 
         class="content">
-	<p align="justify">ARM ISA has been evolving. You can download code examples from <a href="Armcode.tar">here.</a> </p>     
-
+	<p align="justify">A complete description of ARM ISA is available <a href="http://infocenter.arm.com/help/index.jsp">here</a>. The syntax rules and directives you have to follow while writting ARM programs is very similar to that of GNU ARM assembler conventions. The list of assembler directives that our simulator supports are available in the <strong>help</strong> section of the simulator. An assembly program typically contains a <strong>data</strong> <strong>section</strong> and a <strong>text section</strong>. In the data section memory for global variables and static local variables would be allocated. In the text section, the actual sequence of instructions reside. Finally there will be a program stack for which no explicit declaration is necessary. Program stack is useful for allocating memory to local variables and handling procedure calls. Sample programs to get started with, are available as a part of the simulator. </p>
+	<blockquote>
+	  <p>&nbsp;</p>
+	  </blockquote>
 	</div>
       </section>
-
-
       <section id="experiment-article-section-3">
         
         <div id="experiment-article-section-3-icon" 
@@ -160,14 +161,14 @@ edit -->
        
 	<p>The following are the objectives of this series of assignments.</p>
 	<ol>
-	  <li>Introduce the Structure of an Assembly Language Program: Data and Text Sections.</li>
-      <li>Introduce Assembly Directives to allocate memory in the Data Section.</li>
+	  <li>Introduce the structure of an assembly language program.</li>
+      <li>Introduce assembly directives to allocate memory in the data section.</li>
       <li>Introduce the idea that ARM is a Load-Store Architecture and data has to be moved to registers before any operations can be performed on them.</li>
-      <li>Difference between Signed and Unsigned Arithmetic.</li>
+      <li>Difference between signed and unsigned Arithmetic.</li>
       <li>What if there are program constants whose size is greater than 16 bits?</li>
-      <li>How to convert a complex expression into an Assembly Program evaluating that expression?</li>
-      <li>How to translate if-then-else statements into Assembly?</li>
-      <li>How to write loops in Assembly?</li>
+      <li>How to convert a complex expression into an assembly program evaluating that expression?</li>
+      <li>How to translate if-then-else statements into assembly?</li>
+      <li>How to write loops in assembly?</li>
   </ol>
 
         </div>
@@ -213,22 +214,8 @@ edit -->
         <div id="experiment-article-section-5-content" 
         class="content">
          
-	<p><strong> 
-	Assembly Directives</strong></p>
- 	<p>The following are the Assembly Language Directives that are supported by the current version of the MaxSim. More directives would be supported later.</p>
- 	<ul>
- 	  <li>.text</li>
- 	  <li>.data</li>
- 	  <li>.word</li>
- 	  <li>.space</li>
-  </ul>
-    <p><strong>Alignment Assumptions</strong></p>
-  <p>Data is automatically aligned on to the word boundaries</p>
-  <p><strong>Instructions</strong></p>
- 	<p>The simulator supports ARMV4  Instruction Set.</p>
-  <p><strong>Branch Delay Slot</strong></p>
- 	<p>Branch Delay Slot is not supported</p>
-          </div>
+	<p>The manual is provided as a part of the simulator.</p>
+	</div>
 
         </section>
 
@@ -242,10 +229,10 @@ edit -->
 
           <div id="experiment-article-section-6-heading" 
           class="heading">
-            Quizzes
+            <p>Quizzes </p>
           </div>
 
-          <div id="experiment-article-section-6-content" 
+         <div id="experiment-article-section-6-content" 
           class="content">
              <p>
 	      <p>Write ARM Assembly Language Programs computing the following expressions or program segments.</p>
@@ -375,7 +362,8 @@ edit -->
           class="icon">
 	    <!-- Enclose the icon image of your lab.-->
 	    <img src="../images/readings.jpg" />
-	  </div>
+	  </div> 
+      <p> Procedure is also given as a part of the simulator.</p>
 
           <div id="experiment-article-section-8-heading" 
           class="heading">
