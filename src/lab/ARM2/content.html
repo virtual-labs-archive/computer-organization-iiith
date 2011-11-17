@@ -124,7 +124,7 @@ edit -->
       <li>How to return values?</li>
       <li>How to call the procedure and return back to the calling procedure?</li>
   </ol>
-  <p align="justify">We can use the registers to pass parameters and return values back and forth between the caller and callee procedures. ARM provides the Branch and Link (BL) Instruction to call procedures. Unlike x86 architecture the return address is not stored on the stack, it is stored in the link register, R14. You can get few code examples at this <a href="Arm-subroutines.tar">link</a>. </p>
+  <p align="justify">We can use the registers to pass parameters and return values back and forth between the caller and callee procedures. ARM provides the Branch and Link (BL) Instruction to call procedures. Unlike x86 architecture the return address is not stored on the stack, it is stored in the link register, R14. Code examples are given as a part of the simulator itself.</p>
 	</div>
       </section>
 
@@ -171,9 +171,15 @@ edit -->
 
         <div id="experiment-article-section-4-content" 
         class="content">
-          <p> <APPLET codebase="ArmSimulator/build/classes" code="armsimulator/Interface.class" width=1000 height=700> 
-     </APPLET></p>
+       <!--   <p> <APPLET codebase="ArmSimulator/build/classes" code="armsimulator/Interface.class" width=1000 height=700> 
+     </APPLET></p>-->
         </div>
+
+                    <p>You can run the simulator as an applet in the browser or as an application using the command 'java -jar ArmSimulator.jar'. You can download the simular <a href="../ARM1/ArmSimulator.jar">here</a>.</p>
+           <p>
+             <APPLET codebase="../ARM1/classes" code="armsimulator\Interface.class" width=1200 height=650> 
+                </APPLET>
+           </p>
 
       </section>
 
@@ -187,26 +193,12 @@ edit -->
 
         <div id="experiment-article-section-5-heading" 
         class="heading">
-          Manual
-        </div>
+          Manual        </div>
 
         <div id="experiment-article-section-5-content" 
         class="content">
-         
-<p><strong> 
-	Assembly Directives</strong></p>
- 	<p>The following are the Assembly Language Directives that are supported by the current version of the MaxSim. More directives would be supported later.</p>
- 	<ul>
- 	  <li>.text</li>
- 	  <li>.data</li>
- 	  <li>.word</li>
- 	  <li>.space</li>
-  </ul>
-    <p><strong>Alignment Assumptions</strong></p>
-  <p>Data is automatically aligned on to the word boundaries</p>
-  <p><strong>Instructions</strong></p>
- 	<p>The simulator supports ARM V4 Instruction Set.</p>
-          </div>
+          <p>Manual is provided as a part of the simulator itself.</p>
+ 	</div>
 
         </section>
 
@@ -259,9 +251,9 @@ edit -->
 	
           <div id="experiment-article-section-7-heading" 
           class="heading">
-	    Procedure
-	  </div>
-	
+	        <p>Procedure      </p>
+          </div>
+	        <p> None. </p> 
           <div id="experiment-article-section-7-content" 
           class="content">
 	   
