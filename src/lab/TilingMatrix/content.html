@@ -84,15 +84,21 @@ edit -->
           div tag. -->
           <div id="experiment-article-section-1-heading" 
           class="heading">
-            Introduction
+            <p>Introduction  </p>
           </div>
 
           <!-- Write the section content inside a paragraph 
           element, You can also include images with <img> tag -->
           <div id="experiment-article-section-1-content" 
           class="content">	
-   
-		 <!-- Add introduction-->
+   <p> There are three possible kinds of cache misses.</p>
+   <ol>
+     <li>Compulsory misses</li>
+     <li>Conflict misses </li>
+     <li>Capacity misses</li>
+     </ol>
+   <p>Compulsory misses can possibly be circumvented by using data prefetching techniques. Conflict misses can be taken care by increasing the associativity of the cache architecture. Whereas capacity misses can be taken care of by using program transformations which decrease the working set size of the running program. In this experiment we shall understand a program transformation called loop tiling and its impact on the working set size of a program.</p>
+   <!-- Add introduction-->
 
 
         </div>
@@ -122,8 +128,7 @@ edit -->
         <div id="experiment-article-section-2-content" 
         class="content">
 	<p align="justify">
-					 <!-- Add Theory-->
-	</p>                  
+     Capacity misses arise when the size of the working set of a program is greater than the size of the cache. Changing the cache line size or associativity will not have an effect on capacity misses. We have to resort to program transformations which reduce the working set size. A classical example of such a transformation is loop tiling which can be best understood by using the matrix multiplication program as an example. In this example, we divide the two matrices to be multiplied into tiles and perform multiplication over tiles. The effectiveness of this approach in decreasing the capacity misses depends on the tile size. However the optimal tile size is a function of the underlying cache architecture. In this experiment, we can analye the impact of the cache architecture on the the optimal tile size.</p>                  
 
 	</div>
       </section>
@@ -146,7 +151,8 @@ edit -->
         class="content">
         <p>
 		 <!-- Add Objective-->
-	</p>
+         
+	The objective of this experiment is to understand how we can use loop tiling transformation to decrease the working set size of a program.</p>
 
         </div>
 
@@ -191,7 +197,7 @@ edit -->
         <div id="experiment-article-section-5-content" 
         class="content">
          
-	<p> The manual is provided in the experiment itself.</p>
+	<p> No manual required.</p>
 
           </div>
 
@@ -235,7 +241,7 @@ edit -->
           <div id="experiment-article-section-7-content" 
           class="content">
 	    <p>
-	      Procedure is also explained in the experiment.
+	      Procedure is given with in the experiment.
 	    </p>
 	  </div>
 	
@@ -257,7 +263,10 @@ edit -->
 
           <div id="experiment-article-section-8-content" 
           class="content">
-           
+           <ol>
+              <li>Computer Systems: A Programmer's Perspective, Second Edition (CS:APP2e) Randal E. Bryant&nbsp;and&nbsp;David R. O'Hallaron&nbsp; Prentice Hall, 2011 (ISBN 0-13-610804-0)&nbsp; </li>
+              <li>Modern Processor Design: Fundamentals of Superscalar Processors. John P. Shen&nbsp; and &nbsp;Mikko Lipasti. Tata McGraw-Hill.</li>
+            </ol>
           </div>
 
         </section>
