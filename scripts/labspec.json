@@ -4,8 +4,8 @@
             "platform": {
                 "arch": "i386", 
                 "build_steps": {
-                    "build": ["make -C ../src"],
-                    "configure": [],
+                    "build": [], 
+                    "configure": [], 
                     "post_build": [], 
                     "pre_build": [], 
                     "status": []
@@ -21,13 +21,13 @@
                 {
                     "contact": {
                         "alternate_email": "", 
-                        "email": "sujata.agashe@yahoo.com", 
+                        "email": "suresh.purini@iiit.ac.in", 
                         "mobile_number": "", 
                         "office_number": ""
                     }, 
                     "department": "", 
-                    "institute": "COE Pune", 
-                    "name": "Sujatha Agashe", 
+                    "institute": "IIIT Hyderabad", 
+                    "name": "Suresh Purini", 
                     "organization": "", 
                     "role": "Lab Developer", 
                     "title": "", 
@@ -36,13 +36,58 @@
                 {
                     "contact": {
                         "alternate_email": "", 
-                        "email": "laxmikantpk@gmail.com", 
+                        "email": "abhayjeetsingh1001@gmail.com", 
                         "mobile_number": "", 
                         "office_number": ""
                     }, 
                     "department": "", 
-                    "institute": "COE Pune", 
-                    "name": "Laxmikant Kumbhare", 
+                    "institute": "IIIT Hyderabad", 
+                    "name": "Abhayjeet Singh", 
+                    "organization": "", 
+                    "role": "Lab RA", 
+                    "title": "", 
+                    "web": ""
+                }, 
+                {
+                    "contact": {
+                        "alternate_email": "", 
+                        "email": "mehakbhatia22@gmail.com", 
+                        "mobile_number": "", 
+                        "office_number": ""
+                    }, 
+                    "department": "", 
+                    "institute": "IIIT Hyderabad", 
+                    "name": "Mehak Bhatia", 
+                    "organization": "", 
+                    "role": "Lab RA", 
+                    "title": "", 
+                    "web": ""
+                }, 
+                {
+                    "contact": {
+                        "alternate_email": "", 
+                        "email": "lakshya2k7@gmail.com", 
+                        "mobile_number": "", 
+                        "office_number": ""
+                    }, 
+                    "department": "", 
+                    "institute": "IIIT Hyderabad", 
+                    "name": "Lakshya Lakshya", 
+                    "organization": "", 
+                    "role": "Lab RA", 
+                    "title": "", 
+                    "web": ""
+                }, 
+                {
+                    "contact": {
+                        "alternate_email": "", 
+                        "email": "gr8sunny@gmail.com", 
+                        "mobile_number": "", 
+                        "office_number": ""
+                    }, 
+                    "department": "", 
+                    "institute": "IIIT Hyderabad", 
+                    "name": "Ravi Agarwal", 
                     "organization": "", 
                     "role": "Lab RA", 
                     "title": "", 
@@ -50,11 +95,11 @@
                 }
             ], 
             "discipline": [
-                "Electrical Engineering"
+                "Computer Science & Engineering"
             ], 
-            "id": "eee09", 
-            "integration_level": 5, 
-            "name": "Industrial Automation Laboratory", 
+            "id": "cse11", 
+            "integration_level": 4, 
+            "name": "Computer Organization", 
             "server-side": true, 
             "status": "Released", 
             "type": "Simulation"
@@ -63,26 +108,17 @@
             "platform": {
                 "arch": "i386", 
                 "hosting": "dedicated", 
-                "installer": ["sudo apt-get install -y php5 apache2"], 
+                "installer": [], 
                 "lab_actions": {
-                    "backup": [
-                    ], 
+                    "backup": [], 
                     "clean": [], 
-                    "init": [
-                        "mv /var/www/index.html index.html.default ",
-                        "cp -r ../build/* /var/www/",
-                        "chmod 775 /var/www/build/ -R"
-                    ], 
+                    "init": [], 
                     "pause": [], 
                     "publish": [], 
                     "restore": [], 
                     "resume": [], 
-                    "shutdown": [
-                        "service apache2 stop"
-                    ], 
-                    "start": [
-                        "service apache2 start"
-                    ], 
+                    "shutdown": [], 
+                    "start": [], 
                     "stats": [], 
                     "stop": []
                 }, 
