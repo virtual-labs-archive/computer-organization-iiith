@@ -4,7 +4,7 @@
             "platform": {
                 "arch": "i386", 
                 "build_steps": {
-                    "build": [""make -C ../src"], 
+                    "build": ["make -C ../src"], 
                     "configure": [], 
                     "post_build": [], 
                     "pre_build": [], 
@@ -94,9 +94,7 @@
                     "web": ""
                 }
             ], 
-            "discipline": [
-                "Computer Science & Engineering"
-            ], 
+            "discipline": ["Computer Science & Engineering"], 
             "id": "cse11", 
             "integration_level": 4, 
             "name": "Computer Organization", 
@@ -108,14 +106,11 @@
             "platform": {
                 "arch": "i386", 
                 "hosting": "dedicated", 
-                "installer": ["sudo apt-get update",
-                "sudo apt-get install -y php5 apache2"], 
+                "installer": ["sudo apt-get update","sudo apt-get install -y php5 apache2"], 
                 "lab_actions": {
                     "backup": [], 
                     "clean": [], 
-                    "init": ["mv /var/www/index.html index.html.default",
-                        "cp -r ../build/* /var/www/"
-			], 
+                    "init": ["mv /var/www/index.html index.html.default", "cp -r ../build/* /var/www/"], 
                     "pause": [], 
                     "publish": [], 
                     "restore": [], 
