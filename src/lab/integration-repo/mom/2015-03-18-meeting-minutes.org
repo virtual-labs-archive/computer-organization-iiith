@@ -1,0 +1,19 @@
+#+Title:  Internal Reviews of IIITH Integration Process 
+#+Author: Apurv
+#+Date:   <2015-03-18 Wed>
+
+* Attendees
+ - Prof. Raghu, Geeta, Apurv, Saikrishna, Sadhana 
+* Agenda
+** Action Items and Task allocation among the team
+*** Fix Linux and POPL lab's backward compatibility issues with LDAP and NFS containers. - Apurv and SaiKrishna
+*** Plan ahead for UI refactoring.
+*** Change work plans - VLEAD should provide atleast 2 engineers to support integration engineers all the time for tasks like high priority fixes in ADS for integration.
+*** Raise a mail on issues with Databases and Data Mining labs. - Saikrishna
+*** Complete automation of client side dependencies before April 15, 2015.
+*** Two machines needed for interns to work on
+- order machines that come up with pre-installed windows and windows lisence for them.
+** Deliverables by next week
+*** All 19 labs to be at level 5 and hosted   
+*** Resolve Java3D issue
+*** Reasoning for labs which could not run over ADS 

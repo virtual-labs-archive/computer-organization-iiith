@@ -1,0 +1,16 @@
+#+Title:  Weekly meeting
+#+Author: Soujanya
+#+Date:   <2015-05-07 Thu>
+
+* Attendees
+ - Geeta, Apurv, Soujanya, Saikrishna
+
+* Agenda
+
+** Meet Prof. Suresh Purini to get the prioritized list of 16 labs : Apurv
+** Leave a note to Geeta to have someone working on Java3D installed process on Centosand Ubuntu : Apurv
+** Re-engineering labs having complex client side dependencies[Not at priority]  
+** Lab life cycle management scripts : Apurv
+** Github mirroring script to have a backup of sources hosted on Github: Apurv
+** Finish the automation of client side dependencie scripts both on windows and linux macines: Soujanya & Saikrishna 
+** Follow up the Systems Team for having a container created for hosting dependencie packages on Amazon/IIITH server: Soujanya 

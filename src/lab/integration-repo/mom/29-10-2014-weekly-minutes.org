@@ -1,0 +1,51 @@
+#+Title:  Weekly meeting
+#+Author: Soujanya
+#+Date:   <2014-10-29 Wed>
+
+* Attendees
+ - Prof. Raghu Reddy, Geeta, Soujanya, Apurv, Prabhsimran, Kaveri
+* Agenda
+** Review of last meeting's action items
+** Come up with the requirements for integration process in terms of tools/skills
+- Apurv
+** Use Dynamic Analysis Tools to evaluate experiments
+** Explore and follow up open source forums to resolve the issues with labs
+- Kaveri
+- Soujanya
+- Apurv
+- Prabhsimran  
+** Prepare a sheet to list out the bugs that we come across while testing, also update its status
+- Kaveri
+- Soujanya
+- Apurv
+- Prabhsimran
+** Buy a router for conference room    
+- Geeta
+* Action Items
+** Urgent
+- Get the labs to github
+- Get the labs ready to host on cloud
+- Printed chart sheet for Integration process
+** Not urgent
+- Enable labs with services (Security and Performance for now)
+* Break down of tasks
+<Team please update your tasks here in the table>
+| Task                                                                                             | Process                                                                                                                                | Response/Report                                                                                                              | Owners                 |
+|--------------------------------------------------------------------------------------------------+----------------------------------------------------------------------------------------------------------------------------------------+------------------------------------------------------------------------------------------------------------------------------+------------------------|
+| Solving the issues of emt lab                                                                    | Electro Magnetic Lab: Need to discuss with the lab developer(Prof Azeemuddin Syed) about how to restore the database file for this lab | RAs aren't reachable and Prof. Azeemuddin is in USA till May, 2015                                                           | Soujanya               |
+|--------------------------------------------------------------------------------------------------+----------------------------------------------------------------------------------------------------------------------------------------+------------------------------------------------------------------------------------------------------------------------------+------------------------|
+| Solving the issues of labs                                                                       | Linux Lab: Remove the Signup option from the experiments using Dynamic Analysis Tool and check if everything still works fine or not.  |                                                                                                                              | Prabhsimran            |
+|--------------------------------------------------------------------------------------------------+----------------------------------------------------------------------------------------------------------------------------------------+------------------------------------------------------------------------------------------------------------------------------+------------------------|
+| New Experiments in Lab                                                                           | Computer System Organisation: Talk to Suresh Purini Sir regarding the new experiments that need to be designed for the lab.            | Meeting with Suresh Purini sir is yet to be made as he wasn't available for the previous week.                               | Prabhsimran and Kaveri |
+|--------------------------------------------------------------------------------------------------+----------------------------------------------------------------------------------------------------------------------------------------+------------------------------------------------------------------------------------------------------------------------------+------------------------|
+| Migrating iiith labs to github                                                                   | Done                                                                                                                                   | For few labs there are more than one repositories, so the naming convention for such repo's will be discussed with Thirumal. | Soujanya               |
+|--------------------------------------------------------------------------------------------------+----------------------------------------------------------------------------------------------------------------------------------------+------------------------------------------------------------------------------------------------------------------------------+------------------------|
+| Creating simulation for "recursion" experiment for CP Lab                                        | Under Progress                                                                                                                         | Created the design, implementing the functionality.                                                                          | Apurv                  |
+|--------------------------------------------------------------------------------------------------+----------------------------------------------------------------------------------------------------------------------------------------+------------------------------------------------------------------------------------------------------------------------------+------------------------|
+| Getting the sources of "expression evaluation" lab from Girraj                                   | Done                                                                                                                                   | Got the sources but the JavaScript file needs to be converted into MVC architecture, some other changes as well.             | Apurv                  |
+|--------------------------------------------------------------------------------------------------+----------------------------------------------------------------------------------------------------------------------------------------+------------------------------------------------------------------------------------------------------------------------------+------------------------|
+| Creating the document regarding our requirement for RA (flash) against skills and tools required | Done                                                                                                                                   |                                                                                                                              | Apurv                  |
+|--------------------------------------------------------------------------------------------------+----------------------------------------------------------------------------------------------------------------------------------------+------------------------------------------------------------------------------------------------------------------------------+------------------------|
+|                                                                                                  |                                                                                                                                        |                                                                                                                              |                        |
+
+

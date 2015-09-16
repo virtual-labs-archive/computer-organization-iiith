@@ -1,0 +1,18 @@
+#+Title:  Weekly meeting
+#+Author: Soujanya
+#+Date:   <2015-04-29 Thu>
+
+* Attendees
+ - Geeta, Apurv, Soujanya, Sadhana, Sravanthi
+
+* Agenda
+
+** Meet Prof. Suresh Purini to get the prioritized list of 16 labs : Apurv
+** Raise a ticket for issues of other Institutes lab, for those having repositories on Github : Sadhana and Sravanthi
+** Make a list of the labs running with issues that doesn't have repositories created on github and share it with Geeta :Sadhana   
+** Talk to Yogesh to get a container created with public IP for client side dependencie packages : Soujanya
+** Leave a note to Geeta to have someone working on Java3D installed process on Centosand Ubuntu : Apurv
+** Re-engineering labs having complex client side dependencies  
+** Mechanism to have timely backup of labs sources on github : Apurv
+** Know more about Github policies to have a backup of lab sources : Soujanya
+

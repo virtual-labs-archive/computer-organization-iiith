@@ -1,0 +1,24 @@
+#+Title:  Weekly meeting
+#+Author: Soujanya
+#+Date:   <2015-02-11 Wed>
+
+* Attendees
+ - Geeta, Saikrishna, Soujanya, Apurv
+* Agenda
+
+** Discuss the threats in the process. We identified that the Intergation Team is parallelly working on four things
+  + IIITH Integration tasks
+  + Supporting Integration engineers from other Institutes
+  + familiarising the integration process to the RA's working at IIITH Integration team
+  + Collaborating with VLEAD tasks  
+** Status of Labs:
+  - Labs already running on amazon -8
+  - Status of other 12 labs  
+     + Labs moved to Level 5 - 3 [Computer Organization, VLSI, Artificial Neural Networks] 
+     + Labs moved to Level 4 - 0
+     + Labs at Level 2 - 1
+     + Labs at Level 1 - 4
+
+
+
+ 

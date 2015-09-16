@@ -1,0 +1,11 @@
+#+Title:  Weekly meeting
+#+Author: Soujanya
+#+Date:   <2014-11-26 Wed>
+
+* Attendees
+ - Prof. Raghu Reddy, Geeta, Soujanya, Apurv
+* Agenda
+- Reviewing the status of the labs listed based on the pripority.
+- Bring 8 labs to level 5 by this 10th December.(i.e labs to be tested on OVPL and keep it
+  ready to host on cloud)
+- Come up with the problem statement for the labs that have bugs.

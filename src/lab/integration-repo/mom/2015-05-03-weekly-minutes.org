@@ -1,0 +1,41 @@
+#+Title:  Weekly meeting
+#+Author: Soujanya
+#+Date:   <2015-05-03 Wed>
+
+* Attendees
+ - Prof. Raghu, Soujanya, Sadhana, SaiSambasiva, Nikhil
+* Agenda
+
+** Map the syllabus with other top universities[OU,JNTU..] that we have, to know the courses being offered to students[UG/PG] as per every semester:
+
+Action: Soujanya working on this. Needs to submit the report by June 8.
+
+** Interns to checkin their source code on github at https://github.com/Virtual-Labs/2015-summer-interns
+
+** Automation of client side dependencie process both on windows and Linux machines and ensure that labs is up with respect to the QA’s drawn by the integration engineers: Nikhil & Saisambasiva
+
+Action: Nikhil & Saisambasiva working on 2 & 3. Test the scripts on Windows, Ubuntu and Centos machines.
+** Provide LDAP account for interns to work on base 4, for creating containers and automating the client side automation process 
+** Collate QA’s of all the IIITH labs [36] and list them in a single sheet: 
+
+Action: Sadhana & Sravanthi's update:
+
+They had done QA for 1st set of prioritized labs (20), but in the last meeting Prof Raghu asked them to create worksheets for all these labs. So have created worksheets for 13 labs until now.
+
+They are also working on next set of prioritized labs following the integration process (moving labs from level 2 to level 5). 
+
+Status of 2nd set of prioritized labs:
+(https://goo.gl/hF03zj)
+
+10 labs- level 5
+3 labs-level 4
+1 labs-level 3
+2 lab- level 1
+
+They have started QA for level 5 (2nd set of prioritized) labs. Once they move the remaining labs to level 5,we will start QA process for those labs too.
+
+** Updating timesheets and work on status-tracker-for-integration-team sheet shared on google docs
+
+Action: Soujanya needs to share this with all to be updated weekly.
+
+** Share problem statement with Prof. Raghu for the labs that need to be fixed from 1st set of labs.

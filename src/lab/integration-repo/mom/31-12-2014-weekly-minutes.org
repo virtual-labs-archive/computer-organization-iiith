@@ -1,0 +1,17 @@
+#+Title:  Weekly meeting
+#+aut: Soujanya
+#+Date:   <2014-12-31 Wed>
+
+* Attendees
+ - Prof. Raghu Reddy, Geeta,Thirumal, Apurv, Saikrishna, Soujanya 
+* Agenda
+ - Review of the presentation prepared for 10th January 2015 IIC Meeting
+ - Plan a roadmap for Integration team for next three months
+* Feedback  
+ Here are the changes that has to be made for the presentation
+ - Slide 2 should be made as slide 1 with some background before going for the status.
+ - listing out the problems with the labs
+ - Have a Barchart of the labs at each level
+ - Remove the Analytics url from the labs status table
+ - Prepare a table listing out the labs under quality parameters 
+ - List out the best practices for the Integrators

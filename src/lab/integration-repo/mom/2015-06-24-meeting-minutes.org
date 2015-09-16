@@ -1,0 +1,26 @@
+#+Title:  Weekly meeting
+#+Author: Soujanya
+#+Date:   <2015-06-24 Wed>
+
+* Attendees
+ - Apurv, Soujanya, Sadhana, Sravanthi, Nikhil & Saisambasiva 
+* Agenda
+
+** Explore on the api's/ packages thats comes with iced-tea plugin and java(jre and jdk) : Sai and Nikhil
+Action Ttems:
+- know if they are open source or not
+- split the labs based on the java versions being used and make a disjoint set for the first set of labs[20]
+- identify the api's from iced-tea and java plugins that are need for the invocation of labs
+- Check with the dynamic invocation of the labs state
+
+** Working with labs : Sadhana & Sravanthi
+- Get familiarized with Integration Level 6 and make the request for hosting the labs tested over ADS
+- Finish the QA's for the other 4 labs left
+- Helping the interns with the client side dependencies
+
+13 labs-  level 5
+0 labs-  level 4
+3 labs-  level 2
+
+** 5 labs from the first set of prioritised labs list: Apurv, Anarg, Anurag
+<Apurv to update>

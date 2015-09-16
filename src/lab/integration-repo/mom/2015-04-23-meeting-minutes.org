@@ -1,0 +1,16 @@
+#+Title:  Weekly meeting
+#+Author: Soujanya
+#+Date:   <2015-04-23 Thu>
+
+* Attendees
+ - Prof. Raghu,, Prof. Venkatesh, Geeta, Apurv, Soujanya, Saikrishna, Sadhana, Sravanthi, Yogesh
+
+* Agenda
+
+** Breakdown and define the tasks for Summer Interns in specific, with estimated time and skills required : Soujanya
+** Get the prioritised labs list for 16 labs from Prof. Raghu, Mapping the labs as per syllabus/courses offered at colleges[IIITH or other colleges] 
+** Carryout Integration process for next 16 labs : Sadhana, Sravanthi
+** Perform QA for first set of Labs[20 labs] : Sadhana and Sravanthi
+** Use "Selenium" for the automation because a simulation is just a web application : Sravanthi, Sadhana
+** Automating the installation process for client side dependencies for linux machines : Saikrishna & Soujanya  
+** Fix Problem Solving Lab with the sandbox issue : Apurv

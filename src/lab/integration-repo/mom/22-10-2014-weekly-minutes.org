@@ -1,0 +1,80 @@
+#+Title:  weekly minutes 
+#+Date:   [2014-10-22 Wednesday]
+
+* Agenda of Meeting
+** Discuss the progress on tasks
+
+Tried to contact the concerning RA for EMT lab. He has already left.                                                                      | Apurv, Soujanya, Prabhsimran |
+ Problem Solving Lab(Prof Jawahar): <Prabhsimran to update>  Data Structures Lab(Prof Kishore Kotapalli): Prof Kishore has given                                                                          |                              |
+ an appointment today at 3:00pm to meet him at his office                                   
+
+
+| Tasks                        | Progress                                                                                                                                                                                                              | Owner                                 |
+|------------------------------+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+---------------------------------------|
+| Reaching RA's of Labs        | - Data structures - Apurv met the professor. Out of 10 exp the professor has fla's of only 4 experiments. And the RA's worked on this lab left                                                                        | Soujanya, Apurv ,Prabhsimran & Kaveri |
+|                              | - Computer Programming- Reach the lab RA's to help us working with flash                                                                                                                                              |                                       |
+|                              | - Linux lab- The RA's concerned with this lab have graduated, so it's our responsibility to make modifications to the sources.                                                                                        |                                       |
+|                              | - Computer Organization- Prabhsimran and Kaveri to meet Suresh Purini sir to discuss further.                                                                                                                         |                                       |
+|                              | - Problem Solving- There was some problem with the simulation. And the RA's responsible was unable to resolve the issue. So either we need to resolve or ask the RA to fix it. Prabhsimran to update the RA's details |                                       |
+|                              | - Database lab- Tested on local machine and worked fine.                                                                                                                                                              |                                       |
+|                              | - Computer Programming- last two experiments are pending. Apurv to update.                                                                                                                                            |                                       |
+|                              | - Digital Logic Design- Tested and works fine on local machine.                                                                                                                                                       |                                       |
+|                              | - EM Theory - Tried to contact the concerning RA for EMT lab. He has already left.                                                                                                                                    |                                       |
+|------------------------------+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+---------------------------------------|
+| AWStats                      | Done                                                                                                                                                                                                                  | Soujanya                              |
+|------------------------------+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+---------------------------------------|
+| Repo for Integration team    | Done                                                                                                                                                                                                                  | Soujanya                              |
+|------------------------------+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+---------------------------------------|
+| Migration of labs            | There was some problem with the migration script that is fixed. Will get all labs on github in 1 or 2 days                                                                                                            | Soujanya,Kamal                        |
+|------------------------------+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+---------------------------------------|
+| Labs tested on local machine | Done. Updated the status at: https://docs.google.com/a/vlabs.ac.in/spreadsheets/d/1qTCcB0ycl_KQWvc-uyOtPTrBeZa9OkVuTFMf_bCP8aY/edit#gid=0                                                                             | Apurv                                 |
+|------------------------------+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+---------------------------------------|
+| Meeting with Prof Suresh     | We have sent sir the list of the syllabi and now, we are waiting for the email's reply that we have sent for the next meeting                                                                                         | Prabhsimram, Kaveri                   |
+|------------------------------+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+---------------------------------------|
+|                              |                                                                                                                                                                                                                       |                                       |
+
+** Action Items
+
+*** Schedule for a session with Ishan on Security(After diwali vacation)
+- Mailed Ishan asking for documentation to be checked in at github
+*** Mailing Chopella sir regarding linux Lab -> Apurv
+- The RA's concerned with this lab have graduated, so it's our
+  responsibility to make modifications to the sources
+*** Moving the Labs update column on to the IIITH-Labs-List sheet -> Apurv
+- Done
+*** Meeting with Kishore sir at 3:00pm today -> Apurv
+- Apurv met the professor. Out of 10 exp the professor has fla's of
+  only 4 experiments. And the RA's worked on this lab left.
+*** Apply Performance and Security for first set of labs -> Apurv, Soujanya
+- List down all the parameters needed for the labs and differentiate
+- Need access to deploy server(contact system's team)
+*** Moving to next set of labs for collecting the needed information -> Soujanya, Apurv
+- Image Processing Lab - This labs to be tested on windows machine 
+- Computer graphics Lab - 
+*** Follow up with RA's for sources -> Soujanya, Apurv, Prahbsimran
+- Data structures - Apurv met the professor. Out of 10 exp the
+  professor has fla's of only 4 experiments. And the RA's worked on
+  this lab left.
+- Computer Programming- Reach the lab RA's to help us working with flash.
+- Linux lab- The RA's concerned with this lab have graduated, so it's our
+  responsibility to make modifications to the sources.
+- Computer Organization- Prabhsimran and Kaveri to meet Suresh Purini
+  sir to discuss further.
+- Problem Solving- There was some problem with the simulation. And the
+  RA's responsible was unable to resolve the issue. So either we need
+  to resolve or ask the RA to fix it. Prabhsimran to update the RA's
+  name.
+- Database lab- Tested on local machine and worked fine.
+- Computer Programming- last two experiments are pending. Apurv to
+  update.
+- Digital Logic Design- Tested and works fine on local machine.
+- EM Theory - Tried to contact the concerning RA for EMT lab. He has
+  already left.
+
+*** Follow up with Kaveri to update the weekly mom on github also to update the timesheets on bitbucket
+
+ All the web pages and the links are opening on the local machine and via the browser also except for:
+- Experiment 6's quizzes has a link for the pdf but it is giving "page not found". The searching for the pdf in http://localhost/build/exp5/RandomVariables.pdf but the experiment no. is 6 (not 5) and the pdf is absent from both the files.
+- Images are broken on exp 7's quizzes page. There is no images folder in exp7 folder.
+- None of the .jnlp files can be opened so far. However, the jar files being referenced in the jnlp files can be opened manually via the command line. All of the jar files are working except exp6.jar . All the .jar files from the  ./lib folder have to be copied to ./ and then exp6.jar has to be run.(Here ./ is cse20-test/src/lab/experiment).
+- All the jar files require openjdk-7-jre.

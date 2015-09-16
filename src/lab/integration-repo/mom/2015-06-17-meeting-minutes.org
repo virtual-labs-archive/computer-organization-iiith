@@ -1,0 +1,31 @@
+#+Title:  Weekly meeting
+#+Author: Soujanya
+#+Date:   <2015-05-27 Wed>
+
+* Attendees
+ - Prof. Raghu, Apurv, Soujanya, Sadhana, Sravanthi, Nikhil & Saisambasiva 
+* Agenda
+
+** Identify the basic configuration on a machine and to have detailed workflow with two or three instances: Nikhil, Saisambasiva and Soujanya
+
+Action Items: 
+- List out the client side dependencies for 36 labs[for now] and filter out the ones which occurs often and consider it as a minimal/basic configuration.
+- Run Javascript code which validates whether the basic configuration would satisfy the labs requirements.
+- If not point the users to a location where they can download/ pull the packages.
+- Write the scripts which can automate the process to have the packages setup alsong with its configuration on user/clients machine.
+Later, come up with possible approaches, and discuss with Prof. Raghu for his inputs which can help finding an optimal solution.
+
+Also run the scripts on a container[base 4], so far worked by the interns and show the output to Prof. Raghu. 
+
+** Fix the 5 labs from the first set of priporitised labs list: Apurv, Avinash and Anagh
+** Update the interns with the Level 6 process that was carried out at IIG workshop: Apurv
+** Work on the QA, with defined parameters and get the remaining labs to Level 6: Sadhana and Sravanthi 
+
+Status of 2nd set of prioritized labs:
+(https://goo.gl/hF03zj)
+
+10 labs-  level 5
+3 labs-  level 4
+3 labs-  level 2
+
+** Bringing new labs refering to the courses offered at other universities[not clear on what parameters], Apurv has to discuss on this with Prof. Raghu and Prof. venkatesh  

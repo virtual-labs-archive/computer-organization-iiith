@@ -1,0 +1,10 @@
+#+Title:  weekly minutes 
+#+Date:   [2014-10-15 Wednesday]
+
+* Action Items:
+** Follow up the lab developers and reach the RA's who has build the lab -> Soujanya, Apurv, Prabhsimran
+** Create separate repository for Integration Team -> Geeta
+** Migration of labs from bitbucket to github -> Soujanya
+** Test labs at top priority  level on local machine to know its requirements -> Apurv
+** Update the statistics of labs generated using AWStats -> Soujanya
+** Schedule next session with Prof Suresh to go ahead with the experiments of Computer Organization Lab, along with a newly designed interface -> Kaveri, Prabhsimran       

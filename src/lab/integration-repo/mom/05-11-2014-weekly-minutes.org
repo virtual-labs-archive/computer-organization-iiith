@@ -1,0 +1,56 @@
+#+Title:  Weekly meeting
+#+Author: Soujanya
+#+Date:   <2014-11-05 Wed>
+
+* Attendees
+ - Prof. Raghu Reddy, Geeta, Soujanya, Apurv, Prabhsimran, Kaveri
+* Agenda
+- Reviewing the labs and its status report
+- Add a lab from CSE department to the priority list
+- Contact Ishan/Saurav to fix Linux lab
+- Record the procedure followed to build Computer Programming lab
+- List out the issues with the labs having technical vs bugs that we
+  encounter
+- Schedule for meetings on Friday's, where we can discuss on the bugs
+  in detail having a demo of lab
+- Prepare a sheet to list out the bugs that we come across while
+  testing, also update its status
+- Dependencies for the labs should be documented
+* Action Items
+** Urgent
+- Printed chart sheets for Integration process(Need to discussion with
+  Prof. Raghu)
+- Figure out bugs, classify and fix them inorder to have the experiments
+  available to use
+- Get the forces to help solving bugs
+** Not urgent
+- Scripts to automate the process of client side dependencies
+* Break down of tasks
+<Team please update your tasks here in the table>
+| Tasks                                                                        | Progress | Owners   | Estimated Time |
+|------------------------------------------------------------------------------+----------+----------+----------------|
+| Deletions of unnecessary repos on github                                     |          | Soujanya | 3hrs           |
+|------------------------------------------------------------------------------+----------+----------+----------------|
+| EM Theory[EMT]: Check with the experiments to get the structure of sql file  |          | Soujanya | 5hrs           |
+|------------------------------------------------------------------------------+----------+----------+----------------|
+| VLSI[CSE14]: Check out the sources of VLSI labs and test it on local machine |          | Soujanya | 5hrs           |
+|------------------------------------------------------------------------------+----------+----------+----------------|
+| Digital Logic Design Lab (CSE 15) : Check if the experiments are working on  |          | Prabhsimran|  4-5hrs      |
+| Linux and Windows Machines.                                                  |          |            |              |
+|------------------------------------------------------------------------------+----------+------------+--------------|
+| Data Mining Lab (CSE 06) : Check if the experiments are working on           |          | Prabhsimran|  4-5hrs      |
+| Linux and Windows Machines.                                                  |          |            |              |
+|------------------------------------------------------------------------------+----------+------------+--------------|
+| Cryptography (CSE 29) : Check if the experiments are working on              |          | Prabhsimran|  4-5hrs      |
+| Linux and Windows Machines.                                                  |          |            |              |
+|------------------------------------------------------------------------------+----------+------------+--------------|
+| Computer System Organization Lab (CSE 11) : Meeting with Suresh Purini Sir   | On Monday| Prabhsimran|  2-3 hrs     |
+|------------------------------------------------------------------------------+----------+------------+--------------|
+| Problem Solving Lab (CSE 04) : Resolve the sandbox issues                    |          | Kaveri     |  5-6 hrs     |
+|------------------------------------------------------------------------------+----------+------------+--------------|
+| Pattern Recognition Lab (CSE 20) : Dropped a mail regarding the lab to the   |          | Kaveri     |  Action      |
+| lab in charge. Awating a reply.      					       |	  |            |  Pending     |
+|------------------------------------------------------------------------------+----------+------------+--------------|
+| Artificial Neural Networks (CSE 22) : Check if the experiments are working on|	  | Kaveri     |  4-5hrs      |
+| Linux and Winndows Machines.    	  				       |	  |            |  	      |
+|------------------------------------------------------------------------------+----------+------------+--------------|

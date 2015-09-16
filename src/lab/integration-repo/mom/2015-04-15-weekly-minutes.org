@@ -1,0 +1,27 @@
+#+Title:  Weekly meeting
+#+Author: Apurv
+#+Date:   <2015-04-15 Wed>
+
+* Attendees
+ - Prof. Raghu, Geeta, Apurv, Saikrishna, Sadhana, Sravanthi
+
+* Agenda
+
+** Plan the tasks for integration team for atleast next month and create a list of tasks that can be assigned to interns during the summer internship ( High Priority )
+
+** Test 20 prioritized labs of IIITH, and get the status of lab. In case if the labs fails to run, come up with more specific reasons : Sadhana, Sravanthi
+
+*** Create separate spreadsheet for each lab and the main spreadsheet should be automatically updated using macros.
+*** Write test cases for testing the simulations.
+*** Mention test environment.
+*** Use "Selenium" for the automation because a simulation is just a web application. --Saikrishna
+
+** Have a container created for client side dependencies, which serves as an ideal location for end users to download softwares : Soujanya / Saikrishna 
+
+** For automation of client side dependencies : Soujanya, saikrishna
+   - Limit the usage of technologies
+   - Minimize the users efforts while going through installation process
+
+** Fix Problem Solving Lab with the sandbox issue : Apurv
+
+** Bringing POPL, Linux, Database and Datamining lab to level 5 : Saikrishna, Apurv 

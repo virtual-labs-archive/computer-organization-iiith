@@ -1,0 +1,33 @@
+#+Title:  Weekly meeting
+#+Author: Soujanya
+#+Date:   <2014-11-05 Wed>
+
+* Attendees
+ - Geeta, Soujanya, Apurv
+* Agenda
+As discussed in the meeting today, listed below are the priority and tasks allocated:
+
+** Priority 1:
+
+Prof Raghu will test 8 labs in Windows on a m/c without s/w on Dec 10.
+ - Data structures
+ - Databases
+ - DLD lab
+ - Image processing
+ - Cryptography
+ - Computer graphics - only runs on Windows (as it has exes)
+ - EMT labs - only runs on Windows
+ - Computer programming
+
+Task: Plan the client-side dependency testing this week. Apurv to take up the documentation and testing associated with this task.
+
+** Priority 2: 
+*** Pen-drive with 35 labs: 
+Soujanya and Apurv will sit with Jayanth on Saturday to explore the automation or set aside 2 days for manually doing it.
+
+*** List of other tasks: 
+ - Task 1 a: Figure out a way to install java 3d in linux environment. - 
+ - Task 1 b: After task 1, test the lab "eerc03 Hydraulics and Fluid Mechanics". It needs   java 3d to be installed on client side first. (Tasks 1 a and b: for Kaveri to be done in 2 weeks)
+ - Task 2 : Test lab "ccnsb06 Physical Chemistry" and "phy14 physical sciences" (Fixing the issue and testing the lab - 1 week) - Apurv or Soujanya to take it up post his other tasks.
+ - Task 3: Create a Sandbox and resolve the problems with Pattern Recognition lab (dec 7) by Kaveri
+ - Task 4: Resolving the issues with Artificial Neural Network (images were breaking while running the simulation) by Kaveri to discuss the timeline on Dec 04.

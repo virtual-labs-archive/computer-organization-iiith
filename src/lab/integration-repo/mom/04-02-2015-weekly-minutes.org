@@ -1,0 +1,15 @@
+#+Title:  Weekly meeting
+#+Author: Soujanya
+#+Date:   <2015-02-04 Wed>
+
+* Attendees
+ - Prof. Raghu, Prof. Venkatesh choppella, Geeta, Saikrishna, Soujanya
+* Agenda
+- VLEAD should give a date to the integration engineers to bring their labs to level5
+- Add another lab to the first set of labs to make them 20 either based on the statistics or by curriculum 
+- Define a process to automate the client side installation. The design should take care of these points:
+  + Have the dependencies installation process documented with the lab
+  + Identify the plugins running on the clients machine
+  + Auto update the required dependencies on the clients machine to run the lab 
+- log the issues of labs on Github for respective repositories
+- Document the issues/bugs encountered while undergoing the integration process  

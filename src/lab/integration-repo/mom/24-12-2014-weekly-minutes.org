@@ -1,0 +1,21 @@
+#+Title:  Weekly meeting
+#+Author: Apurv
+#+Date:   <2014-12-24 Wed>
+
+* Attendees
+ - Prof. Raghu Reddy, Geeta, Apurv, Saikrishna
+* Agenda
+- Create a presentation for IIC meeting on 11th Jan at IIT-Guwahati
+  having details about the following:
+  - Status report of integration work done since September 2014 till now.
+  - Process adopted for integration.
+  - Issues faced during the integration process.
+  - Process taken to resolve those issues.
+- Have a centralized platform for the client side dependencies packages.
+- Update/Create new spread sheet for the status of the lab(having
+  1a,1b,2a,2b,3a,3b for testing and deploying lab on local, ovpl and
+  amazon respectively).
+- Figure out a way of hosting the labs running on more than one container.
+- Have the client side installation process automated.
+- Document the issues/ bugs that we came across the integration process
+  on VLEAD wiki to have a forum for questions and answers.

@@ -1,0 +1,16 @@
+#+Title:  Weekly meeting
+#+Author: Soujanya
+#+Date:   <2015-05-20 Wed>
+
+* Attendees
+ - Geeta, Soujanya, Sravanthi, Sadhana, Nikhil, Saisambasiva, Saikrishna 
+
+* Agenda
+
+** Map the syllabus with other top universities[OU,JNTU..] that we have, to know the courses being offered to students[UG/PG] as per every semister   
+** Work on Java3D installation process on centos and ubuntu machines: Nikhil & Saisambasiva  
+** Automation of client side dependencie process both on windows and
+ linux macines and ensure that labs is up with respect to the QA's
+ drawn by the integration engineers: Nikhil & Saisambasiva
+** Collate QA's of all the IIITH labs[36] and list them in a single sheet: Sadhana & Sravanthi
+** Updating timesheets and work on status-tracker-for-integration-team sheet shared on google docs    

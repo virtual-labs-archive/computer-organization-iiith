@@ -1,0 +1,18 @@
+#+Title:  Weekly meeting
+#+Author: Soujanya
+#+Date:   <2015-01-21 Wed>
+
+* Attendees
+ - Geeta, Apurv, Saikrishna, Soujanya
+* Agenda
+- Ran through the status of labs.
+- Contact Kaveri to check with the status of the tasks that she was assigned to.
+- Move next set of labs to Amazon i.e to have 15 labs hosted on cloud before 15th Feburary 2015.
+- Wednesday weekly meetings rescheduled to 12:00pm.
+- Contact Yogesh to schedule for the presentation of his work in this week.
+- Tasks alloted for the team
+ + Fixing the sandbox issue with Problem Solving Lab & get Linux lab hosted on cloud - Apurv and Anurag 
+ + Host Data Mining and Databases lab on a single container with ADS - Sai Krishna.
+ + Test the last two experiments of VLSI lab on linux machine and bring it on cloud - Soujanya 
+ + Check with the status of Basic Engineering Mechanics and Strength of Materials lab and Hydraulics and Fluid Mechanics lab with Anurag - Soujanya 
+

@@ -1,0 +1,22 @@
+#+Title:  Weekly meeting
+#+Author: Soujanya
+#+Date:   <2015-02-11 Wed>
+
+* Attendees
+ - Prof. Raghu, Geeta, Saikrishna, Soujanya, Apurv
+* Agenda
+- Bring current set of priporitised labs atleast to level 4
+- Test the labs, division among the team
+  + Database[cse07] and Data Mining [cse06]Lab - SaiKrishna
+  + VLSI [cse14] and POPL [cse05] - Soujanya
+  + Linux Lab [cse09], Artificial Neural Networks [cse22], Computer Organization Lab [cse11]
+- Status of labs by 23rd Feburary is to have 
+  + 17 Labs - Level 5 => 2 Labs were moved to level5, currently we have 10 labs which are hostable
+  + 2 Labs - Level 4  
+  + 1 Lab- Level 2   
+- Add a column on to List-of-Labs-prioritised-InstName sheet for tentative dates to get labs at Level 5
+- Send a mail to Saurav Chatterjee asking him to fix the UI scripts within a week   
+- Define a flow/process for manual installation of client side dependencies from a end user's perspective  
+- Activities to be discussed for outreach program conducted for MVSR Engineering College, on 20th and 21st of this month  
+
+

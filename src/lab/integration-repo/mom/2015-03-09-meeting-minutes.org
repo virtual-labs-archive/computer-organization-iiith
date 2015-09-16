@@ -1,0 +1,56 @@
+#+Title:  Internal Reviews of IIITH Integration Process 
+#+Author: Soujanya
+#+Date:   <2015-02-11 Wed>
+
+* Attendees
+ - Geeta, Soujanya, Apurv, Saikrishna, Sravanthi, Sadhana 
+* Agenda
+** Action Items and Task allocation among the team
+*** Get a public IP for cloning Client Side Dependencies (on Amazon/IIIT-H server) 
+ As part of our Integration process, labs having client side
+ dependencies will be provided with a link to download softwares as
+ per requirement along with the installation/configuration
+ process. Raise a ticket on github engineers-forum. Here are 13 labs that has CS Dependencies
+ - Data structures
+ - Computer programming
+ - Digital logic design
+ - Computer graphics
+ - Pattern Recognition
+ - EM Theory
+ - Artificial Neural Networks
+ - Computer Organization
+ - VLSI
+ - Basic Engineering Mechanics and Strength of Materials
+ - Hydraulics and Fluid Mechanics
+ - Physical Chemistry
+ - Physical Sciences
+Need help from Systems Team.
+*** Find out a way to get labs running on "Multiple Containers" tested over ADS. Currently there are 4 labs among 20, which are:
+    - Databases [Level 4]
+    - Data Mining [Level 4]
+    - Linux Lab[Level 4]: Apurv
+    - Principles of Programming Languages [Level 1]: Saikrishna
+*** Test the labs from an end user's perspective and undergoing Integration process
+ Check for proper functionality of links, images and simulations along
+ with user interation. Based on the analysis come up with
+ improvements/suggestions to enhance the quality of lab.
+- Sravanthi and Sadhana
+*** Java3D setup for testing the simulations
+ The are 5 labs which runs on Java3D:
+- EMT lab [Runs on JRE 1.6 and java3D 1.5 versions]
+- Basic Engineering Mechanics and Strength of Materials
+- Hydraulics and Fluid Mechanics
+- Physical Chemistry
+- Physical Sciences 
+Need to find comaptible versions for other 4 labs : Soujanya
+*** Re-engineering Data Structures lab
+ Three of the experiments were re-engineered to Javascript. In the
+ process to converting the other 5 experiments. Currently working on
+ "Polynomial Expressions using Linked List" experiment.
+- Soujanya
+*** Two machines needed for interns to work on
+*** Windows license for testing labs
+** Deliverables by next week
+*** All 19 labs to be at level 5 and hosted   
+*** Resolve Java3D issue
+*** Reasoning for labs which could not run over ADS 
