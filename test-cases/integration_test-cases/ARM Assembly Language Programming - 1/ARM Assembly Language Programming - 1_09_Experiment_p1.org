@@ -1,0 +1,36 @@
+* Author: Nihanth
+* Date Created: 11 Apr 2016
+* Environment
+  - OS: Windows 7, Linux
+  - Browsers: Firefox,Chrome
+  - Bandwidth : 100Mbps
+  - Hardware Configuration:8GBRAM , 
+  - Processor:i5
+
+* Objective
+  - To view the Experiment of the "ARM Assembly Language Programming - 1" experiment
+
+* Pre conditions
+  - Refer to first test case [[https://github.com/Virtual-Labs/computer-organization-iiith/blob/master/test-cases/integration_test-cases/ARM Assembly Language Programming - 1/ARM Assembly Language Programming - 1_01_Usability_smk.org][ARM Assembly Language Programming - 1_01_Usability_smk.org]]
+
+* Post conditions
+  - Nil
+* Test Steps
+  1. Click on the Experiment link 
+  2. It should re-direct to the Experiment page
+  3. Click on the Codes button
+  4. Click on the Help button
+  5. Enter the valid code in the editor and click on the run button
+  6. Click on the execute button
+  7. Click on the Simulator messages button and then click on the clear button
+
+* Expected result
+  1. Experiment page should be opened
+  2. Content should be present with no distortions and Junk characters
+  3. When we click on the codes button, sample cosdes should be displayed on the screen and when we click on the help button,User's guide should be displayed on the screen
+  4. An simulation result should be displayed in the execute field
+  5. A executed messages/steps should be displayed in the Simulator messages box and when we click on the 'clear' button all the data entered in the editor fields should get erased
+
+* Review/comments
+
+
