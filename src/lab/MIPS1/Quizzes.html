@@ -98,6 +98,7 @@
 						<div class="col-md-10 lab-list-col-10">
 							
 							<!--edit -->
+<form action="results.php" method="post" name="quiz" onsubmit='return window.confirm("You are submitting information to an external page. \nAre you sure?");' target="_blank">
 <h1 class="text-h2-lightblue">MIPS Assembly Language Programming</h1><div class="content" id="experiment-article-section-6-content">
 <p><b>Q1. </b>In MIPS we can increment the contents of a memory location in a single instruction. <br>
 <input id="q1" name="q1" type="radio" value="1">
@@ -129,13 +130,16 @@
 <input id="q5" name="q5" type="radio" value="0">
 <font color="red"> False </font> <br/>
 <br/>
-<input class="button" type="submit" value="Submit Answers"/>
+<input class="button" id="b1" type="submit" value="Submit Answers"/>
 </input>
-<a href="Quizzes.html"> <button>Cancel</button></a>
-</br></input></br></input></br></input></br></input></br></input></br></input></br></input></br></input></br></input></br></p>
+</form>
+</p>
 </div>						</div>
 					</div>
 			</div>
+				<div>
+			<a href="Quizzes.html"> <button>Reset</button></a>
+				</div>
 			<!-- =================================================================================================================================== -->
 
 
