@@ -24,6 +24,7 @@
     <!-- Custom CSS -->
     <link href="../../../css/style.css" rel="stylesheet">
 	<script type="text/javascript" src = 'tabs.js'></script>
+	<script type="text/javascript" src = 'quizresults.js'></script>
 <script>(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)})(window,document,'script','//www.google-analytics.com/analytics.js','ga');ga('create', 'UA-67020197-1', 'auto');ga('send', 'pageview');</script>	
 </head>
 <body id="page-top" class="index">
@@ -100,7 +101,45 @@
 							<!--edit -->
 <h1 class="text-h2-lightblue">Representation of Integers and their Arithmetic</h1><div class="content" id="experiment-article-section-6-content">
 </div>			
-<p>This section will be updated soon.</p>			</div>
+<p><form name="quiz">
+		<ol>
+<li><b>1's Complement is used to represent unsigned integers</b><br>
+   <span id="correct1"><input type="radio" name="q1" value="correct">True</span><br>
+   <input type="radio" name="q1" value="wrong">False<br>
+
+</li><br />
+
+<li><b>What is the 1's Compliment representation of 1001</b><br>
+   <span id="correct2"><input type="radio" name="q2" value="correct">-6</span><br>
+   <input type="radio" name="q2" value="wrong">-7<br>
+   <input type="radio" name="q2" value="wrong">-8<br>
+   <input type="radio" name="q2" value="wrong">-5<br>
+
+</li><br />
+
+<li><b>What is the result in 2's Compliment when we add 1101 and 1110</b><br>
+   <input type="radio" name="q3" value="wrong">-3<br>
+   <input type="radio" name="q3" value="wrong">-4<br>
+   <span id="correct3"><input type="radio" name="q3" value="correct">-5 </span><br>
+   <input type="radio" name="q3" value="wrong">-6<br>
+
+</li><br />
+
+<li><b>	What is the signed representation of 1000</b><br>
+   <input type="radio" name="q4" value="wrong">0<br>
+   <input type="radio" name="q4" value="wrong">+0<br>
+   <span id="correct4"><input type="radio" name="q4" value="correct">-0</span><br>
+   <input type="radio" name="q4" value="wrong">8<br>
+
+</li><br />
+
+</ol>
+<br />
+<input type="button" onClick="checkQuiz()" value="Check Quiz"><br><br>
+<input type="button" value="Reset" onClick="document.quiz.reset()">
+<hr>
+<textarea cols="80" rows="10" name="output"></textarea><br>
+</form></p>			</div>
 					</div>
 			</div>
 			<!-- =================================================================================================================================== -->
