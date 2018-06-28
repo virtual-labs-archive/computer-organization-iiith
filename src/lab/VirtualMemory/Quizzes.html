@@ -100,7 +100,47 @@
 							<!--edit -->
 <h1 class="text-h2-lightblue">Virtual Memory</h1><div class="content" id="experiment-article-section-6-content">
 </div>		
-<p>This section will be updated soon.</p>	
+<p><form name="quiz">
+		<ol>
+<li><b> Because of virtual memory, the memory can be shared among</b><br>
+   <span id="correct1"><input type="radio" name="q1" value="correct">Processes</span><br>
+   <input type="radio" name="q1" value="wrong">threads<br>
+   <input type="radio" name="q1" value="wrong">instructions<br>
+   <input type="radio" name="q1" value="wrong">None of the Above<br>
+
+</li><br />
+
+<li><b>Swap space exists in</b><br>
+   <span id="correct2"><input type="radio" name="q2" value="correct">Secondary Mmemory</span><br>
+   <input type="radio" name="q2" value="wrong">Primary Memory<br>
+   <input type="radio" name="q2" value="wrong">Cache<br>
+   <input type="radio" name="q2" value="wrong">None of the Above<br>
+
+</li><br />
+
+<li><b>In FIFO page replacement algorithm, when a page must be replaced</b><br>
+   <input type="radio" name="q3" value="wrong">Random Page is chosen<br>
+   <input type="radio" name="q3" value="wrong">Newest Page is chosen<br>
+   <span id="correct3"><input type="radio" name="q3" value="correct">Oldest Page is chosen</span><br>
+   <input type="radio" name="q3" value="wrong">None of the Above<br>
+
+</li><br />
+
+<li><b>A virtual-memory block is known as page, and a virtual-memory miss is called a</b><br>
+   <input type="radio" name="q4" value="wrong">Page miss<br>
+   <input type="radio" name="q4" value="wrong">Hit miss<br>
+   <span id="correct4"><input type="radio" name="q4" value="correct">Page Fault</span><br>
+   <input type="radio" name="q4" value="wrong">Memory Fault<br>
+
+</li><br />
+
+</ol>
+<br />
+<input type="button" onClick="checkQuiz()" value="Check Quiz"><br><br>
+<input type="button" value="Reset" onClick="window.location.reload();document.quiz.reset()">
+<hr>
+<textarea cols="80" rows="10" name="output"></textarea><br>
+</form></p>	
 			</div>
 					</div>
 			</div>
