@@ -24,6 +24,7 @@
     <!-- Custom CSS -->
     <link href="../../../css/style.css" rel="stylesheet">
 	<script type="text/javascript" src = 'tabs.js'></script>
+	<script type="text/javascript" src = 'quizresults.js'></script>
 <script>(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)})(window,document,'script','//www.google-analytics.com/analytics.js','ga');ga('create', 'UA-67020197-1', 'auto');ga('send', 'pageview');</script>	
 </head>
 <body id="page-top" class="index">
@@ -100,7 +101,47 @@
 							<!--edit -->
 <h1 class="text-h2-lightblue">Virtual Memory</h1><div class="content" id="experiment-article-section-6-content">
 </div>		
-<p>This section will be updated soon.</p>	
+<p><form name="quiz">
+		<ol>
+<li><b> Because of virtual memory, the memory can be shared among</b><br>
+   <span id="correct1"><input type="radio" name="q1" value="correct">Processes</span><br>
+   <input type="radio" name="q1" value="wrong">threads<br>
+   <input type="radio" name="q1" value="wrong">instructions<br>
+   <input type="radio" name="q1" value="wrong">None of the Above<br>
+
+</li><br />
+
+<li><b>Swap space exists in</b><br>
+   <span id="correct2"><input type="radio" name="q2" value="correct">Secondary Mmemory</span><br>
+   <input type="radio" name="q2" value="wrong">Primary Memory<br>
+   <input type="radio" name="q2" value="wrong">Cache<br>
+   <input type="radio" name="q2" value="wrong">None of the Above<br>
+
+</li><br />
+
+<li><b>In FIFO page replacement algorithm, when a page must be replaced</b><br>
+   <input type="radio" name="q3" value="wrong">Random Page is chosen<br>
+   <input type="radio" name="q3" value="wrong">Newest Page is chosen<br>
+   <span id="correct3"><input type="radio" name="q3" value="correct">Oldest Page is chosen</span><br>
+   <input type="radio" name="q3" value="wrong">None of the Above<br>
+
+</li><br />
+
+<li><b>A virtual-memory block is known as page, and a virtual-memory miss is called a</b><br>
+   <input type="radio" name="q4" value="wrong">Page miss<br>
+   <input type="radio" name="q4" value="wrong">Hit miss<br>
+   <span id="correct4"><input type="radio" name="q4" value="correct">Page Fault</span><br>
+   <input type="radio" name="q4" value="wrong">Memory Fault<br>
+
+</li><br />
+
+</ol>
+<br />
+<input type="button" onClick="checkQuiz()" value="Check Quiz"><br><br>
+<input type="button" value="Reset" onClick="window.location.reload();document.quiz.reset()">
+<hr>
+<textarea cols="80" rows="10" name="output"></textarea><br>
+</form></p>	
 			</div>
 					</div>
 			</div>
