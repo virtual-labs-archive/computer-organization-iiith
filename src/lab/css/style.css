@@ -755,6 +755,11 @@ a:focus
 {
 	color: #888;
 	font-size: 16px;
+
+}
+.text-normal-gray-small:hover
+{
+	color: #ff6600 !important;
 }
 
 .text-normal-gray-big
