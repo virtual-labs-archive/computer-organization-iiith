@@ -7,7 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="Welcome to Virtual Labs - A MHRD Govt of india Initiative">
     <meta name="author" content="Virtual Labs - A MHRD Govt of india Initiative">
-    
+   
     <title>Welcome to Virtual Labs - A MHRD Govt of india Initiative</title>
     
      <link rel="shortcut icon" href="../../../images/favicon.ico">
@@ -104,32 +104,47 @@
 <font color="green"> True </font> <br>
 <input id="q1" name="q1" type="radio" value="0">
 <font color="red"> False </font> <br/>
+<div class="ans" id="q1ans" style="display: none;">
+	The Answer is True;
+</div>
 <br/>
 <b>Q2.</b> The maximum size of an immediate constant in add instruction is 0xFFFFFF.<br>
 <input id="q2" name="q2" type="radio" value="1">
 <font color="green"> True </font> <br>
 <input id="q2" name="q2" type="radio" value="0">
 <font color="red"> False </font> <br/>
+<div class="ans" id="q2ans" style="display: none;">
+	The Answer is True;
+</div>
 <br/>
 <b>Q3.</b> Register $r0 always contains a zero value.<br>
 <input id="q3" name="q3" type="radio" value="1">
 <font color="green"> True </font> <br>
 <input id="q3" name="q3" type="radio" value="0">
 <font color="red"> False </font> <br/>
+<div class="ans" id="q3ans" style="display: none;">
+	The Answer is False;
+</div>
 <br/>
 <b>Q4. </b>ADDIU can generate a  overflow trap.<br>
 <input id="q4" name="q4" type="radio" value="1">
 <font color="green"> True </font> <br>
 <input id="q4" name="q4" type="radio" value="0">
 <font color="red"> False </font> <br/>
+<div class="ans" id="q4ans" style="display: none;">
+	The Answer is False;
+</div>
 <br/>
 <b>Q5.</b> We can use LB instruction to load a signed byte into a register and cast the signed byte to a signed word.<br>
 <input id="q5" name="q5" type="radio" value="1">
 <font color="green"> True </font> <br>
 <input id="q5" name="q5" type="radio" value="0">
 <font color="red"> False </font> <br/>
+<div class="ans" id="q5ans" style="display: none;">
+	The Answer is True;
+</div>
 <br/>
-<input class="button" type="submit" value="Submit Answers"/>
+<input class="button" type="submit" value="Submit Answers" onclick="showans()"/>
 </input>
 <a href="Quizzes.html"> <button>Cancel</button></a>
 </br></input></br></input></br></input></br></input></br></input></br></input></br></input></br></input></br></input></br></p>
@@ -216,6 +231,14 @@
 	<script src="../../../vendors/owl-carousel/owl.carousel.js"></script>
 	
 	<script type="text/javascript">
+	function showans(){
+		console.log("hello");
+		var element = document.getElementsByClassName("ans");
+		console.log(element)
+		for(i=0; i<element.length; i++){
+			element[i].style.display = 'block';
+		}		
+	};
 	$(document).ready(function() {
 		 
 		  var owl = $("#owl-demo");
