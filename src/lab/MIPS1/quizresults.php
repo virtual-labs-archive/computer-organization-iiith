@@ -54,10 +54,10 @@ echo "	<h2>Correct Answers</h2>
                 True<br>
                 <br>
                 <li><b>ADDIU can generate a overflow trap.</b></li>
-                True<br>
+                False <br>
                 <br>
                 <li><b>We can use LB instruction to load a signed byte into a register and cast the signed byte to a signed word.</b></li>
-                True <br>
+                False <br>
                 <br>
 </ol>";
 echo "</body></html>";
