@@ -1,0 +1,3 @@
+Just double tap after the word "FPU is" on last line of first paragragh, You will find the miising Text.
+
+That may be because of poor internet connection.
