@@ -108,7 +108,7 @@
 <p class="code"> a = (b + c) - (d + e)<br>
 </p>
 </blockquote> </li>
-<li>Variables are of type signed integers and half-word sized.<q> </q>Variables b, c, d and e are initialized to values -10, 20, 30 and -40 respectively.
+<li>Variables are of type signed integers and half-word sized.Variables b, c, d and e are initialized to values -10, 20, 30 and -40 respectively.
         <blockquote>
 <p class="code"> a = (b + c) - (d + e)</p>
 </blockquote>
@@ -158,7 +158,9 @@
              if ( a &lt; c) { <br/>
                 min = a;<br/>
              }<br/>
-             else { min = b &lt; c ? b : c; }<br/>
+             else {<br/>
+           min = b &lt; c ? b : c;<br/>
+            }<br/>
           }<br/>
           else {<br/>
              min = b &lt; c ? b : c<br/>
