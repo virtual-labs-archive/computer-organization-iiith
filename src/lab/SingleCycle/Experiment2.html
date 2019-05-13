@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title></title>
+</head>
+<body>
+  <script type="text/javascript">
+  function openTab(evt, cityName) {
+  // Declare all variables
+  var i, tabcontent, tablinks;
+
+  // Get all elements with class="tabcontent" and hide them
+  tabcontent = document.getElementsByClassName("tabcontent");
+  for (i = 0; i < tabcontent.length; i++) {
+    tabcontent[i].style.display = "none";
+  }
+
+  // Get all elements with class="tablinks" and remove the class "active"
+  tablinks = document.getElementsByClassName("tablinks");
+  for (i = 0; i < tablinks.length; i++) {
+    tablinks[i].className = tablinks[i].className.replace(" active", "");
+  }
+
+  // Show the current tab, and add an "active" class to the button that opened the tab
+  document.getElementById(cityName).style.display = "block";
+  evt.currentTarget.className += " active";
+}
+</script>
+<!-- Tab links -->
+<div class="tab">
+  <button class="tablinks" onclick="openTab(event, 'Home')">Home</button>
+  <button class="tablinks" onclick="openTab(event, 'Instruction_set')">Instruction Set</button>
+  <button class="tablinks" onclick="openTab(event, 'Data_memory')">Data Memory</button>
+  <button class="tablinks" onclick="openTab(event, 'Create_your_own')">Create Your Own</button>
+</div>
+
+<!-- Tab content -->
+<style type="text/css">
+  .tab {
+  overflow: hidden;
+  border: 1px solid #ccc;
+  background-color: #f1f1f1;
+}
+
+/* Style the buttons that are used to open the tab content */
+.tab button {
+  background-color: inherit;
+  float: left;
+  border: none;
+  outline: none;
+  cursor: pointer;
+  padding: 14px 16px;
+  transition: 0.3s;
+  font-size: 20px;
+}
+
+/* Change background color of buttons on hover */
+.tab button:hover {
+  background-color: #ddd;
+}
+
+/* Create an active/current tablink class */
+.tab button.active {
+  background-color: #ccc;
+}
+
+/* Style the tab content */
+.tabcontent {
+  display: none;
+  padding: 6px 12px;
+  border: 1px solid #ccc;
+  border-top: none;
+}
+.inst_table td {
+  padding: 10px;
+  font-size: 20px;
+}
+</style>
+<div id="Home" class="tabcontent">
+  <h3>Home</h3>
+  <p></p>
+  <table>
+    <tr>
+      <th>Instruction</th>
+      <th>Add</th>
+    </tr>
+    <tr>
+      <td><input type="text" name="ins1"></td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <td><input type="text" name="ins2"></td>
+      <td>4</td>
+    </tr>
+    <tr>
+      <td><input type="text" name="ins3"></td>
+      <td>8</td>
+    </tr>
+    <tr>
+      <td><input type="text" name="ins3"></td>
+      <td>12</td>
+    </tr>
+    <tr>
+      <td><input type="text" name="ins4"></td>
+      <td>16</td>
+    </tr>
+  </table>
+</div>
+
+<div id="Instruction_set" class="tabcontent">
+  <h1 style="color: blue">R-TYPE INSTRUCTION </h1>
+  <p>INSTRUCTION FORMAT -</p>
+    <table border="1" width="500" class="inst_table">
+      <tr >
+        <td>0</td>
+        <td>rs</td>
+        <td>rt</td>
+        <td>rt</td>
+        <td>shamt</td>
+        <td>funct</td>
+      </tr>
+      <tr>
+        <td>31:26</td>
+        <td>25:21</td>
+        <td>20:16</td>
+        <td>15:11</td>
+        <td>10:6</td>
+        <td>5:0</td>
+      </tr>
+    </table>
+</div>
+
+<div id="Data_memory" class="tabcontent">
+</div>
+<div id="Create_your_own" class="tabcontent">
+  <h3 style="color: blue;">MAKING YOUR OWN INSTRUCTIONS</h3>
+  <p>The following three steps will guide you in creating your own new instruciotn. Though the hardware is fixed but you can manipulate the control signals to come up with new instructions.
+  <br>
+  <h3 style="color:red;">Step #1</h3>
+  You can choose from 2 types of instruction formats. You can either have an instruction with three register values or an instuction with 2 register values and one immediate value. This version supports only 1 instruction of each format simultaneously.
+  </p>
+</div>
+<div id="Read_me" class="tabcontent">
+  <h3 style="color: red">GETTING STARTED!!</h3>
+  <p>This simulator has been designed to give a detailed and lucid explanation of the MIPS single cycle CPU architecture. It gives an insight on how an instruction is excuted in a MIPS processor. For the sake of conceptual understanding, each instruction has benn divided into 7 micro-instuctions. The simulator provides its users an option to create their own instructions using the same architecture thereby providing detailed understanding of the subject. This guide provides a brief tutorial on using this simulator. </p> 
+</div>
+
+
+</body>
+</html>
