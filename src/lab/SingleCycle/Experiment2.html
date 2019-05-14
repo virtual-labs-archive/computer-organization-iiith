@@ -4,28 +4,7 @@
   <title></title>
 </head>
 <body>
-  <script type="text/javascript">
-  function openTab(evt, cityName) {
-  // Declare all variables
-  var i, tabcontent, tablinks;
-
-  // Get all elements with class="tabcontent" and hide them
-  tabcontent = document.getElementsByClassName("tabcontent");
-  for (i = 0; i < tabcontent.length; i++) {
-    tabcontent[i].style.display = "none";
-  }
-
-  // Get all elements with class="tablinks" and remove the class "active"
-  tablinks = document.getElementsByClassName("tablinks");
-  for (i = 0; i < tablinks.length; i++) {
-    tablinks[i].className = tablinks[i].className.replace(" active", "");
-  }
-
-  // Show the current tab, and add an "active" class to the button that opened the tab
-  document.getElementById(cityName).style.display = "block";
-  evt.currentTarget.className += " active";
-}
-</script>
+  
 <!-- Tab links -->
 <div class="tab">
   <button class="tablinks" onclick="openTab(event, 'Home')">Home</button>
@@ -144,7 +123,28 @@
   <h3 style="color: red">GETTING STARTED!!</h3>
   <p>This simulator has been designed to give a detailed and lucid explanation of the MIPS single cycle CPU architecture. It gives an insight on how an instruction is excuted in a MIPS processor. For the sake of conceptual understanding, each instruction has benn divided into 7 micro-instuctions. The simulator provides its users an option to create their own instructions using the same architecture thereby providing detailed understanding of the subject. This guide provides a brief tutorial on using this simulator. </p> 
 </div>
+<script type="text/javascript">
+  function openTab(evt, cityName) {
+  // Declare all variables
+  var i, tabcontent, tablinks;
 
+  // Get all elements with class="tabcontent" and hide them
+  tabcontent = document.getElementsByClassName("tabcontent");
+  for (i = 0; i < tabcontent.length; i++) {
+    tabcontent[i].style.display = "none";
+  }
+
+  // Get all elements with class="tablinks" and remove the class "active"
+  tablinks = document.getElementsByClassName("tablinks");
+  for (i = 0; i < tablinks.length; i++) {
+    tablinks[i].className = tablinks[i].className.replace(" active", "");
+  }
+
+  // Show the current tab, and add an "active" class to the button that opened the tab
+  document.getElementById(cityName).style.display = "block";
+  evt.currentTarget.className += " active";
+}
+</script>
 
 </body>
 </html>
