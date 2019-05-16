@@ -1,7 +1,8 @@
- body{         background-color:  lightyellow;
+ body{         background-color:#FFFFE0;
               margin: 0;
       }
      p{
+                 padding-left: 50px;
                 	color:brown;
                 	font-size:130%;
       }
@@ -32,7 +33,7 @@ tr:not(:last-child) td{
             color: #FFF;
 }
 .button {
-          background-color:crimson;
+          background-color:lightcoral;
           border: none;
           color: white;
           padding: 20px;
@@ -42,10 +43,15 @@ tr:not(:last-child) td{
           font-size: 15px;
           margin-left: 30px;
           cursor: pointer;
+          border: 2px solid #DC143C;
         }
 .foo
 {
     margin-left:10px;
+}
+input, select, textarea{
+    color:#4B0082;
+    background-color:#FFFAFA;
 }
 
 li:hover 
