@@ -73,11 +73,21 @@ function eventlistner(x)
 	var node=document.getElementById("mytext");
 	node.value=person[x].text;
 }
-//******************************************************************************************************
-function popupfunction(){
-
+// //******************************************************************************************************
+function about_popup(){
+	var cls =document.getElementsByClassName("close")[0];
+	var cls2 =document.getElementsByClassName("close_btn")[0];
+	cls.addEventListener("click",function(){close_popup()});
+	cls2.addEventListener("click",function(){close_popup()});
+	var mymodl=document.getElementById("my-modal");
+	mymodl.setAttribute("style", "display:block;");
 }
-//Java script part for the codes display
+function close_popup()
+{
+	var mymodl=document.getElementById("my-modal");
+	mymodl.setAttribute("style", "display:none;");
+}
+// Java script part for the codes display
 //********************************************************************************************************
 var codes=[]
 function Code()
@@ -112,3 +122,21 @@ function copy_code()
 	document.execCommand("copy");
 	alert("Text Copied");
 }
+
+// function myfunction() {
+// 	//not added yet
+// 	var elems = document.querySelector(".active");
+// 	if(elems !==null){
+// 	 elems.classList.remove("active");
+// 	 alert("remove the element in if");
+// 	}
+// 	alert("remove the element");
+//   }
+//   function open_window()
+//   {
+// 	window.open("file:///c:/", "NewWindowName");
+//   }
+// function exit_window() {
+// 	window.open('','_parent','');
+// 	window.close();
+//   }

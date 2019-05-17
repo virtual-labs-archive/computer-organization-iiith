@@ -53,7 +53,31 @@
 	   <button onclick="mydropdownFunction(3)" class="dropbtn" id="help"><b>Help</b></button>
 	  <div id="myDropdown_help" class="dropdown-content">
 	    <a href="help.htm">Help</a><hr>
-	    <button class="button_decor" onclick="popupfunction()">About</button>
+		<button onclick="about_popup()" class="button_decor">About</button>
+
+		<div id="my-modal" class="modal" style="background-color: white">
+			<div class="modal-content" style="background-color: white">
+				<div class="modal-header" style="background-color: rgb(141, 141, 141);">
+					<span class="close">&times;</span>
+					Message
+				</div>
+				<div class="modal_wrapper" style="background-color: white">
+						<div>
+							<img src="data:image/png;base64,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" width="45%" height="40%">
+						</div>
+						<div class="modal-body">
+								<p>MipsParser Version 1.0 Build 100</p>
+								<p>Designed By-</p>
+								<p>Lakshya Jain and Rishikesh Dwivedi</p></br>
+								<p>MipsParser is a MIPS assembler and a run time simulator</p>
+						</div>
+						<div class="modal-footer" style="background-color: white;">
+									<button class="close_btn">OK</button>
+						</div>
+				</div>
+			</div>
+		</div>
+		
 	  </div>
 </div>
 </br>
