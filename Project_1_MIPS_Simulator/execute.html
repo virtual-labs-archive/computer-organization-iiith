@@ -1,0 +1,406 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Assignment</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="stylesheet" type="text/css" href="index_css.css">
+	<script type="text/javascript" src="index_js.js"></script>
+</head>
+<body>
+
+<!--HEADER html is here**************************************************************************************-->
+<div class="dropdown" class="top_menu">
+	  <button onclick="mydropdownFunction(0)" class="dropbtn" id="file"><b>   File   </b></button>
+	  <div id="myDropdown_file" class="dropdown-content">
+	    <button class="button_decor" onclick="myfunctionlist()">New</button></br>
+	    <button class="button_decor">Open</button></br>
+	    <button class="button_decor">Close</button></br>
+	    <button class="button_decor">Close All</button><hr>
+	    <button class="button_decor">Save</button></br>
+	    <button class="button_decor">Save As</button><hr>
+	    <button class="button_decor">Exit</button></br>
+	  </div>
+
+
+
+	   <button onclick="mydropdownFunction(1)" class="dropbtn" id="edit"><b>    Edit    </b></button>
+	  <div id="myDropdown_edit" class="dropdown-content">
+	    <button class="button_decor">Undo</button></br>
+	    <button class="button_decor">Redo</button><hr>
+	    <button class="button_decor">Cut</button></br>
+	    <button class="button_decor">Copy</button></br>
+	    <button class="button_decor">Paste</button><hr>
+	    <button class="button_decor">Select All</button></br>
+	  </div>
+
+
+
+	   <button onclick="mydropdownFunction(2)" class="dropbtn" id="run"><b>     Run     </b></button>
+	  <div id="myDropdown_run" class="dropdown-content">
+	    <a id="Run_assemble" href="#home" onclick="assemblerlistner()">Assemble</a>
+	    <div class="assemblerclass" >
+	    	<a id="Run_run" href="#about" style="cursor: none;opacity: 0.5">Run</a>
+		    <a id="Run_step" href="#contact"  style="cursor: none;opacity: 0.5">Step</a>
+		    <a id="Run_reset" href="#contact" style="cursor: none;opacity: 0.5">Reset</a><hr>
+		    <a id="Run_clearBreakPoints" href="#contact"  style="cursor: none;opacity: 0.5">Clear Breakpoints</a>
+		    <a id="Run_toggleBreakPoints" href="#contact"  style="cursor: none;opacity: 0.5">Toggle Breakpoints</a>
+	    </div>
+	    
+	  </div>
+
+
+
+	   <button onclick="mydropdownFunction(3)" class="dropbtn" id="help"><b>Help</b></button>
+	  <div id="myDropdown_help" class="dropdown-content">
+	    <a href="help.htm">Help</a><hr>
+	    <button class="button_decor" onclick="popupfunction()">About</button>
+	  </div>
+</div>
+</br>
+<hr>
+
+
+
+<div  class="menu">
+
+	  <a href="index.htm" id="menu_editor" class="link_decor">Editor</a>
+	  <a href="execute.html" id="menu_execute" class="link_decor">Execute</a>
+	  <a href="codes.htm" id="menu_codes" class="link_decor">Codes</a>
+	  <a href="help.htm" id="menu_help" class="link_decor">Help</a>
+</div>
+
+
+<!--HEADER html is here**********************************************************************************-->
+
+<hr>
+<div class="wrapper_execute" style="width:100%;height:24em;">
+    <div class="box1" style="background-color:#f4f5f7">
+            <img src="https://image.flaticon.com/icons/png/512/226/226777.png" alt="logo" width="15em" height="15em" style="background-color: white;border: 1px solid balck;">
+        Text Segment
+            <table id="text_table" style="background-color: white;width:100%;visibility: hidden;">
+                <tr>
+                    <th>Bkpt</th>
+                    <th>Address</th>
+                    <th>Source</th>
+                </tr>
+            </table>
+    </div>
+   
+    <div class="box2" >
+        <div style="position: relative;height: 100%;">
+                <button id="execute_step" class="execute_btn" style="cursor: none; opacity: 0.5;">Step</button></br>
+                <button id="execute_run"  class="execute_btn" style="cursor: none; opacity: 0.5;">Run</button>
+        </div>
+        
+    </div>
+    <div class="box3" style="background-color: #f4f5f7;overflow-x:auto;">
+        <img src="https://image.flaticon.com/icons/png/512/226/226777.png" alt="logo" width="15em" height="15em" style="background-color: white;border: 1px solid balck;">
+        Registors
+        <table id="registor_table" style="width:100%;background-color: white">
+            <thead>
+                <tr >
+                    <th>Name</th>
+                    <th>Number</th>
+                    <th>Value</th>
+                </tr>
+            </thead>    
+                <tr>
+                    <td>$zero</td>
+                    <td>0</td>
+                    <td>0</td>
+                </tr>
+                <tr>
+                    <td>$zero</td>
+                    <td>0</td>
+                    <td>0</td>
+                </tr>
+                <tr>
+                    <td>$zero</td>
+                    <td>0</td>
+                    <td>0</td>
+                 </tr>
+                 <tr>
+                    <td>$zero</td>
+                    <td>0</td>
+                    <td>0</td>
+                </tr>
+                <tr>
+                    <td>$zero</td>
+                    <td>0</td>
+                    <td>0</td>
+                </tr>
+                <tr>
+                    <td>$zero</td>
+                    <td>0</td>
+                    <td>0</td>
+                </tr>
+                <tr>
+                    <td>$zero</td>
+                    <td>0</td>
+                    <td>0</td>
+                </tr>
+                <tr>
+                    <td>$zero</td>
+                    <td>0</td>
+                    <td>0</td>
+                </tr>
+                <tr>
+                    <td>$zero</td>
+                    <td>0</td>
+                    <td>0</td>
+                </tr>
+                <tr>
+                    <td>$zero</td>
+                    <td>0</td>
+                    <td>0</td>
+                </tr>
+                <tr>
+                    <td>$zero</td>
+                    <td>0</td>
+                    <td>0</td>
+                </tr>
+                <tr>
+                    <td>$zero</td>
+                    <td>0</td>
+                    <td>0</td>
+                </tr>
+                <tr>
+                    <td>$zero</td>
+                    <td>0</td>
+                    <td>0</td>
+                </tr>
+                <tr>
+                    <td>$zero</td>
+                    <td>0</td>
+                    <td>0</td>
+                </tr>
+                <tr>
+                    <td>$zero</td>
+                    <td>0</td>
+                    <td>0</td>
+                </tr>
+                <tr>
+                    <td>$zero</td>
+                    <td>0</td>
+                    <td>0</td>
+                </tr>
+                <tr>
+                    <td>$zero</td>
+                    <td>0</td>
+                    <td>0</td>
+                </tr>
+                <tr>
+                    <td>$zero</td>
+                    <td>0</td>
+                    <td>0</td>
+                </tr>
+                <tr>
+                    <td>$zero</td>
+                    <td>0</td>
+                    <td>0</td>
+                </tr>
+                <tr>
+                    <td>$zero</td>
+                    <td>0</td>
+                    <td>0</td>
+                </tr>
+                <tr>
+                    <td>$zero</td>
+                    <td>0</td>
+                    <td>0</td>
+                </tr>
+                <tr>
+                    <td>$zero</td>
+                    <td>0</td>
+                    <td>0</td>
+                </tr>
+                <tr>
+                    <td>$zero</td>
+                    <td>0</td>
+                    <td>0</td>
+                </tr>
+                <tr>
+                    <td>$zero</td>
+                    <td>0</td>
+                     <td>0</td>
+                </tr>
+                <tr>
+                    <td>$zero</td>
+                    <td>0</td>
+                    <td>0</td>
+                </tr>
+                <tr>
+                    <td>$zero</td>
+                    <td>0</td>
+                    <td>0</td>
+                </tr>
+                <tr>
+                    <td>$zero</td>
+                    <td>0</td>
+                    <td>0</td>
+                </tr>
+                <tr>
+                    <td>$zero</td>
+                    <td>0</td>
+                    <td>0</td>
+                </tr>
+                <tr>
+                    <td>$zero</td>
+                    <td>0</td>
+                    <td>0</td>
+                </tr>
+                <tr>
+                    <td>$zero</td>
+                    <td>0</td>
+                    <td>0</td>
+                </tr>
+                <tr>
+                    <td>$zero</td>
+                    <td>0</td>
+                    <td>0</td>
+                </tr>
+                <tr>
+                    <td>$zero</td>
+                    <td>0</td>
+                    <td>0</td>
+                </tr>
+                <tr>
+                    <td>$zero</td>
+                    <td>0</td>
+                    <td>0</td>
+                </tr>
+            </table>
+    </div>
+    <div class="box4" style="background-color: #f4f5f7;overflow-y: scroll;" >
+            <img src="https://image.flaticon.com/icons/png/512/226/226777.png" alt="logo" width="15em" height="15em" style="background-color: white;border: 1px solid balck;">
+        Data Segment
+            <table id="data_table" style="visibility:hidden;">
+                <tr>
+                    <th>Address</th>
+                    <th>Value(+0)</th>
+                    <th>Value(+4)</th>
+                    <th>Value(+8)</th>
+                    <th>Value(+16)</th>
+                    <th>Value(+20)</th>
+                </tr>
+                <tr>
+                    <td>268435552</td>
+                    <td>0</td>
+                    <td>0</td>
+                    <td>0</td>
+                    <td>0</td>
+                    <td>0</td>
+                </tr>
+                <tr>
+                    <td>268435552</td>
+                    <td>0</td>
+                    <td>0</td>
+                    <td>0</td>
+                    <td>0</td>
+                    <td>0</td>
+                </tr>
+                <tr>
+                    <td>268435552</td>
+                    <td>0</td>
+                    <td>0</td>
+                    <td>0</td>
+                    <td>0</td>
+                    <td>0</td>
+                </tr>
+                <tr>
+                    <td>268435552</td>
+                    <td>0</td>
+                    <td>0</td>
+                    <td>0</td>
+                    <td>0</td>
+                    <td>0</td>
+                </tr>
+                <tr>
+                    <td>268435552</td>
+                    <td>0</td>
+                    <td>0</td>
+                    <td>0</td>
+                    <td>0</td>
+                    <td>0</td>
+                </tr>
+                <tr>
+                    <td>268435552</td>
+                    <td>0</td>
+                    <td>0</td>
+                    <td>0</td>
+                    <td>0</td>
+                    <td>0</td>
+                </tr>
+                <tr>
+                    <td>268435552</td>
+                    <td>0</td>
+                    <td>0</td>
+                    <td>0</td>
+                    <td>0</td>
+                    <td>0</td>
+                </tr>
+                <tr>
+                    <td>268435552</td>
+                    <td>0</td>
+                    <td>0</td>
+                    <td>0</td>
+                    <td>0</td>
+                    <td>0</td>
+                </tr>
+                <tr>
+                    <td>268435552</td>
+                    <td>0</td>
+                    <td>0</td>
+                    <td>0</td>
+                    <td>0</td>
+                    <td>0</td>
+                </tr>
+                <tr>
+                    <td>268435552</td>
+                    <td>0</td>
+                    <td>0</td>
+                    <td>0</td>
+                    <td>0</td>
+                    <td>0</td>
+                </tr>
+                <tr>
+                    <td>268435552</td>
+                    <td>0</td>
+                    <td>0</td>
+                    <td>0</td>
+                    <td>0</td>
+                    <td>0</td>
+                </tr>
+                <tr>
+                    <td>268435552</td>
+                    <td>0</td>
+                    <td>0</td>
+                    <td>0</td>
+                    <td>0</td>
+                    <td>0</td>
+                </tr>    
+
+            </table>
+    </div>
+</div>
+
+</br>
+<!--FOOTER html is here**********************************************************************************-->
+<div class="bottom_menu">
+	 <button id="bottom_Run">Run Input/Output</button>
+	  <button  id="bottom_parser">Parser Message</button>
+	<div class="wrapper" style="border: 1px solid black" >
+		<div style="background-color: grey">
+			<button id="bottom_clear"class="center_feild" >Clear</button>
+		</div>
+		<div style="width:98%;max-height:9em;">
+			<textarea style="width: 100%;height:95%;" id="parsertext">
+			
+			</textarea>
+		</div>
+	</div>
+	</br>
+</div>
+<!--FOOTER html is here**********************************************************************************-->
+</body>
+</html>

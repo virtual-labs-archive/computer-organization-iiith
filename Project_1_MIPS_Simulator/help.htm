@@ -1,0 +1,315 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Assignment</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="stylesheet" type="text/css" href="index_css.css">
+	<script type="text/javascript" src="index_js.js"></script>
+</head>
+<body>
+
+<!--HEADER html is here**************************************************************************************-->
+<div class="dropdown" class="top_menu">
+	  <button onclick="mydropdownFunction(0)" class="dropbtn" id="file"><b>   File   </b></button>
+	  <div id="myDropdown_file" class="dropdown-content">
+	    <button class="button_decor" onclick="myfunctionlist()">New</button></br>
+	    <button class="button_decor">Open</button></br>
+	    <button class="button_decor">Close</button></br>
+	    <button class="button_decor">Close All</button><hr>
+	    <button class="button_decor">Save</button></br>
+	    <button class="button_decor">Save As</button><hr>
+	    <button class="button_decor">Exit</button></br>
+	  </div>
+
+
+
+	   <button onclick="mydropdownFunction(1)" class="dropbtn" id="edit"><b>    Edit    </b></button>
+	  <div id="myDropdown_edit" class="dropdown-content">
+	    <button class="button_decor">Undo</button></br>
+	    <button class="button_decor">Redo</button><hr>
+	    <button class="button_decor">Cut</button></br>
+	    <button class="button_decor">Copy</button></br>
+	    <button class="button_decor">Paste</button><hr>
+	    <button class="button_decor">Select All</button></br>
+	  </div>
+
+
+
+	   <button onclick="mydropdownFunction(2)" class="dropbtn" id="run"><b>     Run     </b></button>
+	  <div id="myDropdown_run" class="dropdown-content">
+	    <a id="Run_assemble" href="#home" onclick="assemblerlistner()">Assemble</a>
+	    <div class="assemblerclass" >
+	    	<a id="Run_run" href="#about" style="cursor: none;opacity: 0.5">Run</a>
+		    <a id="Run_step" href="#contact"  style="cursor: none;opacity: 0.5">Step</a>
+		    <a id="Run_reset" href="#contact" style="cursor: none;opacity: 0.5">Reset</a><hr>
+		    <a id="Run_clearBreakPoints" href="#contact"  style="cursor: none;opacity: 0.5">Clear Breakpoints</a>
+		    <a id="Run_toggleBreakPoints" href="#contact"  style="cursor: none;opacity: 0.5">Toggle Breakpoints</a>
+	    </div>
+	    
+	  </div>
+
+
+
+	   <button onclick="mydropdownFunction(3)" class="dropbtn" id="help"><b>Help</b></button>
+	  <div id="myDropdown_help" class="dropdown-content">
+	    <a href="help.htm">Help</a><hr>
+	    <button class="button_decor" onclick="popupfunction()">About</button>
+	  </div>
+</div>
+</br>
+<hr>
+
+
+
+<div  class="menu">
+
+	  <a href="index.htm" id="menu_editor" class="link_decor">Editor</a>
+	  <a href="execute.html" id="menu_execute" class="link_decor">Execute</a>
+	  <a href="codes.htm" id="menu_codes" class="link_decor">Codes</a>
+	  <a href="help.htm" id="menu_help" class="link_decor">Help</a>
+</div>
+</br>
+<!--HEADER html is here*******************************************************************-->
+
+<div class="scroll">
+	<p>
+		<b><u>User's Guide</u></b></br></br>
+		<b>1.Introduction</b></br>
+		This simulator is designed to run MIPS codes, programed in MIPS assmebly language.</br></br>
+		<b>2.Layout</b>
+		At the top of the simulator there is a <b>MenuBar</b>. The Menubar provides following functionalities ..
+		<ul style="list-style-type:circle;">
+			<li>
+				File
+				<ul style="list-style-type:circle;">
+					<li>
+						Options for writing a new code; opening a file; closing or saving the current code etc
+					</li>
+					<li>
+						Exiting the Simulators
+					</li>
+				</ul>
+			</li>
+			<li>
+				Edit
+				<ul style="list-style-type:circle;">
+					<li>
+						Editor options like undo, redo, select all etc.
+					</li>
+				</ul>
+			</li>
+			<li>
+				Run
+				<ul style="list-style-type:circle;">
+					<li>
+						Assemble the code
+					</li>
+					<li>
+						Run the whole program
+					</li>
+					<li>
+						Run the current instruction of the program
+					</li>
+				</ul>
+			</li>
+		</ul>
+		</br>
+		The main panel consistes of 4 tabs.
+		<ul style="list-style-type:circle;">
+			<li>
+				<b>Editor</b> : Here the user will write their programs. The editor can have multiple tabs of code section. In each tab user can write their programs.
+			</li>
+			<li>
+				<b>Execute</b> : Assembling and running of the user code will be done here. It consists of various sections like the register table, text section, memory table etc.
+
+			</li>
+			<li>
+				<b>Sample Codes</b> : Various sample Mips Programs are provided here for the user help.
+			</li>
+			<li>
+				<b>Help</b> : User guide to understand the simulator.
+			</li>
+		</ul>
+		</br>
+		The bottom I/O panel is to generate the assembler messages. Assembly errors, runtime errors, input/output messages etc will be generated here.</br></br>
+		<b>3.Writing and Running a sample program</b></br>
+		<ul  style="list-style-type:circle;">
+			<li>
+				To write a program, the first thing we have to do, is to open a new editor where we can write our program. To do that ..</br></br>
+				<ol>
+					<li>
+						Click on the <b>File</b> button from the menu. A list will appear.
+					</li>
+					<li>
+						Click on the <b>New</b> button from the list. A new editor will appear in the editor tab. Here we will write our program
+					</li>
+				</ol></br>
+			</li>
+			<li>
+				Next, we will write our code in the editor. We can either start from scratch and write the program or we can copy the sample code, present in the sample codes tab, and modify it to our needs.
+			</li>
+			<li>
+				After writing our program, we will assemble it. To do that ..</br></br>
+				<ol>
+					<li>
+						Click on the <b>Run</b> buttion from the menu. A list will appear.
+					</li>
+					<li>
+						Click on the <b>Assemble</b> button from the list.
+					</li>
+				</ol></br>
+
+				This will assemble our arm program and the control will be transfered from the editor window to the execute window. If there are error(s) in our program, the subsequent messages will be displayed in the bottom I/O panel.
+			</li>
+			<li>
+				After the program has been successfuly assebled, we can run it. We can either choose to run the whole program in one shot, or we can run one instruction at a time. To do the, the execute panel has two buttons, <b>Run</b> and <b>Step</b>
+			</li>
+		</ul>
+		<b>4.Supported Directives/Instructions</b></br>
+		The registers names are the same as defined in MIPS.</br>
+		<ol>
+			<li>
+				In this version following directives are supported :
+				<ul style="list-style-type:circle;">
+					<li>
+						<b>.word</b> : To define a single variable or an array. If inital value(s) is not provided, no memory space will be reserved and the variable name will be an alias to the previously defined variable.
+					</li>
+					<li>
+						<b>.space</b> :To allocate a memory chunk of given size to a variable. A memory chunk might be composed of several words.
+					</li>
+					<li>
+						<b>.asciiz</b> :To define a null terminated String
+					</li>
+					<li>
+						<b>.ascii</b> :To define a String that is not null-terminated
+					</li>
+					<li>
+						<b>.text</b> :To specify the begining of the text section.
+					</li>
+					<li>
+						<b>.data</b> :To specify the beginning of the data section.
+					</li>
+				</ul>
+			</li>
+			<li>
+				Since this is a simulator form MIPS, All the instructions and their format is same as defined by MIPS assembly language. The functionality of every instruction is in accordance with the MIPS architecture. In this version, following instructions are supported :
+
+				<table>
+				  <tr>
+				    <td>add</td>
+				    <td>addi</td> 
+				    <td>addiu</td>
+				    <td>addu</td>
+				    <td>and</td>
+				  </tr>
+				  <tr>
+				     <td>andi</td>
+				    <td>b</td> 
+				    <td>beq</td>
+				    <td>beqz</td>
+				    <td>bge</td>
+				  </tr>
+				  <tr>
+				    <td>bgez</td>
+				    <td>bgezal</td> 
+				    <td>bgt</td>
+				    <td>bgtz</td>
+				    <td>ble</td>
+				  </tr>
+				  <tr>
+				     <td>blez</td>
+				    <td>blt</td> 
+				    <td>bltz</td>
+				    <td>bltzal</td>
+				    <td>bne</td>
+				  </tr>
+				  <tr>
+				     <td>bnez</td>
+				    <td>clo</td> 
+				    <td>clz</td>
+				    <td>div</td>
+				    <td>divu</td>
+				  </tr>
+				  <tr>
+				     <td>j</td>
+				    <td>jal</td> 
+				    <td>jalr</td>
+				    <td>jr</td>
+				    <td>la</td>
+				  </tr>
+				  <tr>
+				     <td>lb</td>
+				    <td>lh</td> 
+				    <td>li</td>
+				    <td>lw</td>
+				    <td>mfhi</td>
+				  </tr>
+				  <tr>
+				     <td>mflo</td>
+				    <td>mthi</td> 
+				    <td>mtlo</td>
+				    <td>move</td>
+				    <td>movn</td>
+				  </tr>
+				  <tr>
+				     <td>movz</td>
+				    <td>mul</td> 
+				    <td>mulo</td>
+				    <td>mult</td>
+				    <td>neg</td>
+				  </tr>
+				  <tr>
+				     <td>nor</td>
+				    <td>not</td> 
+				    <td>or</td>
+				    <td>ori</td>
+				    <td>sll</td>
+				  </tr>
+				  <tr>
+				     <td>sllv</td>
+				    <td>slt</td> 
+				    <td>slti</td>
+				    <td>sltiu</td>
+				    <td>sltu</td>
+				  </tr>
+				  <tr>
+				    <td>srl</td>
+				    <td>srlv</td> 
+				    <td>sb</td>
+				    <td>seb</td>
+				    <td>seh</td>
+				  </tr>
+				  <tr>
+				     <td>sh</td>
+				    <td>sub</td> 
+				    <td>sw</td>
+				    <td>xor</td>
+				    <td>xori</td>
+				  </tr>
+				</table></br>
+				To add comments use "#" or "//"
+			</li>
+		</ol>
+
+	</p>
+</div>
+
+<!--FOOTER html is here**********************************************************************************-->
+<div class="bottom_menu">
+	 <button id="bottom_Run">Run Input/Output</button>
+	  <button  id="bottom_parser">Parser Message</button>
+	<div class="wrapper" >
+		<div style="background-color: grey">
+			<button id="bottom_clear"class="center_feild" >Clear</button>
+		</div>
+		<div style="width:98%;height:10em;">
+			<textarea style="width: 100%;height:100%;" id="parsertext">
+			
+			</textarea>
+		</div>
+	</div>
+	</br>
+</div>
+<!--FOOTER html is here**********************************************************************************-->
+</body>
+</html>
