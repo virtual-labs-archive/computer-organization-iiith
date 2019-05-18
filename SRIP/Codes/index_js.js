@@ -39,30 +39,31 @@ function assemblerlistner()
 
 //Java script part for the new file creation and text filed
 //****************************************************************************************************
-var person=[]
+var names=[]
 var count=1
-function Person(name) {
+function Constructer(name) {
   this.name = name;
   this.text = "Add your code here!";
 }
 
 function init()
 {
-	
+	alert(count);
 	var str="mips";
 	var app=count.toString();
 	str=str.concat(app);
 	str=str.concat(".asm");
 	count++;
-	var person1=new Person(str);
-	person.push(person1);
-	return person;
+	var name1=new Constructer(str);
+	names.push(name1);
+	return names;
 }
 function myfunctionlist()
 {
-	person=init();
+	names=init();
+	
 	var btn = document.createElement("BUTTON");
-	btn.innerHTML=person[count-2].name;
+	btn.innerHTML=names[count-2].name;
 	btn.id=("btn").concat((count-2).toString());
 	btn.addEventListener("click",function(){eventlistner(count-2)});
 	document.getElementById("mydiv").appendChild(btn);
@@ -71,7 +72,7 @@ function myfunctionlist()
 function eventlistner(x)
 {
 	var node=document.getElementById("mytext");
-	node.value=person[x].text;
+	node.value=names[x].text;
 }
 // //******************************************************************************************************
 function about_popup(){
@@ -115,12 +116,14 @@ function codes_show(x){
 
 //Java script part for the codes copy to clipboard
 //********************************************************************************************************
+var copy_text_buffer="You haven't copy anything.This is default text";
 function copy_code()
 {
 	var node=document.getElementById("code_mytext");
 	node.select();
+	copy_text_buffer=node.value;
 	document.execCommand("copy");
-	alert("Text Copied");
+
 }
 function selectAll()
 {
@@ -130,7 +133,7 @@ function selectAll()
 	alert("Text Copied");
 }
 
-var copy_text_buffer="You haven't copy anything.This is default text";
+
 function getSelectedText(el) {
     if (typeof el.selectionStart == "number") {
         return el.value.slice(el.selectionStart, el.selectionEnd);
@@ -145,7 +148,6 @@ function getSelectedText(el) {
 function paste()
 {
 	var el=document.getElementById("mytext");
-	//el.value+=copy_text_buffer;
 	typeInTextarea(el,copy_text_buffer);
 }
 function typeInTextarea(el, newText) {
@@ -162,13 +164,23 @@ function copy()
 {
 	var el=document.getElementById("mytext");
 	copy_text_buffer=getSelectedText(el);
-	alert("Text Copied");
+
 }
 function cut()
 {
 	var el=document.getElementById("mytext");
 	copy_text_buffer=getSelectedText(el);
+	removeOutTextarea(el,copy_text_buffer);
 }
+function removeOutTextarea(el, removeText) {
+	var start = el.selectionStart
+	var end = el.selectionEnd
+	var text = el.value
+	var before = text.substring(0, start)
+	var after  = text.substring(end, text.length)
+	el.value = (before + after)
+	el.focus()
+  }
 // function close() {
 // 	//not added yet
 // 	var elems = document.querySelector(".active");
