@@ -23,16 +23,15 @@
 
 
 
-	   <button onclick="mydropdownFunction(1)" class="dropbtn" id="edit"><b>    Edit    </b></button>
+		<button onclick="mydropdownFunction(1)" class="dropbtn" id="edit"><b>    Edit    </b></button>
 	  <div id="myDropdown_edit" class="dropdown-content">
 	    <button class="button_decor">Undo</button></br>
 	    <button class="button_decor">Redo</button><hr>
 	    <button class="button_decor">Cut</button></br>
 	    <button class="button_decor">Copy</button></br>
-	    <button class="button_decor">Paste</button><hr>
-	    <button class="button_decor">Select All</button></br>
+	    <button class="button_decor" onclick="paste()">Paste</button><hr>
+	    <button class="button_decor" onclick="selectAll()">Select All</button></br>
 	  </div>
-
 
 
 	   <button onclick="mydropdownFunction(2)" class="dropbtn" id="run"><b>     Run     </b></button>

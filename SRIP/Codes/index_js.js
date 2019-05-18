@@ -122,8 +122,49 @@ function copy_code()
 	document.execCommand("copy");
 	alert("Text Copied");
 }
+function selectAll()
+{
+	var node=document.getElementById("mytext");
+	node.select();
+	document.execCommand("copy");
+	alert("Text Copied");
+}
 
-// function myfunction() {
+var copy_text_buffer="You haven't copy anything.This is default text";
+function getSelectedText(el) {
+    if (typeof el.selectionStart == "number") {
+        return el.value.slice(el.selectionStart, el.selectionEnd);
+    } else if (typeof document.selection != "undefined") {
+        var range = document.selection.createRange();
+        if (range.parentElement() == el) {
+            return range.text;
+        }
+    }
+    return "";
+}
+function paste()
+{
+	var el=document.getElementById("mytext");
+	//el.value+=copy_text_buffer;
+	typeInTextarea(el,copy_text_buffer);
+}
+function typeInTextarea(el, newText) {
+	var start = el.selectionStart
+	var end = el.selectionEnd
+	var text = el.value
+	var before = text.substring(0, start)
+	var after  = text.substring(end, text.length)
+	el.value = (before + newText + after)
+	el.selectionStart = el.selectionEnd = start + newText.length
+	el.focus()
+  }
+function copy()
+{
+	var el=document.getElementById("mytext");
+	copy_text_buffer=getSelectedText(el);
+	alert("Text Copied");
+}
+// function close() {
 // 	//not added yet
 // 	var elems = document.querySelector(".active");
 // 	if(elems !==null){
@@ -132,10 +173,12 @@ function copy_code()
 // 	}
 // 	alert("remove the element");
 //   }
+
 //   function open_window()
 //   {
 // 	window.open("file:///c:/", "NewWindowName");
 //   }
+
 // function exit_window() {
 // 	window.open('','_parent','');
 // 	window.close();
