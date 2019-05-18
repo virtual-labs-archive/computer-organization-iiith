@@ -1,20 +1,58 @@
 //Java script part for dropdown of sub menu
 //****************************************************************************************************
+function fileonload()
+{
+	alert("Loaded");
+	var child_count=document.getElementById("databaseDiv").childElementCount;
+	var div=document.getElementById("databaseDiv").children;
+	alert(child_count);
+	for(var i=0;i<child_count;i++)
+	{
+		alert(div[i].textContent);
+	}
+}
+var lockDropDown=-1;
 function mydropdownFunction(x) {
-	if(x==0){
-		 document.getElementById("myDropdown_file").classList.toggle("show");
+	var status=0;
+	if(lockDropDown!=-1)
+	{
+		if(lockDropDown==x){
+			status=1;
+		}
+		if(lockDropDown==0){
+			document.getElementById("myDropdown_file").classList.toggle("show");
+	   }
+	   else if(lockDropDown==1){
+			document.getElementById("myDropdown_edit").classList.toggle("show");
+	   }
+	   else if(lockDropDown==2 ){
+			document.getElementById("myDropdown_run").classList.toggle("show");
+	   }
+	   else if(lockDropDown==3){
+			document.getElementById("myDropdown_help").classList.toggle("show");
+	   }
+	   lockDropDown=-1;
 	}
-	else if(x==1){
-		 document.getElementById("myDropdown_edit").classList.toggle("show");
+	if(status!=1)
+	{
+		if(x==0 && lockDropDown==-1){
+			document.getElementById("myDropdown_file").classList.toggle("show");
+			lockDropDown=0;
+	   }
+	   else if(x==1  && lockDropDown==-1){
+			document.getElementById("myDropdown_edit").classList.toggle("show");
+			lockDropDown=1;
+	   }
+	   else if(x==2  && lockDropDown==-1){
+			document.getElementById("myDropdown_run").classList.toggle("show");
+			lockDropDown=2;
+	   }
+	   else if(x==3  && lockDropDown==-1){
+			document.getElementById("myDropdown_help").classList.toggle("show");
+			lockDropDown=3;
+	   }
 	}
-	else if(x==2){
-		 document.getElementById("myDropdown_run").classList.toggle("show");
-
-	}
-	else{
-		 document.getElementById("myDropdown_help").classList.toggle("show");
-	}
- 
+	
 }
 
 
@@ -48,7 +86,6 @@ function Constructer(name) {
 
 function init()
 {
-	alert(count);
 	var str="mips";
 	var app=count.toString();
 	str=str.concat(app);
@@ -58,22 +95,64 @@ function init()
 	names.push(name1);
 	return names;
 }
+
+var current_counter=-1;
+var pre_counter=-1;
 function myfunctionlist()
 {
-	names=init();
-	
+	if(count<100){
+		names=init();
 	var btn = document.createElement("BUTTON");
 	btn.innerHTML=names[count-2].name;
-	btn.id=("btn").concat((count-2).toString());
-	btn.addEventListener("click",function(){eventlistner(count-2)});
+	btn.id=(count-2).toString();
+	btn.addEventListener("click",function(){clicklistner(btn.id)});
 	document.getElementById("mydiv").appendChild(btn);
 	
+	}
+	else{
+		alert('File capacity Full');
+	}
 }
-function eventlistner(x)
+function clicklistner(y)
 {
+	var x=parseInt(y);
 	var node=document.getElementById("mytext");
+	var store=document.getElementById("databaseDiv");
+	
+	current_counter=x;
+	if(pre_counter!=-1)
+	{
+		names[pre_counter].text=node.value;
+
+		var child=document.getElementById((100+pre_counter).toString());
+		if(child!==null)
+		{
+			var parent=child.parentNode;
+			parent.removeChild(child);
+		}
+
+		var para=document.createElement("p");
+		para.id=(100+pre_counter).toString();
+		var txt=document.createTextNode(names[pre_counter].text+para.id);
+		para.appendChild(txt);
+		store.appendChild(para);
+	}
+	var child=document.getElementById((100+x).toString());
+	if(child!==null)
+	{
+		var parent=child.parentNode;
+		parent.removeChild(child);
+	}
+	pre_counter=current_counter;
 	node.value=names[x].text;
+
+	var para=document.createElement("p");
+	para.id=(100+current_counter).toString();
+	var txt=document.createTextNode(names[current_counter].text+para.id);
+	para.appendChild(txt);
+	store.appendChild(para);
 }
+
 // //******************************************************************************************************
 function about_popup(){
 	var cls =document.getElementsByClassName("close")[0];
@@ -200,3 +279,25 @@ function removeOutTextarea(el, removeText) {
 // 	window.open('','_parent','');
 // 	window.close();
 //   }
+//********************************************************************************************* */
+//Undo and Redo fucntionality
+var stack=[]
+var stacktop=-1;	//current index of stack
+var undo_redo_counter=0;
+//adding the inital entry
+var node_init=document.createElement("TEXTAREA");
+var text_init = document.createTextNode("");
+node_init.appendChild(text_init);
+stack.push(node);
+stacktop++;
+
+function addInStack(){
+	var el=document.getElementById("mytext");
+	stacktop+=1;
+	stack.push(el);
+}
+function undo()
+{
+	var el=document.getElementById("mytext");
+	
+}
