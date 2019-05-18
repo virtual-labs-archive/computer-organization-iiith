@@ -1,16 +1,6 @@
 //Java script part for dropdown of sub menu
 //****************************************************************************************************
-function fileonload()
-{
-	alert("Loaded");
-	var child_count=document.getElementById("databaseDiv").childElementCount;
-	var div=document.getElementById("databaseDiv").children;
-	alert(child_count);
-	for(var i=0;i<child_count;i++)
-	{
-		alert(div[i].textContent);
-	}
-}
+
 var lockDropDown=-1;
 function mydropdownFunction(x) {
 	var status=0;
@@ -79,12 +69,34 @@ function assemblerlistner()
 //****************************************************************************************************
 var names=[]
 var count=1
+function fileonload()
+{
+	var while_counter=parseInt(getCookie("-1"));
+	
+		if(getCookie("-2")=="1"){
+			copy_text_buffer="#Program to add two numbers"+"\n\n\t"+".data"+"\n\t"+"sum: .word 0"+"\n\n\t"+".text"+"\n\t"+"main:"+"\n\t"	+"li $t0, 10"+"\n\t"+"li $t1, 15"+"\n\t"+"add $t2, $t0, $t1 	# compute the sum"	+"\n\t"+"sw $t2, sum"
+		}
+		else if(getCookie("-2")=="2"){
+			copy_text_buffer="#Program to convert a string to int"+"\n\n"+".data"+"\n"+'string: .asciiz "13245"'+"\n"+"newline: .word 10"+"\n"+".text"+"\n"+"main:"+"\n\n"+"la $t0, string 				# Initialize S."+"\n"+"li $t2, 0 				# Initialize sum = 0."+"\n"+"lw $t5, newline"+"\n"+ "sum_loop:"+"\n\t"+"lb $t1, ($t0) 			# load the byte at addr S into $t1,"+"\n\t"+ "addu $t0, $t0, 1 		# and increment S."+"\n\t"+"beq $t1, $t5, end_sum_loop"+"\n\n\t"+"mul $t2, $t2, 10 		# t2 *= 10."+"\n\n\t"+"sub $t1, $t1, 48	 	# t1 -= '0'."+"\n\t"+"add $t2, $t2, $t1 		# t2 += t1."+"\n\n\t"+"b sum_loop # and repeat the loop."+"\n"+"end_sum_loop:"
+		}
+		else if(getCookie("-2")=="3"){
+			copy_text_buffer="#compute length of a string"+"\n\n"+".data"+"\n"+'string: .asciiz "This is a string"'+"\n"+"length: .word 0"+"\n\n"+".text"+"\n"+"la $t1, string"+"\n"+"li $t2, 0"+"\n"+"length_loop:"+"\n\t"+"lb $t3, ($t1)"+"\n\t"+"beqz $t3, endloop"+"\n\t"+"addu $t2, $t2, 1"+"\n\t"+"addu $t1, $t1, 1"+"\n\t"+"b length_loop"+"\n"+"endloop:"+"\n\t"+"sub $t2, $t2, 1		#subtract 1 to ignore \\0 "+"\n\t"+"sw $t2, length"
+		}
+	var i=0;
+	while(while_counter>=1)
+	{
+		var text=getCookie((i).toString());
+		myfunctionlist(text);
+		while_counter--;
+		i++;
+	}
+}
 function Constructer(name) {
   this.name = name;
   this.text = "Add your code here!";
 }
 
-function init()
+function init(text_node)
 {
 	var str="mips";
 	var app=count.toString();
@@ -92,65 +104,47 @@ function init()
 	str=str.concat(".asm");
 	count++;
 	var name1=new Constructer(str);
+	if(text_node!==""){
+		name1.text=text_node;
+	}
 	names.push(name1);
+	setCookie("-1",(count-1).toString(), 30);
 	return names;
 }
 
 var current_counter=-1;
 var pre_counter=-1;
-function myfunctionlist()
+function myfunctionlist(text_node)
 {
-	if(count<100){
-		names=init();
-	var btn = document.createElement("BUTTON");
-	btn.innerHTML=names[count-2].name;
-	btn.id=(count-2).toString();
-	btn.addEventListener("click",function(){clicklistner(btn.id)});
-	document.getElementById("mydiv").appendChild(btn);
+	if(count<10)
+	{
+		names=init(text_node);
+		var btn = document.createElement("BUTTON");
+		btn.innerHTML=names[count-2].name;
+		btn.id=(count-2).toString();
+		btn.addEventListener("click",function(){clicklistner(btn.id)});
+		document.getElementById("mydiv").appendChild(btn);
 	
 	}
 	else{
 		alert('File capacity Full');
 	}
 }
+
 function clicklistner(y)
 {
 	var x=parseInt(y);
 	var node=document.getElementById("mytext");
-	var store=document.getElementById("databaseDiv");
 	
 	current_counter=x;
 	if(pre_counter!=-1)
 	{
 		names[pre_counter].text=node.value;
-
-		var child=document.getElementById((100+pre_counter).toString());
-		if(child!==null)
-		{
-			var parent=child.parentNode;
-			parent.removeChild(child);
-		}
-
-		var para=document.createElement("p");
-		para.id=(100+pre_counter).toString();
-		var txt=document.createTextNode(names[pre_counter].text+para.id);
-		para.appendChild(txt);
-		store.appendChild(para);
-	}
-	var child=document.getElementById((100+x).toString());
-	if(child!==null)
-	{
-		var parent=child.parentNode;
-		parent.removeChild(child);
+		setCookie((pre_counter).toString(), names[pre_counter].text, 30);
 	}
 	pre_counter=current_counter;
 	node.value=names[x].text;
-
-	var para=document.createElement("p");
-	para.id=(100+current_counter).toString();
-	var txt=document.createTextNode(names[current_counter].text+para.id);
-	para.appendChild(txt);
-	store.appendChild(para);
+	setCookie((current_counter).toString(), names[current_counter].text, 30);
 }
 
 // //******************************************************************************************************
@@ -201,6 +195,18 @@ function copy_code()
 	var node=document.getElementById("code_mytext");
 	node.select();
 	copy_text_buffer=node.value;
+	if(copy_text_buffer=="#Program to add two numbers"+"\n\n\t"+".data"+"\n\t"+"sum: .word 0"+"\n\n\t"+".text"+"\n\t"+"main:"+"\n\t"	+"li $t0, 10"+"\n\t"+"li $t1, 15"+"\n\t"+"add $t2, $t0, $t1 	# compute the sum"	+"\n\t"+"sw $t2, sum"
+	){
+		setCookie("-2","1", 30);
+	}
+	else if(copy_text_buffer=="#Program to convert a string to int"+"\n\n"+".data"+"\n"+'string: .asciiz "13245"'+"\n"+"newline: .word 10"+"\n"+".text"+"\n"+"main:"+"\n\n"+"la $t0, string 				# Initialize S."+"\n"+"li $t2, 0 				# Initialize sum = 0."+"\n"+"lw $t5, newline"+"\n"+ "sum_loop:"+"\n\t"+"lb $t1, ($t0) 			# load the byte at addr S into $t1,"+"\n\t"+ "addu $t0, $t0, 1 		# and increment S."+"\n\t"+"beq $t1, $t5, end_sum_loop"+"\n\n\t"+"mul $t2, $t2, 10 		# t2 *= 10."+"\n\n\t"+"sub $t1, $t1, 48	 	# t1 -= '0'."+"\n\t"+"add $t2, $t2, $t1 		# t2 += t1."+"\n\n\t"+"b sum_loop # and repeat the loop."+"\n"+"end_sum_loop:"
+	){
+		setCookie("-2","2", 30);
+	}
+	else if(copy_text_buffer="#compute length of a string"+"\n\n"+".data"+"\n"+'string: .asciiz "This is a string"'+"\n"+"length: .word 0"+"\n\n"+".text"+"\n"+"la $t1, string"+"\n"+"li $t2, 0"+"\n"+"length_loop:"+"\n\t"+"lb $t3, ($t1)"+"\n\t"+"beqz $t3, endloop"+"\n\t"+"addu $t2, $t2, 1"+"\n\t"+"addu $t1, $t1, 1"+"\n\t"+"b length_loop"+"\n"+"endloop:"+"\n\t"+"sub $t2, $t2, 1		#subtract 1 to ignore \\0 "+"\n\t"+"sw $t2, length"
+	){
+		setCookie("-2","3", 30);
+	}
 	document.execCommand("copy");
 
 }
@@ -301,3 +307,31 @@ function undo()
 	var el=document.getElementById("mytext");
 	
 }
+//******************************************************************************************************** */
+//Using cokkie to retrive the data of file
+
+function setCookie(cname,cvalue,exdays) {
+	var d = new Date();
+	d.setTime(d.getTime() + (exdays*24*60*60*1000));
+	var expires = "expires=" + d.toGMTString();
+	document.cookie = cname + "=" + cvalue + ";" + expires + ";path=/";
+  }
+  
+  function getCookie(cname) {
+	var name = cname + "=";
+	var decodedCookie = decodeURIComponent(document.cookie);
+	var ca = decodedCookie.split(';');
+	for(var i = 0; i < ca.length; i++) {
+	  var c = ca[i];
+	  
+	  while (c.charAt(0) == ' ') {
+		c = c.substring(1);
+	  }
+	  if (c.indexOf(name) == 0) {
+		return c.substring(name.length, c.length);
+	  }
+	}
+	return "";
+  }
+  
+
