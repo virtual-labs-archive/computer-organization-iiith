@@ -164,6 +164,11 @@ function copy()
 	copy_text_buffer=getSelectedText(el);
 	alert("Text Copied");
 }
+function cut()
+{
+	var el=document.getElementById("mytext");
+	copy_text_buffer=getSelectedText(el);
+}
 // function close() {
 // 	//not added yet
 // 	var elems = document.querySelector(".active");
