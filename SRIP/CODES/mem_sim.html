@@ -3,11 +3,20 @@
 <head>
 	<title>VM simulator</title>
 	<link rel = "stylesheet" type="text/css" href="LIBRARIES/style.css"/>
+	<style type="text/css">
+		/*.truncate{
+			max-width:20%;
+  			display:inline-block;
+  			white-space:nowrap;
+  			overflow:hidden;
+  			text-overflow:ellipsis;
+		}*/
+	</style>
 </head>
 <body>
-	<div>
-		<div>
-			<div>
+	<div class="one">
+		<div class="two">
+			<div class="three_1">
 				<table border="0"><caption>PARAMETERS</caption>
 					<tr>
 						<td>Page Size</td>
@@ -78,7 +87,7 @@
 					</tr>
 				</table>
 			</div>
-			<div><caption>REPLACEMENT POLICY</caption>
+			<div class="three_1"><caption>REPLACEMENT POLICY</caption>
 				<form action="">
   					 <input type="radio" name="REPLACEMENT POLICY" value="FIFO"> FIFO<br>
  					 <input type="radio" name="REPLACEMENT POLICY" value="LIFO"> LIFO<br>
@@ -86,17 +95,104 @@
   					 <input type="radio" name="REPLACEMENT POLICY" value="More"> More...
 				</form>
 			</div>
-			<div><caption>PAGE LEVEL</caption>
+			<div class="three_1"><caption>PAGE LEVEL</caption>
 				<form action="">
   					 <input type="radio" name="LEVEL" value="ONE LEVEL"> ONE LEVEL<br>
  					 <input type="radio" name="LEVEL" value="TWO LEVEL"> TWO LEVEL
  				</form>	 
 			</div>
-			<div>
+			<div class="three_1">
 				<input type="submit" value="Submit">
 			</div>
 		</div>
-	
+		<div class="two">
+			<div class="three_2">
+				<table>
+					<tr>
+						<td><button type="button">GENERATE</button></td>
+						<td><input type="text" name="Virtual address" value="virtual address"></td>
+						<td><button type="button">map</button></td>
+					</tr>
+					<tr>
+						<td></td>
+						<td><input type="radio" name="action" value="READ"> READ<br>
+ 					 		<input type="radio" name="action" value="WRITE"> WRITE</td>
+						<td></td>
+					</tr>
+					<tr>
+						<td><button type="button">GENERATE</button></td>
+						<td><input type="text" name="Page number" value="Page number"></td>
+						<td><button type="button">map</button></td>
+					</tr>
+				</table>
+			</div>
+			<div class="three_2">
+				<table>
+					<tr>
+						<td><button type="button">OUTER</button></td>
+						<td><button type="button">INNER</button></td>
+						<td><button type="button">VPO</button></td>
+					</tr>
+					<tr>
+						<td><input type="text" name="Page number" value=""></td>
+						<td><input type="text" name="Page number" value=""></td>
+						<td><input type="text" name="Page number" value=""></td>
+					</tr>
+				</table>
+			</div>
+			<div class="three_2">
+				<button type="button">RESTART</button>
+			</div>
+			<div class="three_2">
+				<p>Page Miss 0</p>
+				<p>Page Hit 0</p>
+			</div>
+			 <div class="three_2">
+			 	<button type="button">BASIC</button>
+			 	<button type="button">UNDER THE HOOD</button><br>
+			 	<div class="four">
+			 		<button type="button" class="truncate">Virtual Memory</button><br>
+			 		<textarea rows="20" cols="10"></textarea>
+			 	</div>
+			 	<div class="four">
+			 		<button type="button" class="truncate">Main Memory</button>
+			 		<button type="button" class="truncate">Dirty</button><br>
+			 		<textarea rows="20" cols="10"></textarea>
+			 		<textarea rows="20" cols="10"></textarea>
+			 	</div>
+			 	<div class="four">
+			 		<textarea rows="20" cols="15">EXPLANATION</textarea>
+			 	</div>
+			 	<div>
+			 		<button type="button" class="truncate">VPN</button>
+			 		<button type="button" class="truncate">At PPN</button>
+			 		<button type="button" class="truncate">Valid</button><br>
+			 		<textarea rows="20" cols="7"></textarea>
+			 		<textarea rows="20" cols="7"></textarea>
+			 		<textarea rows="20" cols="7"></textarea>
+			 	</div>
+
+			 </div>
+		</div>
+		<div class="two">
+			<div class="three_3">
+				<button type="button" class="truncate">Virtual memory</button>
+			 	<button type="button" class="truncate">Main memory</button>
+			 	<button type="button" class="truncate">page size</button><br>
+				<textarea rows="1" cols="7"></textarea>
+		 		<textarea rows="1" cols="7"></textarea>
+		 		<textarea rows="1" cols="7"></textarea>
+			</div>
+			<div class="three_3">
+				<button type="button" class="truncate">replacement policy</button>
+			 	<button type="button" class="truncate">page level</button><br>
+				<textarea rows="1" cols="7"></textarea>
+		 		<textarea rows="1" cols="7"></textarea>
+			</div>
+			<div class="three_3">
+				<textarea rows="30" cols="15"> Recent History</textarea>
+			</div>
+		</div>
 
 	</div>
 </body>
