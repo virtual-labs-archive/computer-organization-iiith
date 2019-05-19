@@ -5,49 +5,57 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<link rel="stylesheet" type="text/css" href="index_css.css">
 	<script type="text/javascript" src="index_js.js"></script>
+	<script type="text/javascript" src="FileSaver.js"></script>
 </head>
 <body onload="fileonload()">
 
 <!--HEADER html is here**************************************************************************************-->
 <div class="dropdown" class="top_menu">
-	  <button onclick="mydropdownFunction(0)" class="dropbtn" id="file"><b>   File   </b></button>
-	  <div id="myDropdown_file" class="dropdown-content">
-	    <button class="button_decor" onclick="myfunctionlist()">New</button></br>
-	    <button class="button_decor">Open</button></br>
-	    <button class="button_decor">Close</button></br>
-	    <button class="button_decor">Close All</button><hr>
-	    <button class="button_decor">Save</button></br>
-	    <button class="button_decor">Save As</button><hr>
-	    <button class="button_decor">Exit</button></br>
+	<span>
+		<button onclick="mydropdownFunction(0)" class="dropbtn" id="file"><b>   File   </b></button>
+		<div id="myDropdown_file" class="dropdown-content">
+		  <button class="button_decor" onclick="myfunctionlist('')">New</button></br>
+		  <button class="button_decor" onclick="open_window()">Open</button></br>
+		  <button class="button_decor">Close</button></br>
+		  <button class="button_decor">Close All</button><hr>
+		  <button class="button_decor">Save</button></br>
+		  <button class="button_decor">Save As</button><hr>
+		  <button class="button_decor" onclick="exit_Window()">Exit</button></br>
+		</div>
+	</span>
+  
+
+
+
+	  <span>
+		<button onclick="mydropdownFunction(1)" class="dropbtn" id="edit"><b>    Edit    </b></button>
+	  	<div id="myDropdown_edit" class="dropdown-content">
+			<button class="button_decor" onclick="undo_fun()">Undo</button></br>
+			<button class="button_decor" onclick="redo_fun()">Redo</button><hr>
+			<button class="button_decor">Cut</button></br>
+			<button class="button_decor">Copy</button></br>
+			<button class="button_decor">Paste</button><hr>
+			<button class="button_decor">Select All</button></br>
 	  </div>
+	</span>
 
 
 
-	   <button onclick="mydropdownFunction(1)" class="dropbtn" id="edit"><b>    Edit    </b></button>
-	  <div id="myDropdown_edit" class="dropdown-content">
-	    <button class="button_decor">Undo</button></br>
-	    <button class="button_decor">Redo</button><hr>
-	    <button class="button_decor">Cut</button></br>
-	    <button onclick="copy_code()" class="button_decor">Copy</button></br>
-	    <button class="button_decor">Paste</button><hr>
-		<button class="button_decor">Select All</button></br>
-		<!-- Here  cut select all and paste option makes no sense, so  haven't put the onclick listner here -->
-	  </div>
 
-
-
-	   <button onclick="mydropdownFunction(2)" class="dropbtn" id="run"><b>     Run     </b></button>
-	  <div id="myDropdown_run" class="dropdown-content">
-	    <a id="Run_assemble" href="#home" onclick="assemblerlistner()">Assemble</a>
-	    <div class="assemblerclass" >
-	    	<a id="Run_run" href="#about" style="cursor: none;opacity: 0.5">Run</a>
-		    <a id="Run_step" href="#contact"  style="cursor: none;opacity: 0.5">Step</a>
-		    <a id="Run_reset" href="#contact" style="cursor: none;opacity: 0.5">Reset</a><hr>
-		    <a id="Run_clearBreakPoints" href="#contact"  style="cursor: none;opacity: 0.5">Clear Breakpoints</a>
-		    <a id="Run_toggleBreakPoints" href="#contact"  style="cursor: none;opacity: 0.5">Toggle Breakpoints</a>
-	    </div>
-	    
-	  </div>
+	<span>
+		<button onclick="mydropdownFunction(2)" class="dropbtn" id="run"><b>     Run     </b></button>
+		<div id="myDropdown_run" class="dropdown-content">
+		  <button class="button_decor" id="Run_assemble" onclick="assemblerlistner()">Assemble</button></br>
+		  <div class="assemblerclass" >
+			  <button class="button_decor" id="Run_run" style="cursor: none;opacity: 0.5">Run</button></br>
+			  <button class="button_decor" id="Run_step"  style="cursor: none;opacity: 0.5">Step</button></br>
+			  <button class="button_decor" id="Run_reset" style="cursor: none;opacity: 0.5">Reset</button><hr>
+			  <button class="button_decor" id="Run_clearBreakPoints" style="cursor: none;opacity: 0.5">Clear Breakpoints</button></br>
+			  <button class="button_decor" id="Run_toggleBreakPoints" style="cursor: none;opacity: 0.5">Toggle Breakpoints</button></br>
+		  </div>
+		  
+		</div>
+</span>
 
 
 

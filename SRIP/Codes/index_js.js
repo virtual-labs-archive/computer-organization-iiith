@@ -1,6 +1,5 @@
 //Java script part for dropdown of sub menu
 //****************************************************************************************************
-
 var lockDropDown=-1;
 function mydropdownFunction(x) {
 	var status=0;
@@ -67,8 +66,10 @@ function assemblerlistner()
 
 //Java script part for the new file creation and text filed
 //****************************************************************************************************
-var names=[]
-var count=1
+var names=[];
+var count=1;
+var last_button_id=-1;
+
 function fileonload()
 {
 	var while_counter=parseInt(getCookie("-1"));
@@ -124,7 +125,6 @@ function myfunctionlist(text_node)
 		btn.id=(count-2).toString();
 		btn.addEventListener("click",function(){clicklistner(btn.id)});
 		document.getElementById("mydiv").appendChild(btn);
-	
 	}
 	else{
 		alert('File capacity Full');
@@ -135,7 +135,7 @@ function clicklistner(y)
 {
 	var x=parseInt(y);
 	var node=document.getElementById("mytext");
-	
+	last_button_id=x;
 	current_counter=x;
 	if(pre_counter!=-1)
 	{
@@ -266,25 +266,51 @@ function removeOutTextarea(el, removeText) {
 	el.value = (before + after)
 	el.focus()
   }
-// function close() {
-// 	//not added yet
-// 	var elems = document.querySelector(".active");
-// 	if(elems !==null){
-// 	 elems.classList.remove("active");
-// 	 alert("remove the element in if");
-// 	}
-// 	alert("remove the element");
-//   }
+function saveAs_function()
+{
+	var node=document.getElementById("mytext");
+	var txt=node.value;
+	var filename=names[last_button_id].name;
+	var blob=new Blob([txt], {type: "text/x-asm;charset=utf-8"});
+	saveAs(blob,filename);
+}
+function close_fun() {
+	if(last_button_id!==-1)
+	{
+		var node=document.getElementById((last_button_id).toString());
+		var parent=node.parentNode;
+		parent.removeChild(node);
+		alert("Closed file will gets restoredn\nOnce you refresh the page or reload it!");
+	}
+	else{
+		alert("No file to close!");
+	}
+	
+}
+function closeAll_fun()
+{
+	if(count!==1)
+	{
+		var node=document.getElementById("mydiv");
+		while (node.hasChildNodes()) {  
+			node.removeChild(node.firstChild);
+		  } 
+		alert("Closed files will gets restored\n Once you refresh the page or reload it!");
+	}
+	else{
+		alert("No file to close!");
+	}
+}
 
-//   function open_window()
-//   {
-// 	window.open("file:///c:/", "NewWindowName");
-//   }
+  function open_window()
+  {
+	alert("Functionality not implemented");
+ 
+  }
 
-// function exit_window() {
-// 	window.open('','_parent','');
-// 	window.close();
-//   }
+function exit_Window() {
+	alert("Functionality not implemented\nWe can only close that window which was opened by javascript");
+  }
 //********************************************************************************************* */
 //Undo and Redo fucntionality
 var stack=[]
@@ -302,10 +328,13 @@ function addInStack(){
 	stacktop+=1;
 	stack.push(el);
 }
-function undo()
+function undo_fun()
 {
-	var el=document.getElementById("mytext");
-	
+	alert("Functionality not implemented");
+}
+function redo_fun()
+{
+	alert("Functionality not implemented");
 }
 //******************************************************************************************************** */
 //Using cokkie to retrive the data of file
