@@ -3,7 +3,7 @@
 <head>
 	<title>VM simulator</title>
 	<link rel = "stylesheet" type="text/css" href="LIBRARIES/style.css"/>
-	<style type="text/css">
+	<style>
 		/*.truncate{
 			max-width:20%;
   			display:inline-block;
@@ -11,6 +11,28 @@
   			overflow:hidden;
   			text-overflow:ellipsis;
 		}*/
+		.one{
+			display:grid;
+			grid-template-columns: 20% 50% 30%;
+			grid-gap: 10px;
+			background-color: #2196F3;
+			padding: 10px;
+		}
+		.two{
+			display:grid;
+			grid-template-rows: auto auto auto;
+			grid-gap: 5px;
+			background-color: #2196F3;
+			padding: 5px;
+		}
+		.three_1{
+			display:grid;
+			grid-template-rows: 2fr 2fr 1fr 0.5fr;
+			grid-gap: 5px;
+			background-color: #f2f2f2;
+			padding: 10px;
+		}s
+		}
 	</style>
 </head>
 <body>
@@ -105,7 +127,7 @@
 				<input type="submit" value="Submit">
 			</div>
 		</div>
-		<div class="two">
+		<div class="two_2">
 			<div class="three_2">
 				<table>
 					<tr>
@@ -174,7 +196,7 @@
 
 			 </div>
 		</div>
-		<div class="two">
+		<div class="two_3">
 			<div class="three_3">
 				<button type="button" class="truncate">Virtual memory</button>
 			 	<button type="button" class="truncate">Main memory</button>
