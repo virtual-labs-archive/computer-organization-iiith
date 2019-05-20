@@ -14,14 +14,18 @@ for (let r=0;r<n;r++){
   var two=r;
   var one=r;
   var sig=r;
-  if(r==0)
+  if(r===0){
     bin='0';
-  if(x>16)
+  }
+  if(x>16){
     two=r-32;
-  if(x>16)
+  }
+  if(x>16){
     one=r-31;
-  if(r>=16)
+  }
+  if(r>=16){
     sig=16-r;
+  }
   col+='<td>'+x+'</td>';
   col+='<td>'+bin+'</td>';
   col+= '<td>'+two+'</td>';
@@ -35,15 +39,11 @@ var rowover = "<tr id ='overflow' style='display: none'> <td></td><td></td><td><
 $("#binary5bit").append(rowover);
 
 var prev= null;
-const getRow = (elem) =>{
-  getRow2(prev,elem);
-  prev=elem;
-}
 
-const getRow2 = (prev,ele) =>{
+const getRow2 = (prev,ele) => {
   for(let i=1;i<=n;i++){
     document.getElementById(i).style.background = 'white';
-  for(j=1;j<=5;j++){
+  for(let j=1;j<=5;j++){
       document.getElementById(i).cells[j].style.background='';
     }
   }
@@ -56,8 +56,13 @@ const getRow2 = (prev,ele) =>{
   row2=document.getElementById(ele.id);
 }
 
-const add5bitBinary = () =>{
-  var flag1=flag2=flag3=flag4=flag5=0;
+const getRow = (elem) => {
+  getRow2(prev,elem);
+  prev=elem;
+}
+
+const add5bitBinary = () => {
+    var flag1=0,flag2=0,flag3=0,flag4=0,flag5=0;
   var bin=Number(row1.cells[4].innerHTML)+Number(row2.cells[4].innerHTML);
     var unsig=Number(row1.cells[4].innerHTML)+Number(row2.cells[4].innerHTML);
   console.log(unsig);
@@ -81,8 +86,6 @@ const add5bitBinary = () =>{
   document.getElementById("Unsi").value=Number(row1.cells[4].innerHTML)+Number(row2.cells[4].innerHTML);
   document.getElementById("Sig").value=Number(row1.cells[5].innerHTML)+Number(row2.cells[5].innerHTML);
 
-var table = document.getElementById("table");
-  
   var table = document.getElementById("table");
   for (var i = 1, rows1; rows1 = table.rows[i]; i++) {
    if(rows1.cells[1].innerHTML===res){
@@ -119,31 +122,31 @@ var table = document.getElementById("table");
 }
 var retrieve=document.getElementById("overflow");
 
-if(flag1==0)
+if(flag1===0)
 {
 document.getElementById("overflow").style.display = '';
 document.getElementById("overflow").cells[1].innerHTML="4BitOverflow";  
 document.getElementById("overflow").cells[1].style.background="#64E986";
 }
-if(flag2==0)
+if(flag2===0)
 {
 document.getElementById("overflow").style.display= '';
 document.getElementById("overflow").cells[2].innerHTML="2s-OverFlow";  
 document.getElementById("overflow").cells[2].style.background="#64E986";
 }
-if(flag3==0)
+if(flag3===0)
 {
 document.getElementById("overflow").style.display='';
 document.getElementById("overflow").cells[3].innerHTML="1s-OverFlow";  
 document.getElementById("overflow").cells[3].style.background="#64E986";
 }
-if(flag4==0)
+if(flag4===0)
 {
 document.getElementById("overflow").style.display='';
 document.getElementById("overflow").cells[4].innerHTML="Overflow!";  
 document.getElementById("overflow").cells[4].style.background="#64E986";
 }
-if(flag5==0)
+if(flag5===0)
 {
 document.getElementById("overflow").style.display='';
 document.getElementById("overflow").cells[5].innerHTML="Overflow!";  
