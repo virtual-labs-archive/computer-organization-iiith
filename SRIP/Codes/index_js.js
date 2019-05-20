@@ -69,10 +69,13 @@ function assemblerlistner()
 var names=[];
 var count=1;
 var last_button_id=-1;
+var user_file_counter=0;
+var user_file_index=-101;
 
 function fileonload()
 {
 	var while_counter=parseInt(getCookie("-1"));
+	var user_files=parseInt(getCookie("-100"));
 	
 		if(getCookie("-2")=="1"){
 			copy_text_buffer="#Program to add two numbers"+"\n\n\t"+".data"+"\n\t"+"sum: .word 0"+"\n\n\t"+".text"+"\n\t"+"main:"+"\n\t"	+"li $t0, 10"+"\n\t"+"li $t1, 15"+"\n\t"+"add $t2, $t0, $t1 	# compute the sum"	+"\n\t"+"sw $t2, sum"
@@ -84,10 +87,25 @@ function fileonload()
 			copy_text_buffer="#compute length of a string"+"\n\n"+".data"+"\n"+'string: .asciiz "This is a string"'+"\n"+"length: .word 0"+"\n\n"+".text"+"\n"+"la $t1, string"+"\n"+"li $t2, 0"+"\n"+"length_loop:"+"\n\t"+"lb $t3, ($t1)"+"\n\t"+"beqz $t3, endloop"+"\n\t"+"addu $t2, $t2, 1"+"\n\t"+"addu $t1, $t1, 1"+"\n\t"+"b length_loop"+"\n"+"endloop:"+"\n\t"+"sub $t2, $t2, 1		#subtract 1 to ignore \\0 "+"\n\t"+"sw $t2, length"
 		}
 	var i=0;
+	var user_entry=-101;
 	while(while_counter>=1)
 	{
+		
 		var text=getCookie((i).toString());
-		myfunctionlist(text);
+		var temp=parseInt(getCookie((user_entry).toString()));
+		//alert("temp->"+temp+" i->"+i);
+		if((user_files>=1) && (i==temp))
+		{
+			user_entry--;
+			var nam=getCookie((user_entry).toString());
+			user_entry--;
+			myfunctionlist(text,nam);
+			alert("name-:"+nam);
+			user_files--;
+		}
+		else{
+			myfunctionlist(text,'');
+		}
 		while_counter--;
 		i++;
 	}
@@ -112,13 +130,21 @@ function init(text_node)
 	setCookie("-1",(count-1).toString(), 0.015625);
 	return names;
 }
-function myfunctionlist(text_node)
+function myfunctionlist(text_node,btn_name)
 {
 	if(count<10)
 	{
 		names=init(text_node);
 		var btn = document.createElement("BUTTON");
-		btn.innerHTML=names[count-2].name;
+		if(btn_name!=="")
+		{
+			btn.innerHTML=btn_name;
+			names[count-2].name=btn_name;
+		}
+		else{
+			btn.innerHTML=names[count-2].name;
+		}
+		
 		btn.id=(count-2).toString();
 		btn.addEventListener("click",function(){clicklistner(btn.id)});
 		document.getElementById("mydiv").appendChild(btn);
@@ -307,23 +333,29 @@ function closeAll_fun()
   }
 function setinputfileintextarea()
 {
-	// var fileinp=document.getElementById("inp_file");
-	// var files=fileinp.files;
-	// var file=files.item(0);
-	// var btn = document.createElement("BUTTON");
-	// 	btn.innerHTML=file.name;
-	// 	// btn.id=(file.name).toString();
-	// 	// btn.addEventListener("click",function(){clicklistner(btn.id)});
-	// 	document.getElementById("mydiv").appendChild(btn);
-
-
-	var fr = new FileReader();
-	fr.onload=function ()
-	{
-		document.getElementById("mytext").textContent=this.result;
-	}
-	fr.readAsText(this.files[0]);
+		var fileinp=document.getElementById("inp_file");
+		var files=fileinp.files;
+	 	var file=files.item(0);
+		var reader = new FileReader();
+		var contents;
+		reader.onload=function (event)
+		{
+			contents=event.target.result;
+			myfunctionlist(contents,file.name);
+			user_file_counter++;
+			setCookie("-100",(user_file_counter).toString(), 0.015625);
+			setCookie((user_file_index).toString(),(count-2).toString(), 0.015625);//storing the cout at which user has opened a local file
+			user_file_index--;
+			setCookie((user_file_index).toString(),file.name, 0.015625); //storing the name of user file to load again properly
+			user_file_index--;
+		};
+		reader.onerror = function(event) {
+			alert("File could not be read! Code " + event.target.error.code);
+		};
+		reader.readAsText(file);
+	
 }  
+
 
 function exit_Window() {
 	alert("Functionality not implemented\nWe can only close that window which was opened by javascript");
@@ -369,7 +401,7 @@ function setCookie(cname,cvalue,exdays) {
 	var ca = decodedCookie.split(';');
 	for(var i = 0; i < ca.length; i++) {
 	  var c = ca[i];
-	  
+	  // alert("String stored is-:"+c);
 	  while (c.charAt(0) == ' ') {
 		c = c.substring(1);
 	  }
