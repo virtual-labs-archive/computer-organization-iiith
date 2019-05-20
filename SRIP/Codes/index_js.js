@@ -109,12 +109,9 @@ function init(text_node)
 		name1.text=text_node;
 	}
 	names.push(name1);
-	setCookie("-1",(count-1).toString(), 30);
+	setCookie("-1",(count-1).toString(), 0.015625);
 	return names;
 }
-
-var current_counter=-1;
-var pre_counter=-1;
 function myfunctionlist(text_node)
 {
 	if(count<10)
@@ -136,17 +133,15 @@ function clicklistner(y)
 	var x=parseInt(y);
 	var node=document.getElementById("mytext");
 	last_button_id=x;
-	current_counter=x;
-	if(pre_counter!=-1)
-	{
-		names[pre_counter].text=node.value;
-		setCookie((pre_counter).toString(), names[pre_counter].text, 30);
-	}
-	pre_counter=current_counter;
 	node.value=names[x].text;
-	setCookie((current_counter).toString(), names[current_counter].text, 30);
+	setCookie((x).toString(), names[x].text, 0.015625);
 }
-
+function textareachanged()
+{
+	var node=document.getElementById("mytext");
+	names[last_button_id].text=node.value;
+	setCookie((last_button_id).toString(), names[last_button_id].text, 0.015625);
+}
 // //******************************************************************************************************
 function about_popup(){
 	var cls =document.getElementsByClassName("close")[0];
@@ -197,15 +192,15 @@ function copy_code()
 	copy_text_buffer=node.value;
 	if(copy_text_buffer=="#Program to add two numbers"+"\n\n\t"+".data"+"\n\t"+"sum: .word 0"+"\n\n\t"+".text"+"\n\t"+"main:"+"\n\t"	+"li $t0, 10"+"\n\t"+"li $t1, 15"+"\n\t"+"add $t2, $t0, $t1 	# compute the sum"	+"\n\t"+"sw $t2, sum"
 	){
-		setCookie("-2","1", 30);
+		setCookie("-2","1", 0.015625);
 	}
 	else if(copy_text_buffer=="#Program to convert a string to int"+"\n\n"+".data"+"\n"+'string: .asciiz "13245"'+"\n"+"newline: .word 10"+"\n"+".text"+"\n"+"main:"+"\n\n"+"la $t0, string 				# Initialize S."+"\n"+"li $t2, 0 				# Initialize sum = 0."+"\n"+"lw $t5, newline"+"\n"+ "sum_loop:"+"\n\t"+"lb $t1, ($t0) 			# load the byte at addr S into $t1,"+"\n\t"+ "addu $t0, $t0, 1 		# and increment S."+"\n\t"+"beq $t1, $t5, end_sum_loop"+"\n\n\t"+"mul $t2, $t2, 10 		# t2 *= 10."+"\n\n\t"+"sub $t1, $t1, 48	 	# t1 -= '0'."+"\n\t"+"add $t2, $t2, $t1 		# t2 += t1."+"\n\n\t"+"b sum_loop # and repeat the loop."+"\n"+"end_sum_loop:"
 	){
-		setCookie("-2","2", 30);
+		setCookie("-2","2", 0.015625);
 	}
 	else if(copy_text_buffer="#compute length of a string"+"\n\n"+".data"+"\n"+'string: .asciiz "This is a string"'+"\n"+"length: .word 0"+"\n\n"+".text"+"\n"+"la $t1, string"+"\n"+"li $t2, 0"+"\n"+"length_loop:"+"\n\t"+"lb $t3, ($t1)"+"\n\t"+"beqz $t3, endloop"+"\n\t"+"addu $t2, $t2, 1"+"\n\t"+"addu $t1, $t1, 1"+"\n\t"+"b length_loop"+"\n"+"endloop:"+"\n\t"+"sub $t2, $t2, 1		#subtract 1 to ignore \\0 "+"\n\t"+"sw $t2, length"
 	){
-		setCookie("-2","3", 30);
+		setCookie("-2","3", 0.015625);
 	}
 	document.execCommand("copy");
 
@@ -304,9 +299,31 @@ function closeAll_fun()
 
   function open_window()
   {
-	alert("Functionality not implemented");
- 
+	var fileinp=document.getElementById("inp_file");
+	if(fileinp)
+	{
+		fileinp.click();
+	}
   }
+function setinputfileintextarea()
+{
+	// var fileinp=document.getElementById("inp_file");
+	// var files=fileinp.files;
+	// var file=files.item(0);
+	// var btn = document.createElement("BUTTON");
+	// 	btn.innerHTML=file.name;
+	// 	// btn.id=(file.name).toString();
+	// 	// btn.addEventListener("click",function(){clicklistner(btn.id)});
+	// 	document.getElementById("mydiv").appendChild(btn);
+
+
+	var fr = new FileReader();
+	fr.onload=function ()
+	{
+		document.getElementById("mytext").textContent=this.result;
+	}
+	fr.readAsText(this.files[0]);
+}  
 
 function exit_Window() {
 	alert("Functionality not implemented\nWe can only close that window which was opened by javascript");
@@ -362,5 +379,3 @@ function setCookie(cname,cvalue,exdays) {
 	}
 	return "";
   }
-  
-
