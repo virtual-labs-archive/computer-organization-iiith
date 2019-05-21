@@ -59,7 +59,7 @@ function assemblerlistner()
 	document.getElementById("data_table").setAttribute("style", "visibility:visible;width:100%; background-color: white;");
 	document.getElementById("text_table").setAttribute("style", "visibility:visible;width:100%; background-color: white;");
 	
-	
+	init_execute();
 }
 
 
@@ -74,7 +74,7 @@ var user_file_index=-101;
 
 function fileonload()
 {
-	
+	last_button_id=parseInt(sessionStorage.getItem("-500"));
 	var while_counter=parseInt(sessionStorage.getItem("-1"));
 	var user_files=parseInt(sessionStorage.getItem("-100"));
 	
@@ -173,6 +173,7 @@ function clicklistner(y)
 	last_button_id=x;
 	node.value=names[x].text;
 	sessionStorage.setItem((x).toString(),names[x].text);
+	sessionStorage.setItem("-500",last_button_id);
 }
 function textareachanged(status)
 {
