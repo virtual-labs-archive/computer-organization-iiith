@@ -338,7 +338,7 @@ function close_fun() {
 		var node=document.getElementById((last_button_id).toString());
 		var parent=node.parentNode;
 		parent.removeChild(node);
-		alert("Closed file will gets restoredn\nOnce you refresh the page or reload it!");
+		alert("Closed file will gets restored\nOnce you refresh the page or reload it!");
 	}
 	else{
 		alert("No file to close!");
@@ -412,7 +412,7 @@ function update_stack(el,stack_id)
 function undo_fun()
 {
 	var node=document.getElementById("mytext");
-	if(	names[last_button_id].stacktop==-1)
+	if(	names[last_button_id].undo_redo_counter<=0)
 	{
 		alert("Nothing to Undo");
 	}
