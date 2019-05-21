@@ -74,6 +74,7 @@ var user_file_index=-101;
 
 function fileonload()
 {
+	
 	var while_counter=parseInt(sessionStorage.getItem("-1"));
 	var user_files=parseInt(sessionStorage.getItem("-100"));
 	
@@ -102,7 +103,14 @@ function fileonload()
 			user_files--;
 		}
 		else{
-			myfunctionlist(text,'');
+			if(text==undefined | text==null)
+			{
+				myfunctionlist('','');
+			}
+			else{
+				myfunctionlist(text,'');
+			}
+			
 		}
 		while_counter--;
 		i++;
@@ -110,7 +118,10 @@ function fileonload()
 }
 function Constructer(name) {
   this.name = name;
-  this.text = "Add your code here!";
+	this.text = "Add your code here!";
+	this.stack_undo_redo=[];
+	this.undo_redo_counter=-1;
+	this.stacktop=-1;
 }
 
 function init(text_node)
@@ -124,6 +135,9 @@ function init(text_node)
 	if(text_node!==""){
 		name1.text=text_node;
 	}
+	name1.stack_undo_redo.push(name1.text);
+	name1.stacktop++;
+	name1.undo_redo_counter++;
 	names.push(name1);
 	sessionStorage.setItem("-1",(count-1).toString());
 	return names;
@@ -160,11 +174,14 @@ function clicklistner(y)
 	node.value=names[x].text;
 	sessionStorage.setItem((x).toString(),names[x].text);
 }
-function textareachanged()
+function textareachanged(status)
 {
 	var node=document.getElementById("mytext");
 	names[last_button_id].text=node.value;
 	sessionStorage.setItem((last_button_id).toString(),names[last_button_id].text);
+	if(status!=0){
+		update_stack(node,last_button_id);
+	}
 }
 // //******************************************************************************************************
 function about_popup(){
@@ -233,6 +250,7 @@ function selectAll()
 {
 	var node=document.getElementById("mytext");
 	node.select();
+	copy_text_buffer=node.value;
 	document.execCommand("copy");
 	alert("Text Copied");
 }
@@ -252,8 +270,15 @@ function getSelectedText(el) {
 function paste()
 {
 	var el=document.getElementById("mytext");
-	typeInTextarea(el,copy_text_buffer);
-	textareachanged();
+	if(copy_text_buffer=="")
+	{
+		alert("Nothing is copied to paste");
+	}
+	else{
+		typeInTextarea(el,copy_text_buffer);
+		textareachanged(1);
+	}
+	
 }
 function typeInTextarea(el, newText) {
 	var start = el.selectionStart
@@ -268,14 +293,27 @@ function typeInTextarea(el, newText) {
 function copy()
 {
 	var el=document.getElementById("mytext");
-	copy_text_buffer=getSelectedText(el);
-
+	var temp_copy=getSelectedText(el);
+	if(temp_copy=="")
+	{
+		alert("Nothing is selected to copy");
+	}
+	else{
+		copy_text_buffer=temp_copy;
+	}
 }
 function cut()
 {
 	var el=document.getElementById("mytext");
-	copy_text_buffer=getSelectedText(el);
-	removeOutTextarea(el,copy_text_buffer);
+	var temp_copy=getSelectedText(el);
+	if(temp_copy=="")
+	{
+		alert("Nothing is selected to cut");
+	}
+	else{
+		copy_text_buffer=temp_copy;
+		removeOutTextarea(el,copy_text_buffer);
+	}
 }
 function removeOutTextarea(el, removeText) {
 	var start = el.selectionStart
@@ -360,12 +398,40 @@ function exit_Window() {
 	alert("Functionality not implemented\nWe can only close that window which was opened by javascript");
   }
 //********************************************************************************************* */
+
+//******************************************************************************************************** */
+
+function update_stack(el,stack_id)
+{
+	if(names[stack_id].stack_undo_redo[names[stack_id].stacktop]!=el.value){
+		names[stack_id].stack_undo_redo.push(el.value);
+		names[stack_id].stacktop++;
+	}
+	names[stack_id].undo_redo_counter=	names[stack_id].stacktop;
+}
 function undo_fun()
 {
-	alert("Functionality not implemented");
+	var node=document.getElementById("mytext");
+	if(	names[last_button_id].stacktop==-1)
+	{
+		alert("Nothing to Undo");
+	}
+	else{
+		node.value=	names[last_button_id].stack_undo_redo[names[last_button_id].undo_redo_counter-1];
+		names[last_button_id].undo_redo_counter--;
+		textareachanged(0);
+	}
 }
 function redo_fun()
 {
-	alert("Functionality not implemented");
+	var node=document.getElementById("mytext");
+	if(	names[last_button_id].undo_redo_counter==names[last_button_id].stacktop)
+	{
+		alert("Nothing to Redo");
+	}
+	else{
+		node.value=	names[last_button_id].stack_undo_redo[names[last_button_id].undo_redo_counter+1];
+		names[last_button_id].undo_redo_counter++;
+		textareachanged(0);
+	}
 }
-//******************************************************************************************************** */
