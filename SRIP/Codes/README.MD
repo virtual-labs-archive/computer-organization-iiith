@@ -11,6 +11,4 @@ Fucntionality added till now->>
 * All the GUI part completed and basic functionality added
 
 Fucntionality to be implemented->>
-1)-Open and Exit fucntions inside the File menu
-2)-Options inside the Run menu
-3)-Undo and Redo option in Edit menu
+1)-Options inside the Run menu
