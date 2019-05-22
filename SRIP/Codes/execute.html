@@ -112,7 +112,7 @@
    
     <div class="box2" >
         <div style="position: relative;height: 100%;">
-                <button id="execute_step" class="execute_btn" style="cursor: none; opacity: 0.5;">Step</button></br>
+                <button id="execute_step" onclick="step_util()" class="execute_btn" style="cursor: none; opacity: 0.5;">Step</button></br>
                 <button id="execute_run"  class="execute_btn" style="cursor: none; opacity: 0.5;">Run</button>
         </div>
         
@@ -131,147 +131,147 @@
                 <tr>
                     <td>$zero</td>
                     <td>0</td>
-                    <td>0</td>
+                    <td id="$zero">0</td>
                 </tr>
                 <tr>
                     <td>$at</td>
                     <td>1</td>
-                    <td>0</td>
+                    <td id="$at">0</td>
                 </tr>
                 <tr>
                     <td>$v0</td>
                     <td>2</td>
-                    <td>0</td>
+                    <td id="$v0">0</td>
                  </tr>
                  <tr>
                     <td>$v1</td>
                     <td>3</td>
-                    <td>0</td>
+                    <td id="$v1">0</td>
                 </tr>
                 <tr>
                     <td>$a0</td>
                     <td>4</td>
-                    <td>0</td>
+                    <td id="$a0">0</td>
                 </tr>
                 <tr>
                     <td>$a1</td>
                     <td>5</td>
-                    <td>0</td>
+                    <td id="$a1">0</td>
                 </tr>
                 <tr>
                     <td>$a2</td>
                     <td>6</td>
-                    <td>0</td>
+                    <td id="$a2">0</td>
                 </tr>
                 <tr>
                     <td>$a3</td>
                     <td>7</td>
-                    <td>0</td>
+                    <td id="$a3">0</td>
                 </tr>
                 <tr>
                     <td>$t0</td>
                     <td>8</td>
-                    <td>0</td>
+                    <td id="$t0">0</td>
                 </tr>
                 <tr>
                     <td>$t1</td>
                     <td>9</td>
-                    <td>0</td>
+                    <td id="$t1">0</td>
                 </tr>
                 <tr>
                     <td>$t2</td>
                     <td>10</td>
-                    <td>0</td>
+                    <td id="$t2">0</td>
                 </tr>
                 <tr>
                     <td>$t3</td>
                     <td>11</td>
-                    <td>0</td>
+                    <td id="$t3">0</td>
                 </tr>
                 <tr>
                     <td>$t4</td>
                     <td>12</td>
-                    <td>0</td>
+                    <td id="$t4">0</td>
                 </tr>
                 <tr>
                     <td>$t5</td>
                     <td>13</td>
-                    <td>0</td>
+                    <td id="$t5">0</td>
                 </tr>
                 <tr>
                     <td>$t6</td>
                     <td>14</td>
-                    <td>0</td>
+                    <td id="$t6">0</td>
                 </tr>
                 <tr>
                     <td>$t7</td>
                     <td>15</td>
-                    <td>0</td>
+                    <td id="$t7">0</td>
                 </tr>
                 <tr>
                     <td>$s0</td>
                     <td>16</td>
-                    <td>0</td>
+                    <td id="$s0">0</td>
                 </tr>
                 <tr>
                     <td>$s1</td>
                     <td>17</td>
-                    <td>0</td>
+                    <td id="$s1">0</td>
                 </tr>
                 <tr>
                     <td>$s2</td>
                     <td>18</td>
-                    <td>0</td>
+                    <td id="$s2">0</td>
                 </tr>
                 <tr>
                     <td>$s3</td>
                     <td>19</td>
-                    <td>0</td>
+                    <td id="$s3">0</td>
                 </tr>
                 <tr>
                     <td>$s4</td>
                     <td>20</td>
-                    <td>0</td>
+                    <td id="$s4">0</td>
                 </tr>
                 <tr>
                     <td>$s5</td>
                     <td>21</td>
-                    <td>0</td>
+                    <td id="$s5">0</td>
                 </tr>
                 <tr>
                     <td>$s6</td>
                     <td>22</td>
-                    <td>0</td>
+                    <td id="$s6">0</td>
                 </tr>
                 <tr>
                     <td>$s7</td>
                     <td>23</td>
-                     <td>0</td>
+                    <td id="$s7">0</td>
                 </tr>
                 <tr>
                     <td>$t8</td>
                     <td>24</td>
-                    <td>0</td>
+                    <td id="$t8">0</td>
                 </tr>
                 <tr>
                     <td>$t9</td>
                     <td>25</td>
-                    <td>0</td>
+                    <td id="$t9">0</td>
                 </tr>
                 <tr>
                     <td>$k0</td>
                     <td>26</td>
-                    <td>0</td>
+                    <td id="$k0">0</td>
                 </tr>
                 <tr>
                     <td>$k1</td>
                     <td>27</td>
-                    <td>0</td>
+                    <td id="$k1">0</td>
                 </tr>
                 <tr>
                     <td>$gp</td>
                     <td>28</td>
-                    <td>0</td>
+                    <td id="$gp">0</td>
                 </tr>
                 <tr>
                     <td >$sp</td>
@@ -281,22 +281,22 @@
                 <tr>
                     <td>$fp</td>
                     <td>30</td>
-                    <td>0</td>
+                    <td id="$fp">0</td>
                 </tr>
                 <tr>
                     <td>$ra</td>
                     <td>31</td>
-                    <td>0</td>
+                    <td id="$ra">0</td>
                 </tr>
                 <tr>
                     <td>$hi</td>
                     <td>32</td>
-                    <td>0</td>
+                    <td id="$hi">0</td>
                 </tr>
                 <tr>
                     <td>$lo</td>
                     <td>33</td>
-                    <td>0</td>
+                    <td id="$lo">0</td>
                 </tr>
                 <tr>
                     <td >$pc</td>
@@ -449,10 +449,10 @@
 	  <button  id="bottom_parser">Parser Message</button>
 	<div class="wrapper" style="border: 1px solid black" >
 		<div style="background-color: grey">
-			<button id="bottom_clear"class="center_feild" >Clear</button>
+			<button id="bottom_clear" onclick="ClearParserText()" class="center_feild" >Clear</button>
 		</div>
 		<div style="width:98%;max-height:9em;">
-			<textarea style="width: 100%;height:95%;" id="parsertext">
+			<textarea readonly style="width: 100%;height:95%;" id="parsertext">
 			
 			</textarea>
 		</div>

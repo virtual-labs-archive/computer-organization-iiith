@@ -1,11 +1,8 @@
 var opcodes = {
     NONE: 0,
-    MOV_REG_TO_REG: 1,
-    MOV_ADDRESS_TO_REG: 2,
-    MOV_REGADDRESS_TO_REG: 3,
-    MOV_REG_TO_ADDRESS: 4,
-    MOV_REG_TO_REGADDRESS: 5,
-    MOV_NUMBER_TO_REG: 6,
-    MOV_NUMBER_TO_ADDRESS: 7,
-    MOV_NUMBER_TO_REGADDRESS: 8,
+    MOV_REG_TO_REG: move,
+    ADD_REG_TO_REG: add,
+    SUB_REG_TO_REG: sub,
+    MULT_REG_TO_REG: mult,
+    DIV_REG_TO_REG: div
     }
