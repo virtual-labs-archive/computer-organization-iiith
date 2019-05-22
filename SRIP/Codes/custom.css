@@ -193,3 +193,7 @@ svg{
   border: 1px;
   border-style: solid;
 }
+.inst_table{
+	width: 500px; 
+	font-size: 18px;
+}
