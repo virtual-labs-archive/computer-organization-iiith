@@ -3,6 +3,19 @@
 <head>
 	<title>VM simulator</title>
 	<link rel="stylesheet" type="text/css" href="LIBRARIES/grid_view1.css">
+	<script>
+		function generate() {
+		  var z = 64536; 
+		  var x = Math.floor(Math.random()*z).toString(16);
+		  var m = document.getElementById('hex');
+		  m.value = x;
+		}
+		function generate_page_no() {
+		  var x = Math.floor(Math.random()*15);
+		  var m = document.getElementById('dec');
+		  m.value = x;
+		}
+	</script>
 </head>
 <body>
 	<div class="one">
@@ -100,8 +113,8 @@
 			<div class="three_2 item1">
 				<table width=10%>
 					<tr>
-						<td><button type="button">GENERATE</button></td>
-						<td><input type="text" name="Virtual address" value="virtual address"></td>
+						<td><button type="button" onclick="generate()">GENERATE</button></td>
+						<td><input type="text" name="Virtual address" value="virtual address" id="hex"></td>
 						<td><button type="button">map</button></td>
 					</tr>
 					<tr>
@@ -111,8 +124,8 @@
 						<td></td>
 					</tr>
 					<tr>
-						<td><button type="button">GENERATE</button></td>
-						<td><input type="text" name="Page number" value="Page number"></td>
+						<td><button type="button" onclick="generate_page_no()">GENERATE</button></td>
+						<td><input type="text" name="Page number" value="Page number" id="dec"></td>
 						<td><button type="button">map</button></td>
 					</tr>
 				</table>
