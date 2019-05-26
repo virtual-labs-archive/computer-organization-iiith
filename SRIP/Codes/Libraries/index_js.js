@@ -6,43 +6,6 @@ var UserFileIndex=-101;
 var codes=[];
 var CopyTextBuffer="You haven't copy anything.This is default text";
 
-
-//We can't forward declare the functions
-// function mydropdownFunction(x);
-// function assemblerlistner();
-// function Constructer(name);
-// function init(TextNode);
-// function myfunctionlist(TextNode,BtnName);
-// function fileonload();
-// function clicklistner(y);
-// function textareachanged(status);
-// function about_popup();
-// function close_popup();
-// function Code();
-// function init_codes();
-// function codes_show(x);
-// function copy_code();
-// function selectAll();
-// function getSelectedText(el);
-// function paste();
-// function typeInTextarea(el, newText);
-// function copy();
-// function cut();
-// function removeOutTextarea(el);
-// function saveAs_function();
-// function close_fun();
-// function closeAll_fun();
-// function open_window();
-// function setinputfileintextarea();
-// function exit_Window();
-// function update_stack(el,StackId);
-// function undo_fun();
-// function redo_fun();
-
-
-
-
-
 //Java script part for dropdown of sub menu
 //****************************************************************************************************
 var LockDropDown=-1;
@@ -105,7 +68,7 @@ function assemblerlistner()
 	document.getElementById("text_table").setAttribute("style", "visibility:visible;width:100%; background-color: white;");
 	
 	alert("going to init");
-	InitExecute();
+	initExecute();
 }
 
 
@@ -118,30 +81,30 @@ function fileonload(status)
 	LastButtonId=parseInt((sessionStorage.getItem("-500")),10);
 	var WhileCounter=parseInt((sessionStorage.getItem("-1")),10);
 	var UserFiles=parseInt((sessionStorage.getItem("-100")),10);
-	UserFileCounter=UserFiles;
-	
-			if(sessionStorage.getItem("-2")==="1"){
-			CopyTextBuffer="#Program to add two numbers"+"\n\n\t"+".data"+"\n\t"+"sum: .word 0"+"\n\n\t"+".text"+"\n\t"+"main:"+"\n\t"	+"li $t0, 10"+"\n\t"+"li $t1, 15"+"\n\t"+"add $t2, $t0, $t1 	# compute the sum"	+"\n\t"+"sw $t2, sum"
+	if(UserFiles>=0){
+		UserFileCounter=UserFiles;
+	}
+		if(sessionStorage.getItem("-2")==="1"){
+			CopyTextBuffer="#Program to add two numbers"+"\n\n\t"+".data"+"\n\t"+"sum: .word 0"+"\n\n\t"+".text"+"\n\t"+"main:"+"\n\t"	+"li $t0, 10"+"\n\t"+"li $t1, 15"+"\n\t"+"add $t2, $t0, $t1 	# compute the sum"	+"\n\t"+"sw $t2, sum";
 		}
 			else if(sessionStorage.getItem("-2")==="2"){
-			CopyTextBuffer="#Program to convert a string to int"+"\n\n"+".data"+"\n"+'string: .asciiz "13245"'+"\n"+"newline: .word 10"+"\n"+".text"+"\n"+"main:"+"\n\n"+"la $t0, string 				# Initialize S."+"\n"+"li $t2, 0 				# Initialize sum = 0."+"\n"+"lw $t5, newline"+"\n"+ "sum_loop:"+"\n\t"+"lb $t1, ($t0) 			# load the byte at addr S into $t1,"+"\n\t"+ "addu $t0, $t0, 1 		# and increment S."+"\n\t"+"beq $t1, $t5, end_sum_loop"+"\n\n\t"+"mul $t2, $t2, 10 		# t2 *= 10."+"\n\n\t"+"sub $t1, $t1, 48	 	# t1 -= '0'."+"\n\t"+"add $t2, $t2, $t1 		# t2 += t1."+"\n\n\t"+"b sum_loop # and repeat the loop."+"\n"+"end_sum_loop:"
+			CopyTextBuffer="#Program to convert a string to int"+"\n\n"+".data"+"\n"+'string: .asciiz "13245"'+"\n"+"newline: .word 10"+"\n"+".text"+"\n"+"main:"+"\n\n"+"la $t0, string 				# Initialize S."+"\n"+"li $t2, 0 				# Initialize sum = 0."+"\n"+"lw $t5, newline"+"\n"+ "sum_loop:"+"\n\t"+"lb $t1, ($t0) 			# load the byte at addr S into $t1,"+"\n\t"+ "addu $t0, $t0, 1 		# and increment S."+"\n\t"+"beq $t1, $t5, end_sum_loop"+"\n\n\t"+"mul $t2, $t2, 10 		# t2 *= 10."+"\n\n\t"+"sub $t1, $t1, 48	 	# t1 -= '0'."+"\n\t"+"add $t2, $t2, $t1 		# t2 += t1."+"\n\n\t"+"b sum_loop # and repeat the loop."+"\n"+"end_sum_loop:";
 		}
 		else if(sessionStorage.getItem("-2")==="3"){
-			CopyTextBuffer="#compute length of a string"+"\n\n"+".data"+"\n"+'string: .asciiz "This is a string"'+"\n"+"length: .word 0"+"\n\n"+".text"+"\n"+"la $t1, string"+"\n"+"li $t2, 0"+"\n"+"length_loop:"+"\n\t"+"lb $t3, ($t1)"+"\n\t"+"beqz $t3, endloop"+"\n\t"+"addu $t2, $t2, 1"+"\n\t"+"addu $t1, $t1, 1"+"\n\t"+"b length_loop"+"\n"+"endloop:"+"\n\t"+"sub $t2, $t2, 1		#subtract 1 to ignore \\0 "+"\n\t"+"sw $t2, length"
+			CopyTextBuffer="#compute length of a string"+"\n\n"+".data"+"\n"+'string: .asciiz "This is a string"'+"\n"+"length: .word 0"+"\n\n"+".text"+"\n"+"la $t1, string"+"\n"+"li $t2, 0"+"\n"+"length_loop:"+"\n\t"+"lb $t3, ($t1)"+"\n\t"+"beqz $t3, endloop"+"\n\t"+"addu $t2, $t2, 1"+"\n\t"+"addu $t1, $t1, 1"+"\n\t"+"b length_loop"+"\n"+"endloop:"+"\n\t"+"sub $t2, $t2, 1		#subtract 1 to ignore \\0 "+"\n\t"+"sw $t2, length";
 		}
 	var i=0;
 	var UserEntry=-101;
 	while(WhileCounter>=1)
 	{
-		
 		var text=sessionStorage.getItem((i).toString());
 		var temp=parseInt((sessionStorage.getItem((UserEntry).toString())),10);
 		if((UserFiles>=1) && (i===temp))
 		{
-			UserEntry--;
+			UserEntry=UserEntry-1;
 	
 			var nam=sessionStorage.getItem((UserEntry).toString());
-			UserEntry--;
+			UserEntry=UserEntry-1;
 			if(status===1){
 				myfunctionlist(text,nam);
 			}
@@ -149,7 +112,7 @@ function fileonload(status)
 				init(text);
 			}
 			UserFileIndex=UserEntry;
-			UserFiles--;
+			UserFiles=UserFiles-1;
 		}
 		else{
 				if(text===undefined | text===null)
@@ -172,8 +135,8 @@ function fileonload(status)
 				}
 				
 		}
-		WhileCounter--;
-		i++;
+		WhileCounter=WhileCounter-1;
+		i=i+1;
 	//	alert("Whilecounter2-:"+WhileCounter);
 	}
 }
@@ -192,14 +155,14 @@ function init(TextNode)
 	var app=count.toString();
 	str=str.concat(app);
 	str=str.concat(".asm");
-	count++;
+	count=count+1;
 	var name1=new Constructer(str);
 	if(TextNode!==""){
 		name1.text=TextNode;
 	}
 	name1.StackUndoRedo.push(name1.text);
-	name1.StackTop++;
-	name1.UndoRedoCounter++;
+	name1.StackTop=name1.StackTop+1;
+	name1.UndoRedoCounter=name1.UndoRedoCounter+1;
 	names.push(name1);
 	sessionStorage.setItem("-1",(count-1).toString());
 	return names;
@@ -220,7 +183,7 @@ function myfunctionlist(TextNode,BtnName)
 		}
 		
 		btn.id=(count-2).toString();
-		btn.addEventListener("click",function(){clicklistner(btn.id)});
+		btn.addEventListener("click",function(){clicklistner(btn.id);});
 		document.getElementById("mydiv").appendChild(btn);
 	}
 	else{
@@ -250,8 +213,8 @@ function textareachanged(status)
 function about_popup(){
 	var cls =document.getElementsByClassName("close")[0];
 	var cls2 =document.getElementsByClassName("close_btn")[0];
-	cls.addEventListener("click",function(){close_popup()});
-	cls2.addEventListener("click",function(){close_popup()});
+	cls.addEventListener("click",function(){close_popup();});
+	cls2.addEventListener("click",function(){close_popup();});
 	var mymodl=document.getElementById("my-modal");
 	mymodl.setAttribute("style", "display:block;");
 }
@@ -446,7 +409,7 @@ function setinputfileintextarea()
 		{
 			contents=event.target.result;
 			myfunctionlist(contents,file.name);
-			UserFileCounter++;
+			UserFileCounter=UserFileCounter+1;
 			sessionStorage.setItem("-100",(UserFileCounter).toString());
 			sessionStorage.setItem((UserFileIndex).toString(),(count-2).toString());
 			UserFileIndex--;

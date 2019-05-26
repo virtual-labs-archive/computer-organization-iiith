@@ -45,7 +45,7 @@ var status=0;
 var PreviousId=""; 
 
 
-function InitExecute()
+function initExecute()
 {
     if(status==0){
         reset();
@@ -143,7 +143,7 @@ function setTheIntialArea()
 }
 
 
-function StepUtil()
+function stepUtil()
 {
     var RetStatus=0;
     if(StepCounter<ProgramAddrLengthCount && status===1) 
@@ -292,14 +292,14 @@ function processResult(ProcessingCode,index)
     }
     return status;
 }
-function ClearParserText()
+function clearParserText()
 {
     document.getElementById("parsertext").innerHTML="";
 }
-function RunExecute()
+function runExecute()
 {
     var status=1;
     while(status==1){
-        status=StepUtil();
+        status=stepUtil();
     }
 }
