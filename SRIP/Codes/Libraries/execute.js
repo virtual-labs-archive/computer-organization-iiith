@@ -7,6 +7,7 @@ var carry;
 var fault;
 /*gpr=general purpose registor,ip=instruction pointer,
 pc=prog counter,sp=stack pointer and other are flags*/
+
 function reset() {
     gpr = [0, 0, 0, 0];
     self.maxSP;
@@ -37,7 +38,6 @@ var DataSegIndex=-1;
 var TextSegIndex=-1;
 var program;
 var ProgLines;
-var status=0;
 var ProgramAddrLengthCount=0;
 var TextSegmentCode=[];
 var StepCounter=0;
@@ -45,17 +45,14 @@ var status=0;
 var PreviousId=""; 
 
 
-function init_execute()
+function InitExecute()
 {
-    if(status===0){
+    if(status==0){
         reset();
-    // alert("init");
         program=names[LastButtonId].text;
         ProgLines=program.split("\n");
-        
-        //validate_program();
 
-        //trimming and findind index of data and text segment
+        //trimming and finding index of data and text segment
         for(var i=0;i<ProgLines.length;i++){
             ProgLines[i]=ProgLines[i].trim(); //remove whitespace from start and end
             var TempSeg=ProgLines[i].indexOf(".data");
@@ -87,7 +84,7 @@ function init_execute()
                 TempValue=TempStr.slice(TempVarTypeIndexEnd+1);
                 if(TempValue[0]==='"')
                 {
-                    TempValue=temp_value.slice(1,temp_value.length-2);
+                    TempValue=TempValue.slice(1,TempValue.length-2);
                 }
             }
             VariablesName.push(TempName);
@@ -146,7 +143,7 @@ function setTheIntialArea()
 }
 
 
-function step_util()
+function StepUtil()
 {
     var RetStatus=0;
     if(StepCounter<ProgramAddrLengthCount && status===1) 
@@ -230,7 +227,7 @@ function processResult(ProcessingCode,index)
                 var NodeReg2=document.getElementById(reg2);
                 var NodeReg3=document.getElementById(reg3);
                 //reg1=reg2+reg3
-                NodeReg1.innerHTML=parseInt(NodeReg2.innerHTML)+parseInt(NodeReg3.innerHTML);
+                NodeReg1.innerHTML=parseInt((NodeReg2.innerHTML),10)+parseInt((NodeReg3.innerHTML),10);
                 NodeReg1.parentElement.style="background-color:grey";
                 PreviousId=reg1;
                 break;
@@ -249,7 +246,7 @@ function processResult(ProcessingCode,index)
                 var NodeReg2=document.getElementById(reg2);
                 var NodeReg3=document.getElementById(reg3);
                  //reg1=reg2-reg3
-                 NodeReg1.innerHTML=parseInt(NodeReg2.innerHTML)-parseInt(NodeReg3.innerHTML);
+                 NodeReg1.innerHTML=parseInt((NodeReg2.innerHTML),10)-parseInt((NodeReg3.innerHTML),10);
                  NodeReg1.parentElement.style="background-color:grey";
                  PreviousId=reg1;
                 break;
@@ -265,7 +262,7 @@ function processResult(ProcessingCode,index)
                 var NodeReg1=document.getElementById(reg1);
                 var NodeReg2=document.getElementById(reg2);
                  //reg1=reg2*value
-                 NodeReg1.innerHTML=parseInt(NodeReg2.innerHTML)*parseInt(value);
+                 NodeReg1.innerHTML=parseInt((NodeReg2.innerHTML),10)*parseInt((value),10);
                  NodeReg1.parentElement.style="background-color:grey";
                  PreviousId=reg1;
                 break;
@@ -284,7 +281,7 @@ function processResult(ProcessingCode,index)
                 var NodeReg2=document.getElementById(reg2);
                 var NodeReg3=document.getElementById(reg3);
                  //reg1=reg2/reg3
-                NodeReg1.innerHTML=parseInt(NodeReg2.innerHTML)/parseInt(NodeReg3.innerHTML);
+                NodeReg1.innerHTML=parseInt((NodeReg2.innerHTML),10)/parseInt((NodeReg3.innerHTML),10);
                 NodeReg1.parentElement.style="background-color:grey";
                 PreviousId=reg1;
                 break;
@@ -299,10 +296,10 @@ function ClearParserText()
 {
     document.getElementById("parsertext").innerHTML="";
 }
-function Run_execute()
+function RunExecute()
 {
     var status=1;
     while(status==1){
-        status=step_util();
+        status=StepUtil();
     }
 }

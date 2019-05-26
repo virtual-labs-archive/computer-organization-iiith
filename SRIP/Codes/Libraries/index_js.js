@@ -1,3 +1,48 @@
+var names=[];
+var count=1;
+var LastButtonId=-1;
+var UserFileCounter=0;
+var UserFileIndex=-101;
+var codes=[];
+var CopyTextBuffer="You haven't copy anything.This is default text";
+
+
+//We can't forward declare the functions
+// function mydropdownFunction(x);
+// function assemblerlistner();
+// function Constructer(name);
+// function init(TextNode);
+// function myfunctionlist(TextNode,BtnName);
+// function fileonload();
+// function clicklistner(y);
+// function textareachanged(status);
+// function about_popup();
+// function close_popup();
+// function Code();
+// function init_codes();
+// function codes_show(x);
+// function copy_code();
+// function selectAll();
+// function getSelectedText(el);
+// function paste();
+// function typeInTextarea(el, newText);
+// function copy();
+// function cut();
+// function removeOutTextarea(el);
+// function saveAs_function();
+// function close_fun();
+// function closeAll_fun();
+// function open_window();
+// function setinputfileintextarea();
+// function exit_Window();
+// function update_stack(el,StackId);
+// function undo_fun();
+// function redo_fun();
+
+
+
+
+
 //Java script part for dropdown of sub menu
 //****************************************************************************************************
 var LockDropDown=-1;
@@ -59,24 +104,20 @@ function assemblerlistner()
 	document.getElementById("data_table").setAttribute("style", "visibility:visible;width:100%; background-color: white;");
 	document.getElementById("text_table").setAttribute("style", "visibility:visible;width:100%; background-color: white;");
 	
-	init_execute();
+	alert("going to init");
+	InitExecute();
 }
 
 
 
 //Java script part for the new file creation and text filed
 //****************************************************************************************************
-var names=[];
-var count=1;
-var LastButtonId=-1;
-var UserFileCounter=0;
-var UserFileIndex=-101;
 
-function fileonload()
+function fileonload(status)
 {
-	LastButtonId=parseInt(sessionStorage.getItem("-500"));
-	var WhileCounter=parseInt(sessionStorage.getItem("-1"));
-	var UserFiles=parseInt(sessionStorage.getItem("-100"));
+	LastButtonId=parseInt((sessionStorage.getItem("-500")),10);
+	var WhileCounter=parseInt((sessionStorage.getItem("-1")),10);
+	var UserFiles=parseInt((sessionStorage.getItem("-100")),10);
 	UserFileCounter=UserFiles;
 	
 			if(sessionStorage.getItem("-2")==="1"){
@@ -94,30 +135,49 @@ function fileonload()
 	{
 		
 		var text=sessionStorage.getItem((i).toString());
-		var temp=parseInt(sessionStorage.getItem((UserEntry).toString()));
+		var temp=parseInt((sessionStorage.getItem((UserEntry).toString())),10);
 		if((UserFiles>=1) && (i===temp))
 		{
 			UserEntry--;
+	
 			var nam=sessionStorage.getItem((UserEntry).toString());
 			UserEntry--;
-			myfunctionlist(text,nam);
+			if(status===1){
+				myfunctionlist(text,nam);
+			}
+			else{
+				init(text);
+			}
 			UserFileIndex=UserEntry;
 			UserFiles--;
 		}
 		else{
-			if(text===undefined | text===null)
-			{
-				myfunctionlist('','');
-			}
-			else{
-				myfunctionlist(text,'');
-			}
-			
+				if(text===undefined | text===null)
+				{
+					
+					if(status===1){
+						myfunctionlist("","");
+					}
+					else{
+						names=init("");
+					}
+				}
+				else{
+					if(status===1){
+						myfunctionlist(text,'');
+					}
+					else{
+						names=init(text);
+					}
+				}
+				
 		}
 		WhileCounter--;
 		i++;
+	//	alert("Whilecounter2-:"+WhileCounter);
 	}
 }
+
 function Constructer(name) {
   this.name = name;
 	this.text = "Add your code here!";
@@ -144,16 +204,16 @@ function init(TextNode)
 	sessionStorage.setItem("-1",(count-1).toString());
 	return names;
 }
-function myfunctionlist(TextNode,btn_name)
+function myfunctionlist(TextNode,BtnName)
 {
 	if(count<10)
 	{
 		names=init(TextNode);
 		var btn = document.createElement("BUTTON");
-		if(btn_name!=="")
+		if(BtnName!=="")
 		{
-			btn.innerHTML=btn_name;
-			names[count-2].name=btn_name;
+			btn.innerHTML=BtnName;
+			names[count-2].name=BtnName;
 		}
 		else{
 			btn.innerHTML=names[count-2].name;
@@ -167,16 +227,16 @@ function myfunctionlist(TextNode,btn_name)
 		alert('File capacity Full');
 	}
 }
-
 function clicklistner(y)
 {
-	var x=parseInt(y);
+	var x=parseInt((y),10);
 	var node=document.getElementById("mytext");
 	LastButtonId=x;
 	node.value=names[x].text;
 	sessionStorage.setItem((x).toString(),names[x].text);
 	sessionStorage.setItem("-500",LastButtonId);
 }
+
 function textareachanged(status)
 {
 	var node=document.getElementById("mytext");
@@ -202,19 +262,19 @@ function close_popup()
 }
 // Java script part for the codes display
 //********************************************************************************************************
-var codes=[]
+
 function Code()
 {
-    this.text=""
+    this.text="";
 }
 function init_codes()
 {
 	var code1=new Code();
 	var code2=new Code();
 	var code3=new Code();
-	code1.text="#Program to add two numbers"+"\n\n\t"+".data"+"\n\t"+"sum: .word 0"+"\n\n\t"+".text"+"\n\t"+"main:"+"\n\t"	+"li $t0, 10"+"\n\t"+"li $t1, 15"+"\n\t"+"add $t2, $t0, $t1 	# compute the sum"	+"\n\t"+"sw $t2, sum"
-	code2.text="#Program to convert a string to int"+"\n\n"+".data"+"\n"+'string: .asciiz "13245"'+"\n"+"newline: .word 10"+"\n"+".text"+"\n"+"main:"+"\n\n"+"la $t0, string 				# Initialize S."+"\n"+"li $t2, 0 				# Initialize sum = 0."+"\n"+"lw $t5, newline"+"\n"+ "sum_loop:"+"\n\t"+"lb $t1, ($t0) 			# load the byte at addr S into $t1,"+"\n\t"+ "addu $t0, $t0, 1 		# and increment S."+"\n\t"+"beq $t1, $t5, end_sum_loop"+"\n\n\t"+"mul $t2, $t2, 10 		# t2 *= 10."+"\n\n\t"+"sub $t1, $t1, 48	 	# t1 -= '0'."+"\n\t"+"add $t2, $t2, $t1 		# t2 += t1."+"\n\n\t"+"b sum_loop # and repeat the loop."+"\n"+"end_sum_loop:"
-	code3.text="#compute length of a string"+"\n\n"+".data"+"\n"+'string: .asciiz "This is a string"'+"\n"+"length: .word 0"+"\n\n"+".text"+"\n"+"la $t1, string"+"\n"+"li $t2, 0"+"\n"+"length_loop:"+"\n\t"+"lb $t3, ($t1)"+"\n\t"+"beqz $t3, endloop"+"\n\t"+"addu $t2, $t2, 1"+"\n\t"+"addu $t1, $t1, 1"+"\n\t"+"b length_loop"+"\n"+"endloop:"+"\n\t"+"sub $t2, $t2, 1		#subtract 1 to ignore \\0 "+"\n\t"+"sw $t2, length"
+	code1.text="#Program to add two numbers"+"\n\n\t"+".data"+"\n\t"+"sum: .word 0"+"\n\n\t"+".text"+"\n\t"+"main:"+"\n\t"	+"li $t0, 10"+"\n\t"+"li $t1, 15"+"\n\t"+"add $t2, $t0, $t1 	# compute the sum"	+"\n\t"+"sw $t2, sum";
+	code2.text="#Program to convert a string to int"+"\n\n"+".data"+"\n"+'string: .asciiz "13245"'+"\n"+"newline: .word 10"+"\n"+".text"+"\n"+"main:"+"\n\n"+"la $t0, string 				# Initialize S."+"\n"+"li $t2, 0 				# Initialize sum = 0."+"\n"+"lw $t5, newline"+"\n"+ "sum_loop:"+"\n\t"+"lb $t1, ($t0) 			# load the byte at addr S into $t1,"+"\n\t"+ "addu $t0, $t0, 1 		# and increment S."+"\n\t"+"beq $t1, $t5, end_sum_loop"+"\n\n\t"+"mul $t2, $t2, 10 		# t2 *= 10."+"\n\n\t"+"sub $t1, $t1, 48	 	# t1 -= '0'."+"\n\t"+"add $t2, $t2, $t1 		# t2 += t1."+"\n\n\t"+"b sum_loop # and repeat the loop."+"\n"+"end_sum_loop:";
+	code3.text="#compute length of a string"+"\n\n"+".data"+"\n"+'string: .asciiz "This is a string"'+"\n"+"length: .word 0"+"\n\n"+".text"+"\n"+"la $t1, string"+"\n"+"li $t2, 0"+"\n"+"length_loop:"+"\n\t"+"lb $t3, ($t1)"+"\n\t"+"beqz $t3, endloop"+"\n\t"+"addu $t2, $t2, 1"+"\n\t"+"addu $t1, $t1, 1"+"\n\t"+"b length_loop"+"\n"+"endloop:"+"\n\t"+"sub $t2, $t2, 1		#subtract 1 to ignore \\0 "+"\n\t"+"sw $t2, length";
 	codes.push(code1);
 	codes.push(code2);
 	codes.push(code3);
@@ -228,7 +288,7 @@ function codes_show(x){
 
 //Java script part for the codes copy to clipboard
 //********************************************************************************************************
-var CopyTextBuffer="You haven't copy anything.This is default text";
+
 function copy_code()
 {
 	var node=document.getElementById("code_mytext");
@@ -270,6 +330,10 @@ function getSelectedText(el) {
     }
     return "";
 }
+
+
+
+
 function paste()
 {
 	var el=document.getElementById("mytext");
@@ -284,14 +348,14 @@ function paste()
 	
 }
 function typeInTextarea(el, newText) {
-	var start = el.selectionStart
-	var end = el.selectionEnd
-	var text = el.value
-	var before = text.substring(0, start)
-	var after  = text.substring(end, text.length)
-	el.value = (before + newText + after)
-	el.selectionStart = el.selectionEnd = start + newText.length
-	el.focus()
+	var start = el.selectionStart;
+	var end = el.selectionEnd;
+	var text = el.value;
+	var before = text.substring(0, start);
+	var after  = text.substring(end, text.length);
+	el.value = (before + newText + after);
+	el.selectionStart = el.selectionEnd = start + newText.length;
+	el.focus();
   }
 function copy()
 {
@@ -319,13 +383,13 @@ function cut()
 	}
 }
 function removeOutTextarea(el) {
-	var start = el.selectionStart
-	var end = el.selectionEnd
-	var text = el.value
-	var before = text.substring(0, start)
-	var after  = text.substring(end, text.length)
-	el.value = (before + after)
-	el.focus()
+	var start = el.selectionStart;
+	var end = el.selectionEnd;
+	var text = el.value;
+	var before = text.substring(0, start);
+	var after  = text.substring(end, text.length);
+	el.value = (before + after);
+	el.focus();
   }
 function saveAs_function()
 {
@@ -341,7 +405,7 @@ function close_fun() {
 		var node=document.getElementById((LastButtonId).toString());
 		var parent=node.parentNode;
 		parent.removeChild(node);
-		alert("Closed file will gets restored\nOnce you refresh the page or reload it!");
+		alert("Closed file will gets restored\n\tOnce you refresh the page or reload it!");
 	}
 	else{
 		alert("No file to close!");
