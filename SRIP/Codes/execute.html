@@ -43,8 +43,8 @@
         <div id="myDropdown_run" class="dropdown-content">
           <button class="button_decor" id="Run_assemble" onclick="assemblerlistner()">Assemble</button></br>
           <div class="assemblerclass" >
-              <button class="button_decor" id="Run_run" style="cursor: none;opacity: 0.5">Run</button></br>
-              <button class="button_decor" id="Run_step"  style="cursor: none;opacity: 0.5">Step</button></br>
+              <button class="button_decor" id="Run_run" onclick="Run_execute()" style="cursor: none;opacity: 0.5">Run</button></br>
+              <button class="button_decor" id="Run_step" onclick="step_util()" style="cursor: none;opacity: 0.5">Step</button></br>
               <button class="button_decor" id="Run_reset" style="cursor: none;opacity: 0.5">Reset</button><hr>
               <button class="button_decor" id="Run_clearBreakPoints" style="cursor: none;opacity: 0.5">Clear Breakpoints</button></br>
               <button class="button_decor" id="Run_toggleBreakPoints" style="cursor: none;opacity: 0.5">Toggle Breakpoints</button></br>
@@ -113,7 +113,7 @@
     <div class="box2" >
         <div style="position: relative;height: 100%;">
                 <button id="execute_step" onclick="step_util()" class="execute_btn" style="cursor: none; opacity: 0.5;">Step</button></br>
-                <button id="execute_run"  class="execute_btn" style="cursor: none; opacity: 0.5;">Run</button>
+                <button id="execute_run" onclick="Run_execute()" class="execute_btn" style="cursor: none; opacity: 0.5;">Run</button>
         </div>
         
     </div>

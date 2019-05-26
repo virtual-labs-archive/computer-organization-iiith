@@ -1,44 +1,44 @@
 //Java script part for dropdown of sub menu
 //****************************************************************************************************
-var lockDropDown=-1;
+var LockDropDown=-1;
 function mydropdownFunction(x) {
 	var status=0;
-	if(lockDropDown!=-1)
+	if(LockDropDown!==-1)
 	{
-		if(lockDropDown==x){
+		if(LockDropDown===x){
 			status=1;
 		}
-		if(lockDropDown==0){
+		if(LockDropDown===0){
 			document.getElementById("myDropdown_file").classList.toggle("show");
 	   }
-	   else if(lockDropDown==1){
+	   else if(LockDropDown===1){
 			document.getElementById("myDropdown_edit").classList.toggle("show");
 	   }
-	   else if(lockDropDown==2 ){
+	   else if(LockDropDown===2 ){
 			document.getElementById("myDropdown_run").classList.toggle("show");
 	   }
-	   else if(lockDropDown==3){
+	   else if(LockDropDown===3){
 			document.getElementById("myDropdown_help").classList.toggle("show");
 	   }
-	   lockDropDown=-1;
+	   LockDropDown=-1;
 	}
-	if(status!=1)
+	if(status!==1)
 	{
-		if(x==0 && lockDropDown==-1){
+		if(x===0 && LockDropDown===-1){
 			document.getElementById("myDropdown_file").classList.toggle("show");
-			lockDropDown=0;
+			LockDropDown=0;
 	   }
-	   else if(x==1  && lockDropDown==-1){
+	   else if(x===1  && LockDropDown===-1){
 			document.getElementById("myDropdown_edit").classList.toggle("show");
-			lockDropDown=1;
+			LockDropDown=1;
 	   }
-	   else if(x==2  && lockDropDown==-1){
+	   else if(x===2  && LockDropDown===-1){
 			document.getElementById("myDropdown_run").classList.toggle("show");
-			lockDropDown=2;
+			LockDropDown=2;
 	   }
-	   else if(x==3  && lockDropDown==-1){
+	   else if(x===3  && LockDropDown===-1){
 			document.getElementById("myDropdown_help").classList.toggle("show");
-			lockDropDown=3;
+			LockDropDown=3;
 	   }
 	}
 	
@@ -68,42 +68,44 @@ function assemblerlistner()
 //****************************************************************************************************
 var names=[];
 var count=1;
-var last_button_id=-1;
-var user_file_counter=0;
-var user_file_index=-101;
+var LastButtonId=-1;
+var UserFileCounter=0;
+var UserFileIndex=-101;
 
 function fileonload()
 {
-	last_button_id=parseInt(sessionStorage.getItem("-500"));
-	var while_counter=parseInt(sessionStorage.getItem("-1"));
-	var user_files=parseInt(sessionStorage.getItem("-100"));
+	LastButtonId=parseInt(sessionStorage.getItem("-500"));
+	var WhileCounter=parseInt(sessionStorage.getItem("-1"));
+	var UserFiles=parseInt(sessionStorage.getItem("-100"));
+	UserFileCounter=UserFiles;
 	
-			if(sessionStorage.getItem("-2")=="1"){
-			copy_text_buffer="#Program to add two numbers"+"\n\n\t"+".data"+"\n\t"+"sum: .word 0"+"\n\n\t"+".text"+"\n\t"+"main:"+"\n\t"	+"li $t0, 10"+"\n\t"+"li $t1, 15"+"\n\t"+"add $t2, $t0, $t1 	# compute the sum"	+"\n\t"+"sw $t2, sum"
+			if(sessionStorage.getItem("-2")==="1"){
+			CopyTextBuffer="#Program to add two numbers"+"\n\n\t"+".data"+"\n\t"+"sum: .word 0"+"\n\n\t"+".text"+"\n\t"+"main:"+"\n\t"	+"li $t0, 10"+"\n\t"+"li $t1, 15"+"\n\t"+"add $t2, $t0, $t1 	# compute the sum"	+"\n\t"+"sw $t2, sum"
 		}
-			else if(sessionStorage.getItem("-2")=="2"){
-			copy_text_buffer="#Program to convert a string to int"+"\n\n"+".data"+"\n"+'string: .asciiz "13245"'+"\n"+"newline: .word 10"+"\n"+".text"+"\n"+"main:"+"\n\n"+"la $t0, string 				# Initialize S."+"\n"+"li $t2, 0 				# Initialize sum = 0."+"\n"+"lw $t5, newline"+"\n"+ "sum_loop:"+"\n\t"+"lb $t1, ($t0) 			# load the byte at addr S into $t1,"+"\n\t"+ "addu $t0, $t0, 1 		# and increment S."+"\n\t"+"beq $t1, $t5, end_sum_loop"+"\n\n\t"+"mul $t2, $t2, 10 		# t2 *= 10."+"\n\n\t"+"sub $t1, $t1, 48	 	# t1 -= '0'."+"\n\t"+"add $t2, $t2, $t1 		# t2 += t1."+"\n\n\t"+"b sum_loop # and repeat the loop."+"\n"+"end_sum_loop:"
+			else if(sessionStorage.getItem("-2")==="2"){
+			CopyTextBuffer="#Program to convert a string to int"+"\n\n"+".data"+"\n"+'string: .asciiz "13245"'+"\n"+"newline: .word 10"+"\n"+".text"+"\n"+"main:"+"\n\n"+"la $t0, string 				# Initialize S."+"\n"+"li $t2, 0 				# Initialize sum = 0."+"\n"+"lw $t5, newline"+"\n"+ "sum_loop:"+"\n\t"+"lb $t1, ($t0) 			# load the byte at addr S into $t1,"+"\n\t"+ "addu $t0, $t0, 1 		# and increment S."+"\n\t"+"beq $t1, $t5, end_sum_loop"+"\n\n\t"+"mul $t2, $t2, 10 		# t2 *= 10."+"\n\n\t"+"sub $t1, $t1, 48	 	# t1 -= '0'."+"\n\t"+"add $t2, $t2, $t1 		# t2 += t1."+"\n\n\t"+"b sum_loop # and repeat the loop."+"\n"+"end_sum_loop:"
 		}
-		else if(sessionStorage.getItem("-2")=="3"){
-			copy_text_buffer="#compute length of a string"+"\n\n"+".data"+"\n"+'string: .asciiz "This is a string"'+"\n"+"length: .word 0"+"\n\n"+".text"+"\n"+"la $t1, string"+"\n"+"li $t2, 0"+"\n"+"length_loop:"+"\n\t"+"lb $t3, ($t1)"+"\n\t"+"beqz $t3, endloop"+"\n\t"+"addu $t2, $t2, 1"+"\n\t"+"addu $t1, $t1, 1"+"\n\t"+"b length_loop"+"\n"+"endloop:"+"\n\t"+"sub $t2, $t2, 1		#subtract 1 to ignore \\0 "+"\n\t"+"sw $t2, length"
+		else if(sessionStorage.getItem("-2")==="3"){
+			CopyTextBuffer="#compute length of a string"+"\n\n"+".data"+"\n"+'string: .asciiz "This is a string"'+"\n"+"length: .word 0"+"\n\n"+".text"+"\n"+"la $t1, string"+"\n"+"li $t2, 0"+"\n"+"length_loop:"+"\n\t"+"lb $t3, ($t1)"+"\n\t"+"beqz $t3, endloop"+"\n\t"+"addu $t2, $t2, 1"+"\n\t"+"addu $t1, $t1, 1"+"\n\t"+"b length_loop"+"\n"+"endloop:"+"\n\t"+"sub $t2, $t2, 1		#subtract 1 to ignore \\0 "+"\n\t"+"sw $t2, length"
 		}
 	var i=0;
-	var user_entry=-101;
-	while(while_counter>=1)
+	var UserEntry=-101;
+	while(WhileCounter>=1)
 	{
 		
 		var text=sessionStorage.getItem((i).toString());
-		var temp=parseInt(sessionStorage.getItem((user_entry).toString()));
-		if((user_files>=1) && (i==temp))
+		var temp=parseInt(sessionStorage.getItem((UserEntry).toString()));
+		if((UserFiles>=1) && (i===temp))
 		{
-			user_entry--;
-			var nam=sessionStorage.getItem((user_entry).toString());
-			user_entry--;
+			UserEntry--;
+			var nam=sessionStorage.getItem((UserEntry).toString());
+			UserEntry--;
 			myfunctionlist(text,nam);
-			user_files--;
+			UserFileIndex=UserEntry;
+			UserFiles--;
 		}
 		else{
-			if(text==undefined | text==null)
+			if(text===undefined | text===null)
 			{
 				myfunctionlist('','');
 			}
@@ -112,19 +114,19 @@ function fileonload()
 			}
 			
 		}
-		while_counter--;
+		WhileCounter--;
 		i++;
 	}
 }
 function Constructer(name) {
   this.name = name;
 	this.text = "Add your code here!";
-	this.stack_undo_redo=[];
-	this.undo_redo_counter=-1;
-	this.stacktop=-1;
+	this.StackUndoRedo=[];
+	this.UndoRedoCounter=-1;
+	this.StackTop=-1;
 }
 
-function init(text_node)
+function init(TextNode)
 {
 	var str="mips";
 	var app=count.toString();
@@ -132,21 +134,21 @@ function init(text_node)
 	str=str.concat(".asm");
 	count++;
 	var name1=new Constructer(str);
-	if(text_node!==""){
-		name1.text=text_node;
+	if(TextNode!==""){
+		name1.text=TextNode;
 	}
-	name1.stack_undo_redo.push(name1.text);
-	name1.stacktop++;
-	name1.undo_redo_counter++;
+	name1.StackUndoRedo.push(name1.text);
+	name1.StackTop++;
+	name1.UndoRedoCounter++;
 	names.push(name1);
 	sessionStorage.setItem("-1",(count-1).toString());
 	return names;
 }
-function myfunctionlist(text_node,btn_name)
+function myfunctionlist(TextNode,btn_name)
 {
 	if(count<10)
 	{
-		names=init(text_node);
+		names=init(TextNode);
 		var btn = document.createElement("BUTTON");
 		if(btn_name!=="")
 		{
@@ -170,18 +172,18 @@ function clicklistner(y)
 {
 	var x=parseInt(y);
 	var node=document.getElementById("mytext");
-	last_button_id=x;
+	LastButtonId=x;
 	node.value=names[x].text;
 	sessionStorage.setItem((x).toString(),names[x].text);
-	sessionStorage.setItem("-500",last_button_id);
+	sessionStorage.setItem("-500",LastButtonId);
 }
 function textareachanged(status)
 {
 	var node=document.getElementById("mytext");
-	names[last_button_id].text=node.value;
-	sessionStorage.setItem((last_button_id).toString(),names[last_button_id].text);
-	if(status!=0){
-		update_stack(node,last_button_id);
+	names[LastButtonId].text=node.value;
+	sessionStorage.setItem((LastButtonId).toString(),names[LastButtonId].text);
+	if(status!==0){
+		update_stack(node,LastButtonId);
 	}
 }
 // //******************************************************************************************************
@@ -226,21 +228,21 @@ function codes_show(x){
 
 //Java script part for the codes copy to clipboard
 //********************************************************************************************************
-var copy_text_buffer="You haven't copy anything.This is default text";
+var CopyTextBuffer="You haven't copy anything.This is default text";
 function copy_code()
 {
 	var node=document.getElementById("code_mytext");
 	node.select();
-	copy_text_buffer=node.value;
-	if(copy_text_buffer=="#Program to add two numbers"+"\n\n\t"+".data"+"\n\t"+"sum: .word 0"+"\n\n\t"+".text"+"\n\t"+"main:"+"\n\t"	+"li $t0, 10"+"\n\t"+"li $t1, 15"+"\n\t"+"add $t2, $t0, $t1 	# compute the sum"	+"\n\t"+"sw $t2, sum"
+	CopyTextBuffer=node.value;
+	if(CopyTextBuffer==="#Program to add two numbers"+"\n\n\t"+".data"+"\n\t"+"sum: .word 0"+"\n\n\t"+".text"+"\n\t"+"main:"+"\n\t"	+"li $t0, 10"+"\n\t"+"li $t1, 15"+"\n\t"+"add $t2, $t0, $t1 	# compute the sum"	+"\n\t"+"sw $t2, sum"
 	){
 		sessionStorage.setItem("-2","1");
 	}
-	else if(copy_text_buffer=="#Program to convert a string to int"+"\n\n"+".data"+"\n"+'string: .asciiz "13245"'+"\n"+"newline: .word 10"+"\n"+".text"+"\n"+"main:"+"\n\n"+"la $t0, string 				# Initialize S."+"\n"+"li $t2, 0 				# Initialize sum = 0."+"\n"+"lw $t5, newline"+"\n"+ "sum_loop:"+"\n\t"+"lb $t1, ($t0) 			# load the byte at addr S into $t1,"+"\n\t"+ "addu $t0, $t0, 1 		# and increment S."+"\n\t"+"beq $t1, $t5, end_sum_loop"+"\n\n\t"+"mul $t2, $t2, 10 		# t2 *= 10."+"\n\n\t"+"sub $t1, $t1, 48	 	# t1 -= '0'."+"\n\t"+"add $t2, $t2, $t1 		# t2 += t1."+"\n\n\t"+"b sum_loop # and repeat the loop."+"\n"+"end_sum_loop:"
+	else if(CopyTextBuffer==="#Program to convert a string to int"+"\n\n"+".data"+"\n"+'string: .asciiz "13245"'+"\n"+"newline: .word 10"+"\n"+".text"+"\n"+"main:"+"\n\n"+"la $t0, string 				# Initialize S."+"\n"+"li $t2, 0 				# Initialize sum = 0."+"\n"+"lw $t5, newline"+"\n"+ "sum_loop:"+"\n\t"+"lb $t1, ($t0) 			# load the byte at addr S into $t1,"+"\n\t"+ "addu $t0, $t0, 1 		# and increment S."+"\n\t"+"beq $t1, $t5, end_sum_loop"+"\n\n\t"+"mul $t2, $t2, 10 		# t2 *= 10."+"\n\n\t"+"sub $t1, $t1, 48	 	# t1 -= '0'."+"\n\t"+"add $t2, $t2, $t1 		# t2 += t1."+"\n\n\t"+"b sum_loop # and repeat the loop."+"\n"+"end_sum_loop:"
 	){
 		sessionStorage.setItem("-2","2");
 	}
-	else if(copy_text_buffer="#compute length of a string"+"\n\n"+".data"+"\n"+'string: .asciiz "This is a string"'+"\n"+"length: .word 0"+"\n\n"+".text"+"\n"+"la $t1, string"+"\n"+"li $t2, 0"+"\n"+"length_loop:"+"\n\t"+"lb $t3, ($t1)"+"\n\t"+"beqz $t3, endloop"+"\n\t"+"addu $t2, $t2, 1"+"\n\t"+"addu $t1, $t1, 1"+"\n\t"+"b length_loop"+"\n"+"endloop:"+"\n\t"+"sub $t2, $t2, 1		#subtract 1 to ignore \\0 "+"\n\t"+"sw $t2, length"
+	else if(CopyTextBuffer==="#compute length of a string"+"\n\n"+".data"+"\n"+'string: .asciiz "This is a string"'+"\n"+"length: .word 0"+"\n\n"+".text"+"\n"+"la $t1, string"+"\n"+"li $t2, 0"+"\n"+"length_loop:"+"\n\t"+"lb $t3, ($t1)"+"\n\t"+"beqz $t3, endloop"+"\n\t"+"addu $t2, $t2, 1"+"\n\t"+"addu $t1, $t1, 1"+"\n\t"+"b length_loop"+"\n"+"endloop:"+"\n\t"+"sub $t2, $t2, 1		#subtract 1 to ignore \\0 "+"\n\t"+"sw $t2, length"
 	){
 		sessionStorage.setItem("-2","3");
 	}
@@ -251,19 +253,19 @@ function selectAll()
 {
 	var node=document.getElementById("mytext");
 	node.select();
-	copy_text_buffer=node.value;
-	document.execCommand("copy");
-	alert("Text Copied");
+	CopyTextBuffer=node.value;
 }
 
 
 function getSelectedText(el) {
-    if (typeof el.selectionStart == "number") {
+    if (typeof el.selectionStart === "number") {
+			alert("hey");
         return el.value.slice(el.selectionStart, el.selectionEnd);
-    } else if (typeof document.selection != "undefined") {
+    } else if (typeof document.selection !== "undefined") {
         var range = document.selection.createRange();
-        if (range.parentElement() == el) {
-            return range.text;
+				if (range.parentElement() === el) {
+						alert("hey1");	
+					return range.text;
         }
     }
     return "";
@@ -271,12 +273,12 @@ function getSelectedText(el) {
 function paste()
 {
 	var el=document.getElementById("mytext");
-	if(copy_text_buffer=="")
+	if(CopyTextBuffer==="")
 	{
 		alert("Nothing is copied to paste");
 	}
 	else{
-		typeInTextarea(el,copy_text_buffer);
+		typeInTextarea(el,CopyTextBuffer);
 		textareachanged(1);
 	}
 	
@@ -295,28 +297,28 @@ function copy()
 {
 	var el=document.getElementById("mytext");
 	var temp_copy=getSelectedText(el);
-	if(temp_copy=="")
+	if(temp_copy==="")
 	{
 		alert("Nothing is selected to copy");
 	}
 	else{
-		copy_text_buffer=temp_copy;
+		CopyTextBuffer=temp_copy;
 	}
 }
 function cut()
 {
 	var el=document.getElementById("mytext");
 	var temp_copy=getSelectedText(el);
-	if(temp_copy=="")
+	if(temp_copy==="")
 	{
 		alert("Nothing is selected to cut");
 	}
 	else{
-		copy_text_buffer=temp_copy;
-		removeOutTextarea(el,copy_text_buffer);
+		CopyTextBuffer=temp_copy;
+		removeOutTextarea(el);
 	}
 }
-function removeOutTextarea(el, removeText) {
+function removeOutTextarea(el) {
 	var start = el.selectionStart
 	var end = el.selectionEnd
 	var text = el.value
@@ -329,14 +331,14 @@ function saveAs_function()
 {
 	var node=document.getElementById("mytext");
 	var txt=node.value;
-	var filename=names[last_button_id].name;
+	var FileName=names[LastButtonId].name;
 	var blob=new Blob([txt], {type: "text/x-asm;charset=utf-8"});
-	saveAs(blob,filename);
+	saveAs(blob,FileName);
 }
 function close_fun() {
-	if(last_button_id!==-1)
+	if(LastButtonId!==-1)
 	{
-		var node=document.getElementById((last_button_id).toString());
+		var node=document.getElementById((LastButtonId).toString());
 		var parent=node.parentNode;
 		parent.removeChild(node);
 		alert("Closed file will gets restored\nOnce you refresh the page or reload it!");
@@ -363,16 +365,16 @@ function closeAll_fun()
 
 function open_window()
 {
-	var fileinp=document.getElementById("inp_file");
-	if(fileinp)
+	var FileInp=document.getElementById("inp_file");
+	if(FileInp)
 	{
-		fileinp.click();
+		FileInp.click();
 	}
 }
 function setinputfileintextarea()
 {
-		var fileinp=document.getElementById("inp_file");
-		var files=fileinp.files;
+		var FileInp=document.getElementById("inp_file");
+		var files=FileInp.files;
 	 	var file=files.item(0);
 		var reader = new FileReader();
 		var contents;
@@ -380,12 +382,12 @@ function setinputfileintextarea()
 		{
 			contents=event.target.result;
 			myfunctionlist(contents,file.name);
-			user_file_counter++;
-			sessionStorage.setItem("-100",(user_file_counter).toString());
-			sessionStorage.setItem((user_file_index).toString(),(count-2).toString());
-			user_file_index--;
-			sessionStorage.setItem((user_file_index).toString(),file.name);
-			user_file_index--;
+			UserFileCounter++;
+			sessionStorage.setItem("-100",(UserFileCounter).toString());
+			sessionStorage.setItem((UserFileIndex).toString(),(count-2).toString());
+			UserFileIndex--;
+			sessionStorage.setItem((UserFileIndex).toString(),file.name);
+			UserFileIndex--;
 		};
 		reader.onerror = function(event) {
 			alert("File could not be read! Code " + event.target.error.code);
@@ -402,37 +404,37 @@ function exit_Window() {
 
 //******************************************************************************************************** */
 
-function update_stack(el,stack_id)
+function update_stack(el,StackId)
 {
-	if(names[stack_id].stack_undo_redo[names[stack_id].stacktop]!=el.value){
-		names[stack_id].stack_undo_redo.push(el.value);
-		names[stack_id].stacktop++;
+	if(names[StackId].StackUndoRedo[names[StackId].StackTop]!==el.value){
+		names[StackId].StackUndoRedo.push(el.value);
+		names[StackId].StackTop++;
 	}
-	names[stack_id].undo_redo_counter=	names[stack_id].stacktop;
+	names[StackId].UndoRedoCounter=	names[StackId].StackTop;
 }
 function undo_fun()
 {
 	var node=document.getElementById("mytext");
-	if(	names[last_button_id].undo_redo_counter<=0)
+	if(	names[LastButtonId].UndoRedoCounter<=0)
 	{
 		alert("Nothing to Undo");
 	}
 	else{
-		node.value=	names[last_button_id].stack_undo_redo[names[last_button_id].undo_redo_counter-1];
-		names[last_button_id].undo_redo_counter--;
+		node.value=	names[LastButtonId].StackUndoRedo[names[LastButtonId].UndoRedoCounter-1];
+		names[LastButtonId].UndoRedoCounter--;
 		textareachanged(0);
 	}
 }
 function redo_fun()
 {
 	var node=document.getElementById("mytext");
-	if(	names[last_button_id].undo_redo_counter==names[last_button_id].stacktop)
+	if(	names[LastButtonId].UndoRedoCounter===names[LastButtonId].StackTop)
 	{
 		alert("Nothing to Redo");
 	}
 	else{
-		node.value=	names[last_button_id].stack_undo_redo[names[last_button_id].undo_redo_counter+1];
-		names[last_button_id].undo_redo_counter++;
+		node.value=	names[LastButtonId].StackUndoRedo[names[LastButtonId].UndoRedoCounter+1];
+		names[LastButtonId].UndoRedoCounter++;
 		textareachanged(0);
 	}
 }
