@@ -28,7 +28,6 @@
       
       grid-template-columns:20% 80%;
       grid-gap:1em;
-      /* grid-auto-rows:100px; */
       grid-auto-rows: minmax(100px, auto);
     }  
 .wrapper_execute{
@@ -105,7 +104,7 @@ div.scroll {
 
 .modal-content {
   margin: 10% auto;
-  width: 40%;
+  width: 70%;
   box-shadow: 0 5px 8px 0 rgba(0, 0, 0, 0.2), 0 7px 20px 0 rgba(0, 0, 0, 0.17);
 }
 
