@@ -1,0 +1,100 @@
+<div>
+	<b>
+		User's Guide
+	</b>
+	<p>
+		<b>
+			1.Introduction
+		</b>
+		<p>
+			This simulator is designed to run assembly codes, programed in Arm assmebly language.
+		</p>
+		<b>
+			2. Layout
+		</b>
+		<p>
+			At the top of the simulator there is a <b>MenuBar</b>. The Menubar provides following functionalities ..
+			<ul>
+			  	<li>File</li>
+			  		<ul>
+			  			<li>
+			  				Options for writing a new code; opening a file; closing or saving the current code etc
+			  			</li>
+			  			<li>
+			  				Exiting the Simulator
+			  			</li>
+			  		</ul>
+				<li>Edit</li>
+					<ul>
+						<li>
+							Editor options like undo, redo, select all etc.
+						</li>
+					</ul>
+			  	<li>Run</li>
+			  		<ul>
+			  			<li>
+			  				Assemble the code
+			  			</li>
+			  			<li>
+			  				Run the whole program
+			  			</li>
+			  			<li>
+			  				Run the current instruction of the program
+			  			</li>
+			  		</ul>
+			</ul>
+			The main panel consistes of 4 tabs.
+			<ul>
+				<li>
+					<b>Editor</b>: Here the user will write their programs. The editor can have multiple tabs of code section. In each tab user can write their programs.
+				</li>
+				<li>
+					<b>Execute</b>: Assembling and running of the user code will be done here. It consists of various sections like the register table, text section, memory table etc.
+				</li>
+				<li>
+					<b>Sample Codes</b>: Various sample Arm Programs are provided here for the user help.
+				</li>
+				<li>
+					<b>Help</b>: User guide to understand the simulator.
+				</li>
+			</ul>
+			The bottom I/O panel is to generate the assembler messages. Assembly errors, runtime errors, input/output messages etc will be generated here.
+		</p>
+		<b>
+			3. Writing and Running a sample program
+		</b>
+		<p>
+			<ul>
+				<li>
+					To write a program, the first thing we have to do, is to open a new editor where we can write our program. To do that ..
+					<ol>
+						<li>
+							Click on the <b>File</b> button from the menu. A list will appear.
+						</li>
+						<li>
+							Click on the <b>New</b> button from the list. A new editor will appear in the editor tab. Here we will write our program.
+						</li>
+					</ol>
+				</li>
+				<li>
+					Next, we will write our code in the editor. We can either start from scratch and write the program or we can copy the sample code, present in the sample codes tab, and modify it to our needs.
+				</li>
+				<li>
+					After writing our program, we will assemble it. To do that ..
+					<ol>
+						<li>
+							Click on the <b>Run</b> buttion from the menu. A list will appear.
+						</li>
+						<li>
+							Click on the <b>Assemble</b> button from the list.
+						</li>
+					</ol>
+					This will assemble our arm program and the control will be transfered from the editor window to the execute window. If there are error(s) in our program, the subsequent messages will be displayed in the bottom I/O panel.
+				</li>
+				<li>
+					After the program has been successfuly assebled, we can run it. We can either choose to run the whole program in one shot, or we can run one instruction at a time. To do the, the execute panel has two buttons, <b>Run</b> and <b>Step</b>
+				</li>
+			</ul>
+		</p>
+	</p>
+</div>
