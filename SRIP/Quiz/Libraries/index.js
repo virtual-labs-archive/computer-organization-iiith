@@ -157,10 +157,10 @@ function submitQuiz() {
 }
 
 function generateRandomIndex() {
-    var x = Math.floor((Math.random() * TotalContainer) + 0);
+    var x = Math.floor((Math.random() * 11) + 0);
     var temp = RandomNumbers.indexOf(x);
     while (temp != -1 && ArrayEmpty === 0) {
-        x = Math.floor((Math.random() * TotalContainer) + 0);
+        x = Math.floor((Math.random() * 11) + 0);
         temp = RandomNumbers.indexOf(x);
     }
     RandomNumbers.push(x);
