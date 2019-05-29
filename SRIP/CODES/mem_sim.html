@@ -101,18 +101,18 @@
 		}
 	</style>
 	<script>
-		function generate() {
+		function generate() { //function to generate hex value  
 		  var z = 64536; 
 		  var x = Math.floor(Math.random()*z).toString(16);
 		  var m = document.getElementById('hex');
 		  m.value = x;
 		}
-		function generate_page_no() {
+		function generate_page_no() {//function to generate page number
 		  var x = Math.floor(Math.random()*15);
 		  var m = document.getElementById('dec');
 		  m.value = x;
 		}
-		function get_parameters(){
+		function get_parameters(){//sets the values selected by users to right hand field after submit button is clicked 
 			var pg_size=document.getElementById("field_1").elements[0].value;
 			var mm_size=document.getElementById("field_1").elements[1].value;
 			var vm_size=document.getElementById("field_1").elements[2].value;
