@@ -362,7 +362,7 @@ function changeContent(da){
   var shamt=instruction.substr(21,5);
   var funct=instruction.substr(26,6);
   var address=instruction.substr(16,16);
-  var jumpaddress=instruction.substr(7,24)
+  var jumpaddress=instruction.substr(7,24);
 
   document.getElementById("svg_167").textContent = opcode;
   document.getElementById("svg_168").textContent = rs;
