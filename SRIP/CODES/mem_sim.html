@@ -3,6 +3,103 @@
 <head>
 	<title>VM simulator</title>
 	<link rel="stylesheet" type="text/css" href="LIBRARIES/grid_view1.css">
+	<style type="text/css">
+		.truncate_virtualmem{
+			max-width:80%;
+  			display:inline-block;
+  			white-space:nowrap;
+  			overflow:hidden;
+  			text-overflow:ellipsis;
+		}
+		.truncate_mainmem{
+			max-width:40%;
+  			display:inline-block;
+  			white-space:nowrap;
+  			overflow:hidden;
+  			text-overflow:ellipsis;
+		}
+		.truncate_pagesize{
+			max-width:60%;
+  			display:inline-block;
+  			white-space:nowrap;
+  			overflow:hidden;
+  			text-overflow:ellipsis;
+		}
+		.truncate_replacementpolicy{
+			max-width:20%;
+  			display:inline-block;
+  			white-space:nowrap;
+  			overflow:hidden;
+  			text-overflow:ellipsis;
+		}
+		.truncate_pagelevel{	
+			max-width:15%;
+  			display:inline-block;
+  			white-space:nowrap;
+  			overflow:hidden;
+  			text-overflow:ellipsis;
+		}
+		input[type=text] {
+		  width: 70%;
+		}
+		.one{
+			display:grid;
+			grid-template-columns: 20% 50% 30%;
+			grid-gap: 10px;
+			background-color: #2196F3;
+			padding: 10px;
+		}
+		.two{
+			display:grid;
+			grid-template-rows: auto auto auto;
+			grid-gap: 5px;
+			background-color: #2196F3;
+			padding: 5px;
+		}
+		.three_1{
+			display:grid;
+			grid-template-rows: auto auto auto auto;
+			grid-gap: 5px;
+			background-color: #f2f2f2;
+			padding: 10px;
+		}
+		.two_2{
+			display: grid;
+			grid-template-columns: 40% 40% 20%;
+			grid-template-rows:auto auto auto;
+ 		 	grid-gap: 10px;
+  			background-color:  rgba(255, 255, 255, 0.8);
+			padding: 10px;
+		}
+		.item1{
+			grid-column: 1;
+  			grid-row: 1;
+		}
+		.item2{
+			grid-column: 2;
+  			grid-row: 1;
+		}
+		.item3{
+			grid-column: 3;
+  			grid-row: 1;
+		}
+		.item4{
+			grid-column: 1/ span 3;
+  			grid-row: 2;
+		}
+		.item5{
+			grid-column: 1/span 3;
+			grid-row: 3;
+		}
+		.three_2_2{
+
+			display: grid;
+			grid-template-columns: 13% 26% 22% 39%;
+  			grid-gap: 10px;
+  			background-color: white;
+  			padding: 10px;
+		}
+	</style>
 	<script>
 		function generate() {
 		  var z = 64536; 
@@ -15,100 +112,120 @@
 		  var m = document.getElementById('dec');
 		  m.value = x;
 		}
+		function get_parameters(){
+			var pg_size=document.getElementById("field_1").elements[0].value;
+			var mm_size=document.getElementById("field_1").elements[1].value;
+			var vm_size=document.getElementById("field_1").elements[2].value;
+			var tlb=document.getElementById("field_1").elements[3].value;
+			var rep_policy=document.getElementById("field_1").elements[4].value;
+			var pg_lvl=document.getElementById("field_1").elements[5].value;
+			var pg=document.getElementById('pg_size');
+		    pg.value = pg_size;
+		    var mm=document.getElementById('mm_size');
+		    mm.value = mm_size;
+		    var vm=document.getElementById('vm_size');
+		    vm.value = vm_size;
+		    var rep=document.getElementById('rep_policy');
+		    rep.value = rep_policy;
+		    var pg_l=document.getElementById('pg_lvl');
+		    pg_l.value = pg_lvl;
+
+		}
 	</script>
 </head>
 <body>
 	<div class="one">
-		<div class="two">
-			<div class="three_1">
-				<table border="0"><caption>PARAMETERS</caption>
-					<tr>
-						<td>Page Size</td>
-						<td>
-							 <select>
- 								 <option value="2 KB">2 KB</option>
- 								 <option value="4 KB">4 KB</option>
- 								 <option value="8 KB">8 KB</option>
-  							 </select> 
-						</td>
-					</tr>
-					<tr>
-						<td>Main Memory</td>
-						<td>
-							 <select>
- 								 <option value="4 KB">4 KB</option>
- 								 <option value="8 KB">8 KB</option>
- 								 <option value="12 KB">12 KB</option>
- 								 <option value="16 KB">16 KB</option>
- 								 <option value="20 KB">20 KB</option>
- 								 <option value="24 KB">24 KB</option>
- 								 <option value="28 KB">28 KB</option>
- 								 <option value="32 KB">32 KB</option>
- 								 <option value="36 KB">36 KB</option>
- 								 <option value="40 KB">40 KB</option>
- 								 <option value="44 KB">44 KB</option>
- 								 <option value="48 KB">48 KB</option>
- 								 <option value="52 KB">52 KB</option>
- 								 <option value="56 KB">56 KB</option>
- 								 <option value="60 KB">60 KB</option>
- 								 <option value="64 KB">64 KB</option>
-  							 </select> 
-						</td>
-					</tr>
-					<tr>
-						<td>Virtual Memory</td>
-						<td>
-							 <select style="overflow-y:auto;size: 4 ">
- 								 <option value="4 KB">4 KB</option>
- 								 <option value="8 KB">8 KB</option>
- 								 <option value="12 KB">12 KB</option>
- 								 <option value="16 KB">16 KB</option>
- 								 <option value="20 KB">20 KB</option>
- 								 <option value="24 KB">24 KB</option>
- 								 <option value="28 KB">28 KB</option>
- 								 <option value="32 KB">32 KB</option>
- 								 <option value="36 KB">36 KB</option>
- 								 <option value="40 KB">40 KB</option>
- 								 <option value="44 KB">44 KB</option>
- 								 <option value="48 KB">48 KB</option>
- 								 <option value="52 KB">52 KB</option>
- 								 <option value="56 KB">56 KB</option>
- 								 <option value="60 KB">60 KB</option>
- 								 <option value="64 KB">64 KB</option>
-  							 </select> 
-						</td>
-					</tr>
-					<tr>
-						<td>TLB</td>
-						<td>
-							 <select>
- 								 <option value="Item 1">Item 1</option>
- 								 <option value="Item 2">Item 2</option>
- 								 <option value="Item 3">Item 3</option>
- 								 <option value="Item 4">Item 4</option>
-  							 </select> 
-						</td>
-					</tr>
-				</table>
+		<form id="field_1">
+			<div class="two">
+				<div class="three_1">
+					<table border="0"><caption>PARAMETERS</caption>
+						<tr>
+							<td>Page Size</td>
+							<td>
+								 <select>
+	 								 <option value="2 KB">2 KB</option>
+	 								 <option value="4 KB">4 KB</option>
+	 								 <option value="8 KB">8 KB</option>
+	  							 </select> 
+							</td>
+						</tr>
+						<tr>
+							<td>Main Memory</td>
+							<td>
+								 <select>
+	 								 <option value="4 KB">4 KB</option>
+	 								 <option value="8 KB">8 KB</option>
+	 								 <option value="12 KB">12 KB</option>
+	 								 <option value="16 KB">16 KB</option>
+	 								 <option value="20 KB">20 KB</option>
+	 								 <option value="24 KB">24 KB</option>
+	 								 <option value="28 KB">28 KB</option>
+	 								 <option value="32 KB">32 KB</option>
+	 								 <option value="36 KB">36 KB</option>
+	 								 <option value="40 KB">40 KB</option>
+	 								 <option value="44 KB">44 KB</option>
+	 								 <option value="48 KB">48 KB</option>
+	 								 <option value="52 KB">52 KB</option>
+	 								 <option value="56 KB">56 KB</option>
+	 								 <option value="60 KB">60 KB</option>
+	 								 <option value="64 KB">64 KB</option>
+	  							 </select> 
+							</td>
+						</tr>
+						<tr>
+							<td>Virtual Memory</td>
+							<td>
+								 <select style="overflow-y:auto;size: 4 ">
+	 								 <option value="4 KB">4 KB</option>
+	 								 <option value="8 KB">8 KB</option>
+	 								 <option value="12 KB">12 KB</option>
+	 								 <option value="16 KB">16 KB</option>
+	 								 <option value="20 KB">20 KB</option>
+	 								 <option value="24 KB">24 KB</option>
+	 								 <option value="28 KB">28 KB</option>
+	 								 <option value="32 KB">32 KB</option>
+	 								 <option value="36 KB">36 KB</option>
+	 								 <option value="40 KB">40 KB</option>
+	 								 <option value="44 KB">44 KB</option>
+	 								 <option value="48 KB">48 KB</option>
+	 								 <option value="52 KB">52 KB</option>
+	 								 <option value="56 KB">56 KB</option>
+	 								 <option value="60 KB">60 KB</option>
+	 								 <option value="64 KB">64 KB</option>
+	  							 </select> 
+							</td>
+						</tr>
+						<tr>
+							<td>TLB</td>
+							<td>
+								 <select>
+	 								 <option value="Item 1">Item 1</option>
+	 								 <option value="Item 2">Item 2</option>
+	 								 <option value="Item 3">Item 3</option>
+	 								 <option value="Item 4">Item 4</option>
+	  							 </select> 
+							</td>
+						</tr>
+					</table>
+				</div>
+				<div class="three_1"><caption>REPLACEMENT POLICY</caption><br>
+					<select>
+	 					<option value="FIFO">FIFO</option>
+	 					<option value="LIFO">LIFO</option>
+	 					<option value="LRU">LRU</option>
+	  				</select> 
+				</div>
+				<div class="three_1"><caption>PAGE LEVEL</caption>
+					<select>
+	 				 <option value="LEVEL ONE">LEVEL ONE</option>
+	 				 <option value="LEVEL TWO">LEVEL TWO</option>
+	  			    </select> 	 
+				</div>
+				<div class="three_1">
+					<input type="button" value="Submit" onclick="get_parameters()">
+				</div>
 			</div>
-			<div class="three_1"><caption>REPLACEMENT POLICY</caption>
-				<form action="">
-  					 <input type="radio" name="REPLACEMENT POLICY" value="FIFO"> FIFO<br>
- 					 <input type="radio" name="REPLACEMENT POLICY" value="LIFO"> LIFO<br>
-  					 <input type="radio" name="REPLACEMENT POLICY" value="LRU"> LRU<br>
-  					 <input type="radio" name="REPLACEMENT POLICY" value="More"> More...
-				</form>
-			</div>
-			<div class="three_1"><caption>PAGE LEVEL</caption>
-				<form action="">
-  					 <input type="radio" name="LEVEL" value="ONE LEVEL"> ONE LEVEL<br>
- 					 <input type="radio" name="LEVEL" value="TWO LEVEL"> TWO LEVEL
- 				</form>	 
-			</div>
-			<div class="three_1">
-				<input type="submit" value="Submit">
-			</div>
-		</div>
+		</form>
 		<div class="two_2">
 			<div class="three_2 item1">
 				<table width=10%>
@@ -183,15 +300,15 @@
 				<button type="button" class="truncate_virtualmem">Virtual memory</button>
 			 	<button type="button" class="truncate_mainmem">Main Memory</button>
 			 	<button type="button" class="truncate_pagesize">page size</button><br>
-				<textarea rows="1" cols="17"></textarea>
-		 		<textarea rows="1" cols="15"></textarea>
-		 		<textarea rows="1" cols="11"></textarea>
+				<textarea rows="1" cols="17" id="vm_size"></textarea>
+		 		<textarea rows="1" cols="15" id="mm_size"></textarea>
+		 		<textarea rows="1" cols="11" id="pg_size"></textarea>
 			</div>
 			<div class="three_3">
 				<button type="button" class="truncate_replacementpolicy">replacement policy</button>
 			 	<button type="button" class="truncate_pagelevel">page level</button><br>
-				<textarea rows="1" cols="7"></textarea>
-		 		<textarea rows="1" cols="7"></textarea>
+				<textarea rows="1" cols="7" id="rep_policy"></textarea>
+		 		<textarea rows="1" cols="7" id="pg_lvl"></textarea>
 			</div>
 			<div class="three_3">
 				<textarea rows="30" cols="15"> Recent History</textarea>
