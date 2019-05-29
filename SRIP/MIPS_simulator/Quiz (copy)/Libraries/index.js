@@ -5,13 +5,15 @@ var CorrectCount = 0;
 var TotalContainer = 0;
 
 
-function generateQuestionContainer(QID, AID) {
+function generateQuestionContainer(QID, AID, status) {
     var containerDiv = document.getElementById("quizBody");
     var parentDiv = document.createElement("div");
     var QuestionDiv = document.createElement("div");
+    var br = document.createElement("BR");
     QuestionDiv.id = QID;       //Q1
     QuestionDiv.className = "question";
     parentDiv.appendChild(QuestionDiv);
+    parentDiv.appendChild(br);
 
     for (var i = 0; i < 3; i++) {
         var OptionDiv = document.createElement("div");
@@ -31,19 +33,23 @@ function generateQuestionContainer(QID, AID) {
     }
 
     containerDiv.appendChild(parentDiv);
-    var br = document.createElement("BR");
-    var hr = document.createElement("HR");
-    containerDiv.insertBefore(br, parentDiv);
-    containerDiv.insertBefore(hr, parentDiv);
+    if (status != 0 && status!=TotalContainer) {
+        var br = document.createElement("BR");
+        var hr = document.createElement("HR");
+        containerDiv.insertBefore(br, parentDiv);
+        containerDiv.insertBefore(hr, parentDiv);
+    }
 
 }
-function generateResultContainer(RID) {
+function generateResultContainer(RID, status) {
     var containerDiv = document.getElementById("displayResult");
     var parentDiv = document.createElement("div");
     var QuestionDiv = document.createElement("div");
+    var br = document.createElement("BR");
     QuestionDiv.id = RID;       //R1
     QuestionDiv.className = "question";
     parentDiv.appendChild(QuestionDiv);
+    parentDiv.appendChild(br);
 
     for (var i = 0; i < 2; i++) {
         var AnswerDiv = document.createElement("div");
@@ -57,10 +63,12 @@ function generateResultContainer(RID) {
     }
 
     containerDiv.appendChild(parentDiv);
-    var br = document.createElement("BR");
-    var hr = document.createElement("HR");
-    containerDiv.insertBefore(br, parentDiv);
-    containerDiv.insertBefore(hr, parentDiv);
+    if (status != 0 && status!=TotalContainer) {
+        var br = document.createElement("BR");
+        var hr = document.createElement("HR");
+        containerDiv.insertBefore(br, parentDiv);
+        containerDiv.insertBefore(hr, parentDiv);
+    }
 }
 function putContainers() {
     TotalContainer = Math.floor((Math.random() * 5) + 3);
@@ -71,16 +79,16 @@ function putContainers() {
         var Qstring = QId.concat((i + 1).toString());
         var Astring = AId.concat((i + 1).toString());
         var Rstring = RId.concat((i + 1).toString());
-        generateQuestionContainer(Qstring, Astring);
-        generateResultContainer(Rstring);
+        generateQuestionContainer(Qstring, Astring, i);
+        generateResultContainer(Rstring, i);
     }
 }
 
 function putResult() {
     var RID = "R";
-    var QID="Q";
+    var QID = "Q";
     for (var i = 0; i < TotalContainer; i++) {
-        var TempQID= QID.concat((i + 1).toString());    //Q1
+        var TempQID = QID.concat((i + 1).toString());    //Q1
         var TempRID = RID.concat((i + 1).toString());   //R1
         var AnsID = TempRID.concat("1");   //R11
         var UserAnsID = TempRID.concat("2");    //R12
@@ -133,7 +141,7 @@ function startQuiz() {
     document.getElementById("result").style.display = "none";
     document.getElementById("displayResult").style.display = "none";
     document.getElementById("startBtn").style.visibility = "hidden";
-    document.getElementById("submitBtn").style.visibility = "visible";
+    document.getElementById("submitBtn").style.display = "block";
     removeChilds();
     putContainers();
     putQuestion();
@@ -141,7 +149,7 @@ function startQuiz() {
 }
 
 function submitQuiz() {
-    document.getElementById("submitBtn").style.visibility = "hidden";
+    document.getElementById("submitBtn").style.display = "none";
     document.getElementById("startBtn").style.visibility = "visible";
     submitAnswers();
     document.getElementById("quizBody").style.display = "none";
@@ -174,7 +182,7 @@ function getContent(TempQID) {
     var tempStack = [];
     for (var i = 0; i < 3; i++) {
 
-        var x = Math.floor((Math.random() * 3)+1);
+        var x = Math.floor((Math.random() * 3) + 1);
         var temp = tempStack.indexOf(x);
         while (temp != -1) {
             x = Math.floor((Math.random() * 3) + 1);
