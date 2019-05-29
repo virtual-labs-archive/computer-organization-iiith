@@ -1,0 +1,199 @@
+      body {
+        padding-top: 60px;
+        padding-bottom: 40px;
+      }
+      .sidebar-nav {
+        padding: 9px 0;
+      }
+
+      .hero-unit {
+        margin-bottom: 0px; 
+        padding-bottom: 10px;
+        border-style:solid;
+        border-width:1px;
+        border-color: #222222;
+        -webkit-box-shadow: 0px 1px 2px;
+      }
+
+      .border{
+        border: 1px solid gray;
+        margin-left: 0px;
+      }
+
+     #memoryTable{
+        height: 858px;
+        overflow: auto;
+     }
+     
+     #registerTable{
+        overflow-x:auto;
+     }
+
+     #traceTable{
+        margin-left: 22px;
+        margin-bottom: 20px;
+        overflow: auto;
+     }
+
+      .sidebar-nav p{
+        padding: 10px 10px 10px 10px;
+      }
+
+      .row-fluid{
+        margin-top: 20px;
+      }
+
+      .btn{
+        margin: 10px 10px 10px 10px;
+      }
+
+      textarea{
+        width: 230px;
+      }
+
+
+      @media (max-width: 980px) {
+        /* Enable use of floated navbar text */
+        .navbar-text.pull-right {
+          float: none;
+          padding-left: 5px;
+          padding-right: 5px;
+        }
+        }
+        .tab {
+  overflow: hidden;
+  border: 1px solid #ccc;
+  background-color: #f1f1f1;
+}
+
+/* Style the buttons that are used to open the tab content */
+.tab button {
+  background-color: inherit;
+  float: left;
+  border: none;
+  outline: none;
+  cursor: pointer;
+  padding: 14px 16px;
+  transition: 0.3s;
+}
+
+/* Change background color of buttons on hover */
+.tab button:hover {
+  background-color: #ddd;
+}
+
+/* Create an active/current tablink class */
+.tab button.active {
+  background-color: #ccc;
+}
+
+/* Style the tab content */
+.tabcontent {
+  display: none;
+  padding: 6px 12px;
+  border: 1px solid #ccc;
+  border-top: none;
+}
+      
+
+
+body{
+	background-color: #eaeaea;
+}
+
+.code
+{
+ margin-left: 10px;
+ resize: none;
+
+}
+.default{
+	position: absolute;
+	top: 15%;
+	left: 35%;
+	border-style:solid;
+	border-width:10px;
+	border-color: #222222;
+	-webkit-box-shadow: 0px 2px 6px;
+}
+.begin{
+	top: 2%;
+	left: 25%;
+	width: 50%;
+	padding-bottom: 20px;
+	position: absolute;
+}
+.description{
+	text-align: left;
+	font-family:"Times New Roman", Times, serif;
+	font-size: 22px;
+	font-weight: bold;
+}
+.title{
+	text-align: center;
+	font-family:"Times New Roman", Times, serif;
+	font-size: 32px;
+	font-weight: bold;
+	margin-bottom: 25px;
+}
+.write{
+	position: absolute;
+	top: 20%;
+}
+.current{
+	display:inline;
+}
+.notcurrent{
+	display: none;
+}
+#tablespace
+{
+	margin-left: 15px;
+}
+tr:hover{
+	background-color: #888888 ;
+	cursor:pointer;
+}
+td{
+	padding-right: 5px;
+	padding-left: 5px;
+	padding-bottom: 5px;
+	margin-bottom: 2px;
+}
+.steps:hover{
+	background-color: transparent;
+	cursor: default;
+}
+#memoryTablee{
+	border:1px solid #222222;
+	margin-left: 15px;
+	display:inline-table;
+}
+#registerTablee{
+	border:1px solid #222222;
+	margin-left: 15px;
+	display:inline-table;
+}
+#traceTablee{
+	border:1px solid #222222;
+	margin-left: 15px;
+	display:inline-table;
+}
+.clarify{
+	top: 5%;
+	position: absolute;
+	left: 70%;
+}
+
+svg{
+	width: 100%;
+	height: 800px;
+}
+.inst_table td{
+  border: 1px;
+  border-style: solid;
+}
+.inst_table{
+	width: 500px; 
+	font-size: 18px;
+}
