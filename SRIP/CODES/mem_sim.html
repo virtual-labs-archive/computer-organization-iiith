@@ -4,6 +4,12 @@
 	<title>VM simulator</title>
 	<link rel="stylesheet" type="text/css" href="LIBRARIES/grid_view1.css">
 	<style type="text/css">
+		#vm,#mm,#ppn,#vpn,#valid,#dirty{
+			background-color: lightgray;
+			width : 62px;
+			height : 300px;
+			overflow: scroll;
+		}
 		.truncate_virtualmem{
 			max-width:80%;
   			display:inline-block;
@@ -63,13 +69,26 @@
 			background-color: #f2f2f2;
 			padding: 10px;
 		}
+		#s-2{
+			display: grid;
+			grid-template-columns: auto auto auto;
+		}
+		#s-1{
+			display: grid;
+			grid-template-columns: auto auto;
+		}
 		.two_2{
 			display: grid;
 			grid-template-columns: 40% 40% 20%;
 			grid-template-rows:auto auto auto;
- 		 	grid-gap: 10px;
+ 		 	grid-gap: 2px;
   			background-color:  rgba(255, 255, 255, 0.8);
-			padding: 10px;
+			padding: 5px;
+		}
+		#s-2{
+			display: grid;
+			grid-template-columns: auto auto auto;
+			grid-gap:5px;
 		}
 		.item1{
 			grid-column: 1;
@@ -94,24 +113,15 @@
 		.three_2_2{
 
 			display: grid;
-			grid-template-columns: 13% 26% 22% 39%;
+			grid-template-columns: 13% 26% 20% 41%;
   			grid-gap: 10px;
   			background-color: white;
   			padding: 10px;
 		}
 	</style>
 	<script>
-		function generate() { //function to generate hex value  
-		  var z = 64536; 
-		  var x = Math.floor(Math.random()*z).toString(16);
-		  var m = document.getElementById('hex');
-		  m.value = x;
-		}
-		function generate_page_no() {//function to generate page number
-		  var x = Math.floor(Math.random()*15);
-		  var m = document.getElementById('dec');
-		  m.value = x;
-		}
+		var pg,mm,vm;
+		var rep,pg_l;
 		function get_parameters(){//sets the values selected by users to right hand field after submit button is clicked 
 			var pg_size=document.getElementById("field_1").elements[0].value;
 			var mm_size=document.getElementById("field_1").elements[1].value;
@@ -119,18 +129,184 @@
 			var tlb=document.getElementById("field_1").elements[3].value;
 			var rep_policy=document.getElementById("field_1").elements[4].value;
 			var pg_lvl=document.getElementById("field_1").elements[5].value;
-			var pg=document.getElementById('pg_size');
+			pg=document.getElementById('pg_size');
 		    pg.value = pg_size;
-		    var mm=document.getElementById('mm_size');
+		    mm=document.getElementById('mm_size');
 		    mm.value = mm_size;
-		    var vm=document.getElementById('vm_size');
+		    vm=document.getElementById('vm_size');
 		    vm.value = vm_size;
-		    var rep=document.getElementById('rep_policy');
+		    rep=document.getElementById('rep_policy');
 		    rep.value = rep_policy;
-		    var pg_l=document.getElementById('pg_lvl');
+		    pg_l=document.getElementById('pg_lvl');
 		    pg_l.value = pg_lvl;
-
+		    vm= parseInt(vm_size.slice(0,vm_size.length-3));
+		    mm= parseInt(mm_size.slice(0,mm_size.length-3));
+		    pg= parseInt(pg_size.slice(0,vm_size.length-3));
+		    var size=vm / pg;
+		    add_vm(size);
+		    add_vpn(size);
 		}
+		function generate() { //function to generate hex value 
+		  var z = vm*1024;
+		  var pg_size = pg*1024;
+		  pg_size = pg_size.toString(2);
+		  var len = pg_size.length-1;
+		  alert(len);	 
+		  var x = Math.floor(Math.random()*z);
+		  var y = x.toString(2);
+		  y = y.toString();
+		  var k = parseInt(y.slice(0,len));
+		  alert(k);
+		  alert(y);
+		  x = x.toString(16);
+		  var m = document.getElementById('hex');
+		  m.value = x;
+		  
+		}
+		function generate_page_no() {//function to generate page number
+		  var z = vm/pg; 
+		  var x = Math.floor(Math.random()*z);
+		  var m = document.getElementById('dec');
+		  m.value = x;
+		}
+		
+		function add_vm(size){
+			var temp_string="VPG-";
+			var vm_id= document.getElementById("vm");
+			for (var i = 0; i <size ; i++) {
+				var para = document.createElement("P");
+				var temp=temp_string.concat((i).toString());
+				var node = document.createTextNode(temp);
+				para.appendChild(node);
+				vm_id.appendChild(para);
+			}
+		}
+		function add_vpn(size){
+			var temp_string="PTE ";
+			var vm_id= document.getElementById("vpn");
+			for (var i = 0; i <size ; i++) {
+				var para = document.createElement("P");
+				var temp=temp_string.concat((i).toString());
+				var node = document.createTextNode(temp);
+				para.appendChild(node);
+				vm_id.appendChild(para);
+			}
+		}
+		function dynamicdropdown(listindex)
+	    {
+	        switch (listindex)
+	        {
+	        case "2 KB" :
+	            document.getElementById("status mm_mem").options[0]=new Option("Select");
+	            document.getElementById("status mm_mem").options[1]=new Option("2 KB");
+	            document.getElementById("status mm_mem").options[2]=new Option("4 KB");
+	            document.getElementById("status mm_mem").options[3]=new Option("6 KB");
+	            document.getElementById("status mm_mem").options[4]=new Option("8 KB");
+	            document.getElementById("status mm_mem").options[5]=new Option("10 KB");
+	            document.getElementById("status mm_mem").options[6]=new Option("12 KB");
+	            document.getElementById("status mm_mem").options[7]=new Option("14 KB");
+	            document.getElementById("status mm_mem").options[8]=new Option("16 KB");
+	            document.getElementById("status mm_mem").options[9]=new Option("18 KB");
+	            document.getElementById("status mm_mem").options[10]=new Option("20 KB");
+	            document.getElementById("status mm_mem").options[11]=new Option("22 KB");
+	            document.getElementById("status mm_mem").options[12]=new Option("24 KB");
+	            document.getElementById("status mm_mem").options[13]=new Option("26 KB");
+	            document.getElementById("status mm_mem").options[14]=new Option("28 KB");
+	            document.getElementById("status mm_mem").options[15]=new Option("30 KB");
+	            document.getElementById("status mm_mem").options[16]=new Option("32 KB");
+	            document.getElementById("status vm_mem").options[0]=new Option("Select");
+	            document.getElementById("status vm_mem").options[1]=new Option("2 KB");
+	            document.getElementById("status vm_mem").options[2]=new Option("4 KB");
+	            document.getElementById("status vm_mem").options[3]=new Option("6 KB");
+	            document.getElementById("status vm_mem").options[4]=new Option("8 KB");
+	            document.getElementById("status vm_mem").options[5]=new Option("10 KB");
+	            document.getElementById("status vm_mem").options[6]=new Option("12 KB");
+	            document.getElementById("status vm_mem").options[7]=new Option("14 KB");
+	            document.getElementById("status vm_mem").options[8]=new Option("16 KB");
+	            document.getElementById("status vm_mem").options[9]=new Option("18 KB");
+	            document.getElementById("status vm_mem").options[10]=new Option("20 KB");
+	            document.getElementById("status vm_mem").options[11]=new Option("22 KB");
+	            document.getElementById("status vm_mem").options[12]=new Option("24 KB");
+	            document.getElementById("status vm_mem").options[13]=new Option("26 KB");
+	            document.getElementById("status vm_mem").options[14]=new Option("28 KB");
+	            document.getElementById("status vm_mem").options[15]=new Option("30 KB");
+	            document.getElementById("status vm_mem").options[16]=new Option("32 KB");
+	            break;
+	        case "4 KB" :
+	            document.getElementById("status mm_mem").options[0]=new Option("Select");
+	            document.getElementById("status mm_mem").options[1]=new Option("4 KB");
+	            document.getElementById("status mm_mem").options[2]=new Option("8 KB");
+	            document.getElementById("status mm_mem").options[3]=new Option("12 KB");
+	            document.getElementById("status mm_mem").options[4]=new Option("16 KB");
+	            document.getElementById("status mm_mem").options[5]=new Option("20 KB");
+	            document.getElementById("status mm_mem").options[6]=new Option("24 KB");
+	            document.getElementById("status mm_mem").options[7]=new Option("28 KB");
+	            document.getElementById("status mm_mem").options[8]=new Option("32 KB");
+	            document.getElementById("status mm_mem").options[9]=new Option("36 KB");
+	            document.getElementById("status mm_mem").options[10]=new Option("40 KB");
+	            document.getElementById("status mm_mem").options[11]=new Option("44 KB");
+	            document.getElementById("status mm_mem").options[12]=new Option("48 KB");
+	            document.getElementById("status mm_mem").options[13]=new Option("52 KB");
+	            document.getElementById("status mm_mem").options[14]=new Option("56 KB");
+	            document.getElementById("status mm_mem").options[15]=new Option("60 KB");
+	            document.getElementById("status mm_mem").options[16]=new Option("64 KB");
+	            document.getElementById("status vm_mem").options[0]=new Option("Select");
+	            document.getElementById("status vm_mem").options[1]=new Option("4 KB");
+	            document.getElementById("status vm_mem").options[2]=new Option("8 KB");
+	            document.getElementById("status vm_mem").options[3]=new Option("12 KB");
+	            document.getElementById("status vm_mem").options[4]=new Option("16 KB");
+	            document.getElementById("status vm_mem").options[5]=new Option("20 KB");
+	            document.getElementById("status vm_mem").options[6]=new Option("24 KB");
+	            document.getElementById("status vm_mem").options[7]=new Option("28 KB");
+	            document.getElementById("status vm_mem").options[8]=new Option("32 KB");
+	            document.getElementById("status vm_mem").options[9]=new Option("36 KB");
+	            document.getElementById("status vm_mem").options[10]=new Option("40 KB");
+	            document.getElementById("status vm_mem").options[11]=new Option("44 KB");
+	            document.getElementById("status vm_mem").options[12]=new Option("48 KB");
+	            document.getElementById("status vm_mem").options[13]=new Option("52 KB");
+	            document.getElementById("status vm_mem").options[14]=new Option("56 KB");
+	            document.getElementById("status vm_mem").options[15]=new Option("60 KB");
+	            document.getElementById("status vm_mem").options[16]=new Option("64 KB");
+	            break;
+	        case "8 KB" :
+	            document.getElementById("status mm_mem").options[0]=new Option("Select");
+	            document.getElementById("status mm_mem").options[1]=new Option("8 KB");
+	            document.getElementById("status mm_mem").options[2]=new Option("16 KB");
+	            document.getElementById("status mm_mem").options[3]=new Option("24 KB");
+	            document.getElementById("status mm_mem").options[4]=new Option("32 KB");
+	            document.getElementById("status mm_mem").options[5]=new Option("40 KB");
+	            document.getElementById("status mm_mem").options[6]=new Option("48 KB");
+	            document.getElementById("status mm_mem").options[7]=new Option("56 KB");
+	            document.getElementById("status mm_mem").options[8]=new Option("64 KB");
+	            document.getElementById("status mm_mem").options[9]=new Option("72 KB");
+	            document.getElementById("status mm_mem").options[10]=new Option("80 KB");
+	            document.getElementById("status mm_mem").options[11]=new Option("88 KB");
+	            document.getElementById("status mm_mem").options[12]=new Option("96 KB");
+	            document.getElementById("status mm_mem").options[13]=new Option("104 KB");
+	            document.getElementById("status mm_mem").options[14]=new Option("112 KB");
+	            document.getElementById("status mm_mem").options[15]=new Option("120 KB");
+	            document.getElementById("status mm_mem").options[16]=new Option("128 KB");
+	            document.getElementById("status vm_mem").options[0]=new Option("Select");
+	            document.getElementById("status vm_mem").options[1]=new Option("8 KB");
+	            document.getElementById("status vm_mem").options[2]=new Option("16 KB");
+	            document.getElementById("status vm_mem").options[3]=new Option("24 KB");
+	            document.getElementById("status vm_mem").options[4]=new Option("32 KB");
+	            document.getElementById("status vm_mem").options[5]=new Option("40 KB");
+	            document.getElementById("status vm_mem").options[6]=new Option("48 KB");
+	            document.getElementById("status vm_mem").options[7]=new Option("56 KB");
+	            document.getElementById("status vm_mem").options[8]=new Option("64 KB");
+	            document.getElementById("status vm_mem").options[9]=new Option("72 KB");
+	            document.getElementById("status vm_mem").options[10]=new Option("80 KB");
+	            document.getElementById("status vm_mem").options[11]=new Option("88 KB");
+	            document.getElementById("status vm_mem").options[12]=new Option("96 KB");
+	            document.getElementById("status vm_mem").options[13]=new Option("104 KB");
+	            document.getElementById("status vm_mem").options[14]=new Option("112 KB");
+	            document.getElementById("status vm_mem").options[15]=new Option("120 KB");
+	            document.getElementById("status vm_mem").options[16]=new Option("128 KB");
+	            break;
+	        }
+	        return true;
+	    }
 	</script>
 </head>
 <body>
@@ -142,7 +318,8 @@
 						<tr>
 							<td>Page Size</td>
 							<td>
-								 <select>
+								 <select id="source" name="source" onchange="javascript: dynamicdropdown(this.options[this.selectedIndex].value);">
+								 	 <option value="select">select</option>
 	 								 <option value="2 KB">2 KB</option>
 	 								 <option value="4 KB">4 KB</option>
 	 								 <option value="8 KB">8 KB</option>
@@ -152,47 +329,17 @@
 						<tr>
 							<td>Main Memory</td>
 							<td>
-								 <select>
-	 								 <option value="4 KB">4 KB</option>
-	 								 <option value="8 KB">8 KB</option>
-	 								 <option value="12 KB">12 KB</option>
-	 								 <option value="16 KB">16 KB</option>
-	 								 <option value="20 KB">20 KB</option>
-	 								 <option value="24 KB">24 KB</option>
-	 								 <option value="28 KB">28 KB</option>
-	 								 <option value="32 KB">32 KB</option>
-	 								 <option value="36 KB">36 KB</option>
-	 								 <option value="40 KB">40 KB</option>
-	 								 <option value="44 KB">44 KB</option>
-	 								 <option value="48 KB">48 KB</option>
-	 								 <option value="52 KB">52 KB</option>
-	 								 <option value="56 KB">56 KB</option>
-	 								 <option value="60 KB">60 KB</option>
-	 								 <option value="64 KB">64 KB</option>
-	  							 </select> 
+								 <script type="text/javascript" language="JavaScript">
+							       document.write('<select name="status mm_mem" id="status mm_mem"><option value="">Select status</option></select>')
+							      </script>
 							</td>
 						</tr>
 						<tr>
 							<td>Virtual Memory</td>
 							<td>
-								 <select style="overflow-y:auto;size: 4 ">
-	 								 <option value="4 KB">4 KB</option>
-	 								 <option value="8 KB">8 KB</option>
-	 								 <option value="12 KB">12 KB</option>
-	 								 <option value="16 KB">16 KB</option>
-	 								 <option value="20 KB">20 KB</option>
-	 								 <option value="24 KB">24 KB</option>
-	 								 <option value="28 KB">28 KB</option>
-	 								 <option value="32 KB">32 KB</option>
-	 								 <option value="36 KB">36 KB</option>
-	 								 <option value="40 KB">40 KB</option>
-	 								 <option value="44 KB">44 KB</option>
-	 								 <option value="48 KB">48 KB</option>
-	 								 <option value="52 KB">52 KB</option>
-	 								 <option value="56 KB">56 KB</option>
-	 								 <option value="60 KB">60 KB</option>
-	 								 <option value="64 KB">64 KB</option>
-	  							 </select> 
+								 <script type="text/javascript" language="JavaScript">
+							       document.write('<select name="status vm_mem" id="status vm_mem"><option value="">Select status</option></select>')
+							      </script>
 							</td>
 						</tr>
 						<tr>
@@ -273,13 +420,13 @@
 			 <div class="three_2_2 item5">
 			 	<div class="four">
 			 		<button type="button" class="truncate_virtualmem">Virtual Memory</button><br>
-			 		<textarea rows="20" cols="7"></textarea>
+			 		<div id="vm"></div>
 			 	</div>
 			 	<div class="four">
 			 		<button type="button" class="truncate_mainmem">Main Memory</button>
 			 		<button type="button" class="truncate">Dirty</button><br>
-			 		<textarea rows="20" cols="7"></textarea>
-			 		<textarea rows="20" cols="7"></textarea>
+			 		<div id="s-1"><div id="mm"></div>
+			 		<div id="dirty"></div></div>
 			 	</div>
 			 	<div class="four">
 			 		<textarea rows="20" cols="15">EXPLANATION</textarea>
@@ -288,9 +435,10 @@
 			 		<button type="button" class="truncate">VPN</button>
 			 		<button type="button" class="truncate">At PPN</button>
 			 		<button type="button" class="truncate">Valid</button><br>
-			 		<textarea rows="20" cols="7"></textarea>
-			 		<textarea rows="20" cols="7"></textarea>
-			 		<textarea rows="20" cols="7"></textarea>
+			 		<div id="s-2">
+			 		<div id="vpn"></div>
+			 		<div id="ppn"></div>
+			 		<div id="valid"></div></div>
 			 	</div>
 
 			 </div>
