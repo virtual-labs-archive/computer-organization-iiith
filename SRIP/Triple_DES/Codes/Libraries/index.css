@@ -1,0 +1,18 @@
+table {
+    font-family: arial, sans-serif;
+    border-collapse: collapse;
+    width: 100%;
+  }
+  td {
+    border: 2px solid #dddddd;
+    padding: 8px;
+  }
+  ::-moz-selection { /* Code for Firefox */
+    color: white;
+    background: #ff007f;
+  }
+  
+  ::selection {
+    color: white;
+    background: #ff007f;
+  }

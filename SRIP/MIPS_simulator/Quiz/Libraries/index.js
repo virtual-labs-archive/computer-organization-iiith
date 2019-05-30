@@ -9,9 +9,11 @@ function generateQuestionContainer(QID, AID, status) {
     var containerDiv = document.getElementById("quizBody");
     var parentDiv = document.createElement("div");
     var QuestionDiv = document.createElement("div");
+    var br = document.createElement("BR");
     QuestionDiv.id = QID;       //Q1
     QuestionDiv.className = "question";
     parentDiv.appendChild(QuestionDiv);
+    parentDiv.appendChild(br);
 
     for (var i = 0; i < 3; i++) {
         var OptionDiv = document.createElement("div");
@@ -43,9 +45,11 @@ function generateResultContainer(RID, status) {
     var containerDiv = document.getElementById("displayResult");
     var parentDiv = document.createElement("div");
     var QuestionDiv = document.createElement("div");
+    var br = document.createElement("BR");
     QuestionDiv.id = RID;       //R1
     QuestionDiv.className = "question";
     parentDiv.appendChild(QuestionDiv);
+    parentDiv.appendChild(br);
 
     for (var i = 0; i < 2; i++) {
         var AnswerDiv = document.createElement("div");
