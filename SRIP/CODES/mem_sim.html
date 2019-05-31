@@ -120,7 +120,7 @@
 		}
 	</style>
 	<script>
-		var pg,mm,vm;
+		var pg,mm,vm,size;
 		var rep,pg_l;
 		function get_parameters(){//sets the values selected by users to right hand field after submit button is clicked 
 			var pg_size=document.getElementById("field_1").elements[0].value;
@@ -142,7 +142,7 @@
 		    vm= parseInt(vm_size.slice(0,vm_size.length-3));
 		    mm= parseInt(mm_size.slice(0,mm_size.length-3));
 		    pg= parseInt(pg_size.slice(0,vm_size.length-3));
-		    var size=vm / pg;
+		    size=vm / pg;
 		    add_vm(size);
 		    add_vpn(size);
 		}
@@ -150,18 +150,25 @@
 		  var z = vm*1024;
 		  var pg_size = pg*1024;
 		  pg_size = pg_size.toString(2);
-		  var len = pg_size.length-1;
-		  alert(len);	 
+		  var len = pg_size.length-1;	 
 		  var x = Math.floor(Math.random()*z);
 		  var y = x.toString(2);
 		  y = y.toString();
-		  var k = parseInt(y.slice(0,len));
-		  alert(k);
-		  alert(y);
 		  x = x.toString(16);
 		  var m = document.getElementById('hex');
 		  m.value = x;
-		  
+		  k = parseInt(k,2);
+          if (y.length<pg_size.length) {
+          	for (var i = 0; i < (pg_size.length-y.length+2); i++) {
+          			y = "0"+y;
+          		 }
+          	}
+          var k = parseInt(y.slice(0,y.length-len)).toString();
+          k= parseInt(k,2);
+
+		}
+		function FIFO(){
+			
 		}
 		function generate_page_no() {//function to generate page number
 		  var z = vm/pg; 
