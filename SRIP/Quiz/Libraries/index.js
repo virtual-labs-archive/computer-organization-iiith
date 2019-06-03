@@ -4,6 +4,35 @@ var ArrayEmpty = 1;
 var CorrectCount = 0;
 var TotalContainer = 0;
 
+var jsonData = [];
+
+function Constructer(question, o1, o2, o3, an) {
+    this.q = question;
+    this.opt1 = o1;
+    this.opt2 = o2;
+    this.opt3 = o3;
+    this.answer = an;
+}
+function load() {
+    initialize_array();
+}
+function initialize_array() {
+    $.ajax(
+        {
+            url: "Libraries/data.json",
+            dataType: 'json',
+            type: 'get',
+            cache: false,
+            success: function (data) {
+                $(data.artciles).each(function (a, b) {
+                    var obj = new Constructer(b.q, b.opt1, b.opt2, b.opt3, b.answer);
+                    jsonData.push(obj);
+                });
+            }
+
+        }
+    );
+}
 
 function generateQuestionContainer(QID, AID, status) {
     var containerDiv = document.getElementById("quizBody");
@@ -33,7 +62,7 @@ function generateQuestionContainer(QID, AID, status) {
     }
 
     containerDiv.appendChild(parentDiv);
-    if (status != 0 && status!=TotalContainer) {
+    if (status != 0 && status != TotalContainer) {
         var br = document.createElement("BR");
         var hr = document.createElement("HR");
         containerDiv.insertBefore(br, parentDiv);
@@ -63,7 +92,7 @@ function generateResultContainer(RID, status) {
     }
 
     containerDiv.appendChild(parentDiv);
-    if (status != 0 && status!=TotalContainer) {
+    if (status != 0 && status != TotalContainer) {
         var br = document.createElement("BR");
         var hr = document.createElement("HR");
         containerDiv.insertBefore(br, parentDiv);
@@ -71,7 +100,8 @@ function generateResultContainer(RID, status) {
     }
 }
 function putContainers() {
-    TotalContainer = Math.floor((Math.random() * 5) + 3);
+    var totalarray=jsonData.length;
+    TotalContainer = Math.floor((Math.random() * totalarray) + 3);
     var QId = "Q";
     var AId = "A";
     var RId = "R";
@@ -137,7 +167,7 @@ function removeChilds() {
     }
 }
 function startQuiz() {
-    document.getElementById("TaskTitle").innerHTML = "Quiz for MIPS Parser";
+    document.getElementById("TaskTitle").innerHTML = "Quiz for MIPS parser";
     document.getElementById("result").style.display = "none";
     document.getElementById("displayResult").style.display = "none";
     document.getElementById("startBtn").style.visibility = "hidden";
