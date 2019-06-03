@@ -1,5 +1,7 @@
  body{         background-color:#FFFFE0;
               margin: 0;
+               user-select: none;
+     -moz-user-select: none; 
       }
      p{
                  padding-left: 50px;
