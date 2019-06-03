@@ -10,6 +10,18 @@
 			height : 300px;
 			overflow: scroll;
 		}
+		#explanation{
+			background-color: lightblue;
+			width : 120px;
+			height : 330px;
+			overflow: scroll;
+		}
+		#recent_history{
+			background-color: lightblue;
+			width : 300px;
+			height : 400px;
+			overflow: scroll;
+		}
 		.truncate_virtualmem{
 			max-width:80%;
   			display:inline-block;
@@ -120,24 +132,25 @@
 		}
 	</style>
 	<script>
-		var pg,mm,vm,size;
-		var rep,pg_l;
+		var pg,mm,vm,size,sz,ctr,mm_ctr,pg_hit,pg_miss;
+		var rep_policy,pg_lvl;
+		var mem_map = [];
 		function get_parameters(){//sets the values selected by users to right hand field after submit button is clicked 
 			var pg_size=document.getElementById("field_1").elements[0].value;
 			var mm_size=document.getElementById("field_1").elements[1].value;
 			var vm_size=document.getElementById("field_1").elements[2].value;
 			var tlb=document.getElementById("field_1").elements[3].value;
-			var rep_policy=document.getElementById("field_1").elements[4].value;
-			var pg_lvl=document.getElementById("field_1").elements[5].value;
+			rep_policy=document.getElementById("field_1").elements[4].value;
+			pg_lvl=document.getElementById("field_1").elements[5].value;
 			pg=document.getElementById('pg_size');
 		    pg.value = pg_size;
 		    mm=document.getElementById('mm_size');
 		    mm.value = mm_size;
 		    vm=document.getElementById('vm_size');
 		    vm.value = vm_size;
-		    rep=document.getElementById('rep_policy');
+		    var rep=document.getElementById('rep_policy');
 		    rep.value = rep_policy;
-		    pg_l=document.getElementById('pg_lvl');
+		    var pg_l=document.getElementById('pg_lvl');
 		    pg_l.value = pg_lvl;
 		    vm= parseInt(vm_size.slice(0,vm_size.length-3));
 		    mm= parseInt(mm_size.slice(0,mm_size.length-3));
@@ -145,6 +158,11 @@
 		    size=vm / pg;
 		    add_vm(size);
 		    add_vpn(size);
+		    fill_array(size);
+		    ctr = 0;
+		    mem_ctr=0;
+		    pg_hit = 0;
+		    pg_miss = 0;
 		}
 		function generate() { //function to generate hex value 
 		  var z = vm*1024;
@@ -157,24 +175,220 @@
 		  x = x.toString(16);
 		  var m = document.getElementById('hex');
 		  m.value = x;
-		  k = parseInt(k,2);
           if (y.length<pg_size.length) {
           	for (var i = 0; i < (pg_size.length-y.length+2); i++) {
           			y = "0"+y;
           		 }
           	}
-          var k = parseInt(y.slice(0,y.length-len)).toString();
+          var k = parseInt(y.slice(0,y.length-len)).toString();	// k-> denotes page number when generated hex address is broken into page number and offset
+          var offset = parseInt(y.slice(y.length-len,y.length)).toString();
+          offset = parseInt(offset,2);
+          m = document.getElementById('VPO');
+          m.value= offset;				//check if it is right
           k= parseInt(k,2);
+          m = document.getElementById('outer');
+          m.value= "--**--";
+          m = document.getElementById('inner');
+          m.value= k;
+          if(mem_ctr < sz)
+          {
+          	if(mem_map[k][2] == 1)		//page hit
+          	{
+				var temp="$ It is page hit "+"VPG-"+ k +"is already mapped to PPG-" + mem_map[k][1];
+				var temp1=x + " VPG-" + k + " PAGE HIT";
+				pg_hit++;
+				add_to_recent_history(temp1);
+				add_to_explanation(temp);
 
+          	}
+          	else{
+          		mem_map[k][1] = mem_ctr;
+	          	mem_map[k][2] = 1;
+	          	mem_map[k][3] = ctr;
+	          	mem_map[k][4] = mem_ctr;
+				var temp="$ PAGE FAULT, but our physical pages are empty, so VPG-"+ k +"is mapped to PPG-" + mem_ctr;
+				add_to_explanation(temp);
+				var temp1=x + "  VPG-" + k + "  PAGE FAULT";
+				pg_miss++;
+				add_to_recent_history(temp1);
+				mem_ctr++; 
+	          	ctr++;
+          	}
+          }
+          else
+          {
+          	if(mem_map[k][2] == 1)		//page hit
+          	{
+				var temp="$ It is page hit "+"VPG-"+ k +"is already mapped to PPG-" + mem_map[k][1];
+				add_to_explanation(temp);
+				var temp1=x + "  VPG-" + k + "  PAGE HIT";
+				pg_hit++;
+				add_to_recent_history(temp1);		
+          	}
+          	else 					    //page fault
+          	{
+          		var temp="$ It is page fault ";
+          		var temp1= x + "  VPG-" + k + "  PAGE FAULT";
+          		pg_miss++;
+          		add_to_recent_history(temp1);
+          		if(rep_policy == "FIFO"){FIFO(temp,k);}
+          		if(rep_policy == "LIFO"){LIFO(temp,k);}
+          		if(rep_policy == "LRU"){LRU(temp,k);}			//run function based on replacement policy
+            }
+          	
+		  }
+		  document.getElementById("count").innerHTML = "page miss = "+pg_miss+"\n"+" page hit = "+pg_hit;
 		}
-		function FIFO(){
-			
+		function add_to_explanation(msg)
+		{
+			var exp = document.getElementById('explanation');
+	        var para = document.createElement("P");
+			var node = document.createTextNode(msg);
+			para.appendChild(node);
+			exp.appendChild(para);
+		}
+		function add_to_recent_history(msg)
+		{
+			var exp = document.getElementById('recent_history');
+	        var para = document.createElement("P");
+			var node = document.createTextNode(msg);
+			para.appendChild(node);
+			exp.appendChild(para);
+		}
+		function FIFO(msg,k)
+		{
+		    for(var i=0; i<size; i++)
+		    {
+		       	if((mem_map[i][2] == 1) && (mem_map[i][4]==0))
+		       	{
+		         	mem_map[k][1] = mem_map[i][1];
+		          	mem_map[k][2] = 1;
+		          	mem_map[k][3] = ctr;
+		          	mem_map[k][4] = mem_ctr;
+		          	mem_map[i][2] = 0;
+		          	ctr++;
+		          	msg = msg + " as our next victim page using selected FIFO REPLACEMENT POLICY VPG-" +i+" is replaced by VPG-" +k;			//need to work on dirty bit
+		          	add_to_explanation(msg);
+		          	for(var i=0; i<size; i++)
+		          	{
+		          		if(mem_map[i][2] == 1){mem_map[i][4]--;}
+		          	}
+		          	break;
+		       	}
+		    }
+		}
+		function LIFO(msg,k)
+		{
+			var min = ctr;
+		    for(var i=0; i<size; i++)
+		    {
+		       	if((mem_map[i][2] == 1) && (mem_map[i][4]==5))
+		       	{
+		         	mem_map[k][1] = mem_map[i][1];
+		          	mem_map[k][2] = 1;
+		          	mem_map[k][3] = ctr;
+		          	mem_map[k][4] = 5;			///////////////
+		          	mem_map[i][2] = 0;
+		          	msg = msg + " as our next victim page using selected LIFO REPLACEMENT POLICY VPG-" +i+" is replaced by VPG-" +k;			//need to work on dirty bit
+		          	add_to_explanation(msg);
+		          	ctr++;
+		          	break;
+		       	}
+		    }
+		}
+		function LRU(msg,k)
+		{
+			alert("IN LRU");
+			var min = ctr;
+			var tgt;
+		    for(var i=0; i<size; i++)
+		    {
+		       	if((mem_map[i][2] == 1) && (mem_map[i][3] <= ctr))
+		       	{
+		         	min = mem_map[i][3];
+		         	tgt = i;
+		       	}
+		       	mem_map[k][1] = mem_map[tgt][1];
+		        mem_map[k][2] = 1;
+		        mem_map[k][3] = ctr;
+		        mem_map[k][4] = mem_ctr;
+		        mem_map[tgt][2] = 0;
+		        msg = msg + " as our next victim page using selected LRU REPLACEMENT POLICY VPG-" +i+" is replaced by VPG-" +k;			//need to work on dirty bit
+		          add_to_explanation(msg);
+		        ctr++;
+		        for(var i=0; i<size; i++)
+		        {
+		          if(mem_map[i][2] == 1){mem_map[i][4]--;}
+		        }
+		    }
+		}
+		function fill_array(size){	//initalize 2d array with col_1->VPG col_2->PPG col_3->VALID BIT col_4->TIME col_5->entering sequence
+			var rows = size;
+			var cols = 5;
+		    sz = mm/pg;
+			for(var i=0; i < rows; i++)
+			{
+				mem_map.push([i]);
+				for(var j=0; j<cols; j++)	
+				{
+					if(j!=0){mem_map[i][j]=-1;}
+				}
+			}
 		}
 		function generate_page_no() {//function to generate page number
 		  var z = vm/pg; 
 		  var x = Math.floor(Math.random()*z);
 		  var m = document.getElementById('dec');
 		  m.value = x;
+		  var k = x;
+		  if(mem_ctr < sz)
+          {
+          	if(mem_map[k][2] == 1)		//page hit
+          	{
+				var temp="$ It is page hit "+"VPG-"+ k +"is already mapped to PPG-" + mem_map[k][1];
+				var temp1=x + " VPG-" + k + " PAGE HIT";
+				pg_hit++;
+				add_to_recent_history(temp1);
+				add_to_explanation(temp);
+
+          	}
+          	else{
+          		mem_map[k][1] = mem_ctr;
+	          	mem_map[k][2] = 1;
+	          	mem_map[k][3] = ctr;
+	          	mem_map[k][4] = mem_ctr;
+				var temp="$ PAGE FAULT, but our physical pages are empty, so VPG-"+ k +"is mapped to PPG-" + mem_ctr;
+				add_to_explanation(temp);
+				var temp1=x + "  VPG-" + k + "  PAGE FAULT";
+				pg_miss++;
+				add_to_recent_history(temp1);
+				mem_ctr++; 
+	          	ctr++;
+          	}
+          }
+          else
+          {
+          	if(mem_map[k][2] == 1)		//page hit
+          	{
+				var temp="$ It is page hit "+"VPG-"+ k +"is already mapped to PPG-" + mem_map[k][1];
+				add_to_explanation(temp);
+				var temp1=x + "  VPG-" + k + "  PAGE HIT";
+				pg_hit++;
+				add_to_recent_history(temp1);		
+          	}
+          	else 					    //page fault
+          	{
+          		var temp="$ It is page fault ";
+          		var temp1= x + "  VPG-" + k + "  PAGE FAULT";
+          		pg_miss++;
+          		add_to_recent_history(temp1);
+          		if(rep_policy == "FIFO"){FIFO(temp,k);}
+          		if(rep_policy == "LIFO"){LIFO(temp,k);}
+          		if(rep_policy == "LRU"){LRU(temp,k);}			//run function based on replacement policy
+            }
+          	
+		  }
+		  document.getElementById("count").innerHTML = "page miss = "+pg_miss+"\n"+" page hit = "+pg_hit;
 		}
 		
 		function add_vm(size){
@@ -409,16 +623,15 @@
 						<td><button type="button">VPO</button></td>
 					</tr>
 					<tr>
-						<td><input type="text" name="Page number" class="truncate"></td>
-						<td><input type="text" name="Page number" class="truncate"></td>
-						<td><input type="text" name="Page number" class="truncate"></td>
+						<td><input type="text" name="Page number" class="truncate" id="outer"></td>
+						<td><input type="text" name="Page number" class="truncate" id="inner"></td>
+						<td><input type="text" name="Page number" class="truncate" id="VPO"></td>
 					</tr>
 				</table>
 			</div>
 			<div class="three_2 item3">
-				<button type="button">RESTART</button>
-				<p>Page Miss 0</p>
-				<p>Page Hit 0</p>
+				<button type="button" value="RESTART" onclick="window.location.href='file:///home/ganesh/Desktop/githubproj/computer-organization-iiith/SRIP/CODES/mem_sim.html'">RESTART</button>
+				<div id="count">page miss = 0 page hit = 0</div>
 			</div>
 			 <div class="three_2 item4">
 			 	<button type="button">BASIC</button>
@@ -436,7 +649,7 @@
 			 		<div id="dirty"></div></div>
 			 	</div>
 			 	<div class="four">
-			 		<textarea rows="20" cols="15">EXPLANATION</textarea>
+			 		<div id="explanation">EXPLANATION<br>-------------------------</div>
 			 	</div>
 			 	<div>
 			 		<button type="button" class="truncate">VPN</button>
@@ -466,7 +679,7 @@
 		 		<textarea rows="1" cols="7" id="pg_lvl"></textarea>
 			</div>
 			<div class="three_3">
-				<textarea rows="30" cols="15"> Recent History</textarea>
+				<div id="recent_history">RECENT HISTORY<br>---------------------------------------------------------</div>
 			</div>
 		</div>
 
