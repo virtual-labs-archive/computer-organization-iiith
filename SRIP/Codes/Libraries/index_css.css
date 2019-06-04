@@ -1,7 +1,9 @@
 .dropbtn {
   cursor: pointer;
 }
-
+.hoverdropdown:hover .dropdown-content{
+  display: block;
+}
 .dropbtn:hover, .dropbtn:focus {
   background-color: #969696;
 }

@@ -1,344 +1,380 @@
 <!DOCTYPE html>
-<html  lang="en">
+<html lang="en">
+
 <head>
 	<title>Assignment</title>
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<link rel="stylesheet" type="text/css" href="Libraries/index_css.css">
 	<script type="text/javascript" src="Libraries/index_js.js"></script>
 	<script type="text/javascript" src="Libraries/execute.js"></script>
-	
+
 </head>
+
 <body>
 
-<!--HEADER html is here**************************************************************************************-->
-<div class="dropdown top_menu">
-	
-		<button onclick="mydropdownFunction(0)" class="dropbtn" id="file"><b>   File   </b></button>
-		<div id="myDropdown_file" class="dropdown-content">
-		  <button class="button_decor" >New</button><br>
-		  <button class="button_decor" >Open</button><br>
-		  <button class="button_decor">Close</button><br>
-		  <button class="button_decor">Close All</button><hr>
-		  <button class="button_decor">Save</button><br>
-		  <button class="button_decor">Save As</button><hr>
-		  <button class="button_decor" onclick="exit_Window()">Exit</button><br>
-		</div>
-	
+	<!--HEADER html is here**************************************************************************************-->
+	<div class="dropdown top_menu">
+
+		<span class="hoverdropdown">
+			<button class="dropbtn" id="file"><b> File </b></button>
+			<div id="myDropdown_file" class="dropdown-content">
+				<button class="button_decor">New</button><br>
+				<button class="button_decor">Open</button><br>
+				<button class="button_decor">Close</button><br>
+				<button class="button_decor">Close All</button>
+				<hr>
+				<button class="button_decor">Save</button><br>
+				<button class="button_decor">Save As</button>
+				<hr>
+				<button class="button_decor" onclick="exit_Window()">Exit</button><br>
+			</div>
+		</span>
 
 
 
-	
-		<button onclick="mydropdownFunction(1)" class="dropbtn" id="edit"><b>    Edit    </b></button>
-	  	<div id="myDropdown_edit" class="dropdown-content">
-			<button class="button_decor" onclick="undo_fun()">Undo</button><br>
-			<button class="button_decor" onclick="redo_fun()">Redo</button><hr>
-			<button class="button_decor">Cut</button><br>
-			<button class="button_decor">Copy</button><br>
-			<button class="button_decor">Paste</button><hr>
-			<button class="button_decor">Select All</button><br>
-	  </div>
-	
+
+
+		<span class="hoverdropdown">
+			<button class="dropbtn" id="edit"><b> Edit </b></button>
+			<div id="myDropdown_edit" class="dropdown-content" style="margin-left:4em; ">
+				<button class="button_decor" onclick="undo_fun()">Undo</button><br>
+				<button class="button_decor" onclick="redo_fun()">Redo</button>
+				<hr>
+				<button class="button_decor">Cut</button><br>
+				<button class="button_decor">Copy</button><br>
+				<button class="button_decor">Paste</button>
+				<hr>
+				<button class="button_decor">Select All</button><br>
+			</div>
+		</span>
 
 
 
-	
-        <button onclick="mydropdownFunction(2)" class="dropbtn" id="run"><b>     Run     </b></button>
-        <div id="myDropdown_run" class="dropdown-content">
-          <button class="button_decor" id="Run_assemble" onclick="assemblerlistner()">Assemble</button><br>
-          <div class="assemblerclass" >
-              <button class="button_decor" id="Run_run" style="cursor: none;opacity: 0.5">Run</button><br>
-              <button class="button_decor" id="Run_step"  style="cursor: none;opacity: 0.5">Step</button><br>
-              <button class="button_decor" id="Run_reset" style="cursor: none;opacity: 0.5">Reset</button><hr>
-              <button class="button_decor" id="Run_clearBreakPoints" style="cursor: none;opacity: 0.5">Clear Breakpoints</button><br>
-              <button class="button_decor" id="Run_toggleBreakPoints" style="cursor: none;opacity: 0.5">Toggle Breakpoints</button><br>
-          </div>
-          
-        </div>
 
 
+		<span class="hoverdropdown">
+			<button class="dropbtn" id="run"><b> Run </b></button>
+			<div id="myDropdown_run" class="dropdown-content" style="margin-left:8em; ">
+				<button class="button_decor" id="Run_assemble" onclick="assemblerlistner()">Assemble</button><br>
+				<div class="assemblerclass">
+					<button class="button_decor" id="Run_run" style="cursor: none;opacity: 0.5">Run</button><br>
+					<button class="button_decor" id="Run_step" style="cursor: none;opacity: 0.5">Step</button><br>
+					<button class="button_decor" id="Run_reset" style="cursor: none;opacity: 0.5">Reset</button>
+					<hr>
+					<button class="button_decor" id="Run_clearBreakPoints" style="cursor: none;opacity: 0.5">Clear
+						Breakpoints</button><br>
+					<button class="button_decor" id="Run_toggleBreakPoints" style="cursor: none;opacity: 0.5">Toggle
+						Breakpoints</button><br>
+				</div>
 
-	   <button onclick="mydropdownFunction(3)" class="dropbtn" id="help"><b>Help</b></button>
-	  <div id="myDropdown_help" class="dropdown-content">
-	    <a href="help.htm" class="link_decor" style="border:none;background-color: #f1f1f1;">Help</a><hr>
-		<button class="button_decor" onclick="about_popup()">About</button>
-		<div id="my-modal" class="modal" style="background-color: white">
-				<div class="modal-content" style="background-color: white">
-					<div class="modal-header" style="background-color: rgb(141, 141, 141);">
-						<span class="close">&times;</span>
-						Message
-					</div>
-					<div class="modal_wrapper" style="background-color: white">
+			</div>
+
+		</span>
+
+
+		<span class="hoverdropdown">
+			<button class="dropbtn" id="help"><b>Help</b></button>
+			<div id="myDropdown_help" class="dropdown-content" style="margin-left:12em; ">
+				<a href="help.htm" class="link_decor" style="border:none;background-color: #f1f1f1;">Help</a>
+				<hr>
+				<button class="button_decor" onclick="about_popup()">About</button>
+				<div id="my-modal" class="modal" style="background-color: white">
+					<div class="modal-content" style="background-color: white">
+						<div class="modal-header" style="background-color: rgb(141, 141, 141);">
+							<span class="close">&times;</span>
+							Message
+						</div>
+						<div class="modal_wrapper" style="background-color: white">
 							<div>
-								<img src="data:image/png;base64,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" alt="alert" width="100em" height="90em">
+								<img
+									src="data:image/png;base64,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"
+									alt="alert" width="100em" height="90em">
 							</div>
 							<div class="modal-body">
-									<p>MipsParser Version 1.0 Build 100</p>
-									<p>Designed By-</p>
-									<p>Lakshya Jain and Rishikesh Dwivedi</p><br>
-									<p>MipsParser is a MIPS assembler and a run time simulator</p>
+								<p>MipsParser Version 1.0 Build 100</p>
+								<p>Designed By-</p>
+								<p>Lakshya Jain and Rishikesh Dwivedi</p><br>
+								<p>MipsParser is a MIPS assembler and a run time simulator</p>
 							</div>
 							<div class="modal-footer" style="background-color: white;">
-										<button class="close_btn">OK</button>
+								<button class="close_btn">OK</button>
 							</div>
+						</div>
 					</div>
 				</div>
 			</div>
-	  </div>
-</div>
-<br>
-<hr>
-
-
-
-<div  class="menu">
-
-	  <a href="index.htm" id="menu_editor" class="link_decor">Editor</a>
-	  <a href="execute.html" id="menu_execute" class="link_decor">Execute</a>
-	  <a href="codes.htm" id="menu_codes" class="link_decor">Codes</a>
-	  <a href="help.htm" id="menu_help" class="link_decor">Help</a>
-</div>
-<br>
-<!--HEADER html is here*******************************************************************-->
-
-<div class="scroll">
-	<p>
-		<b><u>User's Guide</u></b><br><br>
-		<b>1.Introduction</b><br>
-		This simulator is designed to run MIPS codes, programed in MIPS assmebly language.<br><br>
-		<b>2.Layout</b>
-		At the top of the simulator there is a <b>MenuBar</b>. The Menubar provides following functionalities ..
-		<ul style="list-style-type:circle;">
-			<li>
-				File
-				<ul style="list-style-type:circle;">
-					<li>
-						Options for writing a new code; opening a file; closing or saving the current code etc
-					</li>
-					<li>
-						Exiting the Simulators
-					</li>
-				</ul>
-			</li>
-			<li>
-				Edit
-				<ul style="list-style-type:circle;">
-					<li>
-						Editor options like undo, redo, select all etc.
-					</li>
-				</ul>
-			</li>
-			<li>
-				Run
-				<ul style="list-style-type:circle;">
-					<li>
-						Assemble the code
-					</li>
-					<li>
-						Run the whole program
-					</li>
-					<li>
-						Run the current instruction of the program
-					</li>
-				</ul>
-			</li>
-		</ul>
-		<br>
-		The main panel consistes of 4 tabs.
-		<ul style="list-style-type:circle;">
-			<li>
-				<b>Editor</b> : Here the user will write their programs. The editor can have multiple tabs of code section. In each tab user can write their programs.
-			</li>
-			<li>
-				<b>Execute</b> : Assembling and running of the user code will be done here. It consists of various sections like the register table, text section, memory table etc.
-
-			</li>
-			<li>
-				<b>Sample Codes</b> : Various sample Mips Programs are provided here for the user help.
-			</li>
-			<li>
-				<b>Help</b> : User guide to understand the simulator.
-			</li>
-		</ul>
-		<br>
-		The bottom I/O panel is to generate the assembler messages. Assembly errors, runtime errors, input/output messages etc will be generated here.<br><br>
-		<b>3.Writing and Running a sample program</b><br>
-		<ul  style="list-style-type:circle;">
-			<li>
-				To write a program, the first thing we have to do, is to open a new editor where we can write our program. To do that ..<br><br>
-				<ol>
-					<li>
-						Click on the <b>File</b> button from the menu. A list will appear.
-					</li>
-					<li>
-						Click on the <b>New</b> button from the list. A new editor will appear in the editor tab. Here we will write our program
-					</li>
-				</ol><br>
-			</li>
-			<li>
-				Next, we will write our code in the editor. We can either start from scratch and write the program or we can copy the sample code, present in the sample codes tab, and modify it to our needs.
-			</li>
-			<li>
-				After writing our program, we will assemble it. To do that ..<br><br>
-				<ol>
-					<li>
-						Click on the <b>Run</b> buttion from the menu. A list will appear.
-					</li>
-					<li>
-						Click on the <b>Assemble</b> button from the list.
-					</li>
-				</ol><br>
-
-				This will assemble our arm program and the control will be transfered from the editor window to the execute window. If there are error(s) in our program, the subsequent messages will be displayed in the bottom I/O panel.
-			</li>
-			<li>
-				After the program has been successfuly assebled, we can run it. We can either choose to run the whole program in one shot, or we can run one instruction at a time. To do the, the execute panel has two buttons, <b>Run</b> and <b>Step</b>
-			</li>
-		</ul>
-		<b>4.Supported Directives/Instructions</b><br>
-		The registers names are the same as defined in MIPS.<br>
-		<ol>
-			<li>
-				In this version following directives are supported :
-				<ul style="list-style-type:circle;">
-					<li>
-						<b>.word</b> : To define a single variable or an array. If inital value(s) is not provided, no memory space will be reserved and the variable name will be an alias to the previously defined variable.
-					</li>
-					<li>
-						<b>.space</b> :To allocate a memory chunk of given size to a variable. A memory chunk might be composed of several words.
-					</li>
-					<li>
-						<b>.asciiz</b> :To define a null terminated String
-					</li>
-					<li>
-						<b>.ascii</b> :To define a String that is not null-terminated
-					</li>
-					<li>
-						<b>.text</b> :To specify the begining of the text section.
-					</li>
-					<li>
-						<b>.data</b> :To specify the beginning of the data section.
-					</li>
-				</ul>
-			</li>
-			<li>
-				Since this is a simulator form MIPS, All the instructions and their format is same as defined by MIPS assembly language. The functionality of every instruction is in accordance with the MIPS architecture. In this version, following instructions are supported :
-
-				<table>
-				  <tr>
-				    <td>add</td>
-				    <td>addi</td> 
-				    <td>addiu</td>
-				    <td>addu</td>
-				    <td>and</td>
-				  </tr>
-				  <tr>
-				     <td>andi</td>
-				    <td>b</td> 
-				    <td>beq</td>
-				    <td>beqz</td>
-				    <td>bge</td>
-				  </tr>
-				  <tr>
-				    <td>bgez</td>
-				    <td>bgezal</td> 
-				    <td>bgt</td>
-				    <td>bgtz</td>
-				    <td>ble</td>
-				  </tr>
-				  <tr>
-				     <td>blez</td>
-				    <td>blt</td> 
-				    <td>bltz</td>
-				    <td>bltzal</td>
-				    <td>bne</td>
-				  </tr>
-				  <tr>
-				     <td>bnez</td>
-				    <td>clo</td> 
-				    <td>clz</td>
-				    <td>div</td>
-				    <td>divu</td>
-				  </tr>
-				  <tr>
-				     <td>j</td>
-				    <td>jal</td> 
-				    <td>jalr</td>
-				    <td>jr</td>
-				    <td>la</td>
-				  </tr>
-				  <tr>
-				     <td>lb</td>
-				    <td>lh</td> 
-				    <td>li</td>
-				    <td>lw</td>
-				    <td>mfhi</td>
-				  </tr>
-				  <tr>
-				     <td>mflo</td>
-				    <td>mthi</td> 
-				    <td>mtlo</td>
-				    <td>move</td>
-				    <td>movn</td>
-				  </tr>
-				  <tr>
-				     <td>movz</td>
-				    <td>mul</td> 
-				    <td>mulo</td>
-				    <td>mult</td>
-				    <td>neg</td>
-				  </tr>
-				  <tr>
-				     <td>nor</td>
-				    <td>not</td> 
-				    <td>or</td>
-				    <td>ori</td>
-				    <td>sll</td>
-				  </tr>
-				  <tr>
-				     <td>sllv</td>
-				    <td>slt</td> 
-				    <td>slti</td>
-				    <td>sltiu</td>
-				    <td>sltu</td>
-				  </tr>
-				  <tr>
-				    <td>srl</td>
-				    <td>srlv</td> 
-				    <td>sb</td>
-				    <td>seb</td>
-				    <td>seh</td>
-				  </tr>
-				  <tr>
-				     <td>sh</td>
-				    <td>sub</td> 
-				    <td>sw</td>
-				    <td>xor</td>
-				    <td>xori</td>
-				  </tr>
-				</table><br>
-				To add comments use "#" or "//"
-			</li>
-		</ol>
-
-	</p>
-</div>
-
-<!--FOOTER html is here**********************************************************************************-->
-<div class="bottom_menu">
-	 <button id="bottom_Run">Run Input/Output</button>
-	  <button  id="bottom_parser">Parser Message</button>
-	<div class="wrapper" >
-		<div style="background-color: grey">
-			<button id="bottom_clear" class="center_feild" >Clear</button>
-		</div>
-		<div style="width:98%;height:10em;">
-			<textarea style="width: 100%;height:100%;" id="parsertext">
-			
-			</textarea>
-		</div>
 	</div>
 	<br>
-</div>
-<!--FOOTER html is here**********************************************************************************-->
+	<hr>
+	</span>
+
+
+
+
+	<div class="menu">
+
+		<a href="index.htm" id="menu_editor" class="link_decor">Editor</a>
+		<a href="execute.html" id="menu_execute" class="link_decor">Execute</a>
+		<a href="codes.htm" id="menu_codes" class="link_decor">Codes</a>
+		<a href="help.htm" id="menu_help" class="link_decor">Help</a>
+	</div>
+	<br>
+	<!--HEADER html is here*******************************************************************-->
+
+	<div class="scroll">
+		<p>
+			<b><u>User's Guide</u></b><br><br>
+			<b>1.Introduction</b><br>
+			This simulator is designed to run MIPS codes, programed in MIPS assmebly language.<br><br>
+			<b>2.Layout</b>
+			At the top of the simulator there is a <b>MenuBar</b>. The Menubar provides following functionalities ..
+			<ul style="list-style-type:circle;">
+				<li>
+					File
+					<ul style="list-style-type:circle;">
+						<li>
+							Options for writing a new code; opening a file; closing or saving the current code etc
+						</li>
+						<li>
+							Exiting the Simulators
+						</li>
+					</ul>
+				</li>
+				<li>
+					Edit
+					<ul style="list-style-type:circle;">
+						<li>
+							Editor options like undo, redo, select all etc.
+						</li>
+					</ul>
+				</li>
+				<li>
+					Run
+					<ul style="list-style-type:circle;">
+						<li>
+							Assemble the code
+						</li>
+						<li>
+							Run the whole program
+						</li>
+						<li>
+							Run the current instruction of the program
+						</li>
+					</ul>
+				</li>
+			</ul>
+			<br>
+			The main panel consistes of 4 tabs.
+			<ul style="list-style-type:circle;">
+				<li>
+					<b>Editor</b> : Here the user will write their programs. The editor can have multiple tabs of code section. In
+					each tab user can write their programs.
+				</li>
+				<li>
+					<b>Execute</b> : Assembling and running of the user code will be done here. It consists of various sections
+					like the register table, text section, memory table etc.
+
+				</li>
+				<li>
+					<b>Sample Codes</b> : Various sample Mips Programs are provided here for the user help.
+				</li>
+				<li>
+					<b>Help</b> : User guide to understand the simulator.
+				</li>
+			</ul>
+			<br>
+			The bottom I/O panel is to generate the assembler messages. Assembly errors, runtime errors, input/output messages
+			etc will be generated here.<br><br>
+			<b>3.Writing and Running a sample program</b><br>
+			<ul style="list-style-type:circle;">
+				<li>
+					To write a program, the first thing we have to do, is to open a new editor where we can write our program. To
+					do that ..<br><br>
+					<ol>
+						<li>
+							Click on the <b>File</b> button from the menu. A list will appear.
+						</li>
+						<li>
+							Click on the <b>New</b> button from the list. A new editor will appear in the editor tab. Here we will
+							write our program
+						</li>
+					</ol><br>
+				</li>
+				<li>
+					Next, we will write our code in the editor. We can either start from scratch and write the program or we can
+					copy the sample code, present in the sample codes tab, and modify it to our needs.
+				</li>
+				<li>
+					After writing our program, we will assemble it. To do that ..<br><br>
+					<ol>
+						<li>
+							Click on the <b>Run</b> buttion from the menu. A list will appear.
+						</li>
+						<li>
+							Click on the <b>Assemble</b> button from the list.
+						</li>
+					</ol><br>
+
+					This will assemble our arm program and the control will be transfered from the editor window to the execute
+					window. If there are error(s) in our program, the subsequent messages will be displayed in the bottom I/O
+					panel.
+				</li>
+				<li>
+					After the program has been successfuly assebled, we can run it. We can either choose to run the whole program
+					in one shot, or we can run one instruction at a time. To do the, the execute panel has two buttons, <b>Run</b>
+					and <b>Step</b>
+				</li>
+			</ul>
+			<b>4.Supported Directives/Instructions</b><br>
+			The registers names are the same as defined in MIPS.<br>
+			<ol>
+				<li>
+					In this version following directives are supported :
+					<ul style="list-style-type:circle;">
+						<li>
+							<b>.word</b> : To define a single variable or an array. If inital value(s) is not provided, no memory
+							space will be reserved and the variable name will be an alias to the previously defined variable.
+						</li>
+						<li>
+							<b>.space</b> :To allocate a memory chunk of given size to a variable. A memory chunk might be composed of
+							several words.
+						</li>
+						<li>
+							<b>.asciiz</b> :To define a null terminated String
+						</li>
+						<li>
+							<b>.ascii</b> :To define a String that is not null-terminated
+						</li>
+						<li>
+							<b>.text</b> :To specify the begining of the text section.
+						</li>
+						<li>
+							<b>.data</b> :To specify the beginning of the data section.
+						</li>
+					</ul>
+				</li>
+				<li>
+					Since this is a simulator form MIPS, All the instructions and their format is same as defined by MIPS assembly
+					language. The functionality of every instruction is in accordance with the MIPS architecture. In this version,
+					following instructions are supported :
+
+					<table>
+						<tr>
+							<td>add</td>
+							<td>addi</td>
+							<td>addiu</td>
+							<td>addu</td>
+							<td>and</td>
+						</tr>
+						<tr>
+							<td>andi</td>
+							<td>b</td>
+							<td>beq</td>
+							<td>beqz</td>
+							<td>bge</td>
+						</tr>
+						<tr>
+							<td>bgez</td>
+							<td>bgezal</td>
+							<td>bgt</td>
+							<td>bgtz</td>
+							<td>ble</td>
+						</tr>
+						<tr>
+							<td>blez</td>
+							<td>blt</td>
+							<td>bltz</td>
+							<td>bltzal</td>
+							<td>bne</td>
+						</tr>
+						<tr>
+							<td>bnez</td>
+							<td>clo</td>
+							<td>clz</td>
+							<td>div</td>
+							<td>divu</td>
+						</tr>
+						<tr>
+							<td>j</td>
+							<td>jal</td>
+							<td>jalr</td>
+							<td>jr</td>
+							<td>la</td>
+						</tr>
+						<tr>
+							<td>lb</td>
+							<td>lh</td>
+							<td>li</td>
+							<td>lw</td>
+							<td>mfhi</td>
+						</tr>
+						<tr>
+							<td>mflo</td>
+							<td>mthi</td>
+							<td>mtlo</td>
+							<td>move</td>
+							<td>movn</td>
+						</tr>
+						<tr>
+							<td>movz</td>
+							<td>mul</td>
+							<td>mulo</td>
+							<td>mult</td>
+							<td>neg</td>
+						</tr>
+						<tr>
+							<td>nor</td>
+							<td>not</td>
+							<td>or</td>
+							<td>ori</td>
+							<td>sll</td>
+						</tr>
+						<tr>
+							<td>sllv</td>
+							<td>slt</td>
+							<td>slti</td>
+							<td>sltiu</td>
+							<td>sltu</td>
+						</tr>
+						<tr>
+							<td>srl</td>
+							<td>srlv</td>
+							<td>sb</td>
+							<td>seb</td>
+							<td>seh</td>
+						</tr>
+						<tr>
+							<td>sh</td>
+							<td>sub</td>
+							<td>sw</td>
+							<td>xor</td>
+							<td>xori</td>
+						</tr>
+					</table><br>
+					To add comments use "#" or "//"
+				</li>
+			</ol>
+
+		</p>
+	</div>
+
+	<!--FOOTER html is here**********************************************************************************-->
+	<div class="bottom_menu">
+		<button id="bottom_Run">Run Input/Output</button>
+		<button id="bottom_parser">Parser Message</button>
+		<div class="wrapper">
+			<div style="background-color: grey">
+				<button id="bottom_clear" class="center_feild">Clear</button>
+			</div>
+			<div style="width:98%;height:10em;">
+				<textarea style="width: 100%;height:100%;" id="parsertext">
+
+			</textarea>
+			</div>
+		</div>
+		<br>
+	</div>
+	<!--FOOTER html is here**********************************************************************************-->
 </body>
+
 </html>

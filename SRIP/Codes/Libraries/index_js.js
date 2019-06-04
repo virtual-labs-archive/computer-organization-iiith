@@ -8,47 +8,47 @@ var CopyTextBuffer = "You haven't copy anything.This is default text";
 
 //Java script part for dropdown of sub menu
 //****************************************************************************************************
-var LockDropDown = -1;
-function mydropdownFunction(x) {
-	var status = 0;
-	if (LockDropDown !== -1) {
-		if (LockDropDown === x) {
-			status = 1;
-		}
-		if (LockDropDown === 0) {
-			document.getElementById("myDropdown_file").classList.toggle("show");
-		}
-		else if (LockDropDown === 1) {
-			document.getElementById("myDropdown_edit").classList.toggle("show");
-		}
-		else if (LockDropDown === 2) {
-			document.getElementById("myDropdown_run").classList.toggle("show");
-		}
-		else if (LockDropDown === 3) {
-			document.getElementById("myDropdown_help").classList.toggle("show");
-		}
-		LockDropDown = -1;
-	}
-	if (status !== 1) {
-		if (x === 0 && LockDropDown === -1) {
-			document.getElementById("myDropdown_file").classList.toggle("show");
-			LockDropDown = 0;
-		}
-		else if (x === 1 && LockDropDown === -1) {
-			document.getElementById("myDropdown_edit").classList.toggle("show");
-			LockDropDown = 1;
-		}
-		else if (x === 2 && LockDropDown === -1) {
-			document.getElementById("myDropdown_run").classList.toggle("show");
-			LockDropDown = 2;
-		}
-		else if (x === 3 && LockDropDown === -1) {
-			document.getElementById("myDropdown_help").classList.toggle("show");
-			LockDropDown = 3;
-		}
-	}
+// var LockDropDown = -1;
+// function mydropdownFunction(x) {
+// 	var status = 0;
+// 	if (LockDropDown !== -1) {
+// 		if (LockDropDown === x) {
+// 			status = 1;
+// 		}
+// 		if (LockDropDown === 0) {
+// 			document.getElementById("myDropdown_file").classList.toggle("show");
+// 		}
+// 		else if (LockDropDown === 1) {
+// 			document.getElementById("myDropdown_edit").classList.toggle("show");
+// 		}
+// 		else if (LockDropDown === 2) {
+// 			document.getElementById("myDropdown_run").classList.toggle("show");
+// 		}
+// 		else if (LockDropDown === 3) {
+// 			document.getElementById("myDropdown_help").classList.toggle("show");
+// 		}
+// 		LockDropDown = -1;
+// 	}
+// 	if (status !== 1) {
+// 		if (x === 0 && LockDropDown === -1) {
+// 			document.getElementById("myDropdown_file").classList.toggle("show");
+// 			LockDropDown = 0;
+// 		}
+// 		else if (x === 1 && LockDropDown === -1) {
+// 			document.getElementById("myDropdown_edit").classList.toggle("show");
+// 			LockDropDown = 1;
+// 		}
+// 		else if (x === 2 && LockDropDown === -1) {
+// 			document.getElementById("myDropdown_run").classList.toggle("show");
+// 			LockDropDown = 2;
+// 		}
+// 		else if (x === 3 && LockDropDown === -1) {
+// 			document.getElementById("myDropdown_help").classList.toggle("show");
+// 			LockDropDown = 3;
+// 		}
+// 	}
 
-}
+// }
 
 
 //Java script part for the enabling and disbling the options of Run menu tab
