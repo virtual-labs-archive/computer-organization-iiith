@@ -12,8 +12,8 @@
 		}
 		#explanation{
 			background-color: lightblue;
-			width : 120px;
-			height : 330px;
+			width : 100%;
+			height : 335px;
 			overflow: scroll;
 		}
 		#recent_history{
@@ -30,7 +30,7 @@
   			text-overflow:ellipsis;
 		}
 		.truncate_mainmem{
-			max-width:40%;
+			max-width:80%;
   			display:inline-block;
   			white-space:nowrap;
   			overflow:hidden;
@@ -44,14 +44,14 @@
   			text-overflow:ellipsis;
 		}
 		.truncate_replacementpolicy{
-			max-width:20%;
+			max-width:80%;
   			display:inline-block;
   			white-space:nowrap;
   			overflow:hidden;
   			text-overflow:ellipsis;
 		}
 		.truncate_pagelevel{	
-			max-width:15%;
+			max-width:800%;
   			display:inline-block;
   			white-space:nowrap;
   			overflow:hidden;
@@ -82,12 +82,30 @@
 			padding: 10px;
 		}
 		#s-2{
+			grid-gap: 0px;
+			padding: 0px;
 			display: grid;
-			grid-template-columns: auto auto auto;
+			grid-template-columns: 33% 33% 33%;
 		}
 		#s-1{
+			grid-gap: 0px;
+			padding: 0px;
+			display: grid;
+			grid-template-columns: 50% 50%;
+		}
+		#s-3{
+
+			display: grid;
+			grid-template-columns: auto auto auto;
+  			grid-gap: 0px;
+  			padding: 0px;
+		}
+		#s-4{
+
 			display: grid;
 			grid-template-columns: auto auto;
+  			grid-gap: 0px;
+  			padding: 0px;
 		}
 		.two_2{
 			display: grid;
@@ -96,11 +114,6 @@
  		 	grid-gap: 2px;
   			background-color:  rgba(255, 255, 255, 0.8);
 			padding: 5px;
-		}
-		#s-2{
-			display: grid;
-			grid-template-columns: auto auto auto;
-			grid-gap:5px;
 		}
 		.item1{
 			grid-column: 1;
@@ -130,6 +143,7 @@
   			background-color: white;
   			padding: 10px;
 		}
+
 	</style>
 	<script>
 		var pg,mm,vm,size,sz,ctr,mm_ctr,pg_hit,pg_miss;
@@ -164,6 +178,86 @@
 		    pg_hit = 0;
 		    pg_miss = 0;
 		}
+		function map(){
+		  var addr = document.getElementById("hex");
+		  var x = addr.value;
+		  x = parseInt(x,16);
+		  var pg_size = pg*1024;
+		  pg_size = pg_size.toString(2);
+		  var len = pg_size.length-1;
+		  var y = x.toString(2);
+		  y = y.toString();
+		  if (y.length<pg_size.length) {
+          	for (var i = 0; i < (pg_size.length-y.length+2); i++) {
+          			y = "0"+y;
+          		 }
+          	}
+          var k = parseInt(y.slice(0,y.length-len)).toString();	// k-> denotes page number when generated hex address is broken into page number and offset
+          var offset = parseInt(y.slice(y.length-len,y.length)).toString();
+          offset = parseInt(offset,2);
+          var m = document.getElementById('VPO');
+          m.value= offset;				//check if it is right
+          k= parseInt(k,2);
+          m = document.getElementById('outer');
+          m.value= "--**--";
+          m = document.getElementById('inner');
+          m.value= k;
+         if(mem_ctr < sz)
+          {
+          	if(mem_map[k][2] == 1)		//page hit
+          	{
+				var temp="$ It is page hit "+"VPG-"+ k +"maps to PPG-" + mem_map[k][1];
+				var temp1=x + " VPG-" + k + " PAGE HIT";
+				pg_hit++;
+				add_to_recent_history(temp1);
+				add_to_explanation(temp);
+
+          	}
+          	else{
+          		mem_map[k][1] = mem_ctr;
+	          	mem_map[k][2] = 1;
+	          	mem_map[k][3] = ctr;
+	          	mem_map[k][4] = mem_ctr;
+				var temp="$ PAGE FAULT, but our physical pages are empty, so VPG-"+ k +"is mapped to PPG-" + mem_ctr;
+				add_to_explanation(temp);
+				var temp1=x + "  VPG-" + k + "  PAGE FAULT";
+				pg_miss++;
+				add_to_recent_history(temp1);
+				mem_ctr++; 
+	          	ctr++;
+          	}
+          }
+          else
+          {
+          	if(mem_map[k][2] == 1)		//page hit
+          	{
+				var temp="$ It is page hit "+"VPG-"+ k +" maps to PPG-" + mem_map[k][1];
+				add_to_explanation(temp);
+				var temp1=x + "  VPG-" + k + "  PAGE HIT";
+				pg_hit++;
+				add_to_recent_history(temp1);		
+          	}
+          	else 					    //page fault
+          	{
+          		var operation=document.getElementById("field_2").elements[0].value;
+          		if(operation == "READ"){
+          			var temp="$ It is page fault and page is not dirty so not required to copy it to disk ";
+          		}
+          		if(operation == "WRITE"){
+          			var temp="$ It is page fault and page is dirty so copy it to disk before removing from physical memory, now it's done ";
+          		}
+          		var temp1= x + "  VPG-" + k + "  PAGE FAULT";
+          		pg_miss++;
+          		add_to_recent_history(temp1);
+          		if(rep_policy == "FIFO"){FIFO(temp,k);}
+          		if(rep_policy == "LIFO"){LIFO(temp,k);}
+          		if(rep_policy == "LRU"){LRU(temp,k);}			//run function based on replacement policy
+            }
+          	
+		  }
+		  document.getElementById("count").innerHTML = "page miss = "+pg_miss+"\n"+" page hit = "+pg_hit;
+		}
+		
 		function generate() { //function to generate hex value 
 		  var z = vm*1024;
 		  var pg_size = pg*1024;
@@ -194,9 +288,11 @@
           {
           	if(mem_map[k][2] == 1)		//page hit
           	{
-				var temp="$ It is page hit "+"VPG-"+ k +"is already mapped to PPG-" + mem_map[k][1];
+				var temp="$ It is page hit "+"VPG-"+ k +"maps to PPG-" + mem_map[k][1];
 				var temp1=x + " VPG-" + k + " PAGE HIT";
 				pg_hit++;
+				mem_map[k][3] = ctr;
+				ctr++;
 				add_to_recent_history(temp1);
 				add_to_explanation(temp);
 
@@ -219,15 +315,23 @@
           {
           	if(mem_map[k][2] == 1)		//page hit
           	{
-				var temp="$ It is page hit "+"VPG-"+ k +"is already mapped to PPG-" + mem_map[k][1];
+				var temp="$ It is page hit "+"VPG-"+ k +" maps to PPG-" + mem_map[k][1];
 				add_to_explanation(temp);
 				var temp1=x + "  VPG-" + k + "  PAGE HIT";
 				pg_hit++;
+				mem_map[k][3] = ctr;
+				ctr++;
 				add_to_recent_history(temp1);		
           	}
           	else 					    //page fault
           	{
-          		var temp="$ It is page fault ";
+          		var operation=document.getElementById("field_2").elements[0].value;
+          		if(operation == "READ"){
+          			var temp="$ It is page fault and page is not dirty so not required to copy it to disk ";
+          		}
+          		if(operation == "WRITE"){
+          			var temp="$ It is page fault and page is dirty so copy it to disk before removing from physical memory, now it's done ";
+          		}
           		var temp1= x + "  VPG-" + k + "  PAGE FAULT";
           		pg_miss++;
           		add_to_recent_history(temp1);
@@ -279,19 +383,19 @@
 		}
 		function LIFO(msg,k)
 		{
-			var min = ctr;
 		    for(var i=0; i<size; i++)
 		    {
-		       	if((mem_map[i][2] == 1) && (mem_map[i][4]==5))
+		       	if((mem_map[i][2] == 1) && (mem_map[i][4]==(sz-1)))
 		       	{
 		         	mem_map[k][1] = mem_map[i][1];
 		          	mem_map[k][2] = 1;
 		          	mem_map[k][3] = ctr;
-		          	mem_map[k][4] = 5;			///////////////
+		          	mem_map[k][4] = sz-1;			
 		          	mem_map[i][2] = 0;
-		          	msg = msg + " as our next victim page using selected LIFO REPLACEMENT POLICY VPG-" +i+" is replaced by VPG-" +k;			//need to work on dirty bit
+		          	msg = msg + ", as our next victim page using selected LIFO REPLACEMENT POLICY VPG-" +i+" is replaced by VPG-" +k;		
 		          	add_to_explanation(msg);
 		          	ctr++;
+		          	alert(ctr);
 		          	break;
 		       	}
 		    }
@@ -308,18 +412,18 @@
 		         	min = mem_map[i][3];
 		         	tgt = i;
 		       	}
-		       	mem_map[k][1] = mem_map[tgt][1];
-		        mem_map[k][2] = 1;
-		        mem_map[k][3] = ctr;
-		        mem_map[k][4] = mem_ctr;
-		        mem_map[tgt][2] = 0;
-		        msg = msg + " as our next victim page using selected LRU REPLACEMENT POLICY VPG-" +i+" is replaced by VPG-" +k;			//need to work on dirty bit
-		          add_to_explanation(msg);
-		        ctr++;
-		        for(var i=0; i<size; i++)
-		        {
-		          if(mem_map[i][2] == 1){mem_map[i][4]--;}
-		        }
+		    }
+		    mem_map[k][1] = mem_map[tgt][1];
+		    mem_map[k][2] = 1;
+		    mem_map[k][3] = ctr;
+		    mem_map[k][4] = mem_ctr;
+		    mem_map[tgt][2] = 0;
+		    msg = msg + " as our next victim page using selected LRU REPLACEMENT POLICY VPG-" +i+" is replaced by VPG-" +k;			//need to work on dirty bit
+		    add_to_explanation(msg);
+		    ctr++;
+		    for(var i=0; i<size; i++)
+		    {
+		       if(mem_map[i][2] == 1){mem_map[i][4]--;}
 		    }
 		}
 		function fill_array(size){	//initalize 2d array with col_1->VPG col_2->PPG col_3->VALID BIT col_4->TIME col_5->entering sequence
@@ -335,18 +439,80 @@
 				}
 			}
 		}
+		function map_page_no(){
+		  var m = document.getElementById('dec');
+		  var k = m.value;
+		  k = parseInt(k,10);
+		  m = document.getElementById('inner');
+          m.value= k;
+           m = document.getElementById('VPO');
+          m.value= "--**--";			
+          m = document.getElementById('outer');
+          m.value= "--**--";
+		  if(mem_ctr < sz)
+          {
+          	if(mem_map[k][2] == 1)		//page hit
+          	{
+				var temp="$ It is page hit "+"VPG-"+ k +"maps to PPG-" + mem_map[k][1];
+				var temp1=" VPG-" + k + " PAGE HIT";
+				pg_hit++;
+				add_to_recent_history(temp1);
+				add_to_explanation(temp);
+
+          	}
+          	else{
+          		mem_map[k][1] = mem_ctr;
+	          	mem_map[k][2] = 1;
+	          	mem_map[k][3] = ctr;
+	          	mem_map[k][4] = mem_ctr;
+				var temp="$ PAGE FAULT, but our physical pages are empty, so VPG-"+ k +"is mapped to PPG-" + mem_ctr;
+				add_to_explanation(temp);
+				var temp1="  VPG-" + k + "  PAGE FAULT";
+				pg_miss++;
+				add_to_recent_history(temp1);
+				mem_ctr++; 
+	          	ctr++;
+          	}
+          }
+          else
+          {
+          	
+          	if(mem_map[k][2] == 1)		//page hit
+          	{
+				pg_hit++;
+				var temp="$ It is page hit "+"VPG-"+ k +"maps to PPG-" + mem_map[k][1];
+				add_to_explanation(temp);
+				var temp1="  VPG-" + k + "  PAGE HIT";
+				add_to_recent_history(temp1);		
+          	}
+          	else 					    //page fault
+          	{
+          		var temp="$ It is page fault ";
+          		var temp1="  VPG-" + k + "  PAGE FAULT";
+          		pg_miss++;
+          		add_to_recent_history(temp1);
+          		if(rep_policy == "FIFO"){FIFO(temp,k);}
+          		if(rep_policy == "LIFO"){LIFO(temp,k);}
+          		if(rep_policy == "LRU"){LRU(temp,k);}			//run function based on replacement policy
+            }
+          	
+		  }
+		  document.getElementById("count").innerHTML = "page miss = "+pg_miss+"\n"+" page hit = "+pg_hit;
+		}
 		function generate_page_no() {//function to generate page number
 		  var z = vm/pg; 
 		  var x = Math.floor(Math.random()*z);
 		  var m = document.getElementById('dec');
 		  m.value = x;
 		  var k = x;
+		  m = document.getElementById('inner');
+          m.value= k;
 		  if(mem_ctr < sz)
           {
           	if(mem_map[k][2] == 1)		//page hit
           	{
-				var temp="$ It is page hit "+"VPG-"+ k +"is already mapped to PPG-" + mem_map[k][1];
-				var temp1=x + " VPG-" + k + " PAGE HIT";
+				var temp="$ It is page hit "+"VPG-"+ k +"maps to PPG-" + mem_map[k][1];
+				var temp1=" VPG-" + k + " PAGE HIT";
 				pg_hit++;
 				add_to_recent_history(temp1);
 				add_to_explanation(temp);
@@ -370,9 +536,9 @@
           {
           	if(mem_map[k][2] == 1)		//page hit
           	{
-				var temp="$ It is page hit "+"VPG-"+ k +"is already mapped to PPG-" + mem_map[k][1];
+				var temp="$ It is page hit "+"VPG-"+ k +"maps to PPG-" + mem_map[k][1];
 				add_to_explanation(temp);
-				var temp1=x + "  VPG-" + k + "  PAGE HIT";
+				var temp1="  VPG-" + k + "  PAGE HIT";
 				pg_hit++;
 				add_to_recent_history(temp1);		
           	}
@@ -600,18 +766,24 @@
 					<tr>
 						<td><button type="button" onclick="generate()">GENERATE</button></td>
 						<td><input type="text" name="Virtual address" value="virtual address" id="hex"></td>
-						<td><button type="button">map</button></td>
+						<td><button type="button" onclick="map()">map</button></td>
 					</tr>
 					<tr>
 						<td></td>
-						<td><input type="radio" name="action" value="READ"> READ<br>
- 					 		<input type="radio" name="action" value="WRITE"> WRITE</td>
+						<td>
+							<form id="field_2">
+								<select>
+				 				 <option value="READ">READ</option>
+				 				 <option value="WRITE">WRITE</option>
+				  			    </select> 
+							</form>
+						</td>
 						<td></td>
 					</tr>
 					<tr>
 						<td><button type="button" onclick="generate_page_no()">GENERATE</button></td>
 						<td><input type="text" name="Page number" value="Page number" id="dec"></td>
-						<td><button type="button">map</button></td>
+						<td><button type="button" onclick="map_page_no()">map</button></td>
 					</tr>
 				</table>
 			</div>
@@ -635,7 +807,7 @@
 			</div>
 			 <div class="three_2 item4">
 			 	<button type="button">BASIC</button>
-			 	<button type="button">UNDER THE HOOD</button><br>
+			 	<!--<button type="button">UNDER THE HOOD</button><br>-->
 			 </div>
 			 <div class="three_2_2 item5">
 			 	<div class="four">
@@ -643,43 +815,65 @@
 			 		<div id="vm"></div>
 			 	</div>
 			 	<div class="four">
-			 		<button type="button" class="truncate_mainmem">Main Memory</button>
-			 		<button type="button" class="truncate">Dirty</button><br>
-			 		<div id="s-1"><div id="mm"></div>
-			 		<div id="dirty"></div></div>
+			 		<div id="s-1">
+			 			<div>
+			 				<button type="button" class="truncate_mainmem">Main Memory</button>
+				 			<div id="mm"></div>
+			 			</div>
+				 		<div>
+				 			<button type="button" class="truncate">Dirty</button><br>
+				 			<div id="dirty"></div>
+				 		</div>
+			 		</div>
 			 	</div>
 			 	<div class="four">
-			 		<div id="explanation">EXPLANATION<br>-------------------------</div>
+			 		<div id="explanation">EXPLANATION<br>---------------------</div>
 			 	</div>
 			 	<div>
-			 		<button type="button" class="truncate">VPN</button>
-			 		<button type="button" class="truncate">At PPN</button>
-			 		<button type="button" class="truncate">Valid</button><br>
 			 		<div id="s-2">
-			 		<div id="vpn"></div>
-			 		<div id="ppn"></div>
-			 		<div id="valid"></div></div>
+			 			<div>
+			 				<button type="button" class="truncate">VPN</button>
+			 				<div id="vpn"></div>
+			 			</div>
+			 			<div>
+			 				<button type="button" class="truncate">PPN</button>
+			 				<div id="ppn"></div>
+			 			</div>
+			 			<div>
+			 				<button type="button" class="truncate">Valid</button><br>
+			 				<div id="valid"></div></div>
+			 			</div>
 			 	</div>
 
 			 </div>
 		</div>
 		<div class="two_3">
-			<div class="three_3">
-				<button type="button" class="truncate_virtualmem">Virtual memory</button>
-			 	<button type="button" class="truncate_mainmem">Main Memory</button>
-			 	<button type="button" class="truncate_pagesize">page size</button><br>
-				<textarea rows="1" cols="17" id="vm_size"></textarea>
-		 		<textarea rows="1" cols="15" id="mm_size"></textarea>
-		 		<textarea rows="1" cols="11" id="pg_size"></textarea>
+			<div class="three_3" id="s-3">
+				<div>
+					<button type="button" class="truncate_virtualmem">Virtual memory</button><br>
+					<input type="text" id="vm_size">
+				</div>
+				<div>
+					<button type="button" class="truncate_mainmem">Main Memory</button><br>
+					<input type="text" id="mm_size">
+				</div>
+				<div>
+					<button type="button" class="truncate_pagesize">page size</button><br>
+					<input type="text" id="pg_size">
+				</div>
+			</div>
+			<div class="three_3" id="s-4">
+				<div>
+					<button type="button" class="truncate_replacementpolicy">replacement policy</button><br>
+					<input type="text" id="rep_policy">
+				</div>
+				<div>
+					<button type="button" class="truncate_pagelevel">page level</button><br>
+		 			<input type="text" id="pg_lvl">
+				</div>
 			</div>
 			<div class="three_3">
-				<button type="button" class="truncate_replacementpolicy">replacement policy</button>
-			 	<button type="button" class="truncate_pagelevel">page level</button><br>
-				<textarea rows="1" cols="7" id="rep_policy"></textarea>
-		 		<textarea rows="1" cols="7" id="pg_lvl"></textarea>
-			</div>
-			<div class="three_3">
-				<div id="recent_history">RECENT HISTORY<br>---------------------------------------------------------</div>
+				<div id="recent_history">RECENT HISTORY<br>------------------------------------</div>
 			</div>
 		</div>
 
