@@ -6,9 +6,6 @@ Project Number ->>1
 Project Domain ->>Assembly Language Interpretor
 Project Topic ->> MIPS Parser Simulator
 
-Cautions>>
-1)-For submenu click once on the button and double click to close the submenu (submenu will not be closed if you don't click it again)
-
 Run function instruction>>>>>>>
 1)-Syntax should be same as in MIPS simulator provided (any deviation from syntax may lead to unknown resukts as error handling is not done yet)
 2)-Only Registor to registor instructions can be used
