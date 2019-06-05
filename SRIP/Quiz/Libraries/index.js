@@ -100,27 +100,20 @@ function generateResultContainer(RID, status) {
     }
 }
 function putContainers() {
-    var totalarray = document.getElementById("questionCount").value;
-    totalarray = parseInt(totalarray);
-    if (totalarray > 3 && totalarray < jsonData.length) {
-        TotalContainer = Math.floor((Math.random() * totalarray) + 3);
-        var QId = "Q";
-        var AId = "A";
-        var RId = "R";
-        for (var i = 0; i < TotalContainer; i++) {
-            var Qstring = QId.concat((i + 1).toString());
-            var Astring = AId.concat((i + 1).toString());
-            var Rstring = RId.concat((i + 1).toString());
-            generateQuestionContainer(Qstring, Astring, i);
-            generateResultContainer(Rstring, i);
-        }
-        return 1;
-    }
-    else {
-        return 0;
+    var totalarray = 5;
+    TotalContainer = totalarray;
+    var QId = "Q";
+    var AId = "A";
+    var RId = "R";
+    for (var i = 0; i < TotalContainer; i++) {
+        var Qstring = QId.concat((i + 1).toString());
+        var Astring = AId.concat((i + 1).toString());
+        var Rstring = RId.concat((i + 1).toString());
+        generateQuestionContainer(Qstring, Astring, i);
+        generateResultContainer(Rstring, i);
+
     }
 }
-
 function putResult() {
     var RID = "R";
     var QID = "Q";
@@ -179,16 +172,11 @@ function startQuiz() {
     document.getElementById("displayResult").style.display = "none";
 
     removeChilds();
-    var status = putContainers();
-    if (status == 0) {
-        alert("Range of Question is between 4 to " + jsonData.length);
-    }
-    else {
-        document.getElementById("startBtn").style.visibility = "hidden";
-        document.getElementById("submitBtn").style.display = "block";
-        putQuestion();
-        document.getElementById("quizBody").style.display = "block";
-    }
+    putContainers();
+    document.getElementById("startBtn").style.visibility = "hidden";
+    document.getElementById("submitBtn").style.display = "block";
+    putQuestion();
+    document.getElementById("quizBody").style.display = "block";
 
 }
 
