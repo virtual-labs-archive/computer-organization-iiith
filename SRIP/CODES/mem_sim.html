@@ -170,9 +170,9 @@
 		    mm= parseInt(mm_size.slice(0,mm_size.length-3));
 		    pg= parseInt(pg_size.slice(0,vm_size.length-3));
 		    size=vm / pg;
+		    fill_array(size);
 		    add_vm(size);
 		    add_vpn(size);
-		    fill_array(size);
 		    ctr = 0;
 		    mem_ctr=0;
 		    pg_hit = 0;
@@ -219,6 +219,7 @@
 				mem_map[k][3] = ctr;
 				add_vm_1(k);
 				add_mm(k);
+				add_vpn_1(k);
 				ctr++;
 				add_to_recent_history(temp1);
 				add_to_explanation(temp);
@@ -243,6 +244,7 @@
 				mem_map[k][3] = ctr;
 				add_vm_1(k);
 				add_mm(k);
+				add_vpn_1(k);
 				add_to_recent_history(temp1);
 				mem_ctr++; 
 	          	ctr++;
@@ -265,6 +267,7 @@
           		}
 				add_vm_1(k);
 				add_mm(k);
+				add_vpn_1(k);
 				ctr++;
 				pg_hit++;
 				add_to_recent_history(temp1);		
@@ -334,6 +337,7 @@
 				mem_map[k][3] = ctr;
 				add_vm_1(k);
 				add_mm(k);
+				add_vpn_1(k);
 				ctr++;
 				add_to_recent_history(temp1);
 				add_to_explanation(temp);
@@ -358,6 +362,7 @@
 				pg_miss++;
 				add_to_recent_history(temp1);
 				add_mm(k);
+				add_vpn_1(k);
 				add_vm_1(k);
 				mem_ctr++; 
 	          	ctr++;
@@ -381,6 +386,7 @@
 				mem_map[k][3] = ctr;
 				add_vm_1(k);
 				add_mm(k);
+				add_vpn_1(k);
 				ctr++;
 				add_to_recent_history(temp1);		
           	}
@@ -431,6 +437,7 @@
           		}
 				add_vm_1(k);
 				add_mm(k);
+				add_vpn_1(k);
 				ctr++;
 				pg_hit++;
 				add_to_recent_history(temp1);
@@ -454,6 +461,7 @@
 				var temp1="  VPG-" + k + "  PAGE FAULT";
 				add_vm_1(k);
 				add_mm(k);
+				add_vpn_1(k);
 				pg_miss++;
 				add_to_recent_history(temp1);
 				mem_ctr++; 
@@ -479,6 +487,7 @@
           		}
 				add_vm_1(k);
 				add_mm(k);
+				add_vpn_1(k);
 				pg_hit++;
 				ctr++;
 				add_to_recent_history(temp1);		
@@ -523,6 +532,7 @@
           		}
 				add_vm_1(k);
 				add_mm(k);
+				add_vpn_1(k);
 				ctr++;
 				add_to_recent_history(temp1);
 				add_to_explanation(temp);
@@ -547,6 +557,7 @@
 				pg_miss++;
 				add_vm_1(k);
 				add_mm(k);
+				add_vpn_1(k);
 				add_to_recent_history(temp1);
 				mem_ctr++; 
 	          	ctr++;
@@ -570,6 +581,7 @@
           		}
 				add_vm_1(k);
 				add_mm(k);
+				add_vpn_1(k);
 				ctr++;
 				add_to_recent_history(temp1);		
           	}
@@ -600,6 +612,67 @@
 				vm_id.appendChild(para);
 			}
 		}
+
+		function add_vpn(size){
+			var temp_string="PTE ";
+			var vm_id= document.getElementById("vpn");
+			for (var i = 0; i <size ; i++) {
+				var para = document.createElement("P");
+				var temp=temp_string.concat((i).toString());
+				var node = document.createTextNode(temp);
+				para.appendChild(node);
+				vm_id.appendChild(para);
+			}
+			var valid = document.getElementById("valid");
+			for (var i = 0; i <size ; i++) {
+				var para = document.createElement("P");
+				var temp = mem_map[i][2];
+				var node = document.createTextNode(temp);
+				para.appendChild(node);
+				valid.appendChild(para);
+			}
+			var ppn = document.getElementById("ppn");
+			for (var i = 0; i <size ; i++) {
+				var para = document.createElement("P");
+				var temp = " ";
+				var node = document.createTextNode(temp);
+				para.appendChild(node);
+				ppn.appendChild(para);
+			}
+		}
+
+		function add_vpn_1(k){
+			var temp_string="PTE ";
+			var list = document.getElementById("vpn");
+			var ppn = document.getElementById("ppn");
+			var valid = document.getElementById("valid");
+				for (var i = 0; i <	size ; i++)
+				{
+					list.removeChild(list.childNodes[0]);
+				}
+				list = document.getElementById("vpn");
+				ppn = document.getElementById("ppn");
+				valid = document.getElementById("valid");
+				for (var i = 0; i <size ; i++) 
+				{		
+					var para = document.createElement("P");
+					var temp=temp_string+i;
+					var node = document.createTextNode(temp);
+					para.appendChild(node);
+					list.appendChild(para);
+
+					ppn.childNodes[i].innerHTML=mem_map[i][1];
+					valid.childNodes[i].innerHTML=mem_map[i][2];
+					valid.childNodes[i].style.color="black";
+					ppn.childNodes[i].style.color="black";
+
+				}
+			list = document.getElementById("vpn");
+			list.childNodes[k].style.color="red";
+			valid.childNodes[k].style.color="red";
+			ppn.childNodes[k].style.color="red";
+		}
+
 		function add_vm_1(k){ 
 			var temp_string="VPG-";
 			var list = document.getElementById("vm");
@@ -773,6 +846,7 @@
 		          		if(mem_map[i][2] == 1){mem_map[i][4]--;}
 		          	}
 		          	add_mm(z);
+		          	add_vpn_1(k);
 		          	ctr++;
 		          	break;
 		       	}
@@ -799,6 +873,7 @@
 		          	msg = msg + ", as our next victim page using selected LIFO REPLACEMENT POLICY VPG-" +i+" is replaced by VPG-" +k;		
 		          	add_to_explanation(msg);
 		          	add_mm(k);
+		          	add_vpn_1(k);
 		          	ctr++;
 		          	break;
 		       	}
@@ -833,6 +908,7 @@
 		    msg = msg + " as our next victim page using selected LRU REPLACEMENT POLICY VPG-" +i+" is replaced by VPG-" +k;			//need to work on dirty bit
 		    add_to_explanation(msg);
 		    add_mm(z);
+		    add_vpn_1(k);
 		    ctr++;
 		    for(var i=0; i<size; i++)
 		    {
@@ -849,21 +925,11 @@
 				for(var j=0; j<cols; j++)	
 				{
 					if(j!=0){mem_map[i][j]=-1;}
+					if(j==2){mem_map[i][j]=0;}
 				}
 			}
 		}
-		
-		function add_vpn(size){
-			var temp_string="PTE ";
-			var vm_id= document.getElementById("vpn");
-			for (var i = 0; i <size ; i++) {
-				var para = document.createElement("P");
-				var temp=temp_string.concat((i).toString());
-				var node = document.createTextNode(temp);
-				para.appendChild(node);
-				vm_id.appendChild(para);
-			}
-		}
+	
 		function dynamicdropdown(listindex)
 	    {
 	        switch (listindex)
@@ -1126,8 +1192,9 @@
 			 			</div>
 			 			<div>
 			 				<button type="button" class="truncate">Valid</button><br>
-			 				<div id="valid"></div></div>
+			 				<div id="valid"></div>
 			 			</div>
+			 		</div>
 			 	</div>
 
 			 </div>
