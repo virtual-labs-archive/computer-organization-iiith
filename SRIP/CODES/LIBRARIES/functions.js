@@ -1,4 +1,3 @@
-
 		var pg,mm,vm,size,sz,ctr,mm_ctr,pg_hit,pg_miss;
 		var rep_policy,pg_lvl;
 		var mem_map = [];
@@ -83,7 +82,7 @@
           		}
 				add_vm_1(k);
 				add_mm(k);
-				if(pg_lvl = "LEVEL TWO"){add_vpn_2(k);}
+				if(pg_lvl == "LEVEL TWO"){add_vpn_2(k);}
 				else{add_vpn_1(k);}
 				mem_map[k][6] = ctr;
 				ctr++;
@@ -110,7 +109,7 @@
 				pg_miss++;
 				add_vm_1(k);
 				add_mm(k);
-				if(pg_lvl = "LEVEL TWO"){add_vpn_2(k);}
+				if(pg_lvl == "LEVEL TWO"){add_vpn_2(k);}
 				else{add_vpn_1(k);}
 				add_to_recent_history(temp1);
 				mem_ctr++; 
@@ -133,7 +132,7 @@
           		}
 				add_vm_1(k);
 				add_mm(k);
-				if(pg_lvl = "LEVEL TWO"){add_vpn_2(k);}
+				if(pg_lvl == "LEVEL TWO"){add_vpn_2(k);}
 				else{add_vpn_1(k);}
 				mem_map[k][6] = ctr;
 				ctr++;
@@ -159,7 +158,7 @@
             }
           	
 		  }
-		  document.getElementById("count").innerHTML = "page miss = "+pg_miss+"\n"+" page hit = "+pg_hit;
+		  document.getElementById("count").innerHTML = "page miss->"+pg_miss+"\n"+" page hit->"+pg_hit;
 		}
 		
 		function generate() { //function to generate hex value 
@@ -190,7 +189,7 @@
 	          m = document.getElementById('inner');
 	          m.value= k;
           }
-          if(pg_lvl == "LEVEL TWO"){
+          else{
           	  var quotient = Math.floor(k/4);
 			  var remainder = k%4;
           	  m = document.getElementById('VPO');
@@ -216,7 +215,7 @@
           		}
 				add_vm_1(k);
 				add_mm(k);
-				if(pg_lvl = "LEVEL TWO"){add_vpn_2(k);}
+				if(pg_lvl == "LEVEL TWO"){add_vpn_2(k);}
 				else{add_vpn_1(k);}
 				mem_map[k][6] = ctr;
 				ctr++;
@@ -244,7 +243,7 @@
 				pg_miss++;
 				add_to_recent_history(temp1);
 				add_mm(k);
-				if(pg_lvl = "LEVEL TWO"){add_vpn_2(k);}
+				if(pg_lvl == "LEVEL TWO"){add_vpn_2(k);}
 				else{add_vpn_1(k);}
 				add_vm_1(k);
 				mem_ctr++; 
@@ -268,7 +267,7 @@
           		}
 				add_vm_1(k);
 				add_mm(k);
-				if(pg_lvl = "LEVEL TWO"){add_vpn_2(k);}
+				if(pg_lvl == "LEVEL TWO"){add_vpn_2(k);}
 				else{add_vpn_1(k);}
 				mem_map[k][6] = ctr;
 				ctr++;
@@ -293,15 +292,13 @@
             }
           	
 		  }
-		  document.getElementById("count").innerHTML = "page miss = "+pg_miss+"\n"+" page hit = "+pg_hit;
+		  document.getElementById("count").innerHTML = "page miss->"+pg_miss+"\n"+" page hit->"+pg_hit;
 		}
 		function map_page_no(){
 		  var m = document.getElementById('dec');
 		  var k = m.value;
 		  k = parseInt(k,10);
-		  if(pg_lvl=="LEVEL ONE"){
-          	  m = document.getElementById('VPO');
-	          m.value= offset;				
+		  if(pg_lvl=="LEVEL ONE"){		
 	          m = document.getElementById('outer');
 	          m.value= "--**--";
 	          m = document.getElementById('inner');
@@ -309,9 +306,7 @@
           }
           if(pg_lvl == "LEVEL TWO"){
           	  var quotient = Math.floor(k/4);
-			  var remainder = k%4;
-          	  m = document.getElementById('VPO');
-	          m.value= offset;				
+			  var remainder = k%4;				
 	          m = document.getElementById('outer');
 	          m.value= quotient;
 	          m = document.getElementById('inner');
@@ -332,7 +327,7 @@
           		}
 				add_vm_1(k);
 				add_mm(k);
-				if(pg_lvl = "LEVEL TWO"){add_vpn_2(k);}
+				if(pg_lvl == "LEVEL TWO"){add_vpn_2(k);}
 				else{add_vpn_1(k);}
 				mem_map[k][6] = ctr;
 				ctr++;
@@ -359,7 +354,7 @@
 				var temp1="  VPG-" + k + "  PAGE FAULT";
 				add_vm_1(k);
 				add_mm(k);
-				if(pg_lvl = "LEVEL TWO"){add_vpn_2(k);}
+				if(pg_lvl == "LEVEL TWO"){add_vpn_2(k);}
 				else{add_vpn_1(k);}
 				pg_miss++;
 				add_to_recent_history(temp1);
@@ -385,7 +380,7 @@
           		}
 				add_vm_1(k);
 				add_mm(k);
-				if(pg_lvl = "LEVEL TWO"){add_vpn_2(k);}
+				if(pg_lvl == "LEVEL TWO"){add_vpn_2(k);}
 				else{add_vpn_1(k);}
 				mem_map[k][6] = ctr;
 				ctr++;
@@ -404,7 +399,7 @@
             }
           	
 		  }
-		  document.getElementById("count").innerHTML = "page miss = "+pg_miss+"\n"+" page hit = "+pg_hit;
+		  document.getElementById("count").innerHTML = "page miss->"+pg_miss+"\n"+" page hit->"+pg_hit;
 		}
 		function generate_page_no() {//function to generate page number
 		  var z = vm/pg; 
@@ -442,7 +437,7 @@
           		}
 				add_vm_1(k);
 				add_mm(k);
-				if(pg_lvl = "LEVEL TWO"){add_vpn_2(k);}
+				if(pg_lvl == "LEVEL TWO"){add_vpn_2(k);}
 				else{add_vpn_1(k);}
 				mem_map[k][6] = ctr;
 				ctr++;
@@ -470,7 +465,7 @@
 				pg_miss++;
 				add_vm_1(k);
 				add_mm(k);
-				if(pg_lvl = "LEVEL TWO"){add_vpn_2(k);}
+				if(pg_lvl == "LEVEL TWO"){add_vpn_2(k);}
 				else{add_vpn_1(k);}
 				add_to_recent_history(temp1);
 				mem_ctr++; 
@@ -494,7 +489,7 @@
           		}
 				add_vm_1(k);
 				add_mm(k);
-				if(pg_lvl = "LEVEL TWO"){add_vpn_2(k);}
+				if(pg_lvl == "LEVEL TWO"){add_vpn_2(k);}
 				else{add_vpn_1(k);}
 				mem_map[k][6] = ctr;
 				ctr++;
@@ -513,7 +508,7 @@
             }
           	
 		  }
-		  document.getElementById("count").innerHTML = "page miss = "+pg_miss+"\n"+" page hit = "+pg_hit;
+		  document.getElementById("count").innerHTML = "page miss->"+pg_miss+"\n"+" page hit->"+pg_hit;
 		}
 		
 		function add_vm(size){
@@ -776,7 +771,7 @@
 		          		if(mem_map[i][2] == 1){mem_map[i][4]--;}
 		          	}
 		          	add_mm(z);
-		          	if(pg_lvl = "LEVEL TWO"){add_vpn_2(k);}
+		          	if(pg_lvl == "LEVEL TWO"){add_vpn_2(k);}
 					else{add_vpn_1(k);}
 		          	ctr++;
 		          	break;
@@ -805,7 +800,7 @@
 		          	msg = msg + ", as our next victim page using selected LIFO REPLACEMENT POLICY VPG-" +i+" is replaced by VPG-" +k;		
 		          	add_to_explanation(msg);
 		          	add_mm(k);
-		          	if(pg_lvl = "LEVEL TWO"){add_vpn_2(k);}
+		          	if(pg_lvl == "LEVEL TWO"){add_vpn_2(k);}
 					else{add_vpn_1(k);}
 		          	ctr++;
 		          	break;
@@ -841,7 +836,7 @@
 		    msg = msg + " as our next victim page using selected LRU REPLACEMENT POLICY VPG-" +i+" is replaced by VPG-" +k;			
 		    add_to_explanation(msg);
 		    add_mm(z);
-		    if(pg_lvl = "LEVEL TWO"){add_vpn_2(k);}
+		    if(pg_lvl == "LEVEL TWO"){add_vpn_2(k);}
 			else{add_vpn_1(k);}
 		    ctr++;
 		    for(var i=0; i<size; i++)
@@ -978,5 +973,4 @@
 	            break;
 	        }
 	        return true;
-	    }
-	
+}
