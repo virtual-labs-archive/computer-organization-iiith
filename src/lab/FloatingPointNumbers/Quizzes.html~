@@ -150,7 +150,7 @@ Home" class="sidebar-a" > <h3 class="text-h3-darkblue" style="margin-top: 2px;">
 					</input></input></input></input></p>
 <p>
 <b>Q4.</b>
-					In 32 bit representation the scale factor is a range of ________ <br/>
+					In 32 bit representation the scale factor as a range of ________ <br/>
 <input id="q4" name="q4" type="radio" value="1">   
 					-128 to 127 <br/>
 <input id="q4" name="q4" type="radio" value="2">   
