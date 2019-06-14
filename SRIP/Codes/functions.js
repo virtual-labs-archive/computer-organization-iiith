@@ -1,6 +1,61 @@
 		var pg,mm,vm,size,sz,ctr,memCtr,pgHit,pgMiss;
 		var repPolicy,pgLvl;
 		var mem_map = [];
+		function fill_array(size){	//initalize 2d array with col_0->VPG col_1->PPG col_2->VALID BIT col_3->TIME col_4->entering sequence col_5->dirty col_6-> last used time
+			var rows = size;
+			var cols = 7;
+		    sz = mm/pg;
+			for(var i=0; i < rows; i++)
+			{
+				mem_map.push([i]);
+				for(var j=0; j<cols; j++)	
+				{
+					if(j!==0){mem_map[i][j]=-1;}
+					if(j===2){mem_map[i][j]=0;}
+				}
+			}
+		}
+		function add_vm(size){
+			var temp_string="VPG-";
+			var vm_id= document.getElementById("vm");
+			for (var i = 0; i <size ; i++) {
+				var para = document.createElement("P");
+				var temp=temp_string.concat((i).toString());
+				var node = document.createTextNode(temp);
+				para.appendChild(node);
+				vm_id.appendChild(para);
+			}
+		}
+
+		function add_vpn(size){
+			if(pgLvl === "LEVEL ONE"){
+				var temp_string="PTE ";
+				var vm_id= document.getElementById("vpn");
+				for (var i = 0; i <size ; i++) {
+					var para = document.createElement("P");
+					var temp=temp_string.concat((i).toString());
+					var node = document.createTextNode(temp);
+					para.appendChild(node);
+					vm_id.appendChild(para);
+				}
+			}
+			var valid = document.getElementById("valid");
+			for (var i = 0; i <size ; i++) {
+				var para = document.createElement("P");
+				var temp = mem_map[i][2];
+				var node = document.createTextNode(temp);
+				para.appendChild(node);
+				valid.appendChild(para);
+			}
+			var ppn = document.getElementById("ppn");
+			for (var i = 0; i <size ; i++) {
+				var para = document.createElement("P");
+				var temp = " ";
+				var node = document.createTextNode(temp);
+				para.appendChild(node);
+				ppn.appendChild(para);
+			}
+		}	
 		function get_parameters(){//sets the values selected by users to right hand field after submit button is clicked 
 			var pgSize=document.getElementById("field_1").elements[0].value;
 			var mmSize=document.getElementById("field_1").elements[1].value;
@@ -49,7 +104,7 @@
           offset = parseInt(offset,2);
           k = parseInt(k,2);
           if(pgLvl==="LEVEL ONE"){
-          	  m = document.getElementById("VPO");
+          	  var m = document.getElementById("VPO");
 	          m.value= offset;				
 	          m = document.getElementById("outer");
 	          m.value= "--**--";
@@ -59,7 +114,7 @@
           if(pgLvl === "LEVEL TWO"){
           	var quotient = Math.floor(k/4);
 			var remainder = k%4;
-         	m = document.getElementById("VPO");
+         	var m = document.getElementById("VPO");
 	       	m.value= offset;				
 	        m = document.getElementById("outer");
 	        m.value= quotient;
@@ -188,7 +243,7 @@
 	          m.value= "--**--";
 	          m = document.getElementById("inner");
 	          m.value= k;
-          }
+          	}
           else{
           	  var quotient = Math.floor(k/4);
 			  var remainder = k%4;
@@ -198,7 +253,7 @@
 	          m.value= quotient;
 	          m = document.getElementById("inner");
 	          m.value= remainder;
-          }
+          	}
           if(memCtr < sz)
           {
           	if(mem_map[k][2] === 1)		//page hit
@@ -511,47 +566,7 @@
 		  document.getElementById("count").innerHTML = "page miss->"+pgMiss+"\n"+" page hit->"+pgHit;
 		}
 		
-		function add_vm(size){
-			var temp_string="VPG-";
-			var vm_id= document.getElementById("vm");
-			for (var i = 0; i <size ; i++) {
-				var para = document.createElement("P");
-				var temp=temp_string.concat((i).toString());
-				var node = document.createTextNode(temp);
-				para.appendChild(node);
-				vm_id.appendChild(para);
-			}
-		}
-
-		function add_vpn(size){
-			if(pgLvl === "LEVEL ONE"){
-				var temp_string="PTE ";
-				var vm_id= document.getElementById("vpn");
-				for (var i = 0; i <size ; i++) {
-					var para = document.createElement("P");
-					var temp=temp_string.concat((i).toString());
-					var node = document.createTextNode(temp);
-					para.appendChild(node);
-					vm_id.appendChild(para);
-				}
-			}
-			var valid = document.getElementById("valid");
-			for (var i = 0; i <size ; i++) {
-				var para = document.createElement("P");
-				var temp = mem_map[i][2];
-				var node = document.createTextNode(temp);
-				para.appendChild(node);
-				valid.appendChild(para);
-			}
-			var ppn = document.getElementById("ppn");
-			for (var i = 0; i <size ; i++) {
-				var para = document.createElement("P");
-				var temp = " ";
-				var node = document.createTextNode(temp);
-				para.appendChild(node);
-				ppn.appendChild(para);
-			}
-		}
+		
 
 		function add_vpn_1(k){
 			var temp_string="PTE ";
@@ -844,21 +859,6 @@
 		       if(mem_map[i][2] === 1){mem_map[i][4]--;}
 		    }
 		}
-		function fill_array(size){	//initalize 2d array with col_0->VPG col_1->PPG col_2->VALID BIT col_3->TIME col_4->entering sequence col_5->dirty col_6-> last used time
-			var rows = size;
-			var cols = 7;
-		    sz = mm/pg;
-			for(var i=0; i < rows; i++)
-			{
-				mem_map.push([i]);
-				for(var j=0; j<cols; j++)	
-				{
-					if(j!==0){mem_map[i][j]=-1;}
-					if(j===2){mem_map[i][j]=0;}
-				}
-			}
-		}
-	
 		function dynamicdropdown(listindex)
 	    {
 	        switch (listindex)
