@@ -1,46 +1,46 @@
-		var pg,mm,vm,size,sz,ctr,mm_ctr,pg_hit,pg_miss;
-		var rep_policy,pg_lvl;
+		var pg,mm,vm,size,sz,ctr,memCtr,pgHit,pgMiss;
+		var repPolicy,pgLvl;
 		var mem_map = [];
 		function get_parameters(){//sets the values selected by users to right hand field after submit button is clicked 
-			var pg_size=document.getElementById("field_1").elements[0].value;
-			var mm_size=document.getElementById("field_1").elements[1].value;
-			var vm_size=document.getElementById("field_1").elements[2].value;
+			var pgSize=document.getElementById("field_1").elements[0].value;
+			var mmSize=document.getElementById("field_1").elements[1].value;
+			var vmSize=document.getElementById("field_1").elements[2].value;
 			var tlb=document.getElementById("field_1").elements[3].value;
-			rep_policy=document.getElementById("field_1").elements[4].value;
-			pg_lvl=document.getElementById("field_1").elements[5].value;
-			pg=document.getElementById('pg_size');
-		    pg.value = pg_size;
-		    mm=document.getElementById('mm_size');
-		    mm.value = mm_size;
-		    vm=document.getElementById('vm_size');
-		    vm.value = vm_size;
-		    var rep=document.getElementById('rep_policy');
-		    rep.value = rep_policy;
-		    var pg_l=document.getElementById('pg_lvl');
-		    pg_l.value = pg_lvl;
-		    vm= parseInt(vm_size.slice(0,vm_size.length-3));
-		    mm= parseInt(mm_size.slice(0,mm_size.length-3));
-		    pg= parseInt(pg_size.slice(0,vm_size.length-3));
-		    size=vm / pg;
-		    fill_array(size);
-		    add_vm(size);
-		    add_vpn(size);
-		    ctr = 0;
-		    mem_ctr=0;
-		    pg_hit = 0;
-		    pg_miss = 0;
+			repPolicy=document.getElementById("field_1").elements[4].value;
+			pgLvl=document.getElementById("field_1").elements[5].value;
+			pg=document.getElementById(	"pg_size");
+			pg.value = pgSize;
+			mm=document.getElementById("mm_size");
+			mm.value = mmSize;
+			vm=document.getElementById("vm_size");
+			vm.value = vmSize;
+			var rep=document.getElementById("rep_policy");
+			rep.value = repPolicy;
+			var pg_l=document.getElementById("pg_lvl");
+			pg_l.value = pgLvl;
+			vm= parseInt(vmSize.slice(0,vmSize.length-3));
+			mm= parseInt(mmSize.slice(0,mmSize.length-3));
+			pg= parseInt(pgSize.slice(0,vmSize.length-3));
+			size=vm / pg;
+			fill_array(size);
+			add_vm(size);
+			add_vpn(size);
+			ctr = 0;
+			memCtr=0;
+			pgHit = 0;
+			pgMiss = 0;
 		}
 		function map(){
 		  var addr = document.getElementById("hex");
 		  var x = addr.value;
 		  x = parseInt(x,16);
-		  var pg_size = pg*1024;
-		  pg_size = pg_size.toString(2);
-		  var len = pg_size.length-1;
+		  var pgSize = pg*1024;
+		  pgSize = pgSize.toString(2);
+		  var len = pgSize.length-1;
 		  var y = x.toString(2);
 		  y = y.toString();
-		  if (y.length<pg_size.length) {
-          	for (var i = 0; i < (pg_size.length-y.length+2); i++) {
+		  if (y.length<pgSize.length) {
+          	for (var i = 0; i < (pgSize.length-y.length+2); i++) {
           			y = "0"+y;
           		 }
           	}
@@ -48,41 +48,41 @@
           var offset = parseInt(y.slice(y.length-len,y.length)).toString();
           offset = parseInt(offset,2);
           k = parseInt(k,2);
-          if(pg_lvl=="LEVEL ONE"){
-          	  m = document.getElementById('VPO');
+          if(pgLvl==="LEVEL ONE"){
+          	  m = document.getElementById("VPO");
 	          m.value= offset;				
-	          m = document.getElementById('outer');
+	          m = document.getElementById("outer");
 	          m.value= "--**--";
-	          m = document.getElementById('inner');
+	          m = document.getElementById("inner");
 	          m.value= k;
           }
-          if(pg_lvl == "LEVEL TWO"){
-          	  var quotient = Math.floor(k/4);
-			  var remainder = k%4;
-          	  m = document.getElementById('VPO');
-	          m.value= offset;				
-	          m = document.getElementById('outer');
-	          m.value= quotient;
-	          m = document.getElementById('inner');
-	          m.value= remainder;
+          if(pgLvl === "LEVEL TWO"){
+          	var quotient = Math.floor(k/4);
+			var remainder = k%4;
+         	m = document.getElementById("VPO");
+	       	m.value= offset;				
+	        m = document.getElementById("outer");
+	        m.value= quotient;
+	        m = document.getElementById("inner");
+	        m.value= remainder;
           }
-         if(mem_ctr < sz)
+         if(memCtr < sz)
           {
-          	if(mem_map[k][2] == 1)		//page hit
+          	if(mem_map[k][2] === 1)		//page hit
           	{
 				var temp="$ It is page hit "+"VPG-"+ k +"maps to PPG-" + mem_map[k][1];
 				var temp1=x + " VPG-" + k + " PAGE HIT";
-				pg_hit++;
+				pgHit++;
 				var operation=document.getElementById("field_2").elements[0].value;
-          		if(operation == "READ"){
+          		if(operation === "READ"){
           			mem_map[k][5]=0;
           		}
-          		if(operation == "WRITE"){
+          		if(operation === "WRITE"){
           			mem_map[k][5]=1;
           		}
 				add_vm_1(k);
 				add_mm(k);
-				if(pg_lvl == "LEVEL TWO"){add_vpn_2(k);}
+				if(pgLvl === "LEVEL TWO"){add_vpn_2(k);}
 				else{add_vpn_1(k);}
 				mem_map[k][6] = ctr;
 				ctr++;
@@ -91,89 +91,89 @@
 
           	}
           	else{
-          		mem_map[k][1] = mem_ctr;
-	          	mem_map[k][2] = 1;
-	          	mem_map[k][3] = ctr;
-	          	mem_map[k][4] = mem_ctr;
-	          	mem_map[k][6] = ctr;
+          		mem_map[k][1] = memCtr;
+	        	mem_map[k][2] = 1;
+	        	mem_map[k][3] = ctr;
+	        	mem_map[k][4] = memCtr;
+	        	mem_map[k][6] = ctr;
 	          	var operation=document.getElementById("field_2").elements[0].value;
-          		if(operation == "READ"){
+          		if(operation === "READ"){
           			mem_map[k][5]=0;
           		}
-          		if(operation == "WRITE"){
+          		if(operation === "WRITE"){
           			mem_map[k][5]=1;
           		}
-				var temp="$ PAGE FAULT, but our physical pages are empty, so VPG-"+ k +"is mapped to PPG-" + mem_ctr;
+				var temp="$ PAGE FAULT, but our physical pages are empty, so VPG-"+ k +"is mapped to PPG-" + memCtr;
 				add_to_explanation(temp);
 				var temp1=x + "  VPG-" + k + "  PAGE FAULT";
-				pg_miss++;
+				pgMiss++;
 				add_vm_1(k);
 				add_mm(k);
-				if(pg_lvl == "LEVEL TWO"){add_vpn_2(k);}
+				if(pgLvl === "LEVEL TWO"){add_vpn_2(k);}
 				else{add_vpn_1(k);}
 				add_to_recent_history(temp1);
-				mem_ctr++; 
+				memCtr++; 
 	          	ctr++;
           	}
           }
           else
           {
-          	if(mem_map[k][2] == 1)		//page hit
+          	if(mem_map[k][2] === 1)		//page hit
           	{
 				var temp="$ It is page hit "+"VPG-"+ k +" maps to PPG-" + mem_map[k][1];
 				add_to_explanation(temp);
 				var temp1=x + "  VPG-" + k + "  PAGE HIT";
 				var operation=document.getElementById("field_2").elements[0].value;
-          		if(operation == "READ"){
+          		if(operation === "READ"){
           			mem_map[k][5]=0;
           		}
-          		if(operation == "WRITE"){
+          		if(operation === "WRITE"){
           			mem_map[k][5]=1;
           		}
 				add_vm_1(k);
 				add_mm(k);
-				if(pg_lvl == "LEVEL TWO"){add_vpn_2(k);}
+				if(pgLvl === "LEVEL TWO"){add_vpn_2(k);}
 				else{add_vpn_1(k);}
 				mem_map[k][6] = ctr;
 				ctr++;
-				pg_hit++;
+				pgHit++;
 				add_to_recent_history(temp1);		
           	}
           	else 					    //page fault
           	{
           		var operation=document.getElementById("field_2").elements[0].value;
-          		if(operation == "READ"){
+          		if(operation === "READ"){
           			var temp="$ It is page fault and page is not dirty so not required to copy it to disk ";
           		}
-          		if(operation == "WRITE"){
+          		if(operation === "WRITE"){
           			var temp="$ It is page fault and page is dirty so copy it to disk before removing from physical memory, now it's done ";
           		}
           		var temp1= x + "  VPG-" + k + "  PAGE FAULT";
-          		pg_miss++;
+          		pgMiss++;
           		add_to_recent_history(temp1);
           		add_vm_1(k);
-          		if(rep_policy == "FIFO"){FIFO(temp,k);}
-          		if(rep_policy == "LIFO"){LIFO(temp,k);}
-          		if(rep_policy == "LRU"){LRU(temp,k);}			//run function based on replacement policy
+          		if(repPolicy === "FIFO"){FIFO(temp,k);}
+          		if(repPolicy === "LIFO"){LIFO(temp,k);}
+          		if(repPolicy === "LRU"){LRU(temp,k);}			//run function based on replacement policy
             }
           	
 		  }
-		  document.getElementById("count").innerHTML = "page miss->"+pg_miss+"\n"+" page hit->"+pg_hit;
+		  document.getElementById("count").innerHTML = "page miss->"+pgMiss+"\n"+" page hit->"+pgHit;
 		}
 		
 		function generate() { //function to generate hex value 
 		  var z = vm*1024;
-		  var pg_size = pg*1024;
-		  pg_size = pg_size.toString(2);
-		  var len = pg_size.length-1;	 
+		  var pgSize = pg*1024;
+		  pgSize = pgSize.toString(2);
+		  var len = pgSize.length-1;	 
 		  var x = Math.floor(Math.random()*z);
 		  var y = x.toString(2);
 		  y = y.toString();
 		  x = x.toString(16);
-		  var m = document.getElementById('hex');
+		  var m = document.getElementById("hex");
 		  m.value = x;
-          if (y.length<pg_size.length) {
-          	for (var i = 0; i < (pg_size.length-y.length+2); i++) {
+          if (y.length<pgSize.length) {
+          	for (var i = 0; i < (pgSize.length-y.length+2); i++) {
           			y = "0"+y;
           		 }
           	}
@@ -181,41 +181,41 @@
           var offset = parseInt(y.slice(y.length-len,y.length)).toString();
           offset = parseInt(offset,2);
           k= parseInt(k,2);
-          if(pg_lvl=="LEVEL ONE"){
-          	  m = document.getElementById('VPO');
+          if(pgLvl==="LEVEL ONE"){
+          	  m = document.getElementById("VPO");
 	          m.value= offset;				
-	          m = document.getElementById('outer');
+	          m = document.getElementById("outer");
 	          m.value= "--**--";
-	          m = document.getElementById('inner');
+	          m = document.getElementById("inner");
 	          m.value= k;
           }
           else{
           	  var quotient = Math.floor(k/4);
 			  var remainder = k%4;
-          	  m = document.getElementById('VPO');
+          	  m = document.getElementById("VPO");
 	          m.value= offset;				
-	          m = document.getElementById('outer');
+	          m = document.getElementById("outer");
 	          m.value= quotient;
-	          m = document.getElementById('inner');
+	          m = document.getElementById("inner");
 	          m.value= remainder;
           }
-          if(mem_ctr < sz)
+          if(memCtr < sz)
           {
-          	if(mem_map[k][2] == 1)		//page hit
+          	if(mem_map[k][2] === 1)		//page hit
           	{
 				var temp="$ It is page hit "+"VPG-"+ k +"maps to PPG-" + mem_map[k][1];
 				var temp1=x + " VPG-" + k + " PAGE HIT";
-				pg_hit++;
+				pgHit++;
 				var operation=document.getElementById("field_2").elements[0].value;
-          		if(operation == "READ"){
+          		if(operation === "READ"){
           			mem_map[k][5]=0;
           		}
-          		if(operation == "WRITE"){
+          		if(operation === "WRITE"){
           			mem_map[k][5]=1;
           		}
 				add_vm_1(k);
 				add_mm(k);
-				if(pg_lvl == "LEVEL TWO"){add_vpn_2(k);}
+				if(pgLvl === "LEVEL TWO"){add_vpn_2(k);}
 				else{add_vpn_1(k);}
 				mem_map[k][6] = ctr;
 				ctr++;
@@ -225,49 +225,49 @@
           	}
           	else{
 
-          		mem_map[k][1] = mem_ctr;
+          		mem_map[k][1] = memCtr;
 	          	mem_map[k][2] = 1;
 	          	mem_map[k][3] = ctr;
-	          	mem_map[k][4] = mem_ctr;
+	          	mem_map[k][4] = memCtr;
 	          	mem_map[k][6] = ctr;
 	          	var operation=document.getElementById("field_2").elements[0].value;
-          		if(operation == "READ"){
+          		if(operation === "READ"){
           			mem_map[k][5]=0;
           		}
-          		if(operation == "WRITE"){
+          		if(operation === "WRITE"){
           			mem_map[k][5]=1;
           		}
-				var temp="$ PAGE FAULT, but our physical pages are empty, so VPG-"+ k +"is mapped to PPG-" + mem_ctr;
+				var temp="$ PAGE FAULT, but our physical pages are empty, so VPG-"+ k +"is mapped to PPG-" + memCtr;
 				add_to_explanation(temp);
 				var temp1=x + "  VPG-" + k + "  PAGE FAULT";
-				pg_miss++;
+				pgMiss++;
 				add_to_recent_history(temp1);
 				add_mm(k);
-				if(pg_lvl == "LEVEL TWO"){add_vpn_2(k);}
+				if(pgLvl === "LEVEL TWO"){add_vpn_2(k);}
 				else{add_vpn_1(k);}
 				add_vm_1(k);
-				mem_ctr++; 
+				memCtr++; 
 	          	ctr++;
           	}
           }
           else
           {
-          	if(mem_map[k][2] == 1)		//page hit
+          	if(mem_map[k][2] === 1)		//page hit
           	{
 				var temp="$ It is page hit "+"VPG-"+ k +" maps to PPG-" + mem_map[k][1];
 				add_to_explanation(temp);
 				var temp1=x + "  VPG-" + k + "  PAGE HIT";
-				pg_hit++;
+				pgHit++;
 				var operation=document.getElementById("field_2").elements[0].value;
-          		if(operation == "READ"){
+          		if(operation === "READ"){
           			mem_map[k][5]=0;
           		}
-          		if(operation == "WRITE"){
+          		if(operation === "WRITE"){
           			mem_map[k][5]=1;
           		}
 				add_vm_1(k);
 				add_mm(k);
-				if(pg_lvl == "LEVEL TWO"){add_vpn_2(k);}
+				if(pgLvl === "LEVEL TWO"){add_vpn_2(k);}
 				else{add_vpn_1(k);}
 				mem_map[k][6] = ctr;
 				ctr++;
@@ -276,111 +276,111 @@
           	else 					    //page fault
           	{
           		var operation=document.getElementById("field_2").elements[0].value;
-          		if(operation == "READ"){
+          		if(operation === "READ"){
           			var temp="$ It is page fault and page is not dirty so not required to copy it to disk ";
           		}
-          		if(operation == "WRITE"){
+          		if(operation === "WRITE"){
           			var temp="$ It is page fault and page is dirty so copy it to disk before removing from physical memory, now it's done ";
           		}
           		var temp1= x + "  VPG-" + k + "  PAGE FAULT";
-          		pg_miss++;
+          		pgMiss++;
           		add_vm_1(k);
           		add_to_recent_history(temp1);
-          		if(rep_policy == "FIFO"){FIFO(temp,k);}
-          		if(rep_policy == "LIFO"){LIFO(temp,k);}
-          		if(rep_policy == "LRU"){LRU(temp,k);}			//run function based on replacement policy
+          		if(repPolicy === "FIFO"){FIFO(temp,k);}
+          		if(repPolicy === "LIFO"){LIFO(temp,k);}
+          		if(repPolicy === "LRU"){LRU(temp,k);}			//run function based on replacement policy
             }
           	
 		  }
-		  document.getElementById("count").innerHTML = "page miss->"+pg_miss+"\n"+" page hit->"+pg_hit;
+		  document.getElementById("count").innerHTML = "page miss->"+pgMiss+"\n"+" page hit->"+pgHit;
 		}
 		function map_page_no(){
-		  var m = document.getElementById('dec');
+		  var m = document.getElementById("dec");
 		  var k = m.value;
 		  k = parseInt(k,10);
-		  if(pg_lvl=="LEVEL ONE"){		
-	          m = document.getElementById('outer');
+		  if(pgLvl==="LEVEL ONE"){		
+	          m = document.getElementById("outer");
 	          m.value= "--**--";
-	          m = document.getElementById('inner');
+	          m = document.getElementById("inner");
 	          m.value= k;
           }
-          if(pg_lvl == "LEVEL TWO"){
+          if(pgLvl === "LEVEL TWO"){
           	  var quotient = Math.floor(k/4);
 			  var remainder = k%4;				
-	          m = document.getElementById('outer');
+	          m = document.getElementById("outer");
 	          m.value= quotient;
-	          m = document.getElementById('inner');
+	          m = document.getElementById("inner");
 	          m.value= remainder;
           }
-		  if(mem_ctr < sz)
+		  if(memCtr < sz)
           {
-          	if(mem_map[k][2] == 1)		//page hit
+          	if(mem_map[k][2] === 1)		//page hit
           	{
 				var temp="$ It is page hit "+"VPG-"+ k +"maps to PPG-" + mem_map[k][1];
 				var temp1=" VPG-" + k + " PAGE HIT";
 				var operation=document.getElementById("field_2").elements[0].value;
-          		if(operation == "READ"){
+          		if(operation === "READ"){
           			mem_map[k][5]=0;
           		}
-          		if(operation == "WRITE"){
+          		if(operation === "WRITE"){
           			mem_map[k][5]=1;
           		}
 				add_vm_1(k);
 				add_mm(k);
-				if(pg_lvl == "LEVEL TWO"){add_vpn_2(k);}
+				if(pgLvl === "LEVEL TWO"){add_vpn_2(k);}
 				else{add_vpn_1(k);}
 				mem_map[k][6] = ctr;
 				ctr++;
-				pg_hit++;
+				pgHit++;
 				add_to_recent_history(temp1);
 				add_to_explanation(temp);
 
           	}
           	else{
-          		mem_map[k][1] = mem_ctr;
+          		mem_map[k][1] = memCtr;
 	          	mem_map[k][2] = 1;
 	          	mem_map[k][3] = ctr;
-	          	mem_map[k][4] = mem_ctr;
+	          	mem_map[k][4] = memCtr;
 	          	mem_map[k][6] = ctr;
 	          	var operation=document.getElementById("field_2").elements[0].value;
-          		if(operation == "READ"){
+          		if(operation === "READ"){
           			mem_map[k][5]=0;
           		}
-          		if(operation == "WRITE"){
+          		if(operation === "WRITE"){
           			mem_map[k][5]=1;
           		}
-				var temp="$ PAGE FAULT, but our physical pages are empty, so VPG-"+ k +"is mapped to PPG-" + mem_ctr;
+				var temp="$ PAGE FAULT, but our physical pages are empty, so VPG-"+ k +"is mapped to PPG-" + memCtr;
 				add_to_explanation(temp);
 				var temp1="  VPG-" + k + "  PAGE FAULT";
 				add_vm_1(k);
 				add_mm(k);
-				if(pg_lvl == "LEVEL TWO"){add_vpn_2(k);}
+				if(pgLvl === "LEVEL TWO"){add_vpn_2(k);}
 				else{add_vpn_1(k);}
-				pg_miss++;
+				pgMiss++;
 				add_to_recent_history(temp1);
-				mem_ctr++; 
+				memCtr++; 
 	          	ctr++;
           	}
           }
           else
           {
           	
-          	if(mem_map[k][2] == 1)		//page hit
+          	if(mem_map[k][2] === 1)		//page hit
           	{
-				pg_hit++;
+				pgHit++;
 				var temp="$ It is page hit "+"VPG-"+ k +"maps to PPG-" + mem_map[k][1];
 				add_to_explanation(temp);
 				var temp1="  VPG-" + k + "  PAGE HIT";
 				var operation=document.getElementById("field_2").elements[0].value;
-          		if(operation == "READ"){
+          		if(operation === "READ"){
           			mem_map[k][5]=0;
           		}
-          		if(operation == "WRITE"){
+          		if(operation === "WRITE"){
           			mem_map[k][5]=1;
           		}
 				add_vm_1(k);
 				add_mm(k);
-				if(pg_lvl == "LEVEL TWO"){add_vpn_2(k);}
+				if(pgLvl === "LEVEL TWO"){add_vpn_2(k);}
 				else{add_vpn_1(k);}
 				mem_map[k][6] = ctr;
 				ctr++;
@@ -390,54 +390,54 @@
           	{
           		var temp="$ It is page fault ";
           		var temp1="  VPG-" + k + "  PAGE FAULT";
-          		pg_miss++;
+          		pgMiss++;
           		add_vm_1(k);
           		add_to_recent_history(temp1);
-          		if(rep_policy == "FIFO"){FIFO(temp,k);}
-          		if(rep_policy == "LIFO"){LIFO(temp,k);}
-          		if(rep_policy == "LRU"){LRU(temp,k);}			//run function based on replacement policy
+          		if(repPolicy === "FIFO"){FIFO(temp,k);}
+          		if(repPolicy === "LIFO"){LIFO(temp,k);}
+          		if(repPolicy === "LRU"){LRU(temp,k);}			//run function based on replacement policy
             }
           	
 		  }
-		  document.getElementById("count").innerHTML = "page miss->"+pg_miss+"\n"+" page hit->"+pg_hit;
+		  document.getElementById("count").innerHTML = "page miss->"+pgMiss+"\n"+" page hit->"+pgHit;
 		}
 		function generate_page_no() {//function to generate page number
 		  var z = vm/pg; 
 		  var x = Math.floor(Math.random()*z);
-		  var m = document.getElementById('dec');
+		  var m = document.getElementById("dec");
 		  m.value = x;
 		  var k = x;
-		  if(pg_lvl=="LEVEL ONE"){				
-	          m = document.getElementById('outer');
+		  if(pgLvl==="LEVEL ONE"){				
+	          m = document.getElementById("outer");
 	          m.value= "--**--";
-	          m = document.getElementById('inner');
+	          m = document.getElementById("inner");
 	          m.value= k;
           }
-          if(pg_lvl == "LEVEL TWO"){
+          if(pgLvl === "LEVEL TWO"){
           	  var quotient = Math.floor(k/4);
 			  var remainder = k%4;				
-	          m = document.getElementById('outer');
+	          m = document.getElementById("outer");
 	          m.value= quotient;
 	          m = document.getElementById('inner');
 	          m.value= remainder;
           }
-		  if(mem_ctr < sz)
+		  if(memCtr < sz)
           {
-          	if(mem_map[k][2] == 1)		//page hit
+          	if(mem_map[k][2] === 1)		//page hit
           	{
 				var temp="$ It is page hit "+"VPG-"+ k +"maps to PPG-" + mem_map[k][1];
 				var temp1=" VPG-" + k + " PAGE HIT";
-				pg_hit++;
+				pgHit++;
 				var operation=document.getElementById("field_2").elements[0].value;
-          		if(operation == "READ"){
+          		if(operation === "READ"){
           			mem_map[k][5]=0;
           		}
-          		if(operation == "WRITE"){
+          		if(operation === "WRITE"){
           			mem_map[k][5]=1;
           		}
 				add_vm_1(k);
 				add_mm(k);
-				if(pg_lvl == "LEVEL TWO"){add_vpn_2(k);}
+				if(pgLvl === "LEVEL TWO"){add_vpn_2(k);}
 				else{add_vpn_1(k);}
 				mem_map[k][6] = ctr;
 				ctr++;
@@ -446,50 +446,50 @@
 
           	}
           	else{
-          		mem_map[k][1] = mem_ctr;
+          		mem_map[k][1] = memCtr;
 	          	mem_map[k][2] = 1;
 	          	mem_map[k][3] = ctr;
-	          	mem_map[k][4] = mem_ctr;
+	          	mem_map[k][4] = memCtr;
 	          	mem_map[k][3] = ctr;
 	          	mem_map[k][6] = ctr;
 				var operation=document.getElementById("field_2").elements[0].value;
-          		if(operation == "READ"){
+          		if(operation === "READ"){
           			mem_map[k][5]=0;
           		}
-          		if(operation == "WRITE"){
+          		if(operation === "WRITE"){
           			mem_map[k][5]=1;
           		}
-				var temp="$ PAGE FAULT, but our physical pages are empty, so VPG-"+ k +"is mapped to PPG-" + mem_ctr;
+				var temp="$ PAGE FAULT, but our physical pages are empty, so VPG-"+ k +"is mapped to PPG-" + memCtr;
 				add_to_explanation(temp);
 				var temp1=x + "  VPG-" + k + "  PAGE FAULT";
-				pg_miss++;
+				pgMiss++;
 				add_vm_1(k);
 				add_mm(k);
-				if(pg_lvl == "LEVEL TWO"){add_vpn_2(k);}
+				if(pgLvl === "LEVEL TWO"){add_vpn_2(k);}
 				else{add_vpn_1(k);}
 				add_to_recent_history(temp1);
-				mem_ctr++; 
+				memCtr++; 
 	          	ctr++;
           	}
           }
           else
           {
-          	if(mem_map[k][2] == 1)		//page hit
+          	if(mem_map[k][2] === 1)		//page hit
           	{
 				var temp="$ It is page hit "+"VPG-"+ k +"maps to PPG-" + mem_map[k][1];
 				add_to_explanation(temp);
 				var temp1="  VPG-" + k + "  PAGE HIT";
-				pg_hit++;
+				pgHit++;
 				var operation=document.getElementById("field_2").elements[0].value;
-          		if(operation == "READ"){
+          		if(operation === "READ"){
           			mem_map[k][5]=0;
           		}
-          		if(operation == "WRITE"){
+          		if(operation === "WRITE"){
           			mem_map[k][5]=1;
           		}
 				add_vm_1(k);
 				add_mm(k);
-				if(pg_lvl == "LEVEL TWO"){add_vpn_2(k);}
+				if(pgLvl === "LEVEL TWO"){add_vpn_2(k);}
 				else{add_vpn_1(k);}
 				mem_map[k][6] = ctr;
 				ctr++;
@@ -499,16 +499,16 @@
           	{
           		var temp="$ It is page fault ";
           		var temp1= x + "  VPG-" + k + "  PAGE FAULT";
-          		pg_miss++;
+          		pgMiss++;
           		add_vm_1(k);
           		add_to_recent_history(temp1);
-          		if(rep_policy == "FIFO"){FIFO(temp,k);}
-          		if(rep_policy == "LIFO"){LIFO(temp,k);}
-          		if(rep_policy == "LRU"){LRU(temp,k);}			//run function based on replacement policy
+          		if(repPolicy === "FIFO"){FIFO(temp,k);}
+          		if(repPolicy === "LIFO"){LIFO(temp,k);}
+          		if(repPolicy === "LRU"){LRU(temp,k);}			//run function based on replacement policy
             }
           	
 		  }
-		  document.getElementById("count").innerHTML = "page miss->"+pg_miss+"\n"+" page hit->"+pg_hit;
+		  document.getElementById("count").innerHTML = "page miss->"+pgMiss+"\n"+" page hit->"+pgHit;
 		}
 		
 		function add_vm(size){
@@ -524,7 +524,7 @@
 		}
 
 		function add_vpn(size){
-			if(pg_lvl == "LEVEL ONE"){
+			if(pgLvl === "LEVEL ONE"){
 				var temp_string="PTE ";
 				var vm_id= document.getElementById("vpn");
 				for (var i = 0; i <size ; i++) {
@@ -621,7 +621,7 @@
 		function add_mm(k){
 			var temp_string="PPG-";
 			
-			if(mem_ctr == 0)
+			if(memCtr === 0)
 			{
 				var mm_id= document.getElementById("mm");
 				var para = document.createElement("P");
@@ -639,11 +639,11 @@
 			}
 			else
 			{
-				if(mem_ctr<sz)
+				if(memCtr<sz)
 				{
 					var list = document.getElementById("mm");
 					var dirty = document.getElementById("dirty");
-					for (var i = 0; i <	mem_ctr ; i++)
+					for (var i = 0; i <	memCtr ; i++)
 					{
 						list.removeChild(list.childNodes[0]);
 						dirty.removeChild(dirty.childNodes[0]);
@@ -653,11 +653,11 @@
 					var tem;
 					list = document.getElementById("mm");
 					dirty = document.getElementById("dirty");
-					for(var j = 0; j <= mem_ctr ; j++)
+					for(var j = 0; j <= memCtr ; j++)
 					{
 						for (var i = 0; i <size ; i++) 
 						{
-							if((mem_map[i][1] == j) && (mem_map[i][2] == 1))
+							if((mem_map[i][1] === j) && (mem_map[i][2] === 1))
 							{
 								
 								var para = document.createElement("P");
@@ -700,7 +700,7 @@
 					{
 						for (var i = 0; i <size ; i++) 
 						{
-							if((mem_map[i][1] == j) && (mem_map[i][2] == 1))
+							if((mem_map[i][1] === j) && (mem_map[i][2] === 1))
 							{
 								
 								var para = document.createElement("P");
@@ -749,18 +749,18 @@
 		    var z = k;
 		    for(var i=0; i<size; i++)
 		    {
-		       	if((mem_map[i][2] == 1) && (mem_map[i][4]==0))
+		       	if((mem_map[i][2] === 1) && (mem_map[i][4]===0))
 		       	{
 		         	mem_map[k][1] = mem_map[i][1];
 		          	mem_map[k][2] = 1;
 		          	mem_map[k][3] = ctr;
-		          	mem_map[k][4] = mem_ctr;
+		          	mem_map[k][4] = memCtr;
 		          	mem_map[k][6] = ctr;
 		          	var operation=document.getElementById("field_2").elements[0].value;
-	          		if(operation == "READ"){
+	          		if(operation === "READ"){
 	          			mem_map[k][5]=0;
 	          		}
-	          		if(operation == "WRITE"){
+	          		if(operation === "WRITE"){
 	          			mem_map[k][5]=1;
 	          		}
 		          	mem_map[i][2] = 0;
@@ -768,10 +768,10 @@
 		          	add_to_explanation(msg);
 		          	for(var i=0; i<size; i++)
 		          	{
-		          		if(mem_map[i][2] == 1){mem_map[i][4]--;}
+		          		if(mem_map[i][2] === 1){mem_map[i][4]--;}
 		          	}
 		          	add_mm(z);
-		          	if(pg_lvl == "LEVEL TWO"){add_vpn_2(k);}
+		          	if(pgLvl === "LEVEL TWO"){add_vpn_2(k);}
 					else{add_vpn_1(k);}
 		          	ctr++;
 		          	break;
@@ -782,7 +782,7 @@
 		{
 		    for(var i=0; i<size; i++)
 		    {
-		       	if((mem_map[i][2] == 1) && (mem_map[i][4]==(sz-1)))
+		       	if((mem_map[i][2] === 1) && (mem_map[i][4]===(sz-1)))
 		       	{
 		         	mem_map[k][1] = mem_map[i][1];
 		          	mem_map[k][2] = 1;
@@ -790,17 +790,17 @@
 		          	mem_map[k][4] = sz-1;
 		          	mem_map[k][6] = ctr;
 		          	var operation=document.getElementById("field_2").elements[0].value;
-	          		if(operation == "READ"){
+	          		if(operation === "READ"){
 	          			mem_map[k][5]=0;
 	          		}
-	          		if(operation == "WRITE"){
+	          		if(operation === "WRITE"){
 	          			mem_map[k][5]=1;
 	          		}			
 		          	mem_map[i][2] = 0;
 		          	msg = msg + ", as our next victim page using selected LIFO REPLACEMENT POLICY VPG-" +i+" is replaced by VPG-" +k;		
 		          	add_to_explanation(msg);
 		          	add_mm(k);
-		          	if(pg_lvl == "LEVEL TWO"){add_vpn_2(k);}
+		          	if(pgLvl === "LEVEL TWO"){add_vpn_2(k);}
 					else{add_vpn_1(k);}
 		          	ctr++;
 		          	break;
@@ -814,7 +814,7 @@
 			var z = k;
 		    for(var i=0; i<size; i++)
 		    {
-		       	if((mem_map[i][2] == 1) && (mem_map[i][6] <= min))
+		       	if((mem_map[i][2] === 1) && (mem_map[i][6] <= min))
 		       	{
 		         	min = mem_map[i][6];
 		         	tgt = i;
@@ -823,25 +823,25 @@
 		    mem_map[k][1] = mem_map[tgt][1];
 		    mem_map[k][2] = 1;
 		    mem_map[k][3] = ctr;
-		    mem_map[k][4] = mem_ctr;
+		    mem_map[k][4] = memCtr;
 		    mem_map[k][6] = ctr;
 		    var operation=document.getElementById("field_2").elements[0].value;
-	        if(operation == "READ"){
+	        if(operation === "READ"){
 	          	mem_map[k][5]=0;
 	        }
-	        if(operation == "WRITE"){
+	        if(operation === "WRITE"){
 	          	mem_map[k][5]=1;
 	        }
 		    mem_map[tgt][2] = 0;
 		    msg = msg + " as our next victim page using selected LRU REPLACEMENT POLICY VPG-" +i+" is replaced by VPG-" +k;			
 		    add_to_explanation(msg);
 		    add_mm(z);
-		    if(pg_lvl == "LEVEL TWO"){add_vpn_2(k);}
+		    if(pgLvl === "LEVEL TWO"){add_vpn_2(k);}
 			else{add_vpn_1(k);}
 		    ctr++;
 		    for(var i=0; i<size; i++)
 		    {
-		       if(mem_map[i][2] == 1){mem_map[i][4]--;}
+		       if(mem_map[i][2] === 1){mem_map[i][4]--;}
 		    }
 		}
 		function fill_array(size){	//initalize 2d array with col_0->VPG col_1->PPG col_2->VALID BIT col_3->TIME col_4->entering sequence col_5->dirty col_6-> last used time
@@ -853,8 +853,8 @@
 				mem_map.push([i]);
 				for(var j=0; j<cols; j++)	
 				{
-					if(j!=0){mem_map[i][j]=-1;}
-					if(j==2){mem_map[i][j]=0;}
+					if(j!==0){mem_map[i][j]=-1;}
+					if(j===2){mem_map[i][j]=0;}
 				}
 			}
 		}
