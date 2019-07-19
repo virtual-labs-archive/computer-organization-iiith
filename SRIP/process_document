@@ -1,0 +1,10 @@
+Process Document:
+
+1) Navigation, header and footer are common for all the pages and the code for these is written only once and used in all other pages with the help of javascript.
+2) Then body of the main pages is made
+3) All other pages body is written in the similar way as that in the original simulator.
+4) Using Bootstrap and javascript the code is written in an effective way.
+
+
+Libraries used:
+None
