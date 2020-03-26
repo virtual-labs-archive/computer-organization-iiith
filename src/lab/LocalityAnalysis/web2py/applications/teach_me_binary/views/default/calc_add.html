@@ -1,11 +1,15 @@
-{{extend 'layout.html'}}
+<html><head><!--Google Tag Manager--><script class="gtm">(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','GTM-W59SWTR');</script><!--End Google Tag Manager--></head><body><!--Google Tag Manager (noscript)--><noscript class="gtm"><iframe height="0" src="https://www.googletagmanager.com/ns.html?id=GTM-W59SWTR" style="display:none;visibility:hidden" width="0"></iframe></noscript><!--End Google Tag Manager (noscript)-->{{extend 'layout.html'}}
 <h1>Try this</h1>
 <h3>Signed Range {{=-(range_s)}} to {{=range_s-1}}</h3>
 <h3>Unsigned Range 0 to {{=range_s*2-1}}</h3>
 {{=form.custom.begin}}
 <table>
 		
-	<tr>
+	<tbody><tr>
 		<td><b>Signed</b></td>
 		<td><b>K </b></td>
 		<td>{{=form.custom.widget.k}}</td>
@@ -22,7 +26,7 @@
 		<td>{{=form.custom.label.second_binary}}</td>
 		<td>{{=form.custom.widget.second_binary}}</td>
 		<td>{{=right_second}}</td>
-	<tr>
+	</tr><tr>
 		<td>{{=left_result}}</td>
 		<td>Result </td>
 		<td>{{if unsigned_overflow==1:}}1-{{=mid}}{{else:}}0-{{=mid}}{{pass}}</td>
@@ -34,7 +38,7 @@
 		<td></td>
 		<td>Unsigned Error-{{=unsigned_overflow}}</td>
 	</tr>
-</table>
+</tbody></table>
 {{=form.custom.end}}
 <h1>Instructions</h1>
 <ol>
@@ -55,3 +59,4 @@
 	<li>An overflow occurs when the result cannot be represented by the selected number of bits</li>
 </ul>
 
+</body></html>
