@@ -1,30 +1,29 @@
 <!-- This file needs to be edited by the lab developer to suit
-the requirements of their lab in particular.-->
-
-<!-- Add class="default" to include any element as it is
+the requirements of their lab in particular.--><!-- Add class="default" to include any element as it is
 specified in default.html. 
 Do not include class="default" to the elements that you want to
-edit -->
-
-<!DOCTYPE html>
-<html>
-<head></head>
-<body>
+edit --><!DOCTYPE html>
+<html><head><!--Google Tag Manager--><script class="gtm">(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','GTM-W59SWTR');</script><!--End Google Tag Manager--></head>
+<body><!--Google Tag Manager (noscript)--><noscript class="gtm"><iframe height="0" src="https://www.googletagmanager.com/ns.html?id=GTM-W59SWTR" style="display:none;visibility:hidden" width="0"></iframe></noscript><!--End Google Tag Manager (noscript)-->
 
 <div id="experiment"> <!-- The Experiment Document Container-->
 
   <!-- The lab Header contains the logo and the name of the lab,
   usually displayed on the top of the page-->
 
-  <header id="experiment-header" class="default">
+  <header class="default" id="experiment-header">
   
-    <div id="experiment-header-logo" class="logo">
+    <div class="logo" id="experiment-header-logo">
       <!-- Enclose the logo image of your lab or write it in 
       text-->
-      <img src="../images/logo.jpg" />
+      <img src="../images/logo.jpg"/>
     </div>
 
-    <div id="experiment-header-heading" class="heading">
+    <div class="heading" id="experiment-header-heading">
       <!-- Write the name of your lab and link it to the home 
       page of your lab (h1 tag is preferred while writing your 
       lab name)-->
@@ -45,10 +44,10 @@ edit -->
     <!-- The lab article has an header, optional navigational 
     menu, number of sections, an optional sidebar and a closing 
     footer-->
-     <div id="experiment-article-breadcrumb" class="breadcrumb" style="margin-left:30em;">
+     <div class="breadcrumb" id="experiment-article-breadcrumb" style="margin-left:30em;">
      </div>
     
-      <header id="experiment-article-heading" class="heading">
+      <header class="heading" id="experiment-article-heading">
         <!-- You can add a welcome message or title of the 
         experiment here -->
         MIPS Assembly Language Programming
@@ -58,7 +57,7 @@ edit -->
 
       <!-- Navigation menu is useful to organize the view of 
       multiple sections inside the article-->
-      <nav id="experiment-article-navigation" class="default">
+      <nav class="default" id="experiment-article-navigation">
         <ul id="experiment-article-navigation-menu">
           <!-- The menu can be dynamically generated to contain 
           the headings of your sections or instead write the 
@@ -74,23 +73,20 @@ edit -->
         <!-- First section of the article-->
         <section id="experiment-article-section-1">
           
-          <div id="experiment-article-section-1-icon" 
-          class="icon">
+          <div class="icon" id="experiment-article-section-1-icon">
 	    <!-- Enclose the icon image of your lab -->
-	    <img src="../images/introduction.jpg" />
+	    <img src="../images/introduction.jpg"/>
 	  </div>	
           
           <!-- The heading for the section can be enclosed in a 
           div tag. -->
-          <div id="experiment-article-section-1-heading" 
-          class="heading">
+          <div class="heading" id="experiment-article-section-1-heading">
             Introduction
           </div>
 
           <!-- Write the section content inside a paragraph 
           element, You can also include images with <img> tag -->
-          <div id="experiment-article-section-1-content" 
-          class="content">	
+          <div class="content" id="experiment-article-section-1-content">	
    <p>A High Level Programming Language like C provides <strong>abstractions</strong> to program an underlying computing system. The following is a broad classification of various abstractions.</p>
 	<ol>
 	  <li>
@@ -118,37 +114,34 @@ edit -->
       <!-- Second section of the article-->
       <section id="experiment-article-section-2">
         
-        <div id="experiment-article-section-2-icon" 
-        class="icon">
+        <div class="icon" id="experiment-article-section-2-icon">
 	  <!-- Enclose the icon image of your lab. -->
-	  <img src="../images/theory.jpg" />
+	  <img src="../images/theory.jpg"/>
 	</div>
 				
         <!-- The heading for the section can be enclosed in a 
         div tag. -->
-        <div id="experiment-article-section-2-heading" 
-        class="heading">
+        <div class="heading" id="experiment-article-section-2-heading">
           Theory
         </div>
 
 
         <!-- Write the section content inside a paragraph 
         element, we can also include images with <img> tag -->
-        <div id="experiment-article-section-2-content" 
-        class="content">
+        <div class="content" id="experiment-article-section-2-content">
 	<p align="justify">There are several versions of the MIPS ISA and the one which we will be making use of in our assignments is a subset of MIPS32 Release 3. In particular our simulator supports only the MIPS CPU core instructions and these instructions are sufficient to do all the assignments. Please refer the document <em>MIPS Architecure For Programmers, Volume I-A: Introduction to the MIPS 32 Architecture </em>for more details.</p>
-	<p align="justify"><img src="images/MIPSISAVersions.gif" width="854" height="665" /></p>
-	<hr />
+	<p align="justify"><img height="665" src="images/MIPSISAVersions.gif" width="854"/></p>
+	<hr/>
 	<h3><strong>Structure of an Assembly Language Program</strong></h3>
   <p align="justify">Every assembly language program contains a Text Section (also called as Code Section) and an optional Data Section. In the Data Section we allocate memory to various program variables using Assembly Language Directives and in the Text Section we wrtie the assembly code which is a sequence of assembly language instructions to manipulate the data items declared in the Data Section. In High Level Programming Languages, a Compiler takes care of memory allocation to program variables by using the variable declarations like<span class="style1"> int a, b[10];</span>, whereas in assembly the programmer has to do it explic;itly with the assistance of the assembler. The following is a sample MIPS program evaluating the expression <em><font face="Times New Roman, Times, serif">varc = vara + varb</font> </em>where variables <font face="Times New Roman, Times, serif">var<em>a, varb</em></font> and<em> <font face="Times New Roman, Times, serif">varc</font></em> are integer.	  </p>
   
 	<div align="justify">
-<pre class="code"><span class=cmt>// Data Section</span>
+<pre class="code"><span class="cmt">// Data Section</span>
 <span class="keyw">.data</span>
-vara: .word 10&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="cmt">// initialize vara to 10</span>
-varb: .word 20&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="cmt">// initialize varb to 20</span>
-varc: .word&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="cmt">// No initial value specified for varc</span>
-<span class=cmt>// Code Section</span>
+vara: .word 10      <span class="cmt">// initialize vara to 10</span>
+varb: .word 20     <span class="cmt">// initialize varb to 20</span>
+varc: .word        <span class="cmt">// No initial value specified for varc</span>
+<span class="cmt">// Code Section</span>
 <span class="keyw">.text</span>
 lw $8, vara
 lw $9, varb
@@ -156,7 +149,7 @@ add $10, $8, $9
 sw varc, $10 
 halt 
     	</pre>
-          <h3>&nbsp; </h3>
+          <h3>  </h3>
           <h3>Writing if-then-else Code in MIPS</h3>
       <p>The following are the different kinds of Control-Abstractions provided by almost all high-level languages.</p>
           <ol>
@@ -173,18 +166,18 @@ halt
 } 
 else {
  varc = vara + varb
-}<br />
+}<br/>
 <span class="cmt">// MIPS Code Fragment</span>
 <span class="cmt">// Assume vara, varb, varc are signed integers residing in registers $r2, $r3 and $r4 respectively.</span>
 <span class="keyw"></span>
-     sub $1, $2, $3&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;# Store the result vara-varb in $r1 register. 
+     sub $1, $2, $3       # Store the result vara-varb in $r1 register. 
      bgez if
-     nop&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;# branch delay slot
-     add $4, $1, $2&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;# compute vara+varb and store the result in $r4 register
+     nop                     # branch delay slot
+     add $4, $1, $2       # compute vara+varb and store the result in $r4 register
      b exit
-if:  mov $4, $1&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;# Computing if-part
+if:  mov $4, $1            # Computing if-part
 exit:    	</pre>
-            <h3 align="justify">&nbsp;</h3>
+            <h3 align="justify"> </h3>
             <h3 align="justify">Implementing Loop Structures in MIPS ISA</h3>
             <p align="justify">Loops are an important form of control abstraction for programming. We have various kinds of loops like for, do-while, repeat-until etc. and each of these forms are suitable for a particular programming purpose. Any loop can be implemented using conditional and unconditional branch statements.</p>
             <p align="justify"></p>
@@ -194,19 +187,19 @@ exit:    	</pre>
 sum = 0
 for( i = 0; i &lt; 100; ++i ) 
    sum = sum + a[i];<span class="cmt">
-// MIPS Assembly<br />// Data Section</span>
+// MIPS Assembly<br/>// Data Section</span>
 <span class="keyw">.data</span>
-a .space 400&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="cmt">// allocate 400 bytes</span>
+a .space 400      <span class="cmt">// allocate 400 bytes</span>
 <span class="cmt">// Code Section</span>. Assume index variable i is in register $r1 and sum is in register $r2.
 <span class="keyw">.text</span>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;addi $1, $0, #100&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="cmt">// i = $r1 = 0</span>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;xor $2, $2, $2&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="cmt">&nbsp;&nbsp;// sum = $r2 = 0</span>
-loop:  la $3, a&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="cmt">// $r3 = &amp;a </span>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;lw $4, ($3)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="cmt">// $r4 = a[i]</span>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;add $2, $2, $4&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="cmt">// sum = sum + a[i]</span>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;addi $3, $3, #4&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="cmt">// a = a + 4</span>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;subi $1, $1, #1         <span class="cmt">// i = i - 1</span>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;bgez $1, loop
+       addi $1, $0, #100       <span class="cmt">// i = $r1 = 0</span>
+       xor $2, $2, $2       <span class="cmt">  // sum = $r2 = 0</span>
+loop:  la $3, a                 <span class="cmt">// $r3 = &amp;a </span>
+       lw $4, ($3)             <span class="cmt">// $r4 = a[i]</span>
+       add $2, $2, $4         <span class="cmt">// sum = sum + a[i]</span>
+       addi $3, $3, #4         <span class="cmt">// a = a + 4</span>
+       subi $1, $1, #1         <span class="cmt">// i = i - 1</span>
+       bgez $1, loop
        nop  
        halt 
     	    </pre>
@@ -219,19 +212,16 @@ loop:  la $3, a&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp
 
       <section id="experiment-article-section-3">
         
-        <div id="experiment-article-section-3-icon" 
-        class="icon">
+        <div class="icon" id="experiment-article-section-3-icon">
 	  <!-- Enclose the icon image of your lab. -->
-	  <img src="../images/objective.jpg" />
+	  <img src="../images/objective.jpg"/>
 	</div>
      
-        <div id="experiment-article-section-3-heading" 
-        class="heading">
+        <div class="heading" id="experiment-article-section-3-heading">
           Objective
         </div>
 
-        <div id="experiment-article-section-3-content" 
-        class="content">
+        <div class="content" id="experiment-article-section-3-content">
        <p>The following are the objectives of this series of assignments.</p>
 	<ol>
 	  <li>Introduce the Structure of an Assembly Language Program: Data and Text Sections.</li>
@@ -251,23 +241,20 @@ loop:  la $3, a&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp
 
       <section id="experiment-article-section-4">
 
-        <div id="experiment-article-section-4-icon" 
-        class="icon">
+        <div class="icon" id="experiment-article-section-4-icon">
 	  <!-- Enclose the icon image of your lab.-->
-	  <img src="../images/simulation.jpg" />
+	  <img src="../images/simulation.jpg"/>
 	</div>
 
-        <div id="experiment-article-section-4-heading" 
-        class="heading">
+        <div class="heading" id="experiment-article-section-4-heading">
           Experiment
         </div>
 
-        <div id="experiment-article-section-4-content" 
-        class="content">
+        <div class="content" id="experiment-article-section-4-content">
            <p>
              You can run the simulator as an applet in the browser or as an application using the command 'java -jar MIPSSimulator.jar'. You can download the simular <a href="MIPSSimulator.jar">here</a>.
-    <APPLET codebase="classes" code="mipsparser_new/Interface.class" width=1000 height=700> 
-       </APPLET></p>
+    <applet code="mipsparser_new/Interface.class" codebase="classes" height="700" width="1000"> 
+       </applet></p>
         </div>
 
       </section>
@@ -277,16 +264,14 @@ loop:  la $3, a&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp
         <div id="experiment-article-section-5-icon" 
         class="icon">
 	  <!-- Enclose the icon image of your lab.-->
-	  <img src="../images/manual.jpg" />
+	  <img src="../images/manual.jpg"/>
 	</div>
 
-        <div id="experiment-article-section-5-heading" 
-        class="heading">
+        <div class="heading" id="experiment-article-section-5-heading">
           Manual
         </div>
 
-        <div id="experiment-article-section-5-content" 
-        class="content">
+        <div class="content" id="experiment-article-section-5-content">
          
 	 <p><strong> 
 	Assembly Directives</strong></p>
@@ -305,55 +290,52 @@ loop:  la $3, a&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp
  	<p>Branch Delay Slot is not supported</p>
           </div>
 
-        </section>
--->
+        
+--&gt;
         <section id="experiment-article-section-6">
       
-          <div id="experiment-article-section-6-icon" 
-          class="icon">
+          <div class="icon" id="experiment-article-section-6-icon">
 	    <!-- Enclose the icon image of your lab.-->
-	    <img src="../images/quizzes.jpg" />
+	    <img src="../images/quizzes.jpg"/>
 	  </div>
 
-          <div id="experiment-article-section-6-heading" 
-          class="heading">
+          <div class="heading" id="experiment-article-section-6-heading">
             Quizzes
           </div>
 
-          <div id="experiment-article-section-6-content" 
-          class="content">
+          <div class="content" id="experiment-article-section-6-content">
             
-            <p><b>Q1. </b>In MIPS we can increment the contents of a memory location in a single instruction. <br> 
-	  <input type="radio" name="q1" id="q1" value="1"> 
-	  <font color="green"> True </font> <br> 
-	  <input type="radio" name="q1" id="q1" value="0">
+            <p><b>Q1. </b>In MIPS we can increment the contents of a memory location in a single instruction. <br/> 
+	  <input id="q1" name="q1" type="radio" value="1"/> 
+	  <font color="green"> True </font> <br/> 
+	  <input id="q1" name="q1" type="radio" value="0"/>
 	  <font color="red"> False </font> <br/>
 	  <br/> 
-	  <b>Q2.</b> The maximum size of an immediate constant in add instruction is 0xFFFFFF.<br> 
-	  <input type="radio" name="q2" id="q2" value="1"> 
-	  <font color="green"> True </font> <br> 
-	  <input type="radio" name="q2" id="q2"value="0">
+	  <b>Q2.</b> The maximum size of an immediate constant in add instruction is 0xFFFFFF.<br/> 
+	  <input id="q2" name="q2" type="radio" value="1"/> 
+	  <font color="green"> True </font> <br/> 
+	  <input id="q2" name="q2" type="radio" value="0"/>
 	  <font color="red"> False </font> <br/>
 	  <br/> 
-	  <b>Q3.</b> Register $r0 always contains a zero value.<br> 
-	  <input type="radio" name="q3" id="q3" value="1"> 
-	  <font color="green"> True </font> <br> 
-	  <input type="radio" name="q3" id="q3"value="0">
+	  <b>Q3.</b> Register $r0 always contains a zero value.<br/> 
+	  <input id="q3" name="q3" type="radio" value="1"/> 
+	  <font color="green"> True </font> <br/> 
+	  <input id="q3" name="q3" type="radio" value="0"/>
 	  <font color="red"> False </font> <br/>
 	  <br/> 
-	  <b>Q4. </b>ADDIU can generate a  overflow trap.<br> 
-	  <input type="radio" name="q4" id="q4" value="1"> 
-	  <font color="green"> True </font> <br> 
-	  <input type="radio" name="q4" id="q4" value="0">
+	  <b>Q4. </b>ADDIU can generate a  overflow trap.<br/> 
+	  <input id="q4" name="q4" type="radio" value="1"/> 
+	  <font color="green"> True </font> <br/> 
+	  <input id="q4" name="q4" type="radio" value="0"/>
 	  <font color="red"> False </font> <br/>
 	  <br/> 
-	  <b>Q5.</b> We can use LB instruction to load a signed byte into a register and cast the signed byte to a signed word.<br> 
-	  <input type="radio" name="q5" id="q5" value="1"> 
-	  <font color="green"> True </font> <br> 
-	  <input type="radio" name="q5" id="q5"value="0">
+	  <b>Q5.</b> We can use LB instruction to load a signed byte into a register and cast the signed byte to a signed word.<br/> 
+	  <input id="q5" name="q5" type="radio" value="1"/> 
+	  <font color="green"> True </font> <br/> 
+	  <input id="q5" name="q5" type="radio" value="0"/>
 	  <font color="red"> False </font> <br/>
 	  <br/> 
-	  <input type="submit" value="Submit Answers" class="button" />
+	  <input class="button" type="submit" value="Submit Answers"/>
 	</p>
 
           </div>
@@ -362,25 +344,22 @@ loop:  la $3, a&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp
 
         <section id="experiment-article-section-7">
 	  
-          <div id="experiment-article-section-7-icon" 
-          class="icon">
+          <div class="icon" id="experiment-article-section-7-icon">
 	    <!-- Enclose the icon image of your lab. -->
-	    <img src="../images/procedure.jpg" />
+	    <img src="../images/procedure.jpg"/>
 	  </div>
 	
-          <div id="experiment-article-section-7-heading" 
-          class="heading">
+          <div class="heading" id="experiment-article-section-7-heading">
 	    Procedure
 	  </div>
 	
-          <div id="experiment-article-section-7-content" 
-          class="content">
+          <div class="content" id="experiment-article-section-7-content">
 	    <h2>Assignments</h2>
 	<p>Write MIPS Assembly Language Programs computing the following expressions or program segments.</p>
 	<ol>
 	  <li>Variables are of type unsigned integers and word sized. Also the variables b, c, d and e are initialized to values 10, 20, 30 and 40 respectively.    
        <blockquote>
-	      <p class="code"> a = (b + c) - (d + e)<br>
+	      <p class="code"> a = (b + c) - (d + e)<br/>
 	      </p>
         </blockquote>  </li>
       <li>Variables are of type signed integers and half-word sized.<q> </q>Variables b, c, d and e are initialized to values -10, 20, 30 and -40 respectively.
@@ -390,12 +369,12 @@ loop:  la $3, a&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp
       </li>
       <li>Variables are of type unsigned integers and word sized. Also the variables b, c, d and e are initialized to values 10, 20, 30 and 40 respectively.
 	    <blockquote>
-	      <p class="code"> b = a + 256 . <br>
-	      c = b - 0xfffff<br />
+	      <p class="code"> b = a + 256 . <br/>
+	      c = b - 0xfffff<br/>
 	      a = (b + c) - (d + e + 0xffffe)</p>
         </blockquote>
       </li>
-      <li>Dot Product of two signed half-word sized integer array vectors A and B each of dimension 5. The resultant dot-product value should reside in the register $r1 by the end of computation.<br />
+      <li>Dot Product of two signed half-word sized integer array vectors A and B each of dimension 5. The resultant dot-product value should reside in the register $r1 by the end of computation.<br/>
       </li>
       <li>A and B are two unsigned word-sized integer array vectors each of size dimension 5. Compute the following expression.
 
@@ -404,39 +383,39 @@ loop:  la $3, a&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp
         </blockquote>
       </li>
   </ol>
-    <p>&nbsp;</p>
+    <p> </p>
     <p>Write MIPS Assembly Language Programs equivalent to the following C-code fragements.    </p>
     <ol>
       <li>
-        <p class="code">if ( a &lt; b) { &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="cmt">// a and b are signed integers</span><br />
-  &nbsp;&nbsp;&nbsp;c = a - b;<br />
-          }<br />
+        <p class="code">if ( a &lt; b) {         <span class="cmt">// a and b are signed integers</span><br/>
+     c = a - b;<br/>
+          }<br/>
         </p>
       </li>
       <li>
-        <p class="code">if ( a &lt; b) { &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="cmt">// a and b are unsigned integers</span><br />
-          &nbsp;&nbsp;&nbsp;c = a - b;<br />
-          }<br />
+        <p class="code">if ( a &lt; b) {         <span class="cmt">// a and b are unsigned integers</span><br/>
+             c = a - b;<br/>
+          }<br/>
         </p>
       </li>
       <li>
-        <p class="code">if ( a &lt; -1234) { &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="cmt">// a is a signed integer</span><br />
-          &nbsp;&nbsp;&nbsp;a  = 4 * a ;<br />
-          }<br />
-          else {<br />
-          &nbsp;&nbsp;&nbsp;a = a/4;<br />
-          }<br />
+        <p class="code">if ( a &lt; -1234) {         <span class="cmt">// a is a signed integer</span><br/>
+             a  = 4 * a ;<br/>
+          }<br/>
+          else {<br/>
+             a = a/4;<br/>
+          }<br/>
         </p>
       </li>
       <li>
-        <p class="code">if ( a &lt; b ) { &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="cmt">// a, b, c are unsigned integer</span><br />
-          &nbsp;&nbsp;&nbsp;if ( a &lt; c) { <br />
-          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;min = a;<br />
-          &nbsp;&nbsp;&nbsp;}<br />
-          &nbsp;&nbsp;&nbsp;else { min = b &lt; c ? b : c; }<br />
-          }<br />
-          else {<br />
-          &nbsp;&nbsp;&nbsp;min = b &lt; c ? b : c<br />
+        <p class="code">if ( a &lt; b ) {         <span class="cmt">// a, b, c are unsigned integer</span><br/>
+             if ( a &lt; c) { <br/>
+                min = a;<br/>
+             }<br/>
+             else { min = b &lt; c ? b : c; }<br/>
+          }<br/>
+          else {<br/>
+             min = b &lt; c ? b : c<br/>
           }</p>
       </li>
     </ol>
@@ -445,26 +424,26 @@ loop:  la $3, a&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp
   <ol>
     <li>
       <blockquote>
-        <p class="code"> sqrsum = 0; <br />
-          for( i = 0 ; i &lt; 100; ++i) <br />
-          &nbsp;&nbsp;&nbsp;&nbsp;sqrsum = sqrsum + a[i] * a[i];<br />
+        <p class="code"> sqrsum = 0; <br/>
+          for( i = 0 ; i &lt; 100; ++i) <br/>
+              sqrsum = sqrsum + a[i] * a[i];<br/>
         </p>
       </blockquote>
     </li>
     <li>
       <blockquote>
-        <p class="code">convsum = 0;<br />
-          for ( i = 0, j = 99; i &lt;100; ++i, --j )<br />
-          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;convsum += a[i] * b[j] ; <br />
+        <p class="code">convsum = 0;<br/>
+          for ( i = 0, j = 99; i &lt;100; ++i, --j )<br/>
+                convsum += a[i] * b[j] ; <br/>
         </p>
       </blockquote>
     </li>
     <li>
       <blockquote>
-        <p class="code">sum = 0; <br />
-          for( i = 0 ; i &lt; 100; ++i)<br />
-          &nbsp;&nbsp;&nbsp;&nbsp;for( j = 0; j &lt; 100; ++j)<br />
-          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;sum = sum + a[i, j] ;</p>
+        <p class="code">sum = 0; <br/>
+          for( i = 0 ; i &lt; 100; ++i)<br/>
+              for( j = 0; j &lt; 100; ++j)<br/>
+                   sum = sum + a[i, j] ;</p>
       </blockquote>
     </li>
   </ol>
@@ -475,52 +454,49 @@ loop:  la $3, a&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp
 		
         <section id="experiment-article-section-8">
    
-          <div id="experiment-article-section-8-icon" 
-          class="icon">
+          <div class="icon" id="experiment-article-section-8-icon">
 	    <!-- Enclose the icon image of your lab.-->
-	    <img src="../images/readings.jpg" />
+	    <img src="../images/readings.jpg"/>
 	  </div>
 
-          <div id="experiment-article-section-8-heading" 
-          class="heading">
+          <div class="heading" id="experiment-article-section-8-heading">
             References
           </div>
 
-          <div id="experiment-article-section-8-content" 
-          class="content">
+          <div class="content" id="experiment-article-section-8-content">
             <ol>
 	  <li>MIPS Architecture For Programmers, Volume I-A: Introduction to the MIPS32 Architecture.</li>
       <li>MIPS Architecture For Programmers, Volume II-A: The MIPS32 Instruction Set</li>
-      <li> Patterson, D. A. and Hennessy, J. L. &nbsp;Computer Organization and Design: the Hardware/Software Interface. 3rd Edition.</li>
+      <li> Patterson, D. A. and Hennessy, J. L.  Computer Organization and Design: the Hardware/Software Interface. 3rd Edition.</li>
   </ol>
           </div>
 
         </section>
 <section id="lab-article-section-9">
 	
-		<div id="lab-article-section-9-icon" class="icon">
+		<div class="icon" id="lab-article-section-9-icon">
 		<img src="../images/manual.jpg"/>
 		</div>
 
-		<div id="lab-article-section-9-heading" class="heading">
+		<div class="heading" id="lab-article-section-9-heading">
 		Feedback
 		</div>
 
-		<div id="lab-article-section-9-content" class="content">
+		<div class="content" id="lab-article-section-9-content">
 		<p>
-			<ul>
-			<li><a href="http://virtual-labs.ac.in/feedback/?lab=cse11" >Feedback</a></li>
+			</p><ul>
+			<li><a href="http://virtual-labs.ac.in/feedback/?lab=cse11">Feedback</a></li>
 			</ul>
-		</p>
+		<p></p>
 		</div>
      	</section>
-      </div>
+      </article></div>
 
 
     <!-- An article can have a sidebar that contain related 
     links and additional material (however it is kept optional 
     at this moment) -->
-    <aside id="lab-article-sidebar" class="default">
+    <aside class="default" id="lab-article-sidebar">
       <!-- put the content that you want to appear in the 
       sidebar -->	
     </aside>
@@ -528,20 +504,59 @@ loop:  la $3, a&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp
 
     <!-- Article footer can display related content and 
     additional links -->						
-    <footer id="lab-article-footer" class="default">
-      <!-- Put the content that you want to appear here -->
-    </footer>
+    <footer class="default" id="footer"><div class="footer-top" id="contact">
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-4 col-md-6">
+        <h4>Community Links</h4>
+        <p>
+	  <a href="http://www.sakshat.ac.in/">Sakshat Portal</a>
+	</p>
+        <p>
+	  <a href="http://outreach.vlabs.ac.in/">Outreach Portal</a>
+	</p>
+        <p>
+	  <a href="http://vlab.co.in/faq">FAQ : Virtual Labs</a>
+	</p>
+      </div>
+      <div class="col-lg-4 col-md-6">
+        <h4>Contact Us</h4>
+	<p> <strong>Phone:</strong> General Information : 011-26582050 </p>
+	<p> <strong>Email:</strong> support@vlab.co.in </p>
+      </div>
+      <div class="col-lg-4 col-md-6">
+	<h4>Follow Us</h4>
+	<div class="social-links">
+	  <a class="twitter" href="https://twitter.com/TheVirtualLabs" style="background: #55acee;">
+	    <i class="fa fa-twitter"></i>
+	  </a>
+	  <a class="facebook" href="https://www.facebook.com/Virtual-Labs-IIT-Delhi-301510159983871/" style="background: #3b5998;">
+	    <i class="fa fa-facebook"></i>
+	  </a>
+	  <a class="google-plus" href="https://www.youtube.com/watch?v=asxRaOgk6a0" style="background: #e52d27;">
+	    <i class="fa fa-youtube"></i>
+	  </a>
+	  <a class="linkedin" href="https://in.linkedin.com/in/virtual-labs-008ba9136" style="background: #2867B2;">
+	    <i class="fa fa-linkedin"></i>
+	  </a>
+	</div>
+      </div>
+    </div>
+  </div>
+</div>
+</footer>
 
-  </article>
+  
 
 
   <!-- Links to other labs, about us page can be kept the lab 
   footer-->
-  <footer id="lab-footer" class="default">
+  <footer class="default" id="lab-footer">
     <!-- Put the content here-->
   </footer>
 
-</div>		
+		
 
-</body>
-</html>
+
+
+</body></html>

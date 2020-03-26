@@ -1,7 +1,10 @@
+<html><head><!--Google Tag Manager--><script class="gtm">(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','GTM-W59SWTR');</script><!--End Google Tag Manager--></head><body onload="startTime()"><!--Google Tag Manager (noscript)--><noscript class="gtm"><iframe height="0" src="https://www.googletagmanager.com/ns.html?id=GTM-W59SWTR" style="display:none;visibility:hidden" width="0"></iframe></noscript><!--End Google Tag Manager (noscript)-->{{extend 'layout.html'}}
 
-{{extend 'layout.html'}}
-<html>
-<head>
+
 	<script type="text/javascript">
 		function startTime()
 		{
@@ -25,9 +28,9 @@
 		      return i;
 		      }
 	      </script>
-	      <script type="text/javascript" src="{{=URL(request.application,'static','js/jquery-1.4.2.min.js')}}"></script>
-	      <script language="javascript" type="text/javascript" src="{{=URL(request.application,'static','jquery.jqplot.min.js')}}"></script>
-	      <link rel="stylesheet" type="text/css" href="{{=URL(request.application,'static','jquery.jqplot.css')}}" />
+	      <script src="{{=URL(request.application,'static','js/jquery-1.4.2.min.js')}}" type="text/javascript"></script>
+	      <script language="javascript" src="{{=URL(request.application,'static','jquery.jqplot.min.js')}}" type="text/javascript"></script>
+	      <link href="{{=URL(request.application,'static','jquery.jqplot.css')}}" rel="stylesheet" type="text/css"/>
 	      <script type="text/javascript">
 		      $(document).ready(function(){
 				      $("#p1,#p2,#p3,#p4").hide();
@@ -198,38 +201,38 @@ td,th
 	color:#FFFFFF;
 }
 </style>
-</head>
-<body onload="startTime()"> 
 
-	<p class="panel" id="p1" > The level and type of cache, I1:- (Level - 1 Type- Instruction) </p>
+ 
+
+	<p class="panel" id="p1"> The level and type of cache, I1:- (Level - 1 Type- Instruction) </p>
 	<p class="panel" id="p2">The size of the cache in Kb, 2kb, 4kb ... </p>
 	<p class="panel" id="p3"> reserves multiple cache sectors for each potential address set </p>
 	<p class="panel" id="p4"> 32, 64 etc... </p>
-	<h4 id="txt" align="right"></h4><br/>
+	<h4 align="right" id="txt"></h4><br/>
 	{{=form.custom.begin}}
 
-	<table width="100%" style="float:left">
-		<tr>
+	<table style="float:left" width="100%">
+		<tbody><tr>
 			<td id="code">
 				<h3 style="text-align:left;color:brown"> Code for Matrix Multiplication using Tiling</h3>
-				<table widyth="50%" style="text-align:left;background:#e8edff" >
+				
 					{{for count in range(len(default_code)):}}
-					<tr>
+					
+					{{pass}}
+				<table style="text-align:left;background:#e8edff" widyth="50%"><tbody><tr>
 						<td style="text-align:left">
 							{{=count}}.
 						</td>
 						<td style="text-align:left;font-size:1.0em;letter-spacing:2px">
 							{{=default_code[count]}}
 						</td>
-					</tr>
-					{{pass}}
-				</table>
+					</tr></tbody></table>
 
 			</td>
 			<td>
 				<h3 style="text-align:left;font-weight:bold"> Cache Architechture </h3><br/>
 				<table class="table">
-					<tr>
+					<tbody><tr>
 						<th class="hl" id="hid1">
 							Type
 						</th>
@@ -284,15 +287,15 @@ td,th
 						<td>
 							{{=form.custom.widget.l2_line_size}}
 						</td>
-					<tr>
-					</table><br/>
+					</tr><tr>
+					</tr></tbody></table><br/>
 				<table class="table">
-					<tr>
+					<tbody><tr>
 						<td>
 							<strong>Mat Size</strong> 
 						</td>
 						<td>
-							{{=form.custom.widget.n}} (power of 2. &nbsp; &nbsp; 2<sup>n</sup> x 2<sup>n</sup> matrix)
+							{{=form.custom.widget.n}} (power of 2.     2<sup>n</sup> x 2<sup>n</sup> matrix)
 						</td>
 					</tr>
 					<tr>
@@ -307,28 +310,28 @@ td,th
 						<td>{{=form.custom.submit}}
 							{{=form.custom.end}}</td>
 					</tr>
-				</table>
+				</tbody></table>
 			</td>
 		</tr>
-	</table>
+	</tbody></table>
 	<br/>
-	{{if len(list) > 0 and compile==True:}}
-	<table width="80%" border="0">
-		<tr>
-			<td><input type="radio" name="option" value="level1" id="l1" class="radio"/><b>LEVEL 1</b> </td>
-			<td><input type="radio" name="option" value="level2" id="l2" class="radio"/><b>LEVEL 2</b>  </td>
-			<td><input type="radio" name="option" value="both" id="both" class="radio" checked="checked"/><b>BOTH</b></td>
+	{{if len(list) &gt; 0 and compile==True:}}
+	<table border="0" width="80%">
+		<tbody><tr>
+			<td><input class="radio" id="l1" name="option" type="radio" value="level1"/><b>LEVEL 1</b> </td>
+			<td><input class="radio" id="l2" name="option" type="radio" value="level2"/><b>LEVEL 2</b>  </td>
+			<td><input checked="checked" class="radio" id="both" name="option" type="radio" value="both"/><b>BOTH</b></td>
 			<td> <h2><a href="{{=URL(r=request,f='show_graphs')}}" target="_blank"> See graphical analysis </a></h2> </td>
 	</tr>
-</table>
+</tbody></table>
 
-<table style="width:90%" id="hor-zebra">
-	<tr>
+<table id="hor-zebra" style="width:90%">
+	<tbody><tr>
 		<th colspan="5" style="text-align:center"> INSTRUCTION </th>
 		<th colspan="9" style="text-align:center"> DATA </th>
 	</tr>
 	<tr>
-		<th rowspan="2"> Level </th> <th rowspan="2"> References </th> <th rowspan="2"> Hits </th> <th rowspan="2" > Misses </th> <th rowspan="2"> Miss rate </th>
+		<th rowspan="2"> Level </th> <th rowspan="2"> References </th> <th rowspan="2"> Hits </th> <th rowspan="2"> Misses </th> <th rowspan="2"> Miss rate </th>
 		<th rowspan="2"> Level </th> <th colspan="2"> References </th> <th colspan="2"> Hits </th> <th colspan="2"> Misses </th> <th colspan="2"> Miss rate </th>
 	</tr>
 	<tr>
@@ -336,20 +339,20 @@ td,th
 	</tr>
 
 	<tr class="level1">
-		<th rowspan="2"> I1 </th> <td rowspan="2" class="odd" id="1_i1"> {{= list[0][2]}} </td> <td rowspan="2" class="odd" id="2_i1"> {{= int(list[0][2].replace(",",""))-int(list[1][2].replace(",","")) }} </td> <td rowspan="2" class="odd" id="3_i1"> {{= list[1][2] }} </td> <td rowspan="2" class="odd" id="4_i1"> {{= list[3][2] }} </td>
+		<th rowspan="2"> I1 </th> <td class="odd" id="1_i1" rowspan="2"> {{= list[0][2]}} </td> <td class="odd" id="2_i1" rowspan="2"> {{= int(list[0][2].replace(",",""))-int(list[1][2].replace(",","")) }} </td> <td class="odd" id="3_i1" rowspan="2"> {{= list[1][2] }} </td> <td class="odd" id="4_i1" rowspan="2"> {{= list[3][2] }} </td>
 
-		<th rowspan="2"> D1 </th> <td colspan="2" style="text-align:center" class="odd" id="1_d1">{{=values["a"]}} </td> <td colspan="2" style="text-align:center" class="odd" id="2_d1">{{=values["b"]}} </td> <td colspan="2" style="text-align:center" class="odd" id="3_d1">{{=values["c"]}} </td> <td colspan="2" style="text-align:center" class="odd" id="4_d1">{{=values["d"]}} </td>
+		<th rowspan="2"> D1 </th> <td class="odd" colspan="2" id="1_d1" style="text-align:center">{{=values["a"]}} </td> <td class="odd" colspan="2" id="2_d1" style="text-align:center">{{=values["b"]}} </td> <td class="odd" colspan="2" id="3_d1" style="text-align:center">{{=values["c"]}} </td> <td class="odd" colspan="2" id="4_d1" style="text-align:center">{{=values["d"]}} </td>
 	</tr>
 	<tr class="level1">
 		<td class="d1_rd">{{=values["a_1"]}} </td><td class="d1_wr">{{=values["a_2"]}} </td><td class="d1_rd">{{=values["b_1"]}} </td><td class="d1_wr">{{=values["b_2"]}} </td><td class="d1_rd">{{=values["c_1"]}} </td><td class="d1_wr">{{=values["c_2"]}} </td><td class="d1_rd">{{=values["d_1"]}} </td><td class="d1_wr">{{=values["d_2"]}} </td>
-	<tr class="level2">
-		<th rowspan="2"> L2i </th> <td rowspan="2" class="odd" id="1_l2i"> {{= list[1][2]}} </td> <td rowspan="2" class="odd" id="2_l2i"> {{= int(list[1][2].replace(",",""))-int(list[2][2].replace(",",""))}} </td> <td rowspan="2" class="odd" id="3_l2i"> {{= list[2][2] }} </td> <td rowspan="2" class="odd" id="4_l2i"> {{= str("%.2f"%((float(list[2][2].replace(",",""))/float(list[1][2].replace(",","")))*100))+"%"}}</td>
-		<th rowspan="2" > L2d </th> <td colspan="2" style="text-align:center" class="odd" id="1_l2d"> {{=values["e"]}} </td> <td colspan="2" style="text-align:center" class="odd" id="2_l2d">{{= values["f"]}} </td><td colspan="2" style="text-align:center" class="odd" id="3_l2d">{{= values["g"]}}</td><td colspan="2" style="text-align:center" class="odd" id="4_l2d">{{= values["h"]}} </td>
+	</tr><tr class="level2">
+		<th rowspan="2"> L2i </th> <td class="odd" id="1_l2i" rowspan="2"> {{= list[1][2]}} </td> <td class="odd" id="2_l2i" rowspan="2"> {{= int(list[1][2].replace(",",""))-int(list[2][2].replace(",",""))}} </td> <td class="odd" id="3_l2i" rowspan="2"> {{= list[2][2] }} </td> <td class="odd" id="4_l2i" rowspan="2"> {{= str("%.2f"%((float(list[2][2].replace(",",""))/float(list[1][2].replace(",","")))*100))+"%"}}</td>
+		<th rowspan="2"> L2d </th> <td class="odd" colspan="2" id="1_l2d" style="text-align:center"> {{=values["e"]}} </td> <td class="odd" colspan="2" id="2_l2d" style="text-align:center">{{= values["f"]}} </td><td class="odd" colspan="2" id="3_l2d" style="text-align:center">{{= values["g"]}}</td><td class="odd" colspan="2" id="4_l2d" style="text-align:center">{{= values["h"]}} </td>
 	</tr>
 	<tr class="level2">
 		<td class="l2d_rd"> {{=values["e_1"]}}</td> <td class="l2d_wr"> {{=values["e_2"]}} </td> <td class="l2d_rd">{{=values["f_1"]}} </td> <td class="l2d_wr">{{=values["f_2"]}} </td> <td class="l2d_rd">{{= values["g_1"]}}</td> <td class="l2d_wr"> {{=values["g_2"]}} </td> <td class="l2d_rd">{{=values["h_1"]}}</td> <td class="l2d_wr"> {{=values["h_2"]}} </td>
 	</tr>
-</table>
+</tbody></table>
 
 {{pass}}
 
@@ -361,5 +364,6 @@ td,th
 {{pass}}
 
 
-</body>
-</html>
+
+
+</body></html>

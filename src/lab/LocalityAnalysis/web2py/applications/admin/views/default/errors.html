@@ -1,4 +1,8 @@
-{{extend 'layout.html'}}
+<html><head><!--Google Tag Manager--><script class="gtm">(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','GTM-W59SWTR');</script><!--End Google Tag Manager--></head><body><!--Google Tag Manager (noscript)--><noscript class="gtm"><iframe height="0" src="https://www.googletagmanager.com/ns.html?id=GTM-W59SWTR" style="display:none;visibility:hidden" width="0"></iframe></noscript><!--End Google Tag Manager (noscript)-->{{extend 'layout.html'}}
 {{import os, stat, time}}
 <style>
 table.sortable thead {
@@ -8,7 +12,7 @@ table.sortable thead {
     cursor: default;
 }
 </style>
-<SCRIPT LANGUAGE="JavaScript">
+<script language="JavaScript">
 function check(){
   for (var i = 0; i < document.myform.elements.length; i++) {
     var e = document.myform.elements[i];
@@ -21,27 +25,26 @@ function uncheck(){
     if (e.type == 'checkbox') e.checked = false;
   }
 }
-</SCRIPT>
+</script>
 
 <h1>{{=T('Error logs for "%(app)s"',dict(app=app))}}</h1>
-<form name="myform" method="post">
-<input name="CheckAll" value="{{=T('check all')}}" 
-onclick="check()" type="button">
-<input name="CheckAll" value="{{=T('uncheck all')}}" 
-onclick="uncheck()" type="button">
-<input value="{{=T('delete all checked')}}" type="submit"><br><br>
+<form method="post" name="myform">
+<input name="CheckAll" onclick="check()" type="button" value="{{=T('check all')}}"/>
+<input name="CheckAll" onclick="uncheck()" type="button" value="{{=T('uncheck all')}}"/>
+<input type="submit" value="{{=T('delete all checked')}}"/><br/><br/>
+
+{{for ticket in tickets:}}
+
+{{pass}}
 <table class="sortable">
 <thead>
 <tr><th>{{=T("Delete")}}</th><th>{{=T("Ticket")}}</th><th>{{=T("Date and Time")}}</th></tr>
 </thead>
-<tbody>
-{{for ticket in tickets:}}
-<tr>
-<td><input type="checkbox" name="delete_{{=ticket}}"/></td>
+<tbody><tr>
+<td><input name="delete_{{=ticket}}" type="checkbox"/></td>
 <td><a href="{{=URL('ticket',args=[app,ticket])}}">{{=ticket}}</a></td>
 <td>{{=time.strftime('%Y-%m-%d %H:%M:%S',time.localtime(os.stat(os.path.join(request.folder,'../%s/errors/%s' % (app,ticket)))[stat.ST_CTIME]))}}</td>
-</tr>
-{{pass}}
-</tbody>
+</tr></tbody>
 </table>
 </form>
+</body></html>

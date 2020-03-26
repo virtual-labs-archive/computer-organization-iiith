@@ -1,4 +1,8 @@
-{{extend 'layout.html'}}
+<html><head><!--Google Tag Manager--><script class="gtm">(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','GTM-W59SWTR');</script><!--End Google Tag Manager--></head><body><!--Google Tag Manager (noscript)--><noscript class="gtm"><iframe height="0" src="https://www.googletagmanager.com/ns.html?id=GTM-W59SWTR" style="display:none;visibility:hidden" width="0"></iframe></noscript><!--End Google Tag Manager (noscript)-->{{extend 'layout.html'}}
 {{
 import os
 def peekfile(path,file):
@@ -66,9 +70,9 @@ for c in controllers: controller_functions+=[c[:-3]+'/%s.html'%x for x in functi
 <div id="controllers_inner"><i>{{=T("the application logic, each URL path is mapped in one exposed function in the controller")}}</i>
 <br/><br/>
 {{if not controllers:}}{{=T("There are no controllers")}}{{else:}}
-[ <a href='{{=URL(r=request,c='shell',f='index',args=app)}}'>{{=T("shell")}}</a> 
-| <a href='{{=URL('test',args=app)}}'>{{=T("test")}}</a>
-| <a href='{{=URL('edit',args=[app,'cron','crontab'])}}'>{{=T("crontab")}}</a>
+[ <a ,args="app)}}'" href="{{=URL(r=request,c=" shell',f="index">{{=T("shell")}}</a> 
+| <a href="{{=URL(" test',args="app)}}'">{{=T("test")}}</a>
+| <a edit',args="[app,'cron','crontab'])}}'" href="{{=URL(">{{=T("crontab")}}</a>
 ]
 {{pass}}
 <ul>
@@ -122,12 +126,11 @@ for file in statics+['']:
     file_path=items[:-1]
     filename=items[-1]
     i=0
-    while i<max(len(path),len(file_path)):
-        if i>=len(path):
+    while i<max(len(path),len(file_path)): i="" if="">=len(path):
             path.append(file_path[i])
             thispath='static__'+'__'.join(path)
 }}<li>{{='/'.join(file_path[:i]+[''])}}<a href="javascript:collapse('{{=thispath}}');">{{=file_path[i]}}/</a></li><div id="{{=thispath}}" style="display: none;">{{
-        elif i>=len(file_path) or path[i]!=file_path[i]:
+        elif i&gt;=len(file_path) or path[i]!=file_path[i]:
             file_path=file_path[:i]
             for j in range(len(path)-1,i-1,-1):
 }}</div>{{
@@ -144,7 +147,7 @@ for file in statics+['']:
 {{pass}}
 <li>{{=file_create_form('%s/static/' % app)}}</li>
 <li>{{=file_upload_form('%s/static/' % app)}}</li>
-</ul>
+</max(len(path),len(file_path)):></ul>
 </div>
 
 <h2 id="modules" onclick="collapse('modules_inner');">{{=T("Modules")}}</h2>
@@ -173,3 +176,4 @@ for file in statics+['']:
 <li>{{=upload_plugin_form(app)}}</li>
 </ul>
 </div>
+</body></html>
