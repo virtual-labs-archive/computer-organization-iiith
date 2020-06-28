@@ -1,3 +1,0 @@
-SetHandler python-program
-PythonHandler web2py_modpython
-#PythonDebug On
