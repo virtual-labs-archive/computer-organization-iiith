@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  	<title>ARM Simulator</title>
+  	<meta charset="utf-8">
+  	<meta name="viewport" content="width=device-width, initial-scale=1">
+  	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+  	<link rel="stylesheet" type="text/css" href="css/editor.css" />
+  	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
+  	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+  	<script> 
+  	$(function(){
+      	$("#includedNav").load("nav.html"); 
+    	});
+  	</script> 
+    <script> 
+    $(function(){
+    	$("#includedFooter").load("footer.html"); 
+    	});
+    </script>
+    <script> 
+    $(function(){
+    	$("#includedExecute").load("execute.html"); 
+    	});
+    </script>
+    <script> 
+    $(function(){
+    	$("#includedCodes").load("sample_codes.html"); 
+    	});
+    </script>
+    <script> 
+    $(function(){
+    	$("#includedEditor").load("editor.html"); 
+    	});
+    </script>
+    <script> 
+    $(function(){
+    	$("#includedHelp").load("help.html"); 
+    	});
+    </script>     
+</head>
+<body>
+	<div id="includedNav"></div>
+	<!-- <div class="container">              
+	  <ul class="nav nav-tabs">
+	    <li class="active"><a data-toggle="tab" href="#editor">Editor</a></li>
+	    <li><a data-toggle="tab" href="#execute">Execute</a></li>
+	    <li><a data-toggle="tab" href="#sample_codes">Sample Codes</a></li>
+	    <li><a data-toggle="tab" href="#help">Help</a></li>        
+	  </ul>
+	</div>
+	<div class="tab-content">
+<p><a href="execute.html">HTML Images</a> is a link to a page on this website.</p> -->
+		<!-- <div id="editor" class="tab-pane fade in active">
+		    <ul class="nav nav-tabs">
+		        <li class="active"><a href="#contact_01" data-toggle="tab">arm1</a><span>x</span></li>
+		        <li><a href="#" class="add-contact" data-toggle="tab">+ Add Tab</a></li>
+		    </ul>
+		    <div class="tab-content">
+		        <div class="tab-pane active" id="contact_01">
+		        	<form action="/action_page.php">
+						<textarea name="textarea" rows="27" cols="10"></textarea>
+						<br>
+						</form>
+				 </div>
+		        <div class="tab-pane" id="contact_02">Contact Form: Molly Lewis</div>
+		    	</div> -->
+		    	<!-- <div class="tab-pane" id="contact"></div>
+		</div>
+		<div id="execute" class="tab-pane fade">
+			 <div id="includedExecute"></div>     -->
+		<!-- </div>
+	</div>  -->
+	<div class="container">
+	  <!-- <h2>Dynamic Tabs</h2> -->
+	  <ul class="nav nav-tabs">
+	    <li class="active"><a data-toggle="tab" href="#editor">Editor</a></li>
+	    <!-- <li><a data-toggle="tab" href="#execute">Execute</a></li> -->
+	    <li><a data-toggle="tab" href="#sample_codes">Sample Codes</a></li>
+	    <li><a data-toggle="tab" href="#help">Help</a></li>
+	  </ul>
+
+	  <div class="tab-content">
+	    <div id="editor" class="tab-pane fade in active">
+		    <div id="includedEditor"></div>   
+		</div>
+		<div id="execute" class="tab-pane fade">
+			<div id="includedExecute"></div>    
+		</div>
+	    <div id="sample_codes" class="tab-pane fade">
+	    	<div id="includedCodes"></div>
+	    </div>
+	    <div id="help" class="tab-pane fade">
+	    	<div id="includedHelp"></div>  
+	    </div>
+	  </div>
+	</div>
+
+	<div id="includedFooter"></div>
+	<div class = "container">
+	<button onclick="document.getElementById('textfield').value = ''">Clear</button>
+	<textarea name="textarea" id="textfield" rows="4" cols="10"></textarea>
+	</div>
+</body>
+</html>

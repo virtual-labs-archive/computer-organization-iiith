@@ -1,0 +1,78 @@
+1)To reuse a code which in one file which was written in another file the scripting language used is?
+A: javascript
+
+2)The code used to write characters in bold is?
+A:<b>text</b>
+
+3)The tag used to link a url to a text is?
+A:a href="#">Page 1-1</a>
+
+4)Explain the term Responsive web design?
+A:It is a method in which we design and develop a web page according to the user activities and conditions which are based on various components like the size of the screen, portability of the web page on different device etc. Hence it is done by using different flexible layouts and grids.
+
+5)Code used to clear a text box?
+A: <button onclick="document.getElementById('textfield').value = ''">Clear</button>
+
+6) Tag used to write in paragraph?
+A:<p>text</p>
+
+7)Tag used to use write in point?
+A: <ul><li>text</li></ul>
+
+8)Code for Textbox?
+A: <textarea name="textarea" id="textfield" rows="4" cols="10"></textarea>
+
+9) The correct HTML element for the largest heading?
+A:<h1>
+
+10)To reuse a code which in one file which was written in another file the scripting code used is?
+A)<script> 
+  	$(function(){
+      	$("#includedNav").load("nav.html"); 
+    	});
+  	</script> 
+
+11)Is ur project responsive?
+A: Yes
+
+12)  Mention a similarity between the ID and class?
+A:   Both id and class is been used in HTML and assigns the value from CSS.
+
+13)  How can we change the dimensions of our text box?
+A: By changing the rows and coloumn numbers in the textarea tag.
+
+14) Is there dynamic tebs system in your project?
+A: Yes
+
+15) What is the correct HTML element for inserting a line break?
+A: <br>
+
+16)What is the correct HTML for adding a background color?
+A: <body style="background-color:yellow;">  
+
+17) How to make a project Responsive?
+A:  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+18) Which character is used to indicate an end tag?
+A:  /
+
+19) How can you open a link in a new tab/browser window?
+A:  <a href="url" target="_blank">  
+
+20) Which elements are all <table> elements?
+A:  <table><tr><td>  
+
+21)To reuse a code which in one file which was written in another file the scripting language used is?
+A: javascript
+
+22) How can you make a numbered list?
+A:  <ol>
+
+23) What is the correct HTML for making a text input field?
+A:  <input type="text">  
+
+24) Which HTML element defines the title of a document?
+A:  <title>  
+
+25) Which HTML element defines navigation links?
+A:  <nav>
