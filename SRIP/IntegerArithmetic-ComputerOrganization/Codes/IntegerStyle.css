@@ -1,0 +1,104 @@
+ body{         background-color:ghostwhite;
+              margin: 0;
+               user-select: none;
+     -moz-user-select: none; 
+      }
+     p{
+                 padding-left: 50px;
+                	color:brown;
+                	font-size:130%;
+      }
+    h1{           color:darkred;
+      }
+
+table{ 
+    	         border-collapse: collapse; 
+               border-spacing: 0;
+               margin-right:150px;
+               height: 30vh;             
+      }
+      
+    td{     text-align:center;
+            border: solid 1px black;
+            cursor:pointer;
+            padding: 10px;
+      }
+    th{
+            color:black;
+            padding:10px;
+      }
+tr:not(:last-child) td{
+                        padding-top: 2px 
+                      }
+.selected {
+            background-color: pink;
+            color: #FFF;
+}
+.button {
+          background-color:lightcoral;
+          border: none;
+          color: white;
+          padding: 20px;
+          text-align: center;
+          text-decoration: none;
+          display: inline-block;
+          font-size: 15px;
+          margin-left: 30px;
+          cursor: pointer;
+          border: 2px solid #DC143C;
+          border-radius: 12px;}
+        }
+ .button:hover{box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24), 0 17px 50px 0 rgba(0,0,0,0.19);}
+.start {
+          background-color:lightgreen;
+          border: none;
+          color: white;
+          padding: 20px;
+          text-align: center;
+          text-decoration: none;
+          display: inline-block;
+          font-size: 15px;
+          margin-left: 30px;
+          cursor: pointer;
+          border: 2px solid white;
+          border-radius: 12px;}
+        }
+ .start:hover{box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24), 0 17px 50px 0 rgba(0,0,0,0.19);}
+
+ .switch{
+          background-color:darkorange;
+          border: none;
+          color: white;
+          padding: 20px;
+          text-align: center;
+          text-decoration: none;
+          display: inline-block;
+          font-size: 15px;
+          margin-left: 30px;
+          cursor: pointer;
+          border: 2px solid white;
+          border-radius: 12px;}
+        }
+ .switch:hover{box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24), 0 17px 50px 0 rgba(0,0,0,0.19);}
+
+.foo
+{
+    margin-left:10px;
+}
+input, select, textarea{
+    color:#4B0082;
+    background-color:#FFFAFA;
+}
+
+li:hover 
+{
+    cursor: pointer;
+}    
+ tr
+ { 
+        border-top-left-radius: 10px; 
+}
+.UI{
+    margin-right: 160px;
+}
+
